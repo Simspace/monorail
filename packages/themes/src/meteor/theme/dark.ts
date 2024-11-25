@@ -255,7 +255,7 @@ const palette: PaletteOptions = {
     },
 
     border: {
-      light: RawColor.Grey500,
+      light: RawColor.Slate500,
       main: RawColor.Slate400,
       dark: RawColor.Slate300,
     },

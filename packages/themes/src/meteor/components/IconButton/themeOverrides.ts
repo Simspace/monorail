@@ -2,6 +2,9 @@ import type { Components, Theme } from '@mui/material'
 import { alpha, buttonBaseClasses } from '@mui/material'
 
 export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
+  defaultProps: {
+    disableRipple: true,
+  },
   styleOverrides: {
     root: ({
       ownerState: { color = 'primary', variant = 'contained' },
@@ -26,7 +29,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
                 top: '1px',
                 left: '1px',
                 zIndex: 1,
-                borderRadius: theme.spacing(1),
+                borderRadius: '3px',
                 width: 'calc(100% - 2px)',
                 height: 'calc(100% - 2px)',
                 backgroundColor: 'transparent',
@@ -36,9 +39,12 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
               },
               color: theme.palette[color].contrastText,
               backgroundColor: theme.palette[color].main,
-              transition: theme.transitions.create(['box-shadow'], {
-                duration: theme.transitions.duration.shortest,
-              }),
+              transition: theme.transitions.create(
+                ['box-shadow', 'background-color'],
+                {
+                  duration: theme.transitions.duration.shortest,
+                },
+              ),
               [`&.${buttonBaseClasses.focusVisible}`]: {
                 boxShadow: `inset 0 0 0 1px ${theme.palette[color].focusRing.inner}, 0 0 0 3px ${theme.palette[color].focusRing.outer}`,
               },
@@ -54,7 +60,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
                 },
               },
               '&:active': {
-                backgroundColor: theme.palette[color].main,
+                backgroundColor: theme.palette[color].dark,
                 boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.dark}`,
                 '&::before': {
                   backgroundColor: theme.palette.action.active,
@@ -72,7 +78,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
                 top: '1px',
                 left: '1px',
                 zIndex: 1,
-                borderRadius: theme.spacing(1),
+                borderRadius: '3px',
                 width: 'calc(100% - 2px)',
                 height: 'calc(100% - 2px)',
                 backgroundColor: 'transparent',

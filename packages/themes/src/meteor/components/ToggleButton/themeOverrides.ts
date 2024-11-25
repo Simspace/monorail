@@ -1,4 +1,4 @@
-import type { Components, Theme } from '@mui/material'
+import { alpha, type Components, type Theme } from '@mui/material'
 
 import {
   toggleButtonClasses,
@@ -8,48 +8,75 @@ import {
 export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton'] =
   {
     defaultProps: {
-      color: 'primary',
+      color: 'secondary',
     },
     styleOverrides: {
-      root: ({ theme }) => ({
-        padding: theme.spacing(1.75),
-        border: `1px solid ${theme.palette.primary.border.main}`,
-        backgroundColor: theme.palette.background.paper,
-        color: theme.palette.text.primary,
-        '&:hover': {
-          border: `1px solid ${theme.palette.primary.border.dark}`,
-          // color-mix() achieves an opaque theme.palette.action.hover
-          // https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix
-          backgroundColor: `color-mix(in srgb, ${
-            theme.palette.background.paper
-          }, ${theme.palette.text.primary} ${
-            // Opted for text.primary as opposed to common.black or common.white
-            // to darken background colors in light mode and to lighten background colors in dark mode
-            theme.palette.action.hoverOpacity * 100
-          }%)`,
-        },
-        [`&.Mui-focusVisible`]: {
-          boxShadow: `0 0 0 4px ${theme.palette.primary.focusRing.outer}`,
-          border: `1px solid ${theme.palette.primary.border.dark}`,
-          zIndex: 2,
-        },
-        [`&.${toggleButtonClasses.selected}`]: {
-          color: theme.palette.text.primary,
-          backgroundColor: theme.palette.primary.lowEmphasis.main,
-          borderColor: theme.palette.primary.border.dark,
-          '&:hover': {
-            backgroundColor: `color-mix(in srgb, ${
-              theme.palette.primary.lowEmphasis.main
-            }, ${theme.palette.text.primary} ${
-              theme.palette.action.hoverOpacity * 100
-            }%)`,
+      root: ({ theme, ownerState: { color = 'secondary' } }) => {
+        return {
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            top: 0,
+            left: 0,
+            backgroundColor: 'transparent',
+            transition: theme.transitions.create(['background-color'], {
+              duration: theme.transitions.duration.shortest,
+            }),
           },
-        },
-        [`&.${toggleButtonClasses.disabled}`]: {
-          backgroundColor: theme.palette.background.paper,
-          borderColor: theme.palette.primary.border.main,
-        },
-      }),
+          [`&.${toggleButtonGroupClasses.groupedHorizontal}:first-of-type`]: {
+            '&::before': {
+              borderTopLeftRadius: '3px',
+              borderBottomLeftRadius: '3px',
+            },
+          },
+          [`&.${toggleButtonGroupClasses.groupedHorizontal}:last-of-type`]: {
+            '&::before': {
+              borderTopRightRadius: '3px',
+              borderBottomRightRadius: '3px',
+            },
+          },
+          [`&.${toggleButtonGroupClasses.groupedVertical}:first-of-type`]: {
+            '&::before': {
+              borderTopLeftRadius: '3px',
+              borderTopRightRadius: '3px',
+            },
+          },
+          [`&.${toggleButtonGroupClasses.groupedVertical}:last-of-type`]: {
+            '&::before': {
+              borderBottomLeftRadius: '3px',
+              borderBottomRightRadius: '3px',
+            },
+          },
+          color: theme.palette[color].lowEmphasis.contrastText,
+          backgroundColor: theme.palette[color].lowEmphasis.light,
+          borderColor: theme.palette[color].border.light,
+          '&:hover': {
+            backgroundColor: theme.palette[color].lowEmphasis.light,
+            '&::before': {
+              backgroundColor: theme.palette.action.hover,
+            },
+          },
+          [`&.${toggleButtonClasses.selected}`]: {
+            color: theme.palette[color].lowEmphasis.contrastText,
+            backgroundColor: theme.palette[color].lowEmphasis.light,
+            borderColor: theme.palette[color].border.dark,
+            '&::before': {
+              backgroundColor: theme.palette.action.selected,
+            },
+            '&:hover': {
+              '&::before': {
+                backgroundColor: alpha(
+                  theme.palette.grey[100],
+                  theme.palette.action.hoverOpacity +
+                    theme.palette.action.selectedOpacity,
+                ),
+              },
+            },
+          },
+        }
+      },
       sizeSmall: ({ theme }) => ({
         padding: theme.spacing(1),
       }),
@@ -62,63 +89,89 @@ export const MonorailToggleButtonOverrides: Components<Theme>['MuiToggleButton']
 export const MonorailToggleButtonGroupOverrides: Components<Theme>['MuiToggleButtonGroup'] =
   {
     defaultProps: {
-      color: 'primary',
+      color: 'secondary',
     },
     styleOverrides: {
-      root: ({ theme }) => ({
-        [`& .${toggleButtonGroupClasses.grouped}`]: {
-          '&:not(:first-of-type)': {
-            borderLeft: `1px solid ${theme.palette.primary.border.main}`,
-            [`&.${toggleButtonGroupClasses.groupedVertical}`]: {
-              borderTop: `1px solid ${theme.palette.primary.border.main}`,
+      root: ({ theme, color = 'secondary', borderless }) => ({
+        ...(borderless === true && {
+          [`& .${toggleButtonClasses.root}`]: {
+            border: `1px solid transparent`,
+            borderRadius: theme.spacing(1),
+            '&::before': {
+              width: 'calc(100% + 2px)',
+              height: 'calc(100% + 2px)',
+              top: '-1px',
+              left: '-1px',
+              borderRadius: theme.spacing(1),
+            },
+            [`&.${toggleButtonClasses.selected}`]: {
+              border: `1px solid transparent`,
+            },
+            [`&.${toggleButtonClasses.disabled}`]: {
+              border: `1px solid transparent`,
             },
           },
-          '&.Mui-selected': {
-            borderLeft: `1px solid ${theme.palette.primary.border.main}`,
+          [`&.${toggleButtonGroupClasses.horizontal}`]: {
+            [`& .${toggleButtonGroupClasses.grouped}.${toggleButtonClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonClasses.selected}`]:
+              {
+                borderLeft: `1px solid transparent`,
+                marginLeft: -1,
+              },
+            [`& .${toggleButtonClasses.selected} + .${toggleButtonClasses.root}`]:
+              {
+                borderLeftColor: 'transparent',
+              },
+            [`& .${toggleButtonClasses.root}:not(.${toggleButtonClasses.selected})`]:
+              {
+                borderLeftColor: 'transparent',
+              },
           },
-        },
-      }),
-      groupedHorizontal: ({ theme }) => ({
-        '&:hover': {
-          '&:not(:first-of-type)': {
-            zIndex: 1,
-            borderLeft: `1px solid ${theme.palette.primary.border.main}`,
-            '&.Mui-selected': {
-              marginLeft: -1,
-              borderLeft: `1px solid ${theme.palette.primary.border.main}`,
-            },
+          [`&.${toggleButtonGroupClasses.vertical}`]: {
+            [`& .${toggleButtonGroupClasses.grouped}.${toggleButtonClasses.selected} + .${toggleButtonGroupClasses.grouped}.${toggleButtonClasses.selected}`]:
+              {
+                borderTop: `1px solid transparent`,
+                marginTop: -1,
+              },
+            [`& .${toggleButtonClasses.selected} + .${toggleButtonClasses.root}`]:
+              {
+                borderTopColor: 'transparent',
+              },
+            [`& .${toggleButtonClasses.root}:not(.${toggleButtonClasses.selected})`]:
+              {
+                borderTopColor: 'transparent',
+              },
           },
-        },
-        [`&.Mui-focusVisible`]: {
-          '&:not(:first-of-type)': {
-            borderLeft: `1px solid ${theme.palette.primary.focusRing.inner}`,
-            '&.Mui-selected': {
-              marginLeft: -1,
-              borderLeft: `1px solid ${theme.palette.primary.focusRing.inner}`,
-            },
+        }),
+        ...(borderless !== true && {
+          [`&.${toggleButtonGroupClasses.horizontal}`]: {
+            [`& .${toggleButtonGroupClasses.groupedHorizontal} + .${toggleButtonClasses.root}`]:
+              {
+                borderLeftColor: theme.palette[color].border.dark,
+              },
+            [`& .${toggleButtonClasses.selected} + .${toggleButtonClasses.root}:not(.${toggleButtonClasses.selected})`]:
+              {
+                borderLeftColor: theme.palette[color].border.dark,
+              },
+            [`& .${toggleButtonClasses.root}:not(.${toggleButtonClasses.selected})`]:
+              {
+                borderLeftColor: theme.palette[color].border.light,
+              },
           },
-        },
-      }),
-      groupedVertical: ({ theme }) => ({
-        '&:hover': {
-          '&:not(:first-of-type)': {
-            zIndex: 1,
-            borderTop: `1px solid ${theme.palette.primary.border.main}`,
-            '&.Mui-selected': {
-              marginTop: -1,
-              borderTop: `1px solid ${theme.palette.primary.border.main}`,
-            },
+          [`&.${toggleButtonGroupClasses.vertical}`]: {
+            [`& .${toggleButtonGroupClasses.groupedVertical} + .${toggleButtonClasses.root}`]:
+              {
+                borderTopColor: theme.palette[color].border.dark,
+              },
+            [`& .${toggleButtonClasses.selected} + .${toggleButtonClasses.root}`]:
+              {
+                borderTopColor: theme.palette[color].border.dark,
+              },
+            [`& .${toggleButtonClasses.root}:not(.${toggleButtonClasses.selected})`]:
+              {
+                borderTopColor: theme.palette[color].border.light,
+              },
           },
-        },
-        [`&.Mui-focusVisible`]: {
-          '&:not(:first-of-type)': {
-            borderTop: `1px solid ${theme.palette.primary.focusRing.inner}`,
-            '&.Mui-selected': {
-              marginTop: -1,
-              borderTop: `1px solid ${theme.palette.primary.focusRing.inner}`,
-            },
-          },
-        },
+        }),
       }),
     },
   }

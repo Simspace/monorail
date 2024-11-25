@@ -8,6 +8,10 @@ declare module '@mui/material/ToggleButtonGroup' {
     standard: false
     default: true
   }
+
+  interface ToggleButtonGroupProps {
+    borderless?: boolean
+  }
 }
 
 /**
