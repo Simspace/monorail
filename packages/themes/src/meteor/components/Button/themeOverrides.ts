@@ -88,6 +88,11 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
             backgroundColor: theme.palette.action.active,
           },
         },
+        [`&.${buttonClasses.disabled}`]: {
+          backgroundColor: theme.palette[color].main,
+          color: theme.palette[color].contrastText,
+          opacity: 0.6,
+        },
       }
     },
     outlined: ({
@@ -137,8 +142,12 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
             boxShadow: `inset 0 0 0 1px ${theme.palette[color].border.main}`,
           }),
         },
+        '&.Mui-disabled': {
+          opacity: 0.6,
+        },
         ...(color === 'error' && {
-          [`&.${buttonClasses.disabled}`]: {
+          '&.Mui-disabled': {
+            opacity: 0.6,
             border: 'none',
           },
         }),
