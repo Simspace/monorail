@@ -1,5 +1,5 @@
 import type { Components, Theme } from '@mui/material'
-import { buttonGroupClasses, menuClasses } from '@mui/material'
+import { buttonClasses, buttonGroupClasses, menuClasses } from '@mui/material'
 
 import { type SplitButtonProps } from '@monorail/components'
 
@@ -31,6 +31,9 @@ export const MonorailSplitButtonOverrides: Components<Theme>['MonorailSplitButto
           ...(variant === 'contained' && {
             color: theme.palette[color].contrastText,
             borderRight: `1px solid ${theme.palette.common.white}`,
+            [`&.${buttonClasses.disabled}`]: {
+              borderRight: `1px solid ${theme.palette.common.white}`,
+            },
           }),
           ...(variant === 'outlined' && {
             color: theme.palette[color].lowEmphasis.contrastText,
