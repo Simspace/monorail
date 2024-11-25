@@ -14,16 +14,19 @@ export const InlineTextField = styled(TextField)(
       },
       [`&:not(:hover)`]: {
         [`& .${outlinedInputClasses.notchedOutline}`]: {
-          borderColor: alpha(theme.palette[color].border.main, 0),
+          borderColor: alpha(theme.palette.default.border.main, 0),
         },
         [`& .${selectClasses.icon}`]: {
           opacity: 0,
         },
       },
       [`&:hover`]: {
-        [`.${outlinedInputClasses.root}:hover`]: {
+        [`& .${outlinedInputClasses.notchedOutline}`]: {
+          border: `1px solid ${theme.palette.default.border.main}`,
+        },
+        [`&.${outlinedInputClasses.error}`]: {
           [`& .${outlinedInputClasses.notchedOutline}`]: {
-            border: `1px solid ${theme.palette[color].border.main}`,
+            border: `1px solid ${theme.palette.error.border.dark}`,
           },
         },
         [`& .${selectClasses.icon}`]: {
@@ -31,7 +34,7 @@ export const InlineTextField = styled(TextField)(
         },
       },
       [`& .${outlinedInputClasses.notchedOutline}`]: {
-        borderColor: theme.palette[color].border.main,
+        borderColor: theme.palette.default.border.main,
         transition: theme.transitions.create('border-color', {
           duration: theme.transitions.duration.shortest,
         }),
@@ -42,9 +45,6 @@ export const InlineTextField = styled(TextField)(
         }),
       },
       [`& .${outlinedInputClasses.root}.Mui-focused`]: {
-        [`& .${outlinedInputClasses.notchedOutline}`]: {
-          border: `1px solid ${theme.palette[color].border.main}`,
-        },
         [`&>.${selectClasses.icon}`]: {
           opacity: 1,
         },

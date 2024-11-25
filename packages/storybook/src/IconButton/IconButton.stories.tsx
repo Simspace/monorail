@@ -47,7 +47,10 @@ const Template = story<IconButtonProps>(
     </IconButton>
   ),
   {
-    args: {},
+    args: {
+      variant: 'contained',
+      color: 'primary',
+    },
     argTypes,
     muiName: 'MuiIconButton',
   },
@@ -63,7 +66,7 @@ export const Default = story(Template)
 export const Showcase = story<IconButtonProps>(
   () => (
     <Stack direction="row" spacing={4}>
-      <IconButton aria-label="delete" color="primary">
+      <IconButton variant="contained" aria-label="delete" color="primary">
         <DeleteIcon />
       </IconButton>
       <IconButton
@@ -74,7 +77,11 @@ export const Showcase = story<IconButtonProps>(
       >
         <DeleteIcon />
       </IconButton>
-      <IconButton color="primary" aria-label="add to shopping cart">
+      <IconButton
+        variant="contained"
+        color="primary"
+        aria-label="add to shopping cart"
+      >
         <AddShoppingCartIcon />
       </IconButton>
     </Stack>

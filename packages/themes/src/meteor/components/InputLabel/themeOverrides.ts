@@ -1,4 +1,4 @@
-import type { Components, Theme } from '@mui/material'
+import { inputLabelClasses, type Components, type Theme } from '@mui/material'
 
 export const MonorailInputLabelOverrides: Components<Theme>['MuiInputLabel'] = {
   defaultProps: {
@@ -16,6 +16,12 @@ export const MonorailInputLabelOverrides: Components<Theme>['MuiInputLabel'] = {
         color: theme.palette.text.secondary,
         marginBottom: theme.spacing(0.5),
         ...theme.typography.inputLabel,
+        '&.Mui-focused': {
+          color: theme.palette.text.secondary,
+        },
+        [`&.${inputLabelClasses.error}`]: {
+          color: theme.palette.error.lowEmphasis.contrastText,
+        },
       }
     },
   },

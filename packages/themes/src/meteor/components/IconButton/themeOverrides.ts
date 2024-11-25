@@ -4,6 +4,8 @@ import { alpha, buttonBaseClasses } from '@mui/material'
 export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
   defaultProps: {
     disableRipple: true,
+    // @ts-expect-error -- the `variant` property comes from ButtonBase
+    variant: 'chromeless',
   },
   styleOverrides: {
     root: ({

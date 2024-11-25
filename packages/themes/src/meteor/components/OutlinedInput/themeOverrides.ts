@@ -7,6 +7,7 @@ import {
 export const MonorailOutlinedInputOverrides: Components<Theme>['MuiOutlinedInput'] =
   {
     defaultProps: {
+      color: 'secondary',
       notched: false,
     },
     styleOverrides: {
@@ -27,6 +28,9 @@ export const MonorailOutlinedInputOverrides: Components<Theme>['MuiOutlinedInput
         },
       }),
       notchedOutline: ({ theme }) => ({
+        transition: theme.transitions.create('border-color', {
+          duration: theme.transitions.duration.shortest,
+        }),
         borderColor: theme.palette.default.border.light,
       }),
       multiline: {
