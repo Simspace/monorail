@@ -1,6 +1,6 @@
 import { generateUtilityClass, generateUtilityClasses } from '@mui/material'
 
-export interface ResizableDrawerClasses {
+export interface FlexDrawerClasses {
   /** Styles applied to the root element */
   root: string
   /** Styles applied to the root element if `variant="persistent"`. */
@@ -37,14 +37,15 @@ export interface ResizableDrawerClasses {
   handleDragging: string
 }
 
-export type ResizableDrawerClassKey = keyof ResizableDrawerClasses
+export type FlexDrawerClassKey = keyof FlexDrawerClasses
 
-export function getResizableDrawerUtilityClass(slot: string): string {
-  return generateUtilityClass('MonorailResizableDrawer', slot)
+export function getFlexDrawerUtilityClass(slot: string): string {
+  return generateUtilityClass('MonorailFlexDrawer', slot)
 }
 
-export const resizableDrawerClasses: ResizableDrawerClasses =
-  generateUtilityClasses('MonorailResizableDrawer', [
+export const flexDrawerClasses: FlexDrawerClasses = generateUtilityClasses(
+  'MonorailFlexDrawer',
+  [
     'root',
     'docked',
     'temporaryContainer',
@@ -62,4 +63,5 @@ export const resizableDrawerClasses: ResizableDrawerClasses =
     'dragAreaDragging',
     'handle',
     'handleDragging',
-  ])
+  ],
+)

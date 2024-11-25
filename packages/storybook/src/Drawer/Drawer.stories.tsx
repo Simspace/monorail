@@ -11,7 +11,7 @@ import { styled, useTheme } from '@mui/material'
 import type {
   AppBarProps,
   DrawerProps,
-  ResizableDrawerProps,
+  FlexDrawerProps,
 } from '@monorail/components'
 import {
   AppBar,
@@ -27,7 +27,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  ResizableDrawer,
+  FlexDrawer,
   Stack,
   Toolbar,
   Typography,
@@ -35,6 +35,7 @@ import {
 import { Home } from '@monorail/components/icons'
 
 import { story } from '../helpers/storybook.js'
+import { StoryObj } from '@storybook/react'
 
 export default {
   title: 'Navigation/Drawer',
@@ -471,7 +472,7 @@ export const PersistentDrawer = story<DrawerProps>(() => {
  *
  * Persistent navigation drawers are acceptable for all sizes larger than mobile. They are not recommended for apps with multiple levels of hierarchy that require using an up arrow for navigation.
  */
-export const ResizableDrawerLeft_ = story<ResizableDrawerProps>(
+export const ResizableDrawerLeft_ = story<FlexDrawerProps>(
   () => {
     const [open, setOpen] = React.useState(false)
 
@@ -500,7 +501,8 @@ export const ResizableDrawerLeft_ = story<ResizableDrawerProps>(
                 },
               }}
             />
-            <ResizableDrawer
+            <FlexDrawer
+              resizable
               variant="persistent"
               onClose={() => setOpen(false)}
               open={open}
@@ -557,7 +559,7 @@ export const ResizableDrawerLeft_ = story<ResizableDrawerProps>(
                   </ListItem>
                 ))}
               </List>
-            </ResizableDrawer>
+            </FlexDrawer>
 
             <Box
               component="main"
@@ -611,7 +613,7 @@ export const ResizableDrawerLeft_ = story<ResizableDrawerProps>(
   },
 )
 
-export const ResizableDrawerRight_ = story<ResizableDrawerProps>(
+export const ResizableDrawerRight_ = story<FlexDrawerProps>(
   () => {
     return (
       <Stack direction="column" width="100vw" height="100vh">
@@ -667,7 +669,8 @@ export const ResizableDrawerRight_ = story<ResizableDrawerProps>(
             </Box>
           </Box>
 
-          <ResizableDrawer
+          <FlexDrawer
+            resizable
             variant="persistent"
             open={true}
             anchor="right"
@@ -724,7 +727,7 @@ export const ResizableDrawerRight_ = story<ResizableDrawerProps>(
                 </ListItem>
               ))}
             </List>
-          </ResizableDrawer>
+          </FlexDrawer>
 
           <Stack
             minWidth={64}
@@ -749,7 +752,7 @@ export const ResizableDrawerRight_ = story<ResizableDrawerProps>(
   },
 )
 
-export const ResizableDrawerTop_ = story<ResizableDrawerProps>(
+export const ResizableDrawerTop_ = story<FlexDrawerProps>(
   () => {
     return (
       <Box sx={{ height: '100vh', overflow: 'hidden' }}>
@@ -758,7 +761,8 @@ export const ResizableDrawerTop_ = story<ResizableDrawerProps>(
             <Typography variant="h6">Resizable Drawer Example</Typography>
           </Toolbar>
         </AppBar>
-        <ResizableDrawer
+        <FlexDrawer
+          resizable
           variant="persistent"
           open={true}
           anchor="top"
@@ -774,7 +778,7 @@ export const ResizableDrawerTop_ = story<ResizableDrawerProps>(
               This is some random content inside the drawer.
             </Typography>
           </Box>
-        </ResizableDrawer>
+        </FlexDrawer>
         <Box sx={{ p: 3, overflowY: 'auto' }}>
           <Typography paragraph>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -817,7 +821,7 @@ export const ResizableDrawerTop_ = story<ResizableDrawerProps>(
   },
 )
 
-export const ResizableDrawerBottom_ = story<ResizableDrawerProps>(
+export const ResizableDrawerBottom_ = story<FlexDrawerProps>(
   () => {
     return (
       <Box
@@ -865,7 +869,8 @@ export const ResizableDrawerBottom_ = story<ResizableDrawerProps>(
             ultrices sagittis orci a.
           </Typography>
         </Box>
-        <ResizableDrawer
+        <FlexDrawer
+          resizable
           variant="persistent"
           open={true}
           anchor="bottom"
@@ -881,7 +886,7 @@ export const ResizableDrawerBottom_ = story<ResizableDrawerProps>(
               This is some random content inside the drawer.
             </Typography>
           </Box>
-        </ResizableDrawer>
+        </FlexDrawer>
         <Box
           sx={{
             p: 3,
@@ -1086,3 +1091,141 @@ export const MiniDrawer = story<DrawerProps>(() => {
     </Box>
   )
 })
+
+export const FlexDrawerLeft: StoryObj<typeof FlexDrawer> = {
+  render: () => {
+    const [open, setOpen] = React.useState(false)
+
+    return (
+      <Stack direction="column" width="100vw" height="100vh">
+        <Stack direction="row" height={1}>
+          <Stack
+            minWidth={64}
+            flexGrow={1}
+            alignItems="center"
+            bgcolor="common.black"
+            py={4}
+          >
+            <Home
+              fontSize="large"
+              sx={theme => ({ fill: theme.palette.common.white })}
+            />
+          </Stack>
+
+          <Box overflow="hidden" height="100%" sx={{ display: 'flex' }}>
+            <CssBaseline />
+            <GlobalStyles
+              styles={{
+                'html, body, #root': {
+                  height: '100%',
+                },
+              }}
+            />
+            <FlexDrawer
+              variant="persistent"
+              onClose={() => setOpen(false)}
+              open={open}
+              slotProps={{
+                paper: {
+                  elevation: 16,
+                },
+              }}
+            >
+              <Toolbar />
+              <Divider />
+              <List>
+                {['Inbox', 'Starred', 'Send email', 'Drafts'].map(
+                  (text, index) => (
+                    <ListItem key={text} disablePadding>
+                      <ListItemButton sx={{ width: '100%' }}>
+                        <ListItemIcon>
+                          {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={text}
+                          sx={{
+                            '& > span': {
+                              whiteSpace: 'nowrap',
+                              overflow: 'hidden',
+                              textOverflow: 'ellipsis',
+                            },
+                          }}
+                        />
+                      </ListItemButton>
+                    </ListItem>
+                  ),
+                )}
+              </List>
+              <Divider />
+              <List>
+                {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                  <ListItem key={text} disablePadding>
+                    <ListItemButton sx={{ width: '100%' }}>
+                      <ListItemIcon>
+                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={text}
+                        sx={{
+                          '& > span': {
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                          },
+                        }}
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+              </List>
+            </FlexDrawer>
+
+            <Box
+              component="main"
+              sx={{ flexGrow: 1, bgcolor: 'background.default' }}
+            >
+              <Box sx={{ p: 3, overflowY: 'auto' }}>
+                <Button onClick={() => setOpen(!open)}>Open</Button>
+                <Typography paragraph>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Rhoncus dolor purus non enim praesent elementum facilisis leo
+                  vel. Risus at ultrices mi tempus imperdiet. Semper risus in
+                  hendrerit gravida rutrum quisque non tellus. Convallis
+                  convallis tellus id interdum velit laoreet id donec ultrices.
+                  Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl
+                  suscipit adipiscing bibendum est ultricies integer quis.
+                  Cursus euismod quis viverra nibh cras. Metus vulputate eu
+                  scelerisque felis imperdiet proin fermentum leo. Mauris
+                  commodo quis imperdiet massa tincidunt. Cras tincidunt
+                  lobortis feugiat vivamus at augue. At augue eget arcu dictum
+                  varius duis at consectetur lorem. Velit sed ullamcorper morbi
+                  tincidunt. Lorem donec massa sapien faucibus et molestie ac.
+                </Typography>
+                <Typography paragraph>
+                  Consequat mauris nunc congue nisi vitae suscipit. Fringilla
+                  est ullamcorper eget nulla facilisi etiam dignissim diam.
+                  Pulvinar elementum integer enim neque volutpat ac tincidunt.
+                  Ornare suspendisse sed nisi lacus sed viverra tellus. Purus
+                  sit amet volutpat consequat mauris. Elementum eu facilisis sed
+                  odio morbi. Euismod lacinia at quis risus sed vulputate odio.
+                  Morbi tincidunt ornare massa eget egestas purus viverra
+                  accumsan in. In hendrerit gravida rutrum quisque non tellus
+                  orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
+                  morbi tristique senectus et. Adipiscing elit duis tristique
+                  sollicitudin nibh sit. Ornare aenean euismod elementum nisi
+                  quis eleifend. Commodo viverra maecenas accumsan lacus vel
+                  facilisis. Nulla posuere sollicitudin aliquam ultrices
+                  sagittis orci a.
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Stack>
+      </Stack>
+    )
+  },
+  parameters: {
+    layout: 'fullscreen',
+  },
+}

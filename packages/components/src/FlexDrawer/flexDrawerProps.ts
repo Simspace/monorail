@@ -9,9 +9,9 @@ import type {
   Theme,
 } from '@mui/material'
 
-import type { ResizableDrawerClasses } from './resizableDrawerClasses.js'
+import type { FlexDrawerClasses } from './flexDrawerClasses.js'
 
-export interface ResizableDrawerProps
+export interface FlexDrawerProps
   extends Omit<
     DrawerProps,
     | 'slotProps'
@@ -24,12 +24,13 @@ export interface ResizableDrawerProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<ResizableDrawerClasses>
+  classes?: Partial<FlexDrawerClasses>
   /**
    * The content of the component.
    */
   children?: React.ReactNode
   variant?: 'temporary' | 'persistent'
+  resizable?: boolean
   /**
    * The initial size of the drawer, in pixels. This corresponds to width if anchor="left" or anchor="right",
    * or height if anchor="top" or anchor="bottom".
