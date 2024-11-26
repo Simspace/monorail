@@ -1,7 +1,7 @@
 import React from 'react'
 import type { PaletteColor, TypeText } from '@mui/material'
-import { keyframes, styled, useThemeProps } from '@mui/material'
-import type { Keyframes } from '@mui/styled-engine'
+import { styled, useThemeProps } from '@monorail/utils'
+import { keyframes, type Keyframes } from '@mui/styled-engine'
 
 import type { StandardElementProps } from '@monorail/types'
 
@@ -68,7 +68,7 @@ const LoadingIndicatorRoot = styled('svg')<LoadingIndicatorProps>(
 const Dot = styled('path')(({ theme }) => ({
   animation: `${dotAnimation(
     theme.palette.text.primary,
-    theme.palette.secondary.main,
+    theme.palette.primary.main,
   )} var(--total-duration) infinite`,
   transformOrigin: 'center',
   fill: theme.palette.text.primary,

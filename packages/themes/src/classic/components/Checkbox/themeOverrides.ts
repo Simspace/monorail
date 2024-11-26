@@ -2,9 +2,12 @@ import type { Components, Theme } from '@mui/material'
 import { checkboxClasses, svgIconClasses } from '@mui/material'
 
 export const MonorailCheckboxOverrides: Components<Theme>['MuiCheckbox'] = {
-  defaultProps: {},
+  defaultProps: {
+    disableRipple: true,
+    color: 'default',
+  },
   styleOverrides: {
-    root: ({ ownerState: { color = 'primary', size = 'medium' }, theme }) => ({
+    root: ({ ownerState: { color = 'default', size = 'medium' }, theme }) => ({
       color: theme.palette.default.main,
       padding: 8,
       borderRadius: 4,
@@ -13,6 +16,9 @@ export const MonorailCheckboxOverrides: Components<Theme>['MuiCheckbox'] = {
         [`& .${svgIconClasses.root}`]: {
           fontSize: theme.typography.pxToRem(20),
         },
+      }),
+      transition: theme.transitions.create(['background-color'], {
+        duration: theme.transitions.duration.shortest,
       }),
       '&:hover': {
         backgroundColor: theme.palette.default.lowEmphasis.hover,

@@ -6,14 +6,23 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
     disableRipple: true,
     // @ts-expect-error -- the `variant` property comes from ButtonBase
     variant: 'chromeless',
+    shape: 'rounded',
   },
   styleOverrides: {
     root: ({
-      ownerState: { color = 'primary', variant = 'contained' },
+      ownerState: {
+        color = 'primary',
+        variant = 'contained',
+        shape = 'rounded',
+      },
       theme,
     }) => {
       const roundedStyles = {
         borderRadius: '4px',
+      }
+
+      const circularStyles = {
+        borderRadius: '50%',
       }
 
       const disabledStyles = {
@@ -141,7 +150,8 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
           : {}
 
       return {
-        ...roundedStyles,
+        ...(shape === 'rounded' && roundedStyles),
+        ...(shape === 'circular' && circularStyles),
         ...disabledStyles,
         ...(variant === 'contained' && containedStyles),
         ...(variant === 'outlined' && outlinedStyles),
