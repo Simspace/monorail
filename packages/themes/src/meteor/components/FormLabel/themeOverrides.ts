@@ -11,6 +11,9 @@ export const MonorailFormLabelOverrides: Components<Theme>['MuiFormLabel'] = {
       [`&.${formLabelClasses.error}`]: {
         color: theme.palette.error.lowEmphasis.contrastText,
       },
+      [`&.${formLabelClasses.focused}`]: {
+        color: theme.palette.text.secondary,
+      },
     }),
     asterisk: {
       [`&.${formLabelClasses.error}`]: {

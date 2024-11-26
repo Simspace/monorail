@@ -4,14 +4,28 @@ import { alpha, buttonBaseClasses } from '@mui/material'
 export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
   defaultProps: {
     disableRipple: true,
+    // @ts-expect-error -- the `variant` property comes from ButtonBase
+    variant: 'chromeless',
+    shape: 'rounded',
   },
   styleOverrides: {
     root: ({
-      ownerState: { color = 'primary', variant = 'contained' },
+      ownerState: {
+        color = 'primary',
+        variant = 'contained',
+        shape = 'rounded',
+      },
       theme,
     }) => {
       const roundedStyles = {
         borderRadius: '4px',
+      }
+
+      const circularStyles = {
+        borderRadius: '50%',
+        '&::before': {
+          borderRadius: '50%',
+        },
       }
 
       const disabledStyles = {
@@ -46,7 +60,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
                 },
               ),
               [`&.${buttonBaseClasses.focusVisible}`]: {
-                boxShadow: `inset 0 0 0 1px ${theme.palette[color].focusRing.inner}, 0 0 0 3px ${theme.palette[color].focusRing.outer}`,
+                boxShadow: `inset 0 0 0 2px ${theme.palette[color].focusRing.inner}`,
               },
               [`&.${buttonBaseClasses.disabled}`]: {
                 color: theme.palette[color].contrastText,
@@ -93,7 +107,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
                 duration: theme.transitions.duration.shortest,
               }),
               [`&.${buttonBaseClasses.focusVisible}`]: {
-                boxShadow: `inset 0 0 0 1px ${theme.palette[color].focusRing.inner}, 0 0 0 3px ${theme.palette[color].focusRing.outer}`,
+                boxShadow: `inset 0 0 0 2px ${theme.palette[color].focusRing.inner}`,
               },
               [`&.${buttonBaseClasses.disabled}`]: {
                 color: theme.palette[color].lowEmphasis.contrastText,
@@ -133,17 +147,18 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
                 backgroundColor: theme.palette.action.active,
               },
               [`&.${buttonBaseClasses.focusVisible}`]: {
-                boxShadow: `inset 0 0 0 1px ${theme.palette[color].focusRing.inner}, 0 0 0 3px ${theme.palette[color].focusRing.outer}`,
+                boxShadow: `inset 0 0 0 2px ${theme.palette[color].focusRing.inner}`,
               },
             }
           : {}
 
       return {
-        ...roundedStyles,
         ...disabledStyles,
         ...(variant === 'contained' && containedStyles),
         ...(variant === 'outlined' && outlinedStyles),
         ...(variant === 'chromeless' && chromelessStyles),
+        ...(shape === 'rounded' && roundedStyles),
+        ...(shape === 'circular' && circularStyles),
       }
     },
     colorInherit: ({ theme }) => ({
@@ -155,8 +170,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
         ),
       },
       [`&.${buttonBaseClasses.focusVisible}`]: {
-        boxShadow: `0 0 0 3px ${theme.palette.primary.focusRing.outer}`,
-        border: `1px solid ${theme.palette.primary.focusRing.inner}`,
+        boxShadow: `inset 0 0 0 2px ${theme.palette.primary.focusRing.inner}`,
       },
     }),
     sizeSmall: ({ theme }) => ({

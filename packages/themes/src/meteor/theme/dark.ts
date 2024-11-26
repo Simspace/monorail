@@ -371,7 +371,7 @@ const palette: PaletteOptions = {
       dark: RawColor.Red700,
       hover: alpha(RawColor.Red300, action.hoverOpacity),
       active: alpha(RawColor.Red300, action.activatedOpacity),
-      contrastText: RawColor.Red200,
+      contrastText: RawColor.Red300,
     },
 
     border: {

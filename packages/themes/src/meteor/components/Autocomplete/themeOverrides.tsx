@@ -3,6 +3,7 @@ import ClearIcon from '@mui/icons-material/Clear'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import type { Components, Theme } from '@mui/material'
 import {
+  alpha,
   autocompleteClasses,
   outlinedInputClasses,
   Popper,
@@ -18,10 +19,12 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
       clearIcon: <ClearIcon fontSize="inherit" />,
       slotProps: {
         popupIndicator: {
+          variant: 'chromeless',
           size: 'small',
           shape: 'circular',
         } as Partial<IconButtonProps>,
         clearIndicator: {
+          variant: 'chromeless',
           size: 'small',
           shape: 'circular',
           sx: {
@@ -85,6 +88,22 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
           minHeight: 48,
         }),
       }),
+      listbox: ({ theme }) => {
+        return {
+          [`& .${autocompleteClasses.option}`]: {
+            '&[aria-selected="true"]': {
+              backgroundColor: theme.palette.action.selected,
+              '&:hover': {
+                backgroundColor: alpha(
+                  theme.palette.default.main,
+                  theme.palette.action.selectedOpacity +
+                    theme.palette.action.hoverOpacity,
+                ),
+              },
+            },
+          },
+        }
+      },
       input: {
         padding: 0,
       },

@@ -4,6 +4,7 @@ import { alpha, switchClasses } from '@mui/material'
 export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
   defaultProps: {
     edge: 'start',
+    color: 'default',
   },
   styleOverrides: {
     root: ({ ownerState, theme }) => ({
@@ -16,13 +17,12 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
           pointerEvents: 'none',
         }),
     }),
-    switchBase: ({ ownerState: { color = 'primary' }, theme }) => ({
+    switchBase: ({ ownerState: { color = 'default' }, theme }) => ({
       padding: theme.spacing(2),
       transform: `translate(${theme.spacing(1.25)})`,
       '&.Mui-focusVisible': {
         [`& + .${switchClasses.track}`]: {
-          boxShadow: `0 0 0 3px ${theme.palette.primary.focusRing.outer}`,
-          borderColor: theme.palette.primary.focusRing.inner,
+          boxShadow: `inset 0 0 0 2px ${theme.palette.primary.focusRing.inner}`,
         },
       },
       '&:hover': {
@@ -37,10 +37,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
           backgroundColor: alpha(theme.palette[color].main, 0.24),
         },
         [`& + .${switchClasses.track}`]: {
-          backgroundColor:
-            theme.palette.mode === 'dark'
-              ? theme.palette[color].light
-              : theme.palette[color].main,
+          backgroundColor: theme.palette[color].main,
           opacity: 1,
           borderColor: 'transparent',
         },
@@ -49,36 +46,34 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
         },
         '&.Mui-focusVisible': {
           [`& + .${switchClasses.track}`]: {
-            boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
-            borderColor: theme.palette[color].focusRing.inner,
+            boxShadow: `inset 0 0 0 2px ${theme.palette[color].focusRing.inner}`,
           },
         },
       },
       [`&.${switchClasses.disabled}`]: {
         [`& + .${switchClasses.track}`]: {
-          backgroundColor: theme.palette.action.disabled,
+          backgroundColor: theme.palette.default.lowEmphasis.light,
           opacity: theme.palette.action.disabledOpacity,
-          borderColor: 'transparent',
-        },
-        [`& > .${switchClasses.thumb}`]: {
-          backgroundColor: theme.palette.common.white,
         },
         [`&.${switchClasses.checked}`]: {
+          [`& > .${switchClasses.thumb}`]: {
+            backgroundColor: theme.palette.default.lowEmphasis.light,
+          },
           [`& + .${switchClasses.track}`]: {
-            backgroundColor: theme.palette.action.disabled,
-            opacity: 1,
+            backgroundColor: theme.palette.default.main,
+            opacity: theme.palette.action.disabledOpacity,
           },
         },
       },
     }),
     thumb: ({ theme }) => ({
-      backgroundColor: theme.palette.default.light,
+      backgroundColor: theme.palette.default.main,
       boxShadow: 'none',
       width: 24,
       height: 24,
     }),
     track: ({ theme }) => ({
-      border: `2px solid ${theme.palette.default.border.light}`,
+      border: `2px solid ${theme.palette.default.border.main}`,
       backgroundColor: theme.palette.background.paper,
       borderRadius: 100,
       opacity: 1,

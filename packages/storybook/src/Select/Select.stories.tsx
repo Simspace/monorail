@@ -139,7 +139,6 @@ export const LabelsAndHelperText = story<SelectProps<string>>(() => {
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={age}
-          label="Age"
           displayEmpty
           onChange={handleChange}
         >

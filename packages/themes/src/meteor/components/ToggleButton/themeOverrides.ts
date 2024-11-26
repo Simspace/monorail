@@ -162,7 +162,7 @@ export const MonorailToggleButtonGroupOverrides: Components<Theme>['MuiToggleBut
               {
                 borderTopColor: theme.palette[color].border.dark,
               },
-            [`& .${toggleButtonClasses.selected} + .${toggleButtonClasses.root}`]:
+            [`& .${toggleButtonClasses.selected} + .${toggleButtonClasses.root}:not(.${toggleButtonClasses.selected})`]:
               {
                 borderTopColor: theme.palette[color].border.dark,
               },

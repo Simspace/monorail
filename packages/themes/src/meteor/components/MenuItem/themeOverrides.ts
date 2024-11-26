@@ -8,9 +8,12 @@ export const MonorailMenuItemOverrides: Components<Theme>['MuiMenuItem'] = {
       paddingTop: theme.spacing(2),
       paddingBottom: theme.spacing(2),
       ...theme.typography.menuItem,
+      transition: theme.transitions.create('box-shadow', {
+        duration: theme.transitions.duration.shortest,
+      }),
       [`&.${menuItemClasses.focusVisible}`]: {
         outline: 'none',
-        boxShadow: `inset 0 0 0 1px ${theme.palette.primary.focusRing.inner}, inset 0 0 0 4px ${theme.palette.primary.focusRing.outer}`,
+        boxShadow: `inset 0 0 0 2px ${theme.palette.primary.focusRing.inner}`,
         backgroundColor: 'inherit',
         borderRadius: 3,
       },
@@ -22,11 +25,18 @@ export const MonorailMenuItemOverrides: Components<Theme>['MuiMenuItem'] = {
       },
       [`&.${menuItemClasses.selected}`]: {
         backgroundColor: theme.palette.action.selected,
+        '&:hover': {
+          backgroundColor: alpha(
+            theme.palette.default.main,
+            theme.palette.action.selectedOpacity +
+              theme.palette.action.hoverOpacity,
+          ),
+        },
         [`&.${menuItemClasses.focusVisible}`]: {
           backgroundColor: theme.palette.action.selected,
           '&:hover': {
             backgroundColor: alpha(
-              theme.palette.primary.main,
+              theme.palette.default.main,
               theme.palette.action.selectedOpacity +
                 theme.palette.action.hoverOpacity,
             ),

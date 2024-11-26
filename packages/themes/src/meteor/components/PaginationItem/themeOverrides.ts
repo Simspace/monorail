@@ -22,8 +22,7 @@ export const MonorailPaginationItemOverrides: Components<Theme>['MuiPaginationIt
           [`&.${paginationItemClasses.focusVisible}`]: {
             zIndex: 1,
             background: 'transparent',
-            boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
-            outline: `1px solid ${theme.palette[color].focusRing.inner}`,
+            boxShadow: `inset 0 0 0 2px ${theme.palette[color].focusRing.inner}`,
           },
           // selected
           [`&.${paginationItemClasses.selected}`]: {

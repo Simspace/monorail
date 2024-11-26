@@ -126,7 +126,7 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
           outline: 'none',
         },
         '&:focus-visible': {
-          boxShadow: `inset 0 0 0 1px ${theme.palette.primary.focusRing.inner}, inset 0 0 0 4px ${theme.palette.primary.focusRing.outer}`,
+          boxShadow: `inset 0 0 0 2px ${theme.palette.primary.focusRing.inner}`,
           zIndex: 1,
         },
       }
@@ -159,7 +159,7 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
         },
         '&:focus-visible': {
           outline: 'none',
-          boxShadow: `inset 0 0 0 1px ${theme.palette.primary.focusRing.inner}, inset 0 0 0 4px ${theme.palette.primary.focusRing.outer}`,
+          boxShadow: `inset 0 0 0 2px ${theme.palette.primary.focusRing.inner}`,
           zIndex: 1,
         },
         '&:focus-within': {
@@ -174,7 +174,7 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
       boxShadow: 'none',
       '&:focus-within': {
         outline: 'none',
-        boxShadow: `inset 0 0 0 1px ${theme.palette.primary.focusRing.inner}, inset 0 0 0 4px ${theme.palette.primary.focusRing.outer}`,
+        boxShadow: `inset 0 0 0 2px ${theme.palette.primary.focusRing.inner}`,
         zIndex: 1,
       },
     }),

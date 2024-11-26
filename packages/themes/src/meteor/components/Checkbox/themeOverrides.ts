@@ -1,5 +1,9 @@
-import type { Components, Theme } from '@mui/material'
-import { checkboxClasses, svgIconClasses } from '@mui/material'
+import {
+  checkboxClasses,
+  svgIconClasses,
+  type Components,
+  type Theme,
+} from '@mui/material'
 
 export const MonorailCheckboxOverrides: Components<Theme>['MuiCheckbox'] = {
   defaultProps: {
@@ -11,6 +15,11 @@ export const MonorailCheckboxOverrides: Components<Theme>['MuiCheckbox'] = {
       color: theme.palette.default.main,
       padding: 8,
       borderRadius: 4,
+      [`& .${svgIconClasses.root}`]: {
+        transition: theme.transitions.create(['color'], {
+          duration: theme.transitions.duration.shortest,
+        }),
+      },
       ...(size === 'small' && {
         padding: theme.spacing(1.5),
         [`& .${svgIconClasses.root}`]: {
@@ -36,8 +45,7 @@ export const MonorailCheckboxOverrides: Components<Theme>['MuiCheckbox'] = {
         },
       },
       [`&.Mui-focusVisible`]: {
-        boxShadow: `0 0 0 4px ${theme.palette[color].focusRing.outer}`,
-        outline: `1px solid ${theme.palette[color].focusRing.inner}`,
+        boxShadow: `inset 0 0 0 2px ${theme.palette[color].focusRing.inner}`,
         zIndex: 1,
       },
       [`&.${checkboxClasses.disabled}, &.${checkboxClasses.checked}.${checkboxClasses.disabled}`]:
