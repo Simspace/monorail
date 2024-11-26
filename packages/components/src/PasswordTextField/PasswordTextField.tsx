@@ -40,7 +40,7 @@ const VisibilityOffIcon = styled(VisibilityOff, {
   name: 'MonorailPasswordTextField',
   slot: 'VisibilityOffIcon',
 })(({ theme }) => ({
-  color: theme.palette.primary.lowEmphasis.dark,
+  color: theme.palette.default.lowEmphasis.dark,
 }))
 
 /**
@@ -97,6 +97,7 @@ export const PasswordTextField = React.forwardRef(function PasswordTextField(
   const endAdornment = React.useMemo(() => {
     return (
       <IconButton
+        color="default"
         shape="circular"
         aria-label="toggle visibility"
         onClick={toggleVisibility}

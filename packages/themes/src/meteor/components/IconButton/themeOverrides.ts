@@ -23,6 +23,9 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
 
       const circularStyles = {
         borderRadius: '50%',
+        '&::before': {
+          borderRadius: '50%',
+        },
       }
 
       const disabledStyles = {
@@ -150,12 +153,12 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
           : {}
 
       return {
-        ...(shape === 'rounded' && roundedStyles),
-        ...(shape === 'circular' && circularStyles),
         ...disabledStyles,
         ...(variant === 'contained' && containedStyles),
         ...(variant === 'outlined' && outlinedStyles),
         ...(variant === 'chromeless' && chromelessStyles),
+        ...(shape === 'rounded' && roundedStyles),
+        ...(shape === 'circular' && circularStyles),
       }
     },
     colorInherit: ({ theme }) => ({

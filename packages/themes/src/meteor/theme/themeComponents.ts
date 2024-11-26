@@ -61,6 +61,7 @@ import {
 } from '../components/ToggleButton/themeOverrides.js'
 import { MonorailTreeItemOverrides } from '../components/TreeItem/themeOverrides.js'
 import { baseTheme } from './baseTheme.js'
+import { MonorailRadioOverrides } from '../components/Radio/themeOverrides.js'
 
 /**
  * Constructs the `components` overrides using a subset of the overall theme that includes everything except `components`
@@ -108,6 +109,7 @@ export const getThemeComponents = (
   MuiPaginationItem: MonorailPaginationItemOverrides,
   MuiPaper: MonorailPaperOverrides,
   MuiPopover: MonorailPopoverOverrides,
+  MuiRadio: MonorailRadioOverrides,
   MuiSkeleton: MonorailSkeletonOverrides,
   MuiSnackbar: MonorailSnackbarOverrides,
   MonorailSplitButton: MonorailSplitButtonOverrides,

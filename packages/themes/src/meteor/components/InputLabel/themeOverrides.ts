@@ -16,7 +16,7 @@ export const MonorailInputLabelOverrides: Components<Theme>['MuiInputLabel'] = {
         color: theme.palette.text.secondary,
         marginBottom: theme.spacing(0.5),
         ...theme.typography.inputLabel,
-        '&.Mui-focused': {
+        [`&.${inputLabelClasses.focused}`]: {
           color: theme.palette.text.secondary,
         },
         [`&.${inputLabelClasses.error}`]: {
