@@ -31,8 +31,7 @@ export const MonorailChipOverrides: Components<Theme>['MuiChip'] = {
           backgroundColor: theme.palette[color].lowEmphasis.light,
         },
         [`&.${chipClasses.focusVisible}:not(.Mui-disabled)`]: {
-          boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
-          border: `1px solid ${theme.palette[color].focusRing.inner}`,
+          boxShadow: `inset 0 0 0 2px ${theme.palette[color].focusRing.inner}`,
         },
         ...baseDraggableStyles,
       }

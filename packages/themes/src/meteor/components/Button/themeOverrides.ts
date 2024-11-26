@@ -16,7 +16,7 @@ export const MonorailButtonOverrides: Components<Theme>['MuiButton'] = {
         ...theme.typography.button,
         border: 'none',
         [`&.${buttonClasses.focusVisible}`]: {
-          boxShadow: `inset 0 0 0 1px ${theme.palette[color].focusRing.inner}, 0 0 0 3px ${theme.palette[color].focusRing.outer}`,
+          boxShadow: `inset 0 0 0 2px ${theme.palette[color].focusRing.inner}`,
         },
         [`&.${buttonClasses.disabled}`]: {
           opacity: theme.palette.action.disabledOpacity,

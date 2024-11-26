@@ -19,8 +19,7 @@ export const MonorailAccordionSummaryOverrides: Components<Theme>['MuiAccordionS
           },
           [`&.${accordionSummaryClasses.focusVisible}`]: {
             backgroundColor: 'transparent',
-            boxShadow: `0 0 0 4px ${theme.palette.primary.focusRing.outer}`,
-            outline: `1px solid ${theme.palette.primary.focusRing.inner}`,
+            boxShadow: `inset 0 0 0 2px ${theme.palette.primary.focusRing.inner}`,
             zIndex: 1,
           },
           [`&.${accordionSummaryClasses.disabled}`]: {

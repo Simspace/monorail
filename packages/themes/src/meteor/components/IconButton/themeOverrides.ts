@@ -57,7 +57,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
                 },
               ),
               [`&.${buttonBaseClasses.focusVisible}`]: {
-                boxShadow: `inset 0 0 0 1px ${theme.palette[color].focusRing.inner}, 0 0 0 3px ${theme.palette[color].focusRing.outer}`,
+                boxShadow: `inset 0 0 0 2px ${theme.palette[color].focusRing.inner}`,
               },
               [`&.${buttonBaseClasses.disabled}`]: {
                 color: theme.palette[color].contrastText,
@@ -104,7 +104,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
                 duration: theme.transitions.duration.shortest,
               }),
               [`&.${buttonBaseClasses.focusVisible}`]: {
-                boxShadow: `inset 0 0 0 1px ${theme.palette[color].focusRing.inner}, 0 0 0 3px ${theme.palette[color].focusRing.outer}`,
+                boxShadow: `inset 0 0 0 2px ${theme.palette[color].focusRing.inner}`,
               },
               [`&.${buttonBaseClasses.disabled}`]: {
                 color: theme.palette[color].lowEmphasis.contrastText,
@@ -144,7 +144,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
                 backgroundColor: theme.palette.action.active,
               },
               [`&.${buttonBaseClasses.focusVisible}`]: {
-                boxShadow: `inset 0 0 0 1px ${theme.palette[color].focusRing.inner}, 0 0 0 3px ${theme.palette[color].focusRing.outer}`,
+                boxShadow: `inset 0 0 0 2px ${theme.palette[color].focusRing.inner}`,
               },
             }
           : {}
@@ -167,8 +167,7 @@ export const MonorailIconButtonOverrides: Components<Theme>['MuiIconButton'] = {
         ),
       },
       [`&.${buttonBaseClasses.focusVisible}`]: {
-        boxShadow: `0 0 0 3px ${theme.palette.primary.focusRing.outer}`,
-        border: `1px solid ${theme.palette.primary.focusRing.inner}`,
+        boxShadow: `inset 0 0 0 2px ${theme.palette.primary.focusRing.inner}`,
       },
     }),
     sizeSmall: ({ theme }) => ({

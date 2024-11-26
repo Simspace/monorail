@@ -10,7 +10,7 @@ export const MonorailListItemButtonOverrides: Components<Theme>['MuiListItemButt
           duration: theme.transitions.duration.shortest,
         }),
         [`&.${listItemButtonClasses.focusVisible}`]: {
-          boxShadow: `0 0 0 2px ${theme.palette.default.focusRing.inner}`,
+          boxShadow: `inset 0 0 0 2px ${theme.palette.default.focusRing.inner}`,
           backgroundColor: 'inherit',
           borderRadius: 3,
         },

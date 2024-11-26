@@ -12,7 +12,7 @@ export const MonorailInputBaseOverrides: Components<Theme>['MuiInputBase'] = {
           duration: theme.transitions.duration.shortest,
         }),
         [`&.${inputBaseClasses.focused}`]: {
-          boxShadow: `0 0 0 2px ${theme.palette[color].focusRing.outer}`,
+          boxShadow: `inset 0 0 0 2px ${theme.palette[color].focusRing.inner}`,
           [`& > fieldset.${outlinedInputClasses.notchedOutline}`]: {
             borderColor: `${theme.palette.default.border.main}`,
             borderWidth: '1px',

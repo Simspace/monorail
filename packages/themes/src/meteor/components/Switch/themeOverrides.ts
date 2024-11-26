@@ -22,8 +22,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
       transform: `translate(${theme.spacing(1.25)})`,
       '&.Mui-focusVisible': {
         [`& + .${switchClasses.track}`]: {
-          boxShadow: `0 0 0 3px ${theme.palette.primary.focusRing.outer}`,
-          borderColor: theme.palette.primary.focusRing.inner,
+          boxShadow: `inset 0 0 0 2px ${theme.palette.primary.focusRing.inner}`,
         },
       },
       '&:hover': {
@@ -47,8 +46,7 @@ export const MonorailSwitchOverrides: Components<Theme>['MuiSwitch'] = {
         },
         '&.Mui-focusVisible': {
           [`& + .${switchClasses.track}`]: {
-            boxShadow: `0 0 0 3px ${theme.palette[color].focusRing.outer}`,
-            borderColor: theme.palette[color].focusRing.inner,
+            boxShadow: `inset 0 0 0 2px ${theme.palette[color].focusRing.inner}`,
           },
         },
       },

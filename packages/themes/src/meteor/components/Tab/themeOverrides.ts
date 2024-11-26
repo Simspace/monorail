@@ -30,12 +30,12 @@ export const MonorailTabOverrides: Components<Theme>['MuiTab'] = {
     }),
     textColorPrimary: ({ theme }) => ({
       '&.Mui-focusVisible': {
-        boxShadow: `inset 0 0 0 3px ${theme.palette.primary.focusRing.outer}`,
+        boxShadow: `inset 0 0 0 2px ${theme.palette.primary.focusRing.inner}`,
       },
     }),
     textColorSecondary: ({ theme }) => ({
       '&.Mui-focusVisible': {
-        boxShadow: `inset 0 0 0 3px ${theme.palette.primary.focusRing.outer}`,
+        boxShadow: `inset 0 0 0 2px ${theme.palette.primary.focusRing.inner}`,
       },
     }),
   },
