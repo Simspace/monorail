@@ -6,7 +6,7 @@ export const MonorailAvatarOverrides: Components<Theme>['MuiAvatar'] = {
   defaultProps: {},
   styleOverrides: {
     root: ({ theme }) => ({
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: theme.palette.primary.main,
       color: theme.palette.secondary.contrastText,
       ...theme.typography.avatarInitials,
       [`& .${svgIconClasses.root}`]: {

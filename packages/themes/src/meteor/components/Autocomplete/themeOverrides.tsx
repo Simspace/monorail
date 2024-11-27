@@ -93,6 +93,9 @@ export const MonorailAutocompleteOverrides: Components<Theme>['MuiAutocomplete']
           [`& .${autocompleteClasses.option}`]: {
             '&[aria-selected="true"]': {
               backgroundColor: theme.palette.action.selected,
+              [`&.Mui-focused`]: {
+                backgroundColor: theme.palette.action.selected,
+              },
               '&:hover': {
                 backgroundColor: alpha(
                   theme.palette.default.main,

@@ -63,6 +63,7 @@ import { MonorailTreeItemOverrides } from '../components/TreeItem/themeOverrides
 import { baseTheme } from './baseTheme.js'
 import { MonorailRadioOverrides } from '../components/Radio/themeOverrides.js'
 import { MonorailCheckboxOverrides } from '../components/Checkbox/themeOverrides.js'
+import { MonorailAvatarButtonOverrides } from '../components/AvatarButton/themeOverrides.js'
 
 /**
  * Constructs the `components` overrides using a subset of the overall theme that includes everything except `components`
@@ -73,6 +74,7 @@ export const getThemeComponents = (
   // Make sure we apply the defaults here
   ...baseTheme.components,
   ...getClassicThemeComponents(theme),
+  MonorailAvatarButton: MonorailAvatarButtonOverrides,
   MonorailFileUpload: MonorailFileUploadOverrides,
   MonorailPopup: MonorailPopupOverrides,
   MonorailSelectionFooter: MonorailSelectionFooterOverrides,

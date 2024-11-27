@@ -33,6 +33,7 @@
     "@types/react": "17.0.39",
     "@types/react-syntax-highlighter": "^11.0.5",
     "react-syntax-highlighter": "^13.5.3",
+    "@mui/system": "6.1.8",
     "@mui/x-tree-view@^7.7.0": "patch:@mui/x-tree-view@npm%3A7.7.0#./.yarn/patches/@mui-x-tree-view-npm-7.7.0-3b8d68b815.patch",
     "@mui/x-date-pickers@7.7.0": "patch:@mui/x-date-pickers@npm%3A7.7.0#./.yarn/patches/@mui-x-date-pickers-npm-7.7.0-28f1eebe70.patch",
     "@mui/x-date-pickers-pro@7.7.0": "patch:@mui/x-date-pickers-pro@npm%3A7.7.0#./.yarn/patches/@mui-x-date-pickers-pro-npm-7.7.0-11abe36339.patch",
