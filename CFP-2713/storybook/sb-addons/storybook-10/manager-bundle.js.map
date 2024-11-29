@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["global-externals:@storybook/addons", "../../../.storybook/manager.ts"],
+  "sourcesContent": ["export default __STORYBOOKADDONS__;\nconst { addons, types, mockChannel } = __STORYBOOKADDONS__;\nexport { addons, types, mockChannel };", "import { addons } from '@storybook/addons'\n\n/**\n * Fixes addons panel not showing\n * https://www.gitmemory.com/issue/storybookjs/storybook/8383/693527059\n */\naddons.setConfig({\n  showPanel: true,\n  panelPosition: 'bottom',\n  toolbar: {\n    'storybook/background': { hidden: true },\n  },\n})\n"],
+  "mappings": ";AAAA,IAAOA,EAAQ,oBACT,CAAE,OAAAC,EAAQ,MAAAC,EAAO,YAAAC,CAAY,EAAI,oBCKvCC,EAAO,UAAU,CACf,UAAW,GACX,cAAe,SACf,QAAS,CACP,uBAAwB,CAAE,OAAQ,EAAK,CACzC,CACF,CAAC",
+  "names": ["addons_default", "addons", "types", "mockChannel", "addons"]
+}
