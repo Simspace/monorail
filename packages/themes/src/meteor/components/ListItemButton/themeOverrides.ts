@@ -6,7 +6,19 @@ export const MonorailListItemButtonOverrides: Components<Theme>['MuiListItemButt
     defaultProps: {},
     styleOverrides: {
       root: ({ theme }) => ({
-        transition: theme.transitions.create('box-shadow', {
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            top: 0,
+            left: 0,
+            backgroundColor: 'transparent',
+            transition: theme.transitions.create(['background-color'], {
+              duration: theme.transitions.duration.shortest,
+            }),
+          },
+        transition: theme.transitions.create(['box-shadow', 'background-color'], {
           duration: theme.transitions.duration.shortest,
         }),
         [`&.${listItemButtonClasses.focusVisible}`]: {
@@ -19,6 +31,18 @@ export const MonorailListItemButtonOverrides: Components<Theme>['MuiListItemButt
         },
         '&:active': {
           backgroundColor: theme.palette.action.active,
+        },
+        [`&.${listItemButtonClasses.selected}`]: {
+          '&:active': {
+            backgroundColor: theme.palette.action.active,
+          },
+          backgroundColor: theme.palette.action.selected,
+          '&:hover': {
+            backgroundColor: theme.palette.action.selected,
+            '&::before': {
+              backgroundColor: theme.palette.action.hover,
+            }
+          }
         },
       }),
     },
