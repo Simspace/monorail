@@ -1,4 +1,4 @@
-import type { Components, Theme } from '@mui/material'
+import { alpha, Components, Theme } from '@mui/material'
 import { checkboxClasses, typographyClasses } from '@mui/material'
 
 import { dataGridClasses } from '@monorail/components'
@@ -18,6 +18,16 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
       return {
         minWidth: '100%',
         '--rowBorderColor': 'transparent', // This is a workaround to remove the border on the rows
+        [`&.Mui-selected`]: {
+          backgroundColor: theme.palette.action.selected,
+          '&:hover': {
+            backgroundColor: alpha(
+              theme.palette.grey[100],
+              theme.palette.action.selectedOpacity +
+                theme.palette.action.hoverOpacity,
+            ),
+          },
+        },
         [`&.${dataGridClasses.grouped}`]: {
           backgroundColor: theme.palette.background.default,
         },
@@ -33,7 +43,7 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
         [`&.${dataGridClasses.rowDragOverTop}`]: {
           boxShadow: `inset 0px 2px ${theme.palette.primary.main}`,
         },
-        [`&.odd`]: {
+        [`&.even`]: {
           backgroundColor: theme.palette.background.default,
           '&:hover, &.Mui-hovered': {
             background: `
@@ -65,7 +75,7 @@ export const MonorailDataGridOverrides: Components<Theme>['MuiDataGrid'] = {
             },
           },
         },
-        [`&.even`]: {
+        [`&.odd`]: {
           '&:hover, &.Mui-hovered': {
             background: `
               linear-gradient(0deg, ${theme.palette.action.hover} 0%, ${theme.palette.action.hover} 100%),
