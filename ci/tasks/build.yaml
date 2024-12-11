@@ -11,8 +11,10 @@ outputs:
 - name: utils-build
 - name: types-build
 run:
-  path: sh
+  path: bash
   args:
+  - -eou
+  - pipefail
   - -cx
   - |
     yarn install --immutable

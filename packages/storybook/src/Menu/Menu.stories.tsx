@@ -19,7 +19,7 @@ import Send from '@mui/icons-material/Send'
 import Settings from '@mui/icons-material/Settings'
 import { alpha, styled } from '@mui/material'
 
-import { ListItemButton, MenuProps } from '@monorail/components'
+import type { MenuProps } from '@monorail/components'
 import {
   Avatar,
   Box,
@@ -27,7 +27,7 @@ import {
   Divider,
   IconButton,
   List,
-  ListItem,
+  ListItemButton,
   ListItemIcon,
   ListItemText,
   Menu,

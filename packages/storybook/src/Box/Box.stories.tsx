@@ -1,13 +1,12 @@
 // Edit this file to add new stories
 import React from 'react'
 import { styled } from '@mui/material'
+import type { Meta } from '@storybook/react'
 
 import type { BoxProps } from '@monorail/components'
 import { Box, Button, Stack, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
-
-import type { Meta } from '@storybook/react'
 
 const meta: Meta<typeof Box> = { title: 'Layout/Box', component: Box }
 

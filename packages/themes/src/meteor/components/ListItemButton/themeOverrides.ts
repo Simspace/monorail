@@ -1,5 +1,5 @@
-import { alpha, Components, Theme } from '@mui/material'
-import { listItemButtonClasses } from '@mui/material'
+import type { Components, Theme } from '@mui/material'
+import { alpha, listItemButtonClasses } from '@mui/material'
 
 export const MonorailListItemButtonOverrides: Components<Theme>['MuiListItemButton'] =
   {

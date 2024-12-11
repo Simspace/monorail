@@ -1,4 +1,4 @@
-import { inputLabelClasses, type Components, type Theme } from '@mui/material'
+import { type Components, inputLabelClasses, type Theme } from '@mui/material'
 
 export const MonorailInputLabelOverrides: Components<Theme>['MuiInputLabel'] = {
   defaultProps: {

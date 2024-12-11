@@ -1,4 +1,5 @@
-import { buttonClasses, Components, Theme } from '@mui/material'
+import type { Components, Theme } from '@mui/material'
+import { buttonClasses } from '@mui/material'
 
 export const MonorailAvatarButtonOverrides: Components<Theme>['MonorailAvatarButton'] =
   {

@@ -7,7 +7,7 @@ import FormatBoldIcon from '@mui/icons-material/FormatBold'
 import FormatItalicIcon from '@mui/icons-material/FormatItalic'
 import { styled } from '@mui/material'
 
-import { DividerProps, ListItemButton } from '@monorail/components'
+import type { DividerProps } from '@monorail/components'
 import {
   Avatar,
   Box,
@@ -18,6 +18,7 @@ import {
   List,
   ListItem,
   ListItemAvatar,
+  ListItemButton,
   ListItemText,
   Stack,
   Typography,

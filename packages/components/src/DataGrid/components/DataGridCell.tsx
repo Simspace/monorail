@@ -9,7 +9,7 @@ import { dataGridClasses } from '@monorail/components/DataGrid/constants'
 
 export const DataGridCell = React.forwardRef<HTMLDivElement, GridCellProps>(
   (props, ref) => {
-    const { colIndex, rowId, width, column, className } = props
+    const { colIndex, rowId, width, column, className } = props as GridCellProps
     const apiRef = useGridApiContext()
     const rootProps = useGridRootProps()
     const rowNode = apiRef.current.getRowNode(rowId)

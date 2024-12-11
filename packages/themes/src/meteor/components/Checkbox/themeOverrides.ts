@@ -1,7 +1,7 @@
 import {
   checkboxClasses,
-  svgIconClasses,
   type Components,
+  svgIconClasses,
   type Theme,
 } from '@mui/material'
 

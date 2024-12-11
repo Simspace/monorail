@@ -49,12 +49,14 @@ export const VirtualizedAutocomplete = React.forwardRef(
         ref={ref}
         ListboxComponent={VirtualizedListboxComponent as any}
         ListboxProps={ListboxProps as any}
+        // @ts-expect-error -- VirtualizedAutocomplete uses renderOption to pass data down to the listbox
         renderOption={(props, options, state, ownerState) => [
           props,
           options,
           state,
           ownerState,
         ]}
+        // @ts-expect-error -- VirtualizedAutocomplete uses renderGroup to pass data down to the listbox
         renderGroup={params => params}
         slotProps={otherSlotProps}
         {...others}
@@ -151,6 +153,8 @@ function VirtualizedGroupComponent<Value>(props: VirtualizedGroupProps<Value>) {
   const renderGroup = ownerState.renderGroup
 
   if (renderGroup) {
+    // @ts-expect-error -- VirtualizedGroupComponent uses the data passed down via `renderGroup` in VirtualizedAutocomplete
+    // to render a group using the `renderGroup` function provided by the consumer
     const node = renderGroup(item)
     if (React.isValidElement(node)) {
       return React.cloneElement(node, { ...others, ...slotProps.group })

@@ -1,5 +1,5 @@
 import type { Components, Theme } from '@mui/material'
-import { buttonClasses, buttonGroupClasses, menuClasses } from '@mui/material'
+import { buttonClasses, menuClasses } from '@mui/material'
 
 import { type SplitButtonProps } from '@monorail/components'
 

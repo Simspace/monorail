@@ -5,7 +5,8 @@ import type { StoryFn } from '@storybook/react'
 import type { SplitButtonProps } from '@monorail/components'
 import { Box, SplitButton, Typography } from '@monorail/components'
 import { capitalize } from '@monorail/utils'
-import { isMeteorTheme } from '../helpers'
+
+import { isMeteorTheme } from '../helpers.js'
 
 export default {
   title: 'Inputs/SplitButton',

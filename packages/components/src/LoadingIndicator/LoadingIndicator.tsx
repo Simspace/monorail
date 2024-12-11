@@ -1,9 +1,9 @@
 import React from 'react'
 import type { PaletteColor, TypeText } from '@mui/material'
-import { styled, useThemeProps } from '@monorail/utils'
-import { keyframes, type Keyframes } from '@mui/styled-engine'
+import { type Keyframes, keyframes } from '@mui/styled-engine'
 
 import type { StandardElementProps } from '@monorail/types'
+import { styled, useThemeProps } from '@monorail/utils'
 
 const TRANSLATE_AMOUNT = '12%'
 const DURATION = 2250

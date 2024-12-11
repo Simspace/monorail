@@ -9,10 +9,12 @@ outputs:
 - name: storybook
   path: repo/packages/storybook/storybook
 run:
-  path: sh
+  path: bash
   args:
-    - -cx
-    - |
-      yarn install --immutable
-      yarn build-storybook --output-dir storybook
+  - -eou
+  - pipefail
+  - -cx
+  - |
+    yarn install --immutable
+    yarn build-storybook --output-dir storybook
   dir: repo

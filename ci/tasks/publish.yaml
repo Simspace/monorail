@@ -12,6 +12,8 @@ inputs:
 run:
   path: bash
   args:
+  - -eou
+  - pipefail
   - -cx
   - |
     mv ../components-build/* packages/components

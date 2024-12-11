@@ -9,8 +9,8 @@ import { Paper } from '../Paper.js'
 import { ResizeHandle } from '../ResizeHandle.js'
 import { Slide } from '../Slide.js'
 import {
-  getFlexDrawerUtilityClass,
   flexDrawerClasses,
+  getFlexDrawerUtilityClass,
 } from './flexDrawerClasses.js'
 import type { FlexDrawerProps } from './flexDrawerProps.js'
 
@@ -411,7 +411,7 @@ export const FlexDrawer = React.forwardRef((props, ref) => {
       style={getHandleStyle(drawerSize)}
       isDragging={isDragging}
       orientation={orientation}
-      onDragStart={props.resizable ? handleMouseDown : undefined}
+      onDragStart={props.resizable === true ? handleMouseDown : undefined}
       sx={theme => ({
         position: 'absolute',
         transition: theme.transitions.create('opacity', {
@@ -456,7 +456,7 @@ export const FlexDrawer = React.forwardRef((props, ref) => {
         }}
         {...other}
       >
-        {props.resizable && resizeHandle}
+        {props.resizable === true && resizeHandle}
         {drawerPaper}
       </FlexDrawerDockedRoot>
     )
@@ -478,7 +478,7 @@ export const FlexDrawer = React.forwardRef((props, ref) => {
         timeout={transitionDuration}
       >
         <FlexDrawerTemporaryContainer className={classes.temporaryContainer}>
-          {props.resizable && resizeHandle}
+          {props.resizable === true && resizeHandle}
           {temporaryDrawerPaper}
         </FlexDrawerTemporaryContainer>
       </Slide>
