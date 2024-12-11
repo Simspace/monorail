@@ -26,7 +26,11 @@ export const MonorailListItemButtonOverrides: Components<Theme>['MuiListItemButt
         [`&.${listItemButtonClasses.selected}`]: {
           backgroundColor: theme.palette.action.selected,
           '&:hover': {
-            backgroundColor: alpha(theme.palette.grey[100], theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
+            backgroundColor: alpha(
+              theme.palette.grey[100],
+              theme.palette.action.selectedOpacity +
+                theme.palette.action.hoverOpacity,
+            ),
           },
         },
       }),
