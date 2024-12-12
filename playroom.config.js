@@ -3,7 +3,7 @@ module.exports = {
   themes: "./packages/themes/src/index.ts",
   outputPath: "./playroom",
   frameComponent: "./.playroom/Frame.jsx",
-  widths: [320, 375, 768, 1024, 'calc(100vw - 120px)'],
+  widths: [320, 375, 768, 1024, "calc(100vw - 120px)"],
   title: "Monorail Playroom",
   exampleCode: `
     <Button>
@@ -40,6 +40,10 @@ module.exports = {
     resolve: {
       extensionAlias: {
         ".js": [".ts", ".tsx", ".js"],
+      },
+      alias: {
+        "react/jsx-runtime.js": "react/jsx-runtime",
+        "react/jsx-dev-runtime.js": "react/jsx-dev-runtime",
       },
     },
   }),
