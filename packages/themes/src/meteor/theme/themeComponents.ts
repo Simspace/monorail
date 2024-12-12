@@ -14,12 +14,14 @@ import {
 } from '../components/Alert/themeOverrides.js'
 import { MonorailAutocompleteOverrides } from '../components/Autocomplete/themeOverrides.js'
 import { MonorailAvatarOverrides } from '../components/Avatar/themeOverrides.js'
+import { MonorailAvatarButtonOverrides } from '../components/AvatarButton/themeOverrides.js'
 import { MonorailAvatarGroupOverrides } from '../components/AvatarGroup/themeOverrides.js'
 import { MonorailBadgeOverrides } from '../components/Badge/themeOverrides.js'
 import { MonorailBreadcrumbsOverrides } from '../components/Breadcrumbs/themeOverrides.js'
 import { MonorailButtonOverrides } from '../components/Button/themeOverrides.js'
 import { MonorailCardOverrides } from '../components/Card/themeOverrides.js'
 import { MonorailCardHeaderOverrides } from '../components/CardHeader/themeOverrides.js'
+import { MonorailCheckboxOverrides } from '../components/Checkbox/themeOverrides.js'
 import { MonorailChipOverrides } from '../components/Chip/themeOverrides.js'
 import { MonorailCircularProgressOverrides } from '../components/CircularProgress/themeOverrides.js'
 import { MonorailDataGridOverrides } from '../components/DataGrid/themeOverrides.js'
@@ -45,6 +47,7 @@ import { MonorailPaginationItemOverrides } from '../components/PaginationItem/th
 import { MonorailPaperOverrides } from '../components/Paper/themeOverrides.js'
 import { MonorailPopoverOverrides } from '../components/Popover/themeOverrides.js'
 import { MonorailPopupOverrides } from '../components/Popup/themeOverrides.js'
+import { MonorailRadioOverrides } from '../components/Radio/themeOverrides.js'
 import { MonorailSelectionFooterOverrides } from '../components/SelectionFooter/themeOverrides.js'
 import { MonorailSkeletonOverrides } from '../components/Skeleton/themeOverrides.js'
 import { MonorailSnackbarOverrides } from '../components/Snackbar/themeOverrides.js'
@@ -61,9 +64,6 @@ import {
 } from '../components/ToggleButton/themeOverrides.js'
 import { MonorailTreeItemOverrides } from '../components/TreeItem/themeOverrides.js'
 import { baseTheme } from './baseTheme.js'
-import { MonorailRadioOverrides } from '../components/Radio/themeOverrides.js'
-import { MonorailCheckboxOverrides } from '../components/Checkbox/themeOverrides.js'
-import { MonorailAvatarButtonOverrides } from '../components/AvatarButton/themeOverrides.js'
 
 /**
  * Constructs the `components` overrides using a subset of the overall theme that includes everything except `components`

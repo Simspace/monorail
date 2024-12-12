@@ -11,6 +11,7 @@ import { GliderCarousel, Wrapper } from './Carousel.styled.js'
 type Props = {
   itemWidth?: number
   uid: string
+  children?: React.ReactNode
 }
 
 export type CarouselProps = Props & { GliderProps?: Partial<GliderProps> } & {

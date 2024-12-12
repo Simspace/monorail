@@ -1,5 +1,5 @@
-import { alpha, Components, Theme } from '@mui/material'
-import { checkboxClasses, typographyClasses } from '@mui/material'
+import type { Components, Theme } from '@mui/material'
+import { alpha, checkboxClasses, typographyClasses } from '@mui/material'
 
 import { dataGridClasses } from '@monorail/components'
 

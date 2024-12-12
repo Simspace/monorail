@@ -10,8 +10,10 @@ inputs:
 - name: utils-build
 - name: types-build
 run:
-  path: sh
+  path: bash
   args:
+  - -eou
+  - pipefail
   - -cx
   - |
     mv ../components-build/* packages/components

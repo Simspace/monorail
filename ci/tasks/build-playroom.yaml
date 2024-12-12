@@ -13,14 +13,16 @@ outputs:
 - name: playroom
   path: repo/playroom
 run:
-  path: sh
+  path: bash
   args:
-    - -cx
-    - |
-      mv ../components-build/* packages/components
-      mv ../utils-build/* packages/utils
-      mv ../themes-build/* packages/themes
-      mv ../types-build/* packages/types
-      yarn install --immutable
-      yarn build-playroom
+  - -eou
+  - pipefail
+  - -cx
+  - |
+    mv ../components-build/* packages/components
+    mv ../utils-build/* packages/utils
+    mv ../themes-build/* packages/themes
+    mv ../types-build/* packages/types
+    yarn install --immutable
+    yarn build-playroom
   dir: repo

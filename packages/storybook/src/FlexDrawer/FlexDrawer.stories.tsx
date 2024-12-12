@@ -1,6 +1,8 @@
-import { Button, FlexDrawer, Stack } from '@monorail/components'
-import { StoryObj } from '@storybook/react'
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react'
+import type { StoryObj } from '@storybook/react'
+
+import { Button, FlexDrawer, Stack } from '@monorail/components'
 
 export default {
   title: 'Navigation/FlexDrawer',

@@ -40,7 +40,6 @@ import { story } from '../helpers.js'
 export default {
   title: 'Surfaces/Accordion',
   component: Accordion,
-  subcomponents: { AccordionDetails, AccordionSummary }, // This adds docgen tabs to the Docs page for the Default story - not super helpful
 }
 
 const Template = story<AccordionProps>(
@@ -438,7 +437,7 @@ export const AccordionWithIcon = story(
   },
 )
 
-export const Actions = () => {
+export const Actions = story(() => {
   return (
     <Accordion defaultExpanded>
       <AccordionSummary expandIcon={<ExpandMore />}>Summary</AccordionSummary>
@@ -454,7 +453,7 @@ export const Actions = () => {
       </AccordionActions>
     </Accordion>
   )
-}
+})
 
 const StyledAccordion = styled((props: AccordionProps) => (
   <Accordion disableGutters elevation={0} square {...props} />
@@ -495,7 +494,7 @@ const StyledAccordionDetails = styled(AccordionDetails)(({ theme }) => ({
   borderTop: '1px solid rgba(0, 0, 0, .125)',
 }))
 
-export const CustomStyled = () => {
+export const CustomStyled = story(() => {
   const [expanded, setExpanded] = React.useState('panel1')
 
   const handleChange =
@@ -564,7 +563,7 @@ export const CustomStyled = () => {
       </StyledAccordion>
     </div>
   )
-}
+})
 
 const DummyCard = styled(Paper)({
   height: 120,

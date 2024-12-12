@@ -90,7 +90,7 @@ export interface ListboxComponentProps<
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 > extends Omit<
     VirtuosoProps<never, VirtualizedAutocompleteContext<Value>>,
-    'itemContent'
+    'itemContent' | 'children'
   > {
   children: Array<Data<Value>>
 

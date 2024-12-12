@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 // Edit this file to add new stories
 import React from 'react'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
@@ -7,6 +8,7 @@ import MailIcon from '@mui/icons-material/Mail'
 import MenuIcon from '@mui/icons-material/Menu'
 import type { CSSObject, Theme } from '@mui/material'
 import { styled, useTheme } from '@mui/material'
+import type { StoryObj } from '@storybook/react'
 
 import type {
   AppBarProps,
@@ -20,6 +22,7 @@ import {
   CssBaseline,
   Divider,
   Drawer,
+  FlexDrawer,
   GlobalStyles,
   IconButton,
   List,
@@ -27,7 +30,6 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  FlexDrawer,
   Stack,
   Toolbar,
   Typography,
@@ -35,7 +37,6 @@ import {
 import { Home } from '@monorail/components/icons'
 
 import { story } from '../helpers/storybook.js'
-import { StoryObj } from '@storybook/react'
 
 export default {
   title: 'Navigation/Drawer',

@@ -13,7 +13,7 @@ import { Grid2 as MuiGrid2 } from '@mui/material'
  */
 export const Grid2: typeof MuiGrid2 = MuiGrid2
 
-export {
+export type {
   GridDirection as Grid2Direction,
   GridSize as Grid2Size,
   GridSpacing as Grid2Spacing,
@@ -24,6 +24,5 @@ export {
   Grid2TypeMap,
   GridBaseProps,
   GridOffset,
-  getGrid2UtilityClass,
-  grid2Classes,
 } from '@mui/material/Grid2'
+export { getGrid2UtilityClass, grid2Classes } from '@mui/material/Grid2'

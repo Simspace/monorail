@@ -4,8 +4,10 @@ inputs:
 outputs:
 - name: pages
 run:
-  path: sh
+  path: bash
   args:
+  - -eou
+  - pipefail
   - -cx
   - |
     rm -rf ((git-branch-slug))

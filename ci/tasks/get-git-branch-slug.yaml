@@ -4,9 +4,11 @@ inputs:
 outputs:
 - name: git-branch-slug
 run:
-  path: sh
+  path: bash
   args:
-    - -cx
-    - |
-      node ci/tasks/get-git-branch-slug.mjs >> ../git-branch-slug/output
+  - -eou
+  - pipefail
+  - -cx
+  - |
+    node ci/tasks/get-git-branch-slug.mjs >> ../git-branch-slug/output
   dir: repo

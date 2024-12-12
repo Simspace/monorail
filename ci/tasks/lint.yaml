@@ -14,8 +14,10 @@ inputs:
 - name: types-build
   path: repo/packages/types/dist
 run:
-  path: sh
+  path: bash
   args:
+  - -eou
+  - pipefail
   - -cx
   - |
     yarn install --immutable

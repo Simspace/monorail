@@ -33,7 +33,6 @@ export const ResizableElement = React.forwardRef(function ResizableElement(
   })
 
   const {
-    ref: _,
     apiRef: apiRefProp,
     maxSize: maxSizeProp,
     minSize: minSizeProp,
