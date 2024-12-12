@@ -32,9 +32,7 @@ const releaseInfo = getReleaseInfo()
  *
  * - [DataGrid API](https://mui.com/x/api/data-grid/)
  */
-export const DataGrid: <R extends GridValidRowModel>(
-  props: DataGridPremiumProps<R> & React.RefAttributes<HTMLDivElement>,
-) => React.ReactElement | null = React.forwardRef(function DataGrid(
+export const DataGrid = React.forwardRef(function DataGrid(
   initProps: DataGridPremiumProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
@@ -76,4 +74,6 @@ export const DataGrid: <R extends GridValidRowModel>(
       </GridRoot>
     </GridContextProvider>
   )
-})
+}) as <R extends GridValidRowModel>(
+  props: DataGridPremiumProps<R> & React.RefAttributes<HTMLDivElement>,
+) => React.ReactElement | null
