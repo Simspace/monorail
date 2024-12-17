@@ -23,7 +23,7 @@ export interface PasswordTextFieldProps
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     isVisible: boolean,
   ) => void
-  slotProps?: {
+  slotProps?: TextFieldProps['slotProps'] & {
     /**
      * Props applied to the visibility Icon.
      */
@@ -36,5 +36,16 @@ export interface PasswordTextFieldProps
      * Props applied to the IconButton.
      */
     iconButton?: Partial<IconButtonProps>
+  }
+  slots?: TextFieldProps['slots'] & {
+    /**
+     * The component to render for the "visibility on" icon.
+     */
+    visibilityIcon?: React.ElementType
+
+    /**
+     * The component to render for the "visibility off" icon.
+     */
+    visibilityOffIcon?: React.ElementType
   }
 }

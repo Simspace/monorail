@@ -71,6 +71,7 @@ export const PasswordTextField = React.forwardRef(function PasswordTextField(
     onVisibilityChange,
     slotProps,
     inputRef,
+    slots,
     isVisible: controlledState,
     defaultIsVisible: defaultState,
     ...other
@@ -94,6 +95,10 @@ export const PasswordTextField = React.forwardRef(function PasswordTextField(
     [isVisible, onVisibilityChange, setIsVisible, slotProps?.iconButton],
   )
 
+  const VisibilityIconComponent = slots?.visibilityIcon ?? VisibilityIcon
+  const VisibilityOffIconComponent =
+    slots?.visibilityOffIcon ?? VisibilityOffIcon
+
   const endAdornment = React.useMemo(() => {
     return (
       <IconButton
@@ -106,12 +111,12 @@ export const PasswordTextField = React.forwardRef(function PasswordTextField(
         className={classes.toggleVisibilityButton}
       >
         {isVisible ? (
-          <VisibilityIcon
+          <VisibilityIconComponent
             {...slotProps?.visibilityIcon}
             className={classes.visibilityIcon}
           />
         ) : (
-          <VisibilityOffIcon
+          <VisibilityOffIconComponent
             {...slotProps?.visibilityOffIcon}
             className={classes.visibilityOffIcon}
           />
@@ -119,6 +124,8 @@ export const PasswordTextField = React.forwardRef(function PasswordTextField(
       </IconButton>
     )
   }, [
+    VisibilityIconComponent,
+    VisibilityOffIconComponent,
     classes.toggleVisibilityButton,
     classes.visibilityIcon,
     classes.visibilityOffIcon,
@@ -143,11 +150,14 @@ export const PasswordTextField = React.forwardRef(function PasswordTextField(
       inputRef={inputRef}
       ref={ref}
       type={type}
-      InputProps={{
-        ...props.InputProps,
-        endAdornment,
-      }}
       className={classes.root}
+      slotProps={{
+        ...slotProps,
+        input: {
+          ...slotProps?.input,
+          endAdornment,
+        },
+      }}
       {...other}
     />
   )

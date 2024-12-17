@@ -1,4 +1,5 @@
 import React from 'react'
+import { Lock } from '@mui/icons-material'
 import Box from '@mui/material/Box'
 import { action } from '@storybook/addon-actions'
 import type { StoryObj } from '@storybook/react'
@@ -49,6 +50,40 @@ export const ControlledVsUncontrolled: StoryObj<typeof PasswordTextField> = {
           onVisibilityChange={action('onVisibilityChange')}
           defaultIsVisible={false}
           {...restArgs}
+        />
+      </Box>
+    )
+  },
+}
+
+export const CustomIcon: StoryObj<typeof PasswordTextField> = {
+  render: args => {
+    return (
+      <Box
+        component="form"
+        sx={{
+          '& > :not(style)': { m: 1, width: '25ch' },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <PasswordTextField
+          id="custom-icon"
+          label="Custom Icon"
+          defaultValue="bar"
+          disabled
+          onVisibilityChange={action('onVisibilityChange')}
+          defaultIsVisible={false}
+          slots={{
+            visibilityOffIcon: Lock,
+          }}
+          slotProps={{
+            iconButton: { disabled: true },
+            visibilityOffIcon: {
+              sx: theme => ({ color: theme.palette.default.main }),
+            },
+          }}
+          {...args}
         />
       </Box>
     )
