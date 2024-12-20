@@ -3,20 +3,14 @@ import React from 'react'
 import { WarningAmberTwoTone } from '@mui/icons-material'
 
 import type { StepButtonProps } from '@monorail/components'
-import {
-  Box,
-  Step,
-  StepButton,
-  StepLabel,
-  Typography,
-} from '@monorail/components'
+import { Box, Step, StepButton, StepLabel, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
 export default { title: 'Navigation/Stepper/StepButton', component: StepButton }
 
 export const Default = story<StepButtonProps>(
-  args => (
+  (args) => (
     <Box sx={{ width: '100%' }}>
       <Step>
         <StepButton {...args}>Click me</StepButton>
@@ -42,7 +36,7 @@ A clickable, labeled step.
  */
 export const OptionalStepButton = story(() => (
   <Box sx={{ width: '100%' }}>
-    <StepButton optional={<Typography variant="caption">Optional</Typography>}>
+    <StepButton optional={<Typography variant='caption'>Optional</Typography>}>
       <StepLabel>Create an ad group</StepLabel>
     </StepButton>
   </Box>

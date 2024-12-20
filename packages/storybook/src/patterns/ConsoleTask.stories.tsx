@@ -30,22 +30,21 @@ export default {
 
 const Task1 = () => (
   <>
-    <Typography variant="h2" pb={6}>
+    <Typography variant='h2' pb={6}>
       Task Content
     </Typography>
-    <Typography variant="body1">
+    <Typography variant='body1'>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     </Typography>
-    <Typography variant="body1">
-      Mi quis hendrerit dolor magna eget est lorem. A arcu cursus vitae congue
-      mauris rhoncus aenean vel.
+    <Typography variant='body1'>
+      Mi quis hendrerit dolor magna eget est lorem. A arcu cursus vitae congue mauris rhoncus aenean
+      vel.
     </Typography>
-    <Typography variant="body1">
-      Ut diam quam nulla porttitor massa id neque aliquam. Quis eleifend quam
-      adipiscing vitae proin sagittis nisl rhoncus mattis. Est ultricies integer
-      quis auctor elit sed.{' '}
+    <Typography variant='body1'>
+      Ut diam quam nulla porttitor massa id neque aliquam. Quis eleifend quam adipiscing vitae proin
+      sagittis nisl rhoncus mattis. Est ultricies integer quis auctor elit sed.{' '}
     </Typography>
-    <Typography variant="body1">
+    <Typography variant='body1'>
       Integer vitae justo eget magna fermentum iaculis eu non diam.
     </Typography>
   </>
@@ -53,46 +52,43 @@ const Task1 = () => (
 
 const Task2 = () => (
   <>
-    <Typography variant="h2" pb={6}>
+    <Typography variant='h2' pb={6}>
       Task Content
     </Typography>
-    <Typography variant="body1">
+    <Typography variant='body1'>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     </Typography>
-    <Typography variant="body1">
-      Mi quis hendrerit dolor magna eget est lorem. A arcu cursus vitae congue
-      mauris rhoncus aenean vel.
+    <Typography variant='body1'>
+      Mi quis hendrerit dolor magna eget est lorem. A arcu cursus vitae congue mauris rhoncus aenean
+      vel.
     </Typography>
-    <Typography variant="body1">
-      Ut diam quam nulla porttitor massa id neque aliquam. Quis eleifend quam
-      adipiscing vitae proin sagittis nisl rhoncus mattis. Est ultricies integer
-      quis auctor elit sed.{' '}
+    <Typography variant='body1'>
+      Ut diam quam nulla porttitor massa id neque aliquam. Quis eleifend quam adipiscing vitae proin
+      sagittis nisl rhoncus mattis. Est ultricies integer quis auctor elit sed.{' '}
     </Typography>
-    <Typography variant="body1">
+    <Typography variant='body1'>
       Integer vitae justo eget magna fermentum iaculis eu non diam.
     </Typography>
-    <Typography variant="body1">
-      Mi quis hendrerit dolor magna eget est lorem. A arcu cursus vitae congue
-      mauris rhoncus aenean vel.
+    <Typography variant='body1'>
+      Mi quis hendrerit dolor magna eget est lorem. A arcu cursus vitae congue mauris rhoncus aenean
+      vel.
     </Typography>
-    <Typography variant="body1">
-      Ut diam quam nulla porttitor massa id neque aliquam. Quis eleifend quam
-      adipiscing vitae proin sagittis nisl rhoncus mattis. Est ultricies integer
-      quis auctor elit sed.{' '}
+    <Typography variant='body1'>
+      Ut diam quam nulla porttitor massa id neque aliquam. Quis eleifend quam adipiscing vitae proin
+      sagittis nisl rhoncus mattis. Est ultricies integer quis auctor elit sed.{' '}
     </Typography>
-    <Typography variant="body1">
+    <Typography variant='body1'>
       Integer vitae justo eget magna fermentum iaculis eu non diam.
     </Typography>
-    <Typography variant="body1">
-      Mi quis hendrerit dolor magna eget est lorem. A arcu cursus vitae congue
-      mauris rhoncus aenean vel.
+    <Typography variant='body1'>
+      Mi quis hendrerit dolor magna eget est lorem. A arcu cursus vitae congue mauris rhoncus aenean
+      vel.
     </Typography>
-    <Typography variant="body1">
-      Ut diam quam nulla porttitor massa id neque aliquam. Quis eleifend quam
-      adipiscing vitae proin sagittis nisl rhoncus mattis. Est ultricies integer
-      quis auctor elit sed.{' '}
+    <Typography variant='body1'>
+      Ut diam quam nulla porttitor massa id neque aliquam. Quis eleifend quam adipiscing vitae proin
+      sagittis nisl rhoncus mattis. Est ultricies integer quis auctor elit sed.{' '}
     </Typography>
-    <Typography variant="body1">
+    <Typography variant='body1'>
       Integer vitae justo eget magna fermentum iaculis eu non diam.
     </Typography>
   </>
@@ -103,21 +99,21 @@ const Template: StoryFn<{}> = () => {
   const [task, setTask] = React.useState(0)
   return (
     <>
-      <Container component="header">
+      <Container component='header'>
         <Grid container p={8}>
           <Grid item xs={8}>
-            <Typography variant="h1">Task 2</Typography>
+            <Typography variant='h1'>Task 2</Typography>
           </Grid>
-          <Grid item xs={4} textAlign="right">
-            <Button variant="outlined">Stop</Button>
+          <Grid item xs={4} textAlign='right'>
+            <Button variant='outlined'>Stop</Button>
           </Grid>
         </Grid>
         <Divider />
       </Container>
 
-      <Container component="main" sx={{ pt: 4 }}>
-        <ResizableContainer id="console-task-group" direction="row">
-          <ResizableElement id="console-task-group-1" minSize={0.25}>
+      <Container component='main' sx={{ pt: 4 }}>
+        <ResizableContainer id='console-task-group' direction='row'>
+          <ResizableElement id='console-task-group-1' minSize={0.25}>
             <Box pr={8}>
               <Paper
                 elevation={4}
@@ -130,65 +126,55 @@ const Template: StoryFn<{}> = () => {
               >
                 {task % 2 === 0 ? <Task1 /> : <Task2 />}
               </Paper>
-              <Stack py={3} direction="row" justifyContent="space-between">
+              <Stack py={3} direction='row' justifyContent='space-between'>
                 <Button
-                  onClick={() => setTask(t => t - 1)}
+                  onClick={() => setTask((t) => t - 1)}
                   startIcon={<ChevronDoubleLeft />}
-                  variant="outlined"
+                  variant='outlined'
                 >
                   Previous
                 </Button>
-                <Button
-                  onClick={() => setTask(t => t + 1)}
-                  endIcon={<ChevronDoubleRight />}
-                >
+                <Button onClick={() => setTask((t) => t + 1)} endIcon={<ChevronDoubleRight />}>
                   Next
                 </Button>
               </Stack>
             </Box>
           </ResizableElement>
           <ResizableHandle />
-          <ResizableElement id="console-task-group-2" minSize={0.25}>
+          <ResizableElement id='console-task-group-2' minSize={0.25}>
             <Box pl={8}>
               {!isPopoutOpen && (
                 <Stack
-                  direction="row"
-                  justifyContent="space-between"
-                  sx={theme => ({
+                  direction='row'
+                  justifyContent='space-between'
+                  sx={(theme) => ({
                     height: 500,
                     backgroundColor: theme.palette.common.black,
                   })}
                 >
-                  <Typography
-                    sx={theme => ({ color: theme.palette.common.white })}
-                  >
+                  <Typography sx={(theme) => ({ color: theme.palette.common.white })}>
                     Console
                   </Typography>
-                  <IconButton
-                    aria-label="Open Popout Console"
-                    onClick={() => setPopoutOpen(true)}
-                  >
-                    <OpenInNew
-                      sx={theme => ({ color: theme.palette.common.white })}
-                    />
+                  <IconButton aria-label='Open Popout Console' onClick={() => setPopoutOpen(true)}>
+                    <OpenInNew sx={(theme) => ({ color: theme.palette.common.white })} />
                   </IconButton>
                 </Stack>
               )}
               {isPopoutOpen && (
                 <Stack
-                  direction="column"
-                  alignItems="center"
-                  justifyContent="center"
-                  sx={theme => ({
+                  direction='column'
+                  alignItems='center'
+                  justifyContent='center'
+                  sx={(theme) => ({
                     height: 500,
                     backgroundColor: theme.palette.default.lowEmphasis.light,
                   })}
                 >
-                  <Typography variant="subtitle1" color="text.secondary">
+                  <Typography variant='subtitle1' color='text.secondary'>
                     The console is open in an external window
                   </Typography>
                   <Button
-                    variant="text"
+                    variant='text'
                     onClick={() => setPopoutOpen(false)}
                     sx={{ mt: 4 }}
                     startIcon={<PictureInPicture />}
@@ -198,30 +184,26 @@ const Template: StoryFn<{}> = () => {
                 </Stack>
               )}
               <Popout
-                title="Console"
+                title='Console'
                 open={isPopoutOpen}
                 onWindowClose={() => setPopoutOpen(false)}
               >
                 <Stack
-                  direction="row"
-                  justifyContent="space-between"
-                  sx={theme => ({
+                  direction='row'
+                  justifyContent='space-between'
+                  sx={(theme) => ({
                     height: 500,
                     backgroundColor: theme.palette.common.black,
                   })}
                 >
-                  <Typography
-                    sx={theme => ({ color: theme.palette.common.white })}
-                  >
+                  <Typography sx={(theme) => ({ color: theme.palette.common.white })}>
                     Console
                   </Typography>
                   <IconButton
-                    aria-label="Close Popout Console"
+                    aria-label='Close Popout Console'
                     onClick={() => setPopoutOpen(false)}
                   >
-                    <ExitToApp
-                      sx={theme => ({ color: theme.palette.common.white })}
-                    />
+                    <ExitToApp sx={(theme) => ({ color: theme.palette.common.white })} />
                   </IconButton>
                 </Stack>
               </Popout>

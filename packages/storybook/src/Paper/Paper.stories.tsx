@@ -1,12 +1,7 @@
 // Edit this file to add new stories
 import React from 'react'
 import type { Theme } from '@mui/material'
-import {
-  createTheme,
-  styled,
-  StyledEngineProvider,
-  ThemeProvider,
-} from '@mui/material'
+import { createTheme, styled, StyledEngineProvider, ThemeProvider } from '@mui/material'
 
 import type { PaperProps } from '@monorail/components'
 import { Box, Grid, Paper } from '@monorail/components'
@@ -25,7 +20,7 @@ declare module '@mui/styles/defaultTheme' {
 
 export default { title: 'Surfaces/Paper', component: Paper }
 
-const Template = story<PaperProps>(args => <Paper {...args} />, {
+const Template = story<PaperProps>((args) => <Paper {...args} />, {
   args: { children: 'The content' },
   muiName: 'MuiPaper',
 })
@@ -65,8 +60,8 @@ export const Variants = story<PaperProps>(() => (
       },
     }}
   >
-    <Paper variant="outlined" />
-    <Paper variant="outlined" square />
+    <Paper variant='outlined' />
+    <Paper variant='outlined' square />
   </Box>
 ))
 
@@ -99,7 +94,7 @@ export const Elevation = story<PaperProps>(() => (
                 gap: 2,
               }}
             >
-              {[0, 1, 2, 3, 4, 6, 8, 12, 16, 24].map(elevation => (
+              {[0, 1, 2, 3, 4, 6, 8, 12, 16, 24].map((elevation) => (
                 <Item key={elevation} elevation={elevation}>
                   {`elevation=${elevation}`}
                 </Item>

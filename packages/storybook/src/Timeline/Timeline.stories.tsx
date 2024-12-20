@@ -22,7 +22,7 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Data Display/Timeline', component: Timeline }
 
 const Template = story<TimelineProps>(
-  args => {
+  (args) => {
     // TODO: Ignore the ref, there is a type error
     const { ref: _ref, ...rest } = args
     return (
@@ -83,7 +83,7 @@ export const Alternating = story(Template, {
  * The `TimelineDot` can appear in different colors from theme palette.
  */
 export const Color = story<TimelineProps>(
-  args => {
+  (args) => {
     const { ref: _ref, ...rest } = args
     return (
       <Timeline {...rest}>
@@ -96,7 +96,7 @@ export const Color = story<TimelineProps>(
         </TimelineItem>
         <TimelineItem>
           <TimelineSeparator>
-            <TimelineDot color="success" />
+            <TimelineDot color='success' />
           </TimelineSeparator>
           <TimelineContent>Success</TimelineContent>
         </TimelineItem>
@@ -111,34 +111,34 @@ export const Color = story<TimelineProps>(
 )
 
 export const Outlined = story<TimelineProps>(
-  args => {
+  (args) => {
     const { ref: _ref, ...rest } = args
     return (
       <Timeline {...rest}>
         <TimelineItem>
           <TimelineSeparator>
-            <TimelineDot variant="outlined" />
+            <TimelineDot variant='outlined' />
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>Eat</TimelineContent>
         </TimelineItem>
         <TimelineItem>
           <TimelineSeparator>
-            <TimelineDot variant="outlined" color="primary" />
+            <TimelineDot variant='outlined' color='primary' />
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>Code</TimelineContent>
         </TimelineItem>
         <TimelineItem>
           <TimelineSeparator>
-            <TimelineDot variant="outlined" />
+            <TimelineDot variant='outlined' />
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>Sleep</TimelineContent>
         </TimelineItem>
         <TimelineItem>
           <TimelineSeparator>
-            <TimelineDot variant="outlined" />
+            <TimelineDot variant='outlined' />
           </TimelineSeparator>
           <TimelineContent>Repeat</TimelineContent>
         </TimelineItem>
@@ -156,14 +156,12 @@ export const Outlined = story<TimelineProps>(
  * The timeline can display content on opposite sides.
  */
 export const OppositeContent = story<TimelineProps>(
-  args => {
+  (args) => {
     const { ref: _ref, ...rest } = args
     return (
       <Timeline {...rest}>
         <TimelineItem>
-          <TimelineOppositeContent color="text.secondary">
-            09:30 am
-          </TimelineOppositeContent>
+          <TimelineOppositeContent color='text.secondary'>09:30 am</TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot />
             <TimelineConnector />
@@ -171,9 +169,7 @@ export const OppositeContent = story<TimelineProps>(
           <TimelineContent>Eat</TimelineContent>
         </TimelineItem>
         <TimelineItem>
-          <TimelineOppositeContent color="text.secondary">
-            10:00 am
-          </TimelineOppositeContent>
+          <TimelineOppositeContent color='text.secondary'>10:00 am</TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot />
             <TimelineConnector />
@@ -181,9 +177,7 @@ export const OppositeContent = story<TimelineProps>(
           <TimelineContent>Code</TimelineContent>
         </TimelineItem>
         <TimelineItem>
-          <TimelineOppositeContent color="text.secondary">
-            12:00 am
-          </TimelineOppositeContent>
+          <TimelineOppositeContent color='text.secondary'>12:00 am</TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot />
             <TimelineConnector />
@@ -191,9 +185,7 @@ export const OppositeContent = story<TimelineProps>(
           <TimelineContent>Sleep</TimelineContent>
         </TimelineItem>
         <TimelineItem>
-          <TimelineOppositeContent color="text.secondary">
-            9:00 am
-          </TimelineOppositeContent>
+          <TimelineOppositeContent color='text.secondary'>9:00 am</TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineDot />
             <TimelineConnector />
@@ -214,16 +206,16 @@ export const OppositeContent = story<TimelineProps>(
  * Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](https://next.material-ui.com/customization/how-to-customize/).
  */
 export const Customization = story<TimelineProps>(
-  args => {
+  (args) => {
     const { ref: _ref, ...rest } = args
     return (
       <Timeline {...rest}>
         <TimelineItem>
           <TimelineOppositeContent
             sx={{ m: 'auto 0' }}
-            align="right"
-            variant="body2"
-            color="text.secondary"
+            align='right'
+            variant='body2'
+            color='text.secondary'
           >
             9:30 am
           </TimelineOppositeContent>
@@ -235,29 +227,25 @@ export const Customization = story<TimelineProps>(
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent sx={{ py: '12px', px: 2 }}>
-            <Typography variant="h3" component="span">
+            <Typography variant='h3' component='span'>
               Eat
             </Typography>
             <Typography>Because you need strength</Typography>
           </TimelineContent>
         </TimelineItem>
         <TimelineItem>
-          <TimelineOppositeContent
-            sx={{ m: 'auto 0' }}
-            variant="body2"
-            color="text.secondary"
-          >
+          <TimelineOppositeContent sx={{ m: 'auto 0' }} variant='body2' color='text.secondary'>
             10:00 am
           </TimelineOppositeContent>
           <TimelineSeparator>
             <TimelineConnector />
-            <TimelineDot color="primary">
+            <TimelineDot color='primary'>
               <LaptopMacIcon />
             </TimelineDot>
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent sx={{ py: '12px', px: 2 }}>
-            <Typography variant="h3" component="span">
+            <Typography variant='h3' component='span'>
               Code
             </Typography>
             <Typography>Because it&apos;s awesome!</Typography>
@@ -266,13 +254,13 @@ export const Customization = story<TimelineProps>(
         <TimelineItem>
           <TimelineSeparator>
             <TimelineConnector />
-            <TimelineDot color="primary" variant="outlined">
+            <TimelineDot color='primary' variant='outlined'>
               <HotelIcon />
             </TimelineDot>
             <TimelineConnector sx={{ bgcolor: 'success.main' }} />
           </TimelineSeparator>
           <TimelineContent sx={{ py: '12px', px: 2 }}>
-            <Typography variant="h3" component="span">
+            <Typography variant='h3' component='span'>
               Sleep
             </Typography>
             <Typography>Because you need rest</Typography>
@@ -281,13 +269,13 @@ export const Customization = story<TimelineProps>(
         <TimelineItem>
           <TimelineSeparator>
             <TimelineConnector sx={{ bgcolor: 'success.main' }} />
-            <TimelineDot color="success">
+            <TimelineDot color='success'>
               <RepeatIcon />
             </TimelineDot>
             <TimelineConnector sx={{ bgcolor: 'success.main' }} />
           </TimelineSeparator>
           <TimelineContent sx={{ py: '12px', px: 2 }}>
-            <Typography variant="h3" component="span">
+            <Typography variant='h3' component='span'>
               Repeat
             </Typography>
             <Typography>Because this is the life you love!</Typography>

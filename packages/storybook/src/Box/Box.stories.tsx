@@ -12,7 +12,7 @@ const meta: Meta<typeof Box> = { title: 'Layout/Box', component: Box }
 
 export default meta
 
-const Template = story<BoxProps>(args => <Box {...args} />, {
+const Template = story<BoxProps>((args) => <Box {...args} />, {
   args: {
     px: 3,
     py: 4,
@@ -35,9 +35,7 @@ export const WaysToStyleABox = () => {
         Box can be styled multiple ways. They each have different usecases and{' '}
         <a
           target={'_blank'}
-          href={
-            'https://next.material-ui.com/system/basics/#performance-tradeoff'
-          }
+          href={'https://next.material-ui.com/system/basics/#performance-tradeoff'}
         >
           performance implications.
         </a>
@@ -55,10 +53,7 @@ export const BorderedBox = styled('div')(
 
       <Typography>
         2. Via the MUI System (See full api{' '}
-        <a
-          target={'_blank'}
-          href={'https://next.material-ui.com/system/properties/'}
-        >
+        <a target={'_blank'} href={'https://next.material-ui.com/system/properties/'}>
           here.
         </a>
         )
@@ -71,7 +66,7 @@ export const BorderedBox = styled('div')(
       `}</pre>
 
       <Typography>3. With the sx prop</Typography>
-      <Box component="span" sx={{ p: 2, border: '1px dashed grey' }}>
+      <Box component='span' sx={{ p: 2, border: '1px dashed grey' }}>
         <Button>Save</Button>
       </Box>
       <pre>{`

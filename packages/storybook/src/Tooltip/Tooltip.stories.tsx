@@ -22,8 +22,8 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Feedback/Tooltip', component: Tooltip }
 
 const Template = story<TooltipProps>(
-  args => (
-    <Tooltip title="Tooltip title" {...args}>
+  (args) => (
+    <Tooltip title='Tooltip title' {...args}>
       <>Tooltip children</>
     </Tooltip>
   ),
@@ -36,8 +36,8 @@ const Template = story<TooltipProps>(
 export const Default = story(Template)
 
 export const BasicTooltip = story<TooltipProps>(() => (
-  <Tooltip title="Delete">
-    <IconButton aria-label="delete" size="large">
+  <Tooltip title='Delete'>
+    <IconButton aria-label='delete' size='large'>
       <DeleteIcon />
     </IconButton>
   </Tooltip>
@@ -48,60 +48,60 @@ export const BasicTooltip = story<TooltipProps>(() => (
  */
 export const PositionedTooltips = story<TooltipProps>(() => (
   <Box sx={{ width: 500 }}>
-    <Grid container justifyContent="center">
+    <Grid container justifyContent='center'>
       <Grid item>
-        <Tooltip title="Add" placement="top-start">
+        <Tooltip title='Add' placement='top-start'>
           <Button>top-start</Button>
         </Tooltip>
-        <Tooltip title="Add" placement="top">
+        <Tooltip title='Add' placement='top'>
           <Button>top</Button>
         </Tooltip>
-        <Tooltip title="Add" placement="top-end">
+        <Tooltip title='Add' placement='top-end'>
           <Button>top-end</Button>
         </Tooltip>
       </Grid>
     </Grid>
-    <Grid container justifyContent="center">
+    <Grid container justifyContent='center'>
       <Grid item xs={6}>
-        <Tooltip title="Add" placement="left-start">
+        <Tooltip title='Add' placement='left-start'>
           <Button>left-start</Button>
         </Tooltip>
         <br />
-        <Tooltip title="Add" placement="left">
+        <Tooltip title='Add' placement='left'>
           <Button>left</Button>
         </Tooltip>
         <br />
-        <Tooltip title="Add" placement="left-end">
+        <Tooltip title='Add' placement='left-end'>
           <Button>left-end</Button>
         </Tooltip>
       </Grid>
-      <Grid item container xs={6} alignItems="flex-end" direction="column">
+      <Grid item container xs={6} alignItems='flex-end' direction='column'>
         <Grid item>
-          <Tooltip title="Add" placement="right-start">
+          <Tooltip title='Add' placement='right-start'>
             <Button>right-start</Button>
           </Tooltip>
         </Grid>
         <Grid item>
-          <Tooltip title="Add" placement="right">
+          <Tooltip title='Add' placement='right'>
             <Button>right</Button>
           </Tooltip>
         </Grid>
         <Grid item>
-          <Tooltip title="Add" placement="right-end">
+          <Tooltip title='Add' placement='right-end'>
             <Button>right-end</Button>
           </Tooltip>
         </Grid>
       </Grid>
     </Grid>
-    <Grid container justifyContent="center">
+    <Grid container justifyContent='center'>
       <Grid item>
-        <Tooltip title="Add" placement="bottom-start">
+        <Tooltip title='Add' placement='bottom-start'>
           <Button>bottom-start</Button>
         </Tooltip>
-        <Tooltip title="Add" placement="bottom">
+        <Tooltip title='Add' placement='bottom'>
           <Button>bottom</Button>
         </Tooltip>
-        <Tooltip title="Add" placement="bottom-end">
+        <Tooltip title='Add' placement='bottom-end'>
           <Button>bottom-end</Button>
         </Tooltip>
       </Grid>
@@ -152,17 +152,17 @@ const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
  */
 export const CustomizedTooltips = story<TooltipProps>(() => (
   <div>
-    <LightTooltip title="Add">
+    <LightTooltip title='Add'>
       <Button>Light</Button>
     </LightTooltip>
-    <BootstrapTooltip title="Add">
+    <BootstrapTooltip title='Add'>
       <Button>Bootstrap</Button>
     </BootstrapTooltip>
     <HtmlTooltip
       arrow={false}
       title={
         <React.Fragment>
-          <Typography color="inherit">Tooltip with HTML</Typography>
+          <Typography color='inherit'>Tooltip with HTML</Typography>
           <em>{"And here's"}</em> <b>{'some'}</b> <u>{'amazing content'}</u>.{' '}
           {"It's very engaging. Right?"}
         </React.Fragment>
@@ -177,14 +177,14 @@ export const CustomizedTooltips = story<TooltipProps>(() => (
  * You can use the `arrow` prop to give your tooltip an arrow indicating which element it refers to.
  */
 export const ArrowTooltips = story<TooltipProps>(() => (
-  <Grid container justifyContent="center" spacing={2}>
+  <Grid container justifyContent='center' spacing={2}>
     <Grid item>
-      <Tooltip title="Add" arrow>
+      <Tooltip title='Add' arrow>
         <Button>Arrow</Button>
       </Tooltip>
     </Grid>
     <Grid item>
-      <Tooltip title="Add" arrow placement="right">
+      <Tooltip title='Add' arrow placement='right'>
         <Button>Tooltip Right</Button>
       </Tooltip>
     </Grid>
@@ -206,19 +206,19 @@ export const TriggersTooltips = story<TooltipProps>(() => {
   }
   return (
     <div>
-      <Grid container justifyContent="center">
+      <Grid container justifyContent='center'>
         <Grid item>
-          <Tooltip disableFocusListener title="Add">
+          <Tooltip disableFocusListener title='Add'>
             <Button>Hover or touch</Button>
           </Tooltip>
         </Grid>
         <Grid item>
-          <Tooltip disableHoverListener title="Add">
+          <Tooltip disableHoverListener title='Add'>
             <Button>Focus or touch</Button>
           </Tooltip>
         </Grid>
         <Grid item>
-          <Tooltip disableFocusListener disableTouchListener title="Add">
+          <Tooltip disableFocusListener disableTouchListener title='Add'>
             <Button>Hover</Button>
           </Tooltip>
         </Grid>
@@ -234,7 +234,7 @@ export const TriggersTooltips = story<TooltipProps>(() => {
                 disableFocusListener
                 disableHoverListener
                 disableTouchListener
-                title="Add"
+                title='Add'
               >
                 <Button onClick={handleTooltipOpen}>Click</Button>
               </Tooltip>
@@ -257,7 +257,7 @@ export const ControlledTooltips = story<TooltipProps>(() => {
     setOpen(true)
   }
   return (
-    <Tooltip open={open} onClose={() => {}} onOpen={handleOpen} title="Add">
+    <Tooltip open={open} onClose={() => {}} onOpen={handleOpen} title='Add'>
       <Button>Controlled</Button>
     </Tooltip>
   )
@@ -306,7 +306,7 @@ export const VariableWidth = story<TooltipProps>(() => (
  * `Tooltip`s are interactive by default (to pass WCAG 2.1 success criterion 1.4.13). It won't close when the user hovers over the tooltip before the `leaveDelay` is expired. You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
  */
 export const NotInteractiveTooltips = story<TooltipProps>(() => (
-  <Tooltip title="Add" disableInteractive>
+  <Tooltip title='Add' disableInteractive>
     <Button>Not interactive</Button>
   </Tooltip>
 ))
@@ -327,17 +327,13 @@ export const DisabledTooltips = story<TooltipProps>(() => (
  */
 export const TransitionsTooltips = story<TooltipProps>(() => (
   <div>
-    <Tooltip title="Add">
+    <Tooltip title='Add'>
       <Button>Grow</Button>
     </Tooltip>
-    <Tooltip
-      TransitionComponent={Fade}
-      TransitionProps={{ timeout: 600 }}
-      title="Add"
-    >
+    <Tooltip TransitionComponent={Fade} TransitionProps={{ timeout: 600 }} title='Add'>
       <Button>Fade</Button>
     </Tooltip>
-    <Tooltip TransitionComponent={Zoom} title="Add">
+    <Tooltip TransitionComponent={Zoom} title='Add'>
       <Button>Zoom</Button>
     </Tooltip>
   </div>
@@ -348,9 +344,7 @@ export const TransitionsTooltips = story<TooltipProps>(() => (
  */
 export const FollowCursorTooltips = story<TooltipProps>(() => (
   <Tooltip title="You don't have permission to do this" followCursor>
-    <Box sx={{ bgcolor: 'text.disabled', color: 'background.paper', p: 2 }}>
-      Disabled Action
-    </Box>
+    <Box sx={{ bgcolor: 'text.disabled', color: 'background.paper', p: 2 }}>Disabled Action</Box>
   </Tooltip>
 ))
 
@@ -358,7 +352,7 @@ export const FollowCursorTooltips = story<TooltipProps>(() => (
  * The tooltip is normally shown immediately when the user's mouse hovers over the element, and hides immediately when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the `enterDelay` and `leaveDelay` props, as shown in the Controlled Tooltips demo above. On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of `1500ms`. You can disable this feature with the `disableTouchListener` prop.
  */
 export const DelayTooltips = story<TooltipProps>(() => (
-  <Tooltip title="Add" enterDelay={500} leaveDelay={200}>
+  <Tooltip title='Add' enterDelay={500} leaveDelay={200}>
     <Button>[500ms, 200ms]</Button>
   </Tooltip>
 ))

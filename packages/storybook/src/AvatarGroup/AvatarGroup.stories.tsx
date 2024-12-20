@@ -2,20 +2,14 @@
 import React from 'react'
 
 import type { AvatarGroupProps } from '@monorail/components'
-import {
-  Avatar,
-  AvatarGroup,
-  Box,
-  Stack,
-  Typography,
-} from '@monorail/components'
+import { Avatar, AvatarGroup, Box, Stack, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
 export default { title: 'Data Display/AvatarGroup', component: AvatarGroup }
 
 const Template = story<AvatarGroupProps>(
-  args => (
+  (args) => (
     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
       <AvatarGroup {...args}>
         <Avatar>A</Avatar>
@@ -39,26 +33,11 @@ export const Max = story<AvatarGroupProps>(() => {
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
       <AvatarGroup max={4}>
-        <Avatar
-          alt="Rover"
-          src="https://images.dog.ceo/breeds/terrier-fox/n02095314_2247.jpg"
-        />
-        <Avatar
-          alt="Brutus"
-          src="https://images.dog.ceo/breeds/kuvasz/n02104029_1324.jpg"
-        />
-        <Avatar
-          alt="Spot"
-          src="https://images.dog.ceo/breeds/lhasa/n02098413_12117.jpg"
-        />
-        <Avatar
-          alt="Spike"
-          src="https://images.dog.ceo/breeds/vizsla/n02100583_12639.jpg"
-        />
-        <Avatar
-          alt="Buddy"
-          src="https://images.dog.ceo/breeds/chow/n02112137_7340.jpg"
-        />
+        <Avatar alt='Rover' src='https://images.dog.ceo/breeds/terrier-fox/n02095314_2247.jpg' />
+        <Avatar alt='Brutus' src='https://images.dog.ceo/breeds/kuvasz/n02104029_1324.jpg' />
+        <Avatar alt='Spot' src='https://images.dog.ceo/breeds/lhasa/n02098413_12117.jpg' />
+        <Avatar alt='Spike' src='https://images.dog.ceo/breeds/vizsla/n02100583_12639.jpg' />
+        <Avatar alt='Buddy' src='https://images.dog.ceo/breeds/chow/n02112137_7340.jpg' />
       </AvatarGroup>
     </Box>
   )
@@ -72,9 +51,9 @@ Max.parameters = {
 
 export const Spacing = story<AvatarGroupProps>(() => {
   return (
-    <Stack direction="column" gap={4}>
-      <Typography variant="subtitle1">Medium</Typography>
-      <AvatarGroup spacing="medium">
+    <Stack direction='column' gap={4}>
+      <Typography variant='subtitle1'>Medium</Typography>
+      <AvatarGroup spacing='medium'>
         <Avatar>OP</Avatar>
         <Avatar>OP</Avatar>
         <Avatar>OP</Avatar>
@@ -83,8 +62,8 @@ export const Spacing = story<AvatarGroupProps>(() => {
         <Avatar>OP</Avatar>
         <Avatar>OP</Avatar>
       </AvatarGroup>
-      <Typography variant="subtitle1">Small</Typography>
-      <AvatarGroup spacing="small">
+      <Typography variant='subtitle1'>Small</Typography>
+      <AvatarGroup spacing='small'>
         <Avatar>OP</Avatar>
         <Avatar>OP</Avatar>
         <Avatar>OP</Avatar>
@@ -99,7 +78,7 @@ export const Spacing = story<AvatarGroupProps>(() => {
 
 export const Total = story<AvatarGroupProps>(() => {
   return (
-    <Stack direction="column" gap={4}>
+    <Stack direction='column' gap={4}>
       <AvatarGroup total={10}>
         <Avatar>OP</Avatar>
         <Avatar>OP</Avatar>

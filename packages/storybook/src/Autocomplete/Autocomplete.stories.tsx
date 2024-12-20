@@ -24,34 +24,20 @@ import { countries, countryToFlag, movies } from '../helpers/testData.js'
 
 export default { title: 'Inputs/Autocomplete', component: Autocomplete }
 
-type MovieAutocompleteProps = AutocompleteProps<
-  Movie,
-  boolean,
-  false,
-  false,
-  'div'
->
+type MovieAutocompleteProps = AutocompleteProps<Movie, boolean, false, false, 'div'>
 
-type MovieAutocompleteFreeSoloProps = AutocompleteProps<
-  Movie,
-  boolean,
-  boolean,
-  boolean,
-  'div'
->
+type MovieAutocompleteFreeSoloProps = AutocompleteProps<Movie, boolean, boolean, boolean, 'div'>
 
-const MovieAutocomplete = (props: MovieAutocompleteProps) => (
-  <Autocomplete {...props} />
-)
+const MovieAutocomplete = (props: MovieAutocompleteProps) => <Autocomplete {...props} />
 
 const MovieAutocompleteFreeSolo = (props: MovieAutocompleteFreeSoloProps) => (
   <Autocomplete<Movie, boolean, boolean, boolean> {...props} />
 )
 
 const Template = story<MovieAutocompleteProps>(
-  args => (
+  (args) => (
     <MovieAutocomplete
-      renderInput={inputProps => <TextField label="Movie" {...inputProps} />}
+      renderInput={(inputProps) => <TextField label='Movie' {...inputProps} />}
       options={movies}
       {...args}
     />
@@ -67,23 +53,23 @@ export const Default = story(Template)
 export const ComboBox = () => (
   <MovieAutocomplete
     disablePortal
-    id="combo-box-demo"
+    id='combo-box-demo'
     options={movies}
     sx={{ width: 300 }}
-    renderInput={params => <TextField {...params} label="Movie" />}
+    renderInput={(params) => <TextField {...params} label='Movie' />}
   />
 )
 
 export const FancySelectItems = () => (
   <Autocomplete
-    id="country-select-demo"
+    id='country-select-demo'
     sx={{ width: 300 }}
     options={countries}
     autoHighlight
-    getOptionLabel={option => option.label}
+    getOptionLabel={(option) => option.label}
     renderOption={(props, option) => (
       <Box
-        component="li"
+        component='li'
         sx={{ fontSize: 15, '& > span': { mr: '10px', fontSize: 18 } }}
         {...props}
       >
@@ -91,10 +77,10 @@ export const FancySelectItems = () => (
         {option.label} ({option.code}) +{option.phone}
       </Box>
     )}
-    renderInput={params => (
+    renderInput={(params) => (
       <TextField
         {...params}
-        label="Choose a country"
+        label='Choose a country'
         inputProps={{
           ...params.inputProps,
           autoComplete: 'new-password', // disable autocomplete and autofill
@@ -106,27 +92,25 @@ export const FancySelectItems = () => (
 
 export const FreeSolo = () => (
   <>
-    <p>
-      Free solo mode allows arbitrary input text, in addition to suggestions
-    </p>
+    <p>Free solo mode allows arbitrary input text, in addition to suggestions</p>
     <p>As a default TextField</p>
     <Stack spacing={2} sx={{ width: 300 }}>
       <Autocomplete
-        id="free-solo-demo"
+        id='free-solo-demo'
         freeSolo
-        options={movies.map(option => option.label)}
-        renderInput={params => <TextField {...params} label="freeSolo" />}
+        options={movies.map((option) => option.label)}
+        renderInput={(params) => <TextField {...params} label='freeSolo' />}
       />
       <p>As a TextField with type=search</p>
       <Autocomplete
         freeSolo
-        id="free-solo-2-demo"
+        id='free-solo-2-demo'
         disableClearable
-        options={movies.map(option => option.label)}
-        renderInput={params => (
+        options={movies.map((option) => option.label)}
+        renderInput={(params) => (
           <TextField
             {...params}
-            label="Search input"
+            label='Search input'
             InputProps={{
               ...params.InputProps,
               type: 'search',
@@ -138,22 +122,22 @@ export const FreeSolo = () => (
   </>
 )
 
-export const MultipleValues = story<MovieAutocompleteProps>(args => {
+export const MultipleValues = story<MovieAutocompleteProps>((args) => {
   const [value, setValue] = React.useState<Array<Movie>>([movies[13]])
 
   return (
     <Stack spacing={3} sx={{ width: 500 }}>
       <MovieAutocomplete
         multiple
-        id="tags-standard"
+        id='tags-standard'
         options={movies}
-        getOptionLabel={option => option.label}
+        getOptionLabel={(option) => option.label}
         value={value}
         onChange={(_event, newValue) => setValue(newValue as Array<Movie>)}
-        renderInput={params => (
+        renderInput={(params) => (
           <TextField
             {...params}
-            label="Multiple values"
+            label='Multiple values'
             placeholder={value.length > 0 ? '' : 'Favorites'}
           />
         )}
@@ -161,16 +145,16 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
       />
       <MovieAutocomplete
         multiple
-        id="tags-outlined"
+        id='tags-outlined'
         options={movies}
-        getOptionLabel={option => option.label}
+        getOptionLabel={(option) => option.label}
         filterSelectedOptions
         value={value}
         onChange={(_event, newValue) => setValue(newValue as Array<Movie>)}
-        renderInput={params => (
+        renderInput={(params) => (
           <TextField
             {...params}
-            label="filterSelectedOptions"
+            label='filterSelectedOptions'
             placeholder={value.length > 0 ? '' : 'Favorites'}
           />
         )}
@@ -179,7 +163,7 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
       <MovieAutocompleteFreeSolo
         multiple
         freeSolo
-        id="tags-filled"
+        id='tags-filled'
         options={movies}
         value={value}
         // @ts-ignore
@@ -189,17 +173,17 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
           value.map((option: Movie, index: number) => (
             <Chip
               size={args.size === 'small' ? 'small' : 'medium'}
-              variant="outlined"
+              variant='outlined'
               label={option.label}
               {...getTagProps({ index })}
               key={`${option}-${index}`}
             />
           ))
         }
-        renderInput={params => (
+        renderInput={(params) => (
           <TextField
             {...params}
-            label="freeSolo"
+            label='freeSolo'
             placeholder={value.length > 0 ? '' : 'Favorites'}
           />
         )}
@@ -207,15 +191,15 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
       />
       <MovieAutocomplete
         multiple
-        id="tags-readOnly"
+        id='tags-readOnly'
         options={movies}
         value={value}
         readOnly
         ChipProps={{ clickable: false, variant: 'rectangular' }}
-        renderInput={params => (
+        renderInput={(params) => (
           <TextField
             {...params}
-            label="readOnly"
+            label='readOnly'
             placeholder={value.length > 0 ? '' : 'Favorites'}
           />
         )}
@@ -225,94 +209,86 @@ export const MultipleValues = story<MovieAutocompleteProps>(args => {
   )
 })
 
-export const Sizes = story(args => {
+export const Sizes = story((args) => {
   const theme = useTheme()
   return (
     <Stack spacing={2} sx={{ maxWidth: 500 }}>
       <Autocomplete
-        id="size-small-outlined"
-        size="small"
+        id='size-small-outlined'
+        size='small'
         options={movies}
-        getOptionLabel={option => option.label}
+        getOptionLabel={(option) => option.label}
         defaultValue={movies[13]}
-        renderInput={params => (
-          <TextField {...params} label="Size small" placeholder="Favorites" />
+        renderInput={(params) => (
+          <TextField {...params} label='Size small' placeholder='Favorites' />
         )}
         {...args}
       />
       <Autocomplete
         multiple
-        id="size-small-outlined-multi"
-        size="small"
+        id='size-small-outlined-multi'
+        size='small'
         options={movies}
-        getOptionLabel={option => option.label}
+        getOptionLabel={(option) => option.label}
         defaultValue={[movies[13]]}
-        renderInput={params => (
-          <TextField {...params} label="Size small" placeholder="Favorites" />
+        renderInput={(params) => (
+          <TextField {...params} label='Size small' placeholder='Favorites' />
         )}
         {...args}
       />
       <Autocomplete
-        id="size-medium-outlined"
-        size="medium"
+        id='size-medium-outlined'
+        size='medium'
         options={movies}
-        getOptionLabel={option => option.label}
+        getOptionLabel={(option) => option.label}
         defaultValue={movies[13]}
-        renderInput={params => (
-          <TextField {...params} label="Size medium" placeholder="Favorites" />
+        renderInput={(params) => (
+          <TextField {...params} label='Size medium' placeholder='Favorites' />
         )}
         {...args}
       />
       <Autocomplete
         multiple
-        id="size-medium-outlined-multi"
-        size="medium"
+        id='size-medium-outlined-multi'
+        size='medium'
         options={movies}
-        getOptionLabel={option => option.label}
+        getOptionLabel={(option) => option.label}
         defaultValue={[movies[13]]}
-        renderInput={params => (
-          <TextField {...params} label="Size medium" placeholder="Favorites" />
+        renderInput={(params) => (
+          <TextField {...params} label='Size medium' placeholder='Favorites' />
         )}
         {...args}
       />
       {isMeteorTheme(theme.name) && (
         <>
           <Autocomplete
-            id="size-large-outlined"
-            size="large"
+            id='size-large-outlined'
+            size='large'
             options={movies}
-            getOptionLabel={option => option.label}
+            getOptionLabel={(option) => option.label}
             defaultValue={movies[13]}
             slotProps={{
               clearIndicator: { size: 'medium' },
               popupIndicator: { size: 'medium' },
             }}
-            renderInput={params => (
-              <TextField
-                {...params}
-                label="Size large"
-                placeholder="Favorites"
-              />
+            renderInput={(params) => (
+              <TextField {...params} label='Size large' placeholder='Favorites' />
             )}
             {...args}
           />
           <Autocomplete
             multiple
-            id="size-large-outlined-multi"
-            size="large"
+            id='size-large-outlined-multi'
+            size='large'
             options={movies}
-            getOptionLabel={option => option.label}
+            getOptionLabel={(option) => option.label}
             defaultValue={[movies[13]]}
             slotProps={{
               clearIndicator: { size: 'medium' },
               popupIndicator: { size: 'medium' },
             }}
-            renderInput={params => (
-              <TextField
-                {...params}
-                label="Size large"
-                placeholder="Favorites"
-              />
+            renderInput={(params) => (
+              <TextField {...params} label='Size large' placeholder='Favorites' />
             )}
             {...args}
           />
@@ -322,18 +298,18 @@ export const Sizes = story(args => {
   )
 })
 
-export const LimitTags = story(args => {
+export const LimitTags = story((args) => {
   return (
     <Stack gap={6}>
       <Autocomplete
         multiple
         limitTags={2}
-        id="multiple-limit-tags"
+        id='multiple-limit-tags'
         options={movies}
-        getOptionLabel={option => option.label}
+        getOptionLabel={(option) => option.label}
         defaultValue={[movies[13], movies[12], movies[11]]}
-        renderInput={params => (
-          <TextField {...params} label="limitTags" placeholder="Favorites" />
+        renderInput={(params) => (
+          <TextField {...params} label='limitTags' placeholder='Favorites' />
         )}
         sx={{ width: '500px' }}
         {...args}
@@ -341,9 +317,9 @@ export const LimitTags = story(args => {
       <Autocomplete
         multiple
         limitTags={2}
-        id="multiple-limit-tags-one-line"
+        id='multiple-limit-tags-one-line'
         options={movies}
-        getOptionLabel={option => option.label}
+        getOptionLabel={(option) => option.label}
         defaultValue={[movies[13], movies[12], movies[11]]}
         renderTags={(value, getTagProps) => {
           const numTags = value.length
@@ -352,15 +328,11 @@ export const LimitTags = story(args => {
           return (
             <>
               {value.slice(0, limitTags).map((option, index) => (
-                <Chip
-                  {...getTagProps({ index })}
-                  key={index}
-                  label={option.label}
-                />
+                <Chip {...getTagProps({ index })} key={index} label={option.label} />
               ))}
 
               <Typography
-                component="span"
+                component='span'
                 className={`${autocompleteClasses.tag} ${autocompleteClasses.tagSizeMedium}`}
               >
                 {numTags > limitTags && ` +${numTags - limitTags}`}
@@ -368,12 +340,8 @@ export const LimitTags = story(args => {
             </>
           )
         }}
-        renderInput={params => (
-          <TextField
-            {...params}
-            label="limitTags (One line)"
-            placeholder="Favorites"
-          />
+        renderInput={(params) => (
+          <TextField {...params} label='limitTags (One line)' placeholder='Favorites' />
         )}
         sx={{ width: '500px' }}
         {...args}
@@ -382,17 +350,17 @@ export const LimitTags = story(args => {
   )
 })
 
-const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
-const checkedIcon = <CheckBoxIcon fontSize="small" />
+const icon = <CheckBoxOutlineBlankIcon fontSize='small' />
+const checkedIcon = <CheckBoxIcon fontSize='small' />
 
-export const CheckboxesTags = story(args => {
+export const CheckboxesTags = story((args) => {
   return (
     <Autocomplete
       multiple
-      id="checkboxes-tags-demo"
+      id='checkboxes-tags-demo'
       options={movies}
       disableCloseOnSelect
-      getOptionLabel={option => option.label}
+      getOptionLabel={(option) => option.label}
       renderOption={(props, option, { selected }) => (
         <li {...props}>
           <Checkbox
@@ -405,17 +373,14 @@ export const CheckboxesTags = story(args => {
         </li>
       )}
       style={{ width: 500 }}
-      renderInput={params => (
-        <TextField {...params} label="Checkboxes" placeholder="Favorites" />
-      )}
+      renderInput={(params) => <TextField {...params} label='Checkboxes' placeholder='Favorites' />}
       {...args}
     />
   )
 })
 
 function random(length: number) {
-  const characters =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
   let result = ''
 
   for (let i = 0; i < length; i += 1) {
@@ -427,16 +392,14 @@ function random(length: number) {
 
 const OPTIONS = Array.from(new Array(10000))
   .map(() => random(10 + Math.ceil(Math.random() * 20)))
-  .sort((a: string, b: string) =>
-    a.toUpperCase().localeCompare(b.toUpperCase()),
-  )
+  .sort((a: string, b: string) => a.toUpperCase().localeCompare(b.toUpperCase()))
 
 export const Virtualized = () => (
   <VirtualizedAutocomplete
     options={OPTIONS}
-    renderInput={params => (
-      <TextField label="Virtualized" placeholder="Virtualized" {...params} />
+    renderInput={(params) => (
+      <TextField label='Virtualized' placeholder='Virtualized' {...params} />
     )}
-    groupBy={option => option[0].toUpperCase()}
+    groupBy={(option) => option[0].toUpperCase()}
   />
 )

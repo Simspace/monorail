@@ -12,7 +12,7 @@ export default {
 }
 
 const Template = story<TimelineItemProps>(
-  args => (
+  (args) => (
     <ul>
       <TimelineItem {...args} />
     </ul>

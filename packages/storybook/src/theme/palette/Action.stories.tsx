@@ -18,21 +18,14 @@ export default {
 export const Action = () => {
   const theme = useTheme()
 
-  const rawColorMapping = React.useMemo(
-    () => getRawColorObject(theme.name),
-    [theme.name],
-  )
+  const rawColorMapping = React.useMemo(() => getRawColorObject(theme.name), [theme.name])
 
   const action: Array<ColorTokenRowProps> = [
     {
       token: '.activatedOpacity',
-      colorValue: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.activatedOpacity,
-      ),
+      colorValue: alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
       opacity: theme.palette.action.activatedOpacity,
-      description:
-        'alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity)',
+      description: 'alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity)',
     },
     {
       token: '.active',
@@ -48,13 +41,9 @@ export const Action = () => {
     },
     {
       token: '.disabledOpacity',
-      colorValue: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.disabledOpacity,
-      ),
+      colorValue: alpha(theme.palette.primary.main, theme.palette.action.disabledOpacity),
       opacity: theme.palette.action.disabledOpacity,
-      description:
-        'alpha(theme.palette.primary.main, theme.palette.action.disabledOpacity)',
+      description: 'alpha(theme.palette.primary.main, theme.palette.action.disabledOpacity)',
     },
     {
       token: '.focus',
@@ -62,13 +51,9 @@ export const Action = () => {
     },
     {
       token: '.focusOpacity',
-      colorValue: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.focusOpacity,
-      ),
+      colorValue: alpha(theme.palette.primary.main, theme.palette.action.focusOpacity),
       opacity: theme.palette.action.focusOpacity,
-      description:
-        'alpha(theme.palette.primary.main, theme.palette.action.focusOpacity)',
+      description: 'alpha(theme.palette.primary.main, theme.palette.action.focusOpacity)',
     },
     {
       token: '.hover',
@@ -76,13 +61,9 @@ export const Action = () => {
     },
     {
       token: '.hoverOpacity',
-      colorValue: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.hoverOpacity,
-      ),
+      colorValue: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
       opacity: theme.palette.action.hoverOpacity,
-      description:
-        'alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity)',
+      description: 'alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity)',
     },
     {
       token: '.selected',
@@ -90,19 +71,15 @@ export const Action = () => {
     },
     {
       token: '.selectedOpacity',
-      colorValue: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.selectedOpacity,
-      ),
+      colorValue: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       opacity: theme.palette.action.selectedOpacity,
-      description:
-        'alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity)',
+      description: 'alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity)',
     },
   ]
 
   return (
     <Box p={4}>
-      <Typography variant="h2" gutterBottom>
+      <Typography variant='h2' gutterBottom>
         Action Colors
       </Typography>
       <Typography gutterBottom>{`theme.palette.action`}</Typography>

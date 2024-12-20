@@ -24,13 +24,7 @@ export default {
   component: TransitionGroup,
 }
 
-const FRUITS = [
-  '🍏 Apple',
-  '🍌 Banana',
-  '🍍 Pineapple',
-  '🥥 Coconut',
-  '🍉 Watermelon',
-]
+const FRUITS = ['🍏 Apple', '🍌 Banana', '🍍 Pineapple', '🥥 Coconut', '🍉 Watermelon']
 
 interface RenderItemOptions {
   item: string
@@ -42,11 +36,11 @@ function renderItem({ item, handleRemoveFruit }: RenderItemOptions) {
     <ListItem
       secondaryAction={
         <IconButton
-          edge="end"
-          aria-label="delete"
-          title="Delete"
+          edge='end'
+          aria-label='delete'
+          title='Delete'
           onClick={() => handleRemoveFruit(item)}
-          size="large"
+          size='large'
         >
           <DeleteIcon />
         </IconButton>
@@ -65,24 +59,22 @@ function renderItem({ item, handleRemoveFruit }: RenderItemOptions) {
  */
 const Template = story<TransitionGroupProps>(
   () => {
-    const [fruitsInBasket, setFruitsInBasket] = React.useState(
-      FRUITS.slice(0, 3),
-    )
+    const [fruitsInBasket, setFruitsInBasket] = React.useState(FRUITS.slice(0, 3))
 
     const handleAddFruit = () => {
-      const nextHiddenItem = FRUITS.find(i => !fruitsInBasket.includes(i))
+      const nextHiddenItem = FRUITS.find((i) => !fruitsInBasket.includes(i))
       if (typeof nextHiddenItem === 'string') {
-        setFruitsInBasket(prev => [nextHiddenItem, ...prev])
+        setFruitsInBasket((prev) => [nextHiddenItem, ...prev])
       }
     }
 
     const handleRemoveFruit = (item: string) => {
-      setFruitsInBasket(prev => [...prev.filter(i => i !== item)])
+      setFruitsInBasket((prev) => [...prev.filter((i) => i !== item)])
     }
 
     const addFruitButton = (
       <Button
-        variant="contained"
+        variant='contained'
         disabled={fruitsInBasket.length >= FRUITS.length}
         onClick={handleAddFruit}
       >
@@ -96,10 +88,8 @@ const Template = story<TransitionGroupProps>(
         <Box sx={{ mt: 1 }}>
           <List>
             <TransitionGroup>
-              {fruitsInBasket.map(item => (
-                <Collapse key={item}>
-                  {renderItem({ item, handleRemoveFruit })}
-                </Collapse>
+              {fruitsInBasket.map((item) => (
+                <Collapse key={item}>{renderItem({ item, handleRemoveFruit })}</Collapse>
               ))}
             </TransitionGroup>
           </List>
@@ -119,21 +109,21 @@ export const Test = () => {
   const [items, setItems] = React.useState<Array<number>>([])
 
   const addItem = () => {
-    setItems(items => {
+    setItems((items) => {
       return [...items, items.length]
     })
   }
 
   const removeItem = () => {
-    setItems(items => {
+    setItems((items) => {
       return items.slice(0, -1)
     })
   }
 
   return (
-    <Stack height="100vh">
+    <Stack height='100vh'>
       <Box>
-        <Typography variant="h1">Header</Typography>
+        <Typography variant='h1'>Header</Typography>
       </Box>
       <ScrollShadow>
         <Button onClick={addItem}>Add Item</Button>

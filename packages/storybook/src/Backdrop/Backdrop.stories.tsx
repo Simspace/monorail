@@ -9,7 +9,7 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Feedback/Backdrop', component: Backdrop }
 
 const Template = story<BackdropProps>(
-  args => {
+  (args) => {
     const [open, setOpen] = React.useState(false)
     const handleClose = () => {
       setOpen(false)
@@ -22,7 +22,7 @@ const Template = story<BackdropProps>(
       <div>
         <Button onClick={handleToggle}>Show backdrop</Button>
         <Backdrop
-          sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }}
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={open}
           onClick={handleClose}
           {...args}

@@ -13,17 +13,10 @@ export default {
   component: SplitButton,
 }
 
-const colors = [
-  'primary',
-  'secondary',
-  'success',
-  'error',
-  'warning',
-  'info',
-] as const
+const colors = ['primary', 'secondary', 'success', 'error', 'warning', 'info'] as const
 const variants = ['contained', 'outlined'] as const
 
-const Template: StoryFn<Partial<SplitButtonProps>> = args => (
+const Template: StoryFn<Partial<SplitButtonProps>> = (args) => (
   <SplitButton
     {...args}
     options={[
@@ -61,21 +54,21 @@ export const Colors = () => {
   }
 
   return (
-    <Stack direction="column" gap={4}>
-      <Template color="primary" variant="contained" />
-      <Template color="secondary" variant="contained" />
-      <Template color="error" variant="contained" />
-      <Template color="success" variant="contained" />
-      <Template color="warning" variant="contained" />
+    <Stack direction='column' gap={4}>
+      <Template color='primary' variant='contained' />
+      <Template color='secondary' variant='contained' />
+      <Template color='error' variant='contained' />
+      <Template color='success' variant='contained' />
+      <Template color='warning' variant='contained' />
     </Stack>
   )
 }
 
 const MeteorColors = () => (
-  <Stack direction="column" gap={4}>
-    <Template color="primary" variant="contained" />
-    <Template color="secondary" variant="outlined" />
-    <Template color="error" variant="outlined" />
+  <Stack direction='column' gap={4}>
+    <Template color='primary' variant='contained' />
+    <Template color='secondary' variant='outlined' />
+    <Template color='error' variant='outlined' />
   </Stack>
 )
 
@@ -88,26 +81,16 @@ export const Variants = () => {
 
   return (
     <React.Fragment>
-      {variants.map(variant => {
+      {variants.map((variant) => {
         return (
           <Box key={variant}>
-            <Typography variant="h1">{capitalize(variant)}</Typography>
-            {colors.map(color => (
-              <Stack
-                direction="row"
-                spacing={2}
-                my={2}
-                key={`${variant}-${color}`}
-              >
-                <Template variant={variant} color={color} size="medium">
+            <Typography variant='h1'>{capitalize(variant)}</Typography>
+            {colors.map((color) => (
+              <Stack direction='row' spacing={2} my={2} key={`${variant}-${color}`}>
+                <Template variant={variant} color={color} size='medium'>
                   {color}
                 </Template>
-                <Template
-                  disabled
-                  variant={variant}
-                  color={color}
-                  size="medium"
-                >
+                <Template disabled variant={variant} color={color} size='medium'>
                   {color}
                 </Template>
               </Stack>
@@ -122,29 +105,29 @@ export const Variants = () => {
 const MeteorVariants = () => {
   return (
     <Stack gap={2}>
-      <Typography variant="h1">Contained</Typography>
-      <Stack direction="row" gap={2}>
-        <Template variant="contained" color="primary">
+      <Typography variant='h1'>Contained</Typography>
+      <Stack direction='row' gap={2}>
+        <Template variant='contained' color='primary'>
           Primary
         </Template>
-        <Template variant="contained" color="primary" disabled>
-          Primary
-        </Template>
-      </Stack>
-      <Typography variant="h1">Outlined</Typography>
-      <Stack direction="row" gap={2}>
-        <Template variant="outlined" color="secondary">
-          Primary
-        </Template>
-        <Template variant="outlined" color="secondary" disabled>
+        <Template variant='contained' color='primary' disabled>
           Primary
         </Template>
       </Stack>
-      <Stack direction="row" gap={2}>
-        <Template variant="outlined" color="error">
+      <Typography variant='h1'>Outlined</Typography>
+      <Stack direction='row' gap={2}>
+        <Template variant='outlined' color='secondary'>
           Primary
         </Template>
-        <Template variant="outlined" color="error" disabled>
+        <Template variant='outlined' color='secondary' disabled>
+          Primary
+        </Template>
+      </Stack>
+      <Stack direction='row' gap={2}>
+        <Template variant='outlined' color='error'>
+          Primary
+        </Template>
+        <Template variant='outlined' color='error' disabled>
           Primary
         </Template>
       </Stack>

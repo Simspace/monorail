@@ -3,21 +3,14 @@ import React from 'react'
 import { styled } from '@mui/material'
 
 import type { PopperProps } from '@monorail/components'
-import {
-  Box,
-  Button,
-  Fade,
-  Paper,
-  Popper,
-  Typography,
-} from '@monorail/components'
+import { Box, Button, Fade, Paper, Popper, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
 export default { title: 'Utils/Popper', component: Popper }
 
 const Template = story<PopperProps>(
-  args => {
+  (args) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -28,12 +21,7 @@ const Template = story<PopperProps>(
     const id = open ? 'simple-popper' : undefined
     return (
       <>
-        <Button
-          size="small"
-          aria-describedby={id}
-          type="button"
-          onClick={handleClick}
-        >
+        <Button size='small' aria-describedby={id} type='button' onClick={handleClick}>
           Toggle Popper
         </Button>
         <Popper id={id} open={open} anchorEl={anchorEl} {...args}>
@@ -41,9 +29,9 @@ const Template = story<PopperProps>(
             <Box
               width={200}
               height={200}
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
+              display='flex'
+              justifyContent='center'
+              alignItems='center'
             >
               <Typography>Popper Content</Typography>
             </Box>
@@ -61,25 +49,20 @@ const Template = story<PopperProps>(
 export const Default = story(Template)
 
 export const TransitionPopper = story<PopperProps>(
-  args => {
+  (args) => {
     const [open, setOpen] = React.useState(false)
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
       setAnchorEl(event.currentTarget)
-      setOpen(previousOpen => !previousOpen)
+      setOpen((previousOpen) => !previousOpen)
     }
 
     const canBeOpen = open && Boolean(anchorEl)
     const id = canBeOpen ? 'transition-popper' : undefined
     return (
       <>
-        <Button
-          size="small"
-          aria-describedby={id}
-          type="button"
-          onClick={handleClick}
-        >
+        <Button size='small' aria-describedby={id} type='button' onClick={handleClick}>
           Toggle Popper
         </Button>
         <Popper id={id} open={open} anchorEl={anchorEl} {...args} transition>
@@ -89,9 +72,9 @@ export const TransitionPopper = story<PopperProps>(
                 <Box
                   width={200}
                   height={200}
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
+                  display='flex'
+                  justifyContent='center'
+                  alignItems='center'
                 >
                   <Typography>Popper Content</Typography>
                 </Box>
@@ -185,19 +168,14 @@ export const Modifiers = () => {
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
-    setOpen(previousOpen => !previousOpen)
+    setOpen((previousOpen) => !previousOpen)
   }
 
   const canBeOpen = open && Boolean(anchorEl)
   const id = canBeOpen ? 'transition-popper' : undefined
   return (
     <>
-      <Button
-        size="small"
-        aria-describedby={id}
-        type="button"
-        onClick={handleClick}
-      >
+      <Button size='small' aria-describedby={id} type='button' onClick={handleClick}>
         Toggle Popper
       </Button>
       <PopperWithArrow
@@ -224,14 +202,14 @@ export const Modifiers = () => {
         {({ TransitionProps }) => (
           <Fade {...TransitionProps}>
             <div>
-              <Arrow className="MuiPopper-arrow" ref={setArrowRef} />
+              <Arrow className='MuiPopper-arrow' ref={setArrowRef} />
               <Paper elevation={5}>
                 <Box
                   width={200}
                   height={200}
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
+                  display='flex'
+                  justifyContent='center'
+                  alignItems='center'
                 >
                   <Typography>Popper Content</Typography>
                 </Box>

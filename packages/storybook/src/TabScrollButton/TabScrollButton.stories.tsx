@@ -12,9 +12,7 @@ export default {
 }
 
 const Template = story<TabScrollButtonProps>(
-  args => (
-    <TabScrollButton direction={'left'} orientation={'vertical'} {...args} />
-  ),
+  (args) => <TabScrollButton direction={'left'} orientation={'vertical'} {...args} />,
   { args: {} },
 )
 

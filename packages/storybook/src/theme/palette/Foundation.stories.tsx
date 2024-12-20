@@ -17,10 +17,7 @@ export default {
 export const Foundation = () => {
   const theme = useTheme()
 
-  const rawColorMapping = React.useMemo(
-    () => getRawColorObject(theme.name),
-    [theme.name],
-  )
+  const rawColorMapping = React.useMemo(() => getRawColorObject(theme.name), [theme.name])
 
   const commonColors: Array<ColorTokenRowProps> = [
     {
@@ -89,30 +86,21 @@ export const Foundation = () => {
 
   return (
     <Box gap={4} sx={{ p: 4 }}>
-      <Typography variant="h2" gutterBottom>
+      <Typography variant='h2' gutterBottom>
         Common
       </Typography>
       <Typography gutterBottom>{`theme.palette.common`}</Typography>
-      <ColorTokenTable
-        colorMetadata={commonColors}
-        rawColorObj={rawColorMapping}
-      />
-      <Typography variant="h2" gutterBottom>
+      <ColorTokenTable colorMetadata={commonColors} rawColorObj={rawColorMapping} />
+      <Typography variant='h2' gutterBottom>
         Text
       </Typography>
       <Typography gutterBottom>{`theme.palette.text`}</Typography>
-      <ColorTokenTable
-        colorMetadata={textColors}
-        rawColorObj={rawColorMapping}
-      />
-      <Typography variant="h2" gutterBottom>
+      <ColorTokenTable colorMetadata={textColors} rawColorObj={rawColorMapping} />
+      <Typography variant='h2' gutterBottom>
         Background
       </Typography>
       <Typography gutterBottom>{`theme.palette.background`}</Typography>
-      <ColorTokenTable
-        colorMetadata={backgroundColors}
-        rawColorObj={rawColorMapping}
-      />
+      <ColorTokenTable colorMetadata={backgroundColors} rawColorObj={rawColorMapping} />
     </Box>
   )
 }

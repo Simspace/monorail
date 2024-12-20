@@ -14,9 +14,9 @@ export default {
   },
 }
 
-const Template = story<CardActionAreaProps>(
-  args => <CardActionArea {...args} />,
-  { args: { children: 'Card Action Area' }, muiName: 'MuiCardActionArea' },
-)
+const Template = story<CardActionAreaProps>((args) => <CardActionArea {...args} />, {
+  args: { children: 'Card Action Area' },
+  muiName: 'MuiCardActionArea',
+})
 
 export const Default = story(Template)

@@ -43,56 +43,41 @@ const Sentiment = ({
   return (
     <>
       <Box mb={10}>
-        <Typography variant="h2" gutterBottom>
+        <Typography variant='h2' gutterBottom>
           {`${capitalize(alias)} Colors`}
         </Typography>
         <Typography gutterBottom>{`theme.palette.${alias}`}</Typography>
       </Box>
-      <Typography variant="h3" gutterBottom>
+      <Typography variant='h3' gutterBottom>
         Strong Emphasis
       </Typography>
-      <ColorTokenTable
-        colorMetadata={sentiment.strongEmphasis}
-        rawColorObj={rawColorMapping}
-      />
+      <ColorTokenTable colorMetadata={sentiment.strongEmphasis} rawColorObj={rawColorMapping} />
       {sentiment.lowEmphasis !== undefined && (
         <>
-          <Typography variant="h3" gutterBottom>
+          <Typography variant='h3' gutterBottom>
             Low Emphasis
           </Typography>
-          <ColorTokenTable
-            colorMetadata={sentiment.lowEmphasis}
-            rawColorObj={rawColorMapping}
-          />
+          <ColorTokenTable colorMetadata={sentiment.lowEmphasis} rawColorObj={rawColorMapping} />
         </>
       )}
-      <Typography variant="h3" gutterBottom>
+      <Typography variant='h3' gutterBottom>
         Border
       </Typography>
-      <ColorTokenTable
-        colorMetadata={sentiment.border}
-        rawColorObj={rawColorMapping}
-      />
-      <Typography variant="h3" gutterBottom>
+      <ColorTokenTable colorMetadata={sentiment.border} rawColorObj={rawColorMapping} />
+      <Typography variant='h3' gutterBottom>
         Focus Ring
       </Typography>
-      <ColorTokenTable
-        colorMetadata={sentiment.focusRing}
-        rawColorObj={rawColorMapping}
-      />
+      <ColorTokenTable colorMetadata={sentiment.focusRing} rawColorObj={rawColorMapping} />
       {sentiment.lowEmphasis !== undefined && (
         <>
-          <Typography variant="h3" gutterBottom>
+          <Typography variant='h3' gutterBottom>
             Shades
           </Typography>
           <Typography gutterBottom>
-            Access to global color tokens. Only use when you can't find an alias
-            token for your use case. For charts, use theme.palette.chart.
+            Access to global color tokens. Only use when you can't find an alias token for your use
+            case. For charts, use theme.palette.chart.
           </Typography>
-          <ColorTokenTable
-            colorMetadata={sentiment.shades}
-            rawColorObj={rawColorMapping}
-          />
+          <ColorTokenTable colorMetadata={sentiment.shades} rawColorObj={rawColorMapping} />
         </>
       )}
     </>
@@ -105,7 +90,7 @@ function TabPanel(props: TabPanelProps & { index: string }) {
 
   return (
     <Box
-      role="tabpanel"
+      role='tabpanel'
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
@@ -140,12 +125,9 @@ export const SemanticColors = () => {
     setValue(newValue)
   }
 
-  const rawColorMapping = React.useMemo(
-    () => getRawColorObject(theme.name),
-    [theme.name],
-  )
+  const rawColorMapping = React.useMemo(() => getRawColorObject(theme.name), [theme.name])
 
-  const greyColors = Object.keys(theme.palette.grey).map(shade => ({
+  const greyColors = Object.keys(theme.palette.grey).map((shade) => ({
     token: `palette.grey[${shade}]`,
     colorValue: theme.palette.grey[shade as keyof Color],
   }))
@@ -160,9 +142,8 @@ export const SemanticColors = () => {
     focusRing: Array<ColorTokenRowProps>
     shades: Array<ColorTokenRowProps>
   } => {
-    const colorShades = Object.keys(paletteColor.shades).map(shade => {
-      const colorValue =
-        shade !== undefined ? paletteColor.shades[shade as keyof Color] : ''
+    const colorShades = Object.keys(paletteColor.shades).map((shade) => {
+      const colorValue = shade !== undefined ? paletteColor.shades[shade as keyof Color] : ''
 
       return {
         token: `.shades[${shade}]`,
@@ -195,22 +176,19 @@ export const SemanticColors = () => {
           token: `.contrastText`,
           colorValue: paletteColor.contrastText,
           figmaStyle: `${alias}/contrastText`,
-          description:
-            'Use for contrast text and icons on components with Strong Emphasis.',
+          description: 'Use for contrast text and icons on components with Strong Emphasis.',
         },
         {
           token: `.hover`,
           colorValue: paletteColor.hover,
           figmaStyle: `${alias}/hover`,
-          description:
-            'Use for hover states on components with Strong Emphasis.',
+          description: 'Use for hover states on components with Strong Emphasis.',
         },
         {
           token: `.active`,
           colorValue: paletteColor.active,
           figmaStyle: `${alias}/active`,
-          description:
-            'Use for active states on components with Strong Emphasis.',
+          description: 'Use for active states on components with Strong Emphasis.',
         },
       ],
       lowEmphasis: [
@@ -237,8 +215,7 @@ export const SemanticColors = () => {
           token: `.lowEmphasis.contrastText`,
           colorValue: paletteColor.lowEmphasis.contrastText,
           figmaStyle: `${alias}/lowEmphasis/contrastText`,
-          description:
-            'Use for contrast text and icons on components with Low Emphasis.',
+          description: 'Use for contrast text and icons on components with Low Emphasis.',
         },
         {
           token: `.lowEmphasis.hover`,
@@ -354,12 +331,7 @@ export const SemanticColors = () => {
           />
         )
       case 'grey':
-        return (
-          <ColorTokenTable
-            colorMetadata={greyColors}
-            rawColorObj={rawColorMapping}
-          />
-        )
+        return <ColorTokenTable colorMetadata={greyColors} rawColorObj={rawColorMapping} />
     }
   }
 
@@ -376,7 +348,7 @@ export const SemanticColors = () => {
       >
         <Tabs
           value={value}
-          variant="scrollable"
+          variant='scrollable'
           onChange={handleChange}
           sx={{
             minWidth: 160,

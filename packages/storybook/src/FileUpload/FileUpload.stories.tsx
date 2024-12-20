@@ -11,7 +11,7 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Inputs/FileUpload', component: FileUpload }
 
 const Template = story<FileUploadProps>(
-  args => {
+  (args) => {
     const [file, setFile] = React.useState<File | null>(null)
     const [progress, setProgress] = React.useState<number | null>(null)
 
@@ -24,7 +24,7 @@ const Template = story<FileUploadProps>(
       setProgress(0)
 
       const timer = setInterval(() => {
-        setProgress(prevProgress => {
+        setProgress((prevProgress) => {
           if (prevProgress === null || file === null) {
             return null
           }
@@ -45,8 +45,8 @@ const Template = story<FileUploadProps>(
       <DndProvider backend={HTML5Backend}>
         <FileUpload
           file={file}
-          label="File upload"
-          onChange={value => setFile(value)}
+          label='File upload'
+          onChange={(value) => setFile(value)}
           uploadProgress={progress}
           {...args}
         />
@@ -58,12 +58,12 @@ const Template = story<FileUploadProps>(
 
 export const Default = story<FileUploadProps>(Template)
 
-export const Status = story<FileUploadProps>(args => (
+export const Status = story<FileUploadProps>((args) => (
   <DndProvider backend={HTML5Backend}>
     <Stack gap={4}>
       <FileUpload
         file={null}
-        helperTextPrimary="My custom text for drop target"
+        helperTextPrimary='My custom text for drop target'
         label={'Default'}
         required
         onChange={() => void 0}
@@ -71,7 +71,7 @@ export const Status = story<FileUploadProps>(args => (
         {...args}
       />
       <FileUpload
-        label="In Progress"
+        label='In Progress'
         file={
           {
             lastModified: new Date().getTime(),
@@ -85,7 +85,7 @@ export const Status = story<FileUploadProps>(args => (
         {...args}
       />
       <FileUpload
-        label="Uploaded"
+        label='Uploaded'
         file={
           {
             lastModified: new Date().getTime(),
@@ -119,26 +119,17 @@ export const Status = story<FileUploadProps>(args => (
   </DndProvider>
 ))
 
-export const OnlyVisibleWhileDragging = story<FileUploadProps>(args => (
+export const OnlyVisibleWhileDragging = story<FileUploadProps>((args) => (
   <DndProvider backend={HTML5Backend}>
     <Box
-      position="relative"
-      width="100%"
-      border={theme => `1px solid ${theme.palette.default.border.light}`}
+      position='relative'
+      width='100%'
+      border={(theme) => `1px solid ${theme.palette.default.border.light}`}
       p={4}
     >
-      <Stack
-        position="absolute"
-        alignItems="center"
-        justifyContent="center"
-        sx={{ inset: '0%' }}
-      >
-        <Typography variant="h3">
-          FileUpload only visible when dragging
-        </Typography>
-        <Typography color="text.secondary">
-          Drag a file to view drop location
-        </Typography>
+      <Stack position='absolute' alignItems='center' justifyContent='center' sx={{ inset: '0%' }}>
+        <Typography variant='h3'>FileUpload only visible when dragging</Typography>
+        <Typography color='text.secondary'>Drag a file to view drop location</Typography>
       </Stack>
       <FileUpload
         file={null}

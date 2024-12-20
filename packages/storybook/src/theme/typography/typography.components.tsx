@@ -13,10 +13,7 @@ import {
   Typography,
 } from '@monorail/components'
 
-import type {
-  TypographyTokenColumns,
-  TypographyTokenRowProps,
-} from './typography.types'
+import type { TypographyTokenColumns, TypographyTokenRowProps } from './typography.types'
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   ' > td, > th': {
@@ -39,10 +36,10 @@ const TypographyTokenRow = ({
   underlyingElement,
 }: TypographyTokenRowProps) => {
   const tokenNameCell = variant !== undefined && (
-    <TableCell component="th" scope="row" sx={{ width: '20%' }}>
+    <TableCell component='th' scope='row' sx={{ width: '20%' }}>
       <Box
-        width="max-content"
-        sx={theme => ({ bgcolor: alpha(theme.palette.error.light, 0.18) })}
+        width='max-content'
+        sx={(theme) => ({ bgcolor: alpha(theme.palette.error.light, 0.18) })}
       >
         <Typography variant={variant}>{`.${variant}`}</Typography>
       </Box>
@@ -50,10 +47,8 @@ const TypographyTokenRow = ({
   )
 
   const fontWeightTokenCell = fontWeightToken !== undefined && (
-    <TableCell component="th" scope="row" sx={{ width: '5%' }}>
-      <Typography
-        fontWeight={fontWeightToken}
-      >{`.${fontWeightToken}`}</Typography>
+    <TableCell component='th' scope='row' sx={{ width: '5%' }}>
+      <Typography fontWeight={fontWeightToken}>{`.${fontWeightToken}`}</Typography>
     </TableCell>
   )
   const figmaStyleCell = figmaStyle !== undefined && (
@@ -61,42 +56,38 @@ const TypographyTokenRow = ({
   )
 
   const fontFamilyCell = styles?.fontFamily !== undefined && (
-    <TableCell sx={{ width: '10%' }}>{`${getFirstFontFamily(
-      styles.fontFamily,
-    )}`}</TableCell>
+    <TableCell sx={{ width: '10%' }}>{`${getFirstFontFamily(styles.fontFamily)}`}</TableCell>
   )
 
   const fontWeightCell = styles?.fontWeight !== undefined && (
-    <TableCell sx={{ width: '10%' }} align="center">
+    <TableCell sx={{ width: '10%' }} align='center'>
       {styles.fontWeight}
     </TableCell>
   )
 
-  const fontSizeCell = styles?.fontSize !== undefined &&
-    fontSizePx !== undefined && (
-      <>
-        <TableCell sx={{ width: '5%' }}>{`${styles.fontSize}`}</TableCell>
-        <TableCell sx={{ width: '5%' }}>{`${fontSizePx}px`}</TableCell>
-      </>
-    )
+  const fontSizeCell = styles?.fontSize !== undefined && fontSizePx !== undefined && (
+    <>
+      <TableCell sx={{ width: '5%' }}>{`${styles.fontSize}`}</TableCell>
+      <TableCell sx={{ width: '5%' }}>{`${fontSizePx}px`}</TableCell>
+    </>
+  )
 
-  const lineHeightCell = styles?.lineHeight !== undefined &&
-    lineHeightPx !== undefined && (
-      <>
-        <TableCell sx={{ width: '5%' }}>{`${styles.lineHeight}`}</TableCell>
-        <TableCell sx={{ width: '5%' }}>{`${lineHeightPx}px`}</TableCell>
-      </>
-    )
+  const lineHeightCell = styles?.lineHeight !== undefined && lineHeightPx !== undefined && (
+    <>
+      <TableCell sx={{ width: '5%' }}>{`${styles.lineHeight}`}</TableCell>
+      <TableCell sx={{ width: '5%' }}>{`${lineHeightPx}px`}</TableCell>
+    </>
+  )
 
   const underlyingElementCell = underlyingElement !== undefined && (
     <TableCell sx={{ width: '5%' }}>
-      <Typography variant="monoBody1">{underlyingElement}</Typography>
+      <Typography variant='monoBody1'>{underlyingElement}</Typography>
     </TableCell>
   )
 
   const descriptionCell = description !== undefined && (
     <StyledTableCell sx={{ width: '30%' }}>
-      <Typography sx={{ maxWidth: '80ch' }} variant="body2">
+      <Typography sx={{ maxWidth: '80ch' }} variant='body2'>
         {description ?? '---'}
       </Typography>
     </StyledTableCell>
@@ -125,22 +116,14 @@ export const TypographyTokenTable = ({
   rows: Array<TypographyTokenRowProps>
 }) => {
   return (
-    <TableContainer
-      component={Paper}
-      elevation={0}
-      sx={{ mb: 10, borderColor: 'divider' }}
-    >
+    <TableContainer component={Paper} elevation={0} sx={{ mb: 10, borderColor: 'divider' }}>
       <Table sx={{ minWidth: 1040 }}>
         <TableHead>
           <StyledTableRow>
             {columns.map(
-              column =>
+              (column) =>
                 column !== undefined && (
-                  <TableCell
-                    key={column.id}
-                    variant="head"
-                    align={column.align}
-                  >
+                  <TableCell key={column.id} variant='head' align={column.align}>
                     {column.label}
                   </TableCell>
                 ),
@@ -149,13 +132,8 @@ export const TypographyTokenTable = ({
         </TableHead>
         <TableBody>
           {rows !== undefined ? (
-            rows.map(font => {
-              return (
-                <TypographyTokenRow
-                  key={font.variant ?? font.fontWeightToken}
-                  {...font}
-                />
-              )
+            rows.map((font) => {
+              return <TypographyTokenRow key={font.variant ?? font.fontWeightToken} {...font} />
             })
           ) : (
             <></>

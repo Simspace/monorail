@@ -11,15 +11,13 @@ export default {
   component: MobileDateTimePicker,
 }
 
-const Template = story<MobileDateTimePickerProps<Date>>(args => {
-  const [value, setValue] = React.useState<Date | null>(
-    new Date('2018-01-01T00:00:00.000Z'),
-  )
+const Template = story<MobileDateTimePickerProps<Date>>((args) => {
+  const [value, setValue] = React.useState<Date | null>(new Date('2018-01-01T00:00:00.000Z'))
 
   return (
     <MobileDateTimePicker
       value={value}
-      onChange={newValue => {
+      onChange={(newValue) => {
         setValue(newValue)
       }}
       {...args}

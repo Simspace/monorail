@@ -23,16 +23,16 @@ const BasicCard = () => (
     raised={false}
   >
     <CardContent>
-      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+      <Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
         Word of the Day
       </Typography>
-      <Typography variant="h3" component="div">
+      <Typography variant='h3' component='div'>
         benevolent
       </Typography>
-      <Typography sx={{ mb: 1.5 }} color="text.secondary">
+      <Typography sx={{ mb: 1.5 }} color='text.secondary'>
         adjective
       </Typography>
-      <Typography variant="body2">
+      <Typography variant='body2'>
         well meaning and kindly.
         <br />
         {'"a benevolent smile"'}
@@ -52,9 +52,9 @@ const Slides = () => (
   </>
 )
 
-const Template = story<CarouselProps>(args => {
+const Template = story<CarouselProps>((args) => {
   return (
-    <Carousel uid="default-carousel" itemWidth={256} {...args}>
+    <Carousel uid='default-carousel' itemWidth={256} {...args}>
       <Slides />
     </Carousel>
   )
@@ -71,12 +71,12 @@ export const ShowSingleItem = story(Template, {
   },
 })
 
-export const StackedCarousel = story(_args => (
+export const StackedCarousel = story((_args) => (
   <div style={{ paddingBottom: '16px' }}>
-    <Carousel uid="stacked-1" itemWidth={256}>
+    <Carousel uid='stacked-1' itemWidth={256}>
       <Slides />
     </Carousel>
-    <Carousel uid="stacked-2" itemWidth={256}>
+    <Carousel uid='stacked-2' itemWidth={256}>
       <Slides />
     </Carousel>
   </div>
@@ -99,10 +99,10 @@ export const HasDots = story(Template, {
   },
 })
 
-export const NoData = story(args => {
-  return <Carousel uid="no-data" {...args} />
+export const NoData = story((args) => {
+  return <Carousel uid='no-data' {...args} />
 })
 
-export const NoSlides = story(args => {
-  return <Carousel uid="no-slides" {...args} />
+export const NoSlides = story((args) => {
+  return <Carousel uid='no-slides' {...args} />
 })

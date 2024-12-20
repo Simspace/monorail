@@ -2,14 +2,8 @@
 import React from 'react'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
-import type {
-  DateRange,
-  MobileDateRangePickerProps,
-} from '@monorail/components'
-import {
-  LocalizationProvider,
-  MobileDateRangePicker,
-} from '@monorail/components'
+import type { DateRange, MobileDateRangePickerProps } from '@monorail/components'
+import { LocalizationProvider, MobileDateRangePicker } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -19,15 +13,15 @@ export default {
   //component: MobileDateRangePicker,
 }
 
-const Template = story<MobileDateRangePickerProps<Date>>(args => {
+const Template = story<MobileDateRangePickerProps<Date>>((args) => {
   const [value, setValue] = React.useState<DateRange<Date>>([null, null])
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <MobileDateRangePicker
-        aria-label="Mobile Date Range Picker"
+        aria-label='Mobile Date Range Picker'
         value={value}
-        onChange={newValue => {
+        onChange={(newValue) => {
           setValue(newValue)
         }}
         {...args}

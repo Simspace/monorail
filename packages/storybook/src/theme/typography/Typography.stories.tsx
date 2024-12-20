@@ -13,10 +13,7 @@ import {
 
 import { ThemeName } from '../palette/palette.types'
 import { TypographyTokenTable } from './typography.components'
-import type {
-  TypographyTokenColumns,
-  TypographyTokenRowProps,
-} from './typography.types'
+import type { TypographyTokenColumns, TypographyTokenRowProps } from './typography.types'
 
 export default {
   title: 'Theme/Typography/Fonts',
@@ -74,8 +71,7 @@ export const Fonts = () => {
         figmaStyle: 'Typography/Data Display 1',
         fontSizePx: PixelFontSize.Data1,
         lineHeightPx: PixelLineHeight.Data1,
-        description:
-          'Use this style for data wells and designing eye-catching numbers.',
+        description: 'Use this style for data wells and designing eye-catching numbers.',
         styles: theme.typography.data1,
         underlyingElement: 'span',
       },
@@ -84,8 +80,7 @@ export const Fonts = () => {
         figmaStyle: 'Typography/Data Display 2',
         fontSizePx: PixelFontSize.Data2,
         lineHeightPx: PixelLineHeight.Data2,
-        description:
-          'Use this style for data wells and designing eye-catching numbers.',
+        description: 'Use this style for data wells and designing eye-catching numbers.',
         styles: theme.typography.data2,
         underlyingElement: 'span',
       },
@@ -94,8 +89,7 @@ export const Fonts = () => {
         figmaStyle: 'Typography/Data Display 3',
         fontSizePx: PixelFontSize.Data3,
         lineHeightPx: PixelLineHeight.Data3,
-        description:
-          'Use this style for data wells and designing eye-catching numbers.',
+        description: 'Use this style for data wells and designing eye-catching numbers.',
         styles: theme.typography.data3,
         underlyingElement: 'span',
       },
@@ -277,7 +271,7 @@ export const Fonts = () => {
   return (
     <Box p={4}>
       <Box mb={4}>
-        <Typography variant="h2" gutterBottom>
+        <Typography variant='h2' gutterBottom>
           Typography Tokens
         </Typography>
         <Typography gutterBottom>{`theme.typography`}</Typography>

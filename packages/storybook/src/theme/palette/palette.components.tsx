@@ -37,12 +37,12 @@ export const ColorTokenRow = ({
 }: ColorTokenRowProps) => {
   return (
     <StyledTableRow>
-      <StyledTableCell component="th" scope="row" sx={{ width: '20%' }}>
+      <StyledTableCell component='th' scope='row' sx={{ width: '20%' }}>
         {token}
       </StyledTableCell>
       <TableCell sx={{ width: '7%' }}>
         <Box
-          sx={theme => ({
+          sx={(theme) => ({
             width: 40,
             height: 40,
             bgcolor: colorValue,
@@ -59,7 +59,7 @@ export const ColorTokenRow = ({
       <TableCell>{opacity ?? colorValue}</TableCell>
       <StyledTableCell sx={{ width: '20%' }}>{figmaStyle}</StyledTableCell>
       <StyledTableCell sx={{ width: '30%' }}>
-        <Typography sx={{ maxWidth: '80ch' }} variant="body2">
+        <Typography sx={{ maxWidth: '80ch' }} variant='body2'>
           {description ?? '---'}
         </Typography>
       </StyledTableCell>
@@ -67,13 +67,10 @@ export const ColorTokenRow = ({
   )
 }
 
-export const ColorTokenTable = ({
-  colorMetadata,
-  rawColorObj,
-}: ColorTokenTableProps) => {
+export const ColorTokenTable = ({ colorMetadata, rawColorObj }: ColorTokenTableProps) => {
   const getObjectKey = (value: string) => {
     if (rawColorObj !== undefined) {
-      return Object.keys(rawColorObj).find(key => rawColorObj[key] === value)
+      return Object.keys(rawColorObj).find((key) => rawColorObj[key] === value)
     }
   }
 
@@ -81,25 +78,21 @@ export const ColorTokenTable = ({
     figmaStyle !== undefined ? `${figmaStyle}` : '---'
 
   return (
-    <TableContainer
-      component={Paper}
-      elevation={0}
-      sx={{ mb: 10, borderColor: 'divider' }}
-    >
+    <TableContainer component={Paper} elevation={0} sx={{ mb: 10, borderColor: 'divider' }}>
       <Table sx={{ minWidth: 1040 }}>
         <TableHead>
           <StyledTableRow>
-            <TableCell variant="head">Token</TableCell>
-            <TableCell variant="head">Color</TableCell>
-            <TableCell variant="head">Mapping</TableCell>
-            <TableCell variant="head">Value</TableCell>
-            <TableCell variant="head">Figma Variable</TableCell>
-            <TableCell variant="head">Description</TableCell>
+            <TableCell variant='head'>Token</TableCell>
+            <TableCell variant='head'>Color</TableCell>
+            <TableCell variant='head'>Mapping</TableCell>
+            <TableCell variant='head'>Value</TableCell>
+            <TableCell variant='head'>Figma Variable</TableCell>
+            <TableCell variant='head'>Description</TableCell>
           </StyledTableRow>
         </TableHead>
         <TableBody>
           {colorMetadata !== undefined ? (
-            filterMap(colorMetadata, color => {
+            filterMap(colorMetadata, (color) => {
               const figmaStyle = getFigmaStyle(color.figmaStyle)
               if (color.colorValue !== undefined) {
                 return (
@@ -150,33 +143,27 @@ export const SingleColorBox = ({
   )
 }
 
-export const ColorShadesBox = ({
-  label,
-  color,
-}: {
-  label: string
-  color: Color
-}) => {
+export const ColorShadesBox = ({ label, color }: { label: string; color: Color }) => {
   const minWidth = '50px'
   return (
     <Box sx={{ display: 'flex', flexFlow: 'row', alignItems: 'center' }}>
-      <Box component="h3" sx={{ flex: 1 }}>
+      <Box component='h3' sx={{ flex: 1 }}>
         {label}
       </Box>
-      <SingleColorBox label="50" color={color[50]} minWidth={minWidth} />
-      <SingleColorBox label="100" color={color[100]} minWidth={minWidth} />
-      <SingleColorBox label="200" color={color[200]} minWidth={minWidth} />
-      <SingleColorBox label="300" color={color[300]} minWidth={minWidth} />
-      <SingleColorBox label="400" color={color[400]} minWidth={minWidth} />
-      <SingleColorBox label="500" color={color[500]} minWidth={minWidth} />
-      <SingleColorBox label="600" color={color[600]} minWidth={minWidth} />
-      <SingleColorBox label="700" color={color[700]} minWidth={minWidth} />
-      <SingleColorBox label="800" color={color[800]} minWidth={minWidth} />
-      <SingleColorBox label="900" color={color[900]} minWidth={minWidth} />
-      <SingleColorBox label="A100" color={color.A100} minWidth={minWidth} />
-      <SingleColorBox label="A200" color={color.A200} minWidth={minWidth} />
-      <SingleColorBox label="A400" color={color.A400} minWidth={minWidth} />
-      <SingleColorBox label="A700" color={color.A700} minWidth={minWidth} />
+      <SingleColorBox label='50' color={color[50]} minWidth={minWidth} />
+      <SingleColorBox label='100' color={color[100]} minWidth={minWidth} />
+      <SingleColorBox label='200' color={color[200]} minWidth={minWidth} />
+      <SingleColorBox label='300' color={color[300]} minWidth={minWidth} />
+      <SingleColorBox label='400' color={color[400]} minWidth={minWidth} />
+      <SingleColorBox label='500' color={color[500]} minWidth={minWidth} />
+      <SingleColorBox label='600' color={color[600]} minWidth={minWidth} />
+      <SingleColorBox label='700' color={color[700]} minWidth={minWidth} />
+      <SingleColorBox label='800' color={color[800]} minWidth={minWidth} />
+      <SingleColorBox label='900' color={color[900]} minWidth={minWidth} />
+      <SingleColorBox label='A100' color={color.A100} minWidth={minWidth} />
+      <SingleColorBox label='A200' color={color.A200} minWidth={minWidth} />
+      <SingleColorBox label='A400' color={color.A400} minWidth={minWidth} />
+      <SingleColorBox label='A700' color={color.A700} minWidth={minWidth} />
     </Box>
   )
 }

@@ -7,10 +7,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore'
 import Warning from '@mui/icons-material/Warning'
 import type { CSSInterpolation } from '@mui/material'
 
-import type {
-  AccordionProps,
-  AccordionSummaryProps,
-} from '@monorail/components'
+import type { AccordionProps, AccordionSummaryProps } from '@monorail/components'
 import {
   Accordion,
   AccordionActions,
@@ -43,7 +40,7 @@ export default {
 }
 
 const Template = story<AccordionProps>(
-  args => (
+  (args) => (
     <Box minHeight={288}>
       <Accordion {...args}>
         {/* TODO: could try to reuse stories from other components here, but then the "View Code" is not great */}
@@ -74,34 +71,25 @@ export const Stacked = story(
     return (
       <div>
         <Accordion>
-          <AccordionSummary
-            aria-controls="stacked-panel1a-content"
-            id="stacked-panel1a-header"
-          >
+          <AccordionSummary aria-controls='stacked-panel1a-content' id='stacked-panel1a-header'>
             Accordion 1
           </AccordionSummary>
-          <AccordionDetails id="stacked-panel1a-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          <AccordionDetails id='stacked-panel1a-content'>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
           </AccordionDetails>
         </Accordion>
         <Accordion>
-          <AccordionSummary
-            aria-controls="stacked-panel2a-content"
-            id="stacked-panel2a-header"
-          >
+          <AccordionSummary aria-controls='stacked-panel2a-content' id='stacked-panel2a-header'>
             Accordion 2
           </AccordionSummary>
-          <AccordionDetails id="stacked-panel2a-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          <AccordionDetails id='stacked-panel2a-content'>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
           </AccordionDetails>
         </Accordion>
         <Accordion disabled>
-          <AccordionSummary
-            aria-controls="stacked-panel3a-content"
-            id="stacked-panel3a-header"
-          >
+          <AccordionSummary aria-controls='stacked-panel3a-content' id='stacked-panel3a-header'>
             Disabled Accordion
           </AccordionSummary>
         </Accordion>
@@ -123,32 +111,32 @@ export const StackedBorderless = story(
       <div>
         <Accordion borderless>
           <AccordionSummary
-            aria-controls="borderless-panel1a-content"
-            id="borderless-panel1a-header"
+            aria-controls='borderless-panel1a-content'
+            id='borderless-panel1a-header'
           >
             Accordion 1
           </AccordionSummary>
-          <AccordionDetails id="borderless-panel1a-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          <AccordionDetails id='borderless-panel1a-content'>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
           </AccordionDetails>
         </Accordion>
         <Accordion borderless>
           <AccordionSummary
-            aria-controls="borderless-panel2a-content"
-            id="borderless-panel2a-header"
+            aria-controls='borderless-panel2a-content'
+            id='borderless-panel2a-header'
           >
             Accordion 2
           </AccordionSummary>
-          <AccordionDetails id="borderless-panel2a-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          <AccordionDetails id='borderless-panel2a-content'>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
           </AccordionDetails>
         </Accordion>
         <Accordion borderless disabled>
           <AccordionSummary
-            aria-controls="borderless-panel3a-content"
-            id="borderless-panel3a-header"
+            aria-controls='borderless-panel3a-content'
+            id='borderless-panel3a-header'
           >
             Disabled Accordion
           </AccordionSummary>
@@ -178,62 +166,62 @@ export const Borders = story(
     const [headerBorder, setHeaderBorder] = React.useState(true)
 
     return (
-      <Stack direction="row" gap={10}>
-        <FormControl component="fieldset" variant="standard">
-          <FormLabel component="legend">Accordion props</FormLabel>
+      <Stack direction='row' gap={10}>
+        <FormControl component='fieldset' variant='standard'>
+          <FormLabel component='legend'>Accordion props</FormLabel>
           <FormGroup>
             <FormControlLabel
               control={
                 <Switch
-                  size="small"
+                  size='small'
                   checked={borderless}
-                  onChange={event => setBorderless(event.target.checked)}
+                  onChange={(event) => setBorderless(event.target.checked)}
                 />
               }
-              label="borderless"
+              label='borderless'
             />
             <FormControlLabel
               control={
                 <Switch
-                  size="small"
+                  size='small'
                   checked={removeBorderX}
-                  onChange={event => setRemoveBorderX(event.target.checked)}
+                  onChange={(event) => setRemoveBorderX(event.target.checked)}
                 />
               }
-              label="removeBorderX"
+              label='removeBorderX'
             />
             <FormControlLabel
               control={
                 <Switch
-                  size="small"
+                  size='small'
                   checked={removeBorderY}
-                  onChange={event => setRemoveBorderY(event.target.checked)}
+                  onChange={(event) => setRemoveBorderY(event.target.checked)}
                 />
               }
-              label="removeBorderY"
+              label='removeBorderY'
             />
           </FormGroup>
           <FormGroup sx={{ mt: 4 }}>
-            <FormLabel component="legend">Container borders</FormLabel>
+            <FormLabel component='legend'>Container borders</FormLabel>
             <FormControlLabel
               control={
                 <Switch
-                  size="small"
+                  size='small'
                   checked={containerBorder}
-                  onChange={event => setContainerBorder(event.target.checked)}
+                  onChange={(event) => setContainerBorder(event.target.checked)}
                 />
               }
-              label="Outer"
+              label='Outer'
             />
             <FormControlLabel
               control={
                 <Switch
-                  size="small"
+                  size='small'
                   checked={headerBorder}
-                  onChange={event => setHeaderBorder(event.target.checked)}
+                  onChange={(event) => setHeaderBorder(event.target.checked)}
                 />
               }
-              label="Header"
+              label='Header'
             />
           </FormGroup>
         </FormControl>
@@ -241,18 +229,14 @@ export const Borders = story(
         <Box
           width={320}
           height={480}
-          overflow="auto"
-          border={theme =>
-            containerBorder ? `1px solid ${theme.palette.divider}` : 'none'
-          }
+          overflow='auto'
+          border={(theme) => (containerBorder ? `1px solid ${theme.palette.divider}` : 'none')}
         >
           <Box
             p={4}
-            borderBottom={theme =>
-              headerBorder ? `1px solid ${theme.palette.divider}` : 'none'
-            }
+            borderBottom={(theme) => (headerBorder ? `1px solid ${theme.palette.divider}` : 'none')}
           >
-            <Typography variant="h3">Header</Typography>
+            <Typography variant='h3'>Header</Typography>
           </Box>
 
           <Box>
@@ -263,15 +247,14 @@ export const Borders = story(
               square
             >
               <AccordionSummary
-                aria-controls="borderless-panel1a-content"
-                id="borderless-panel1a-header"
+                aria-controls='borderless-panel1a-content'
+                id='borderless-panel1a-header'
               >
                 Accordion 1
               </AccordionSummary>
-              <AccordionDetails id="borderless-panel1a-content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
+              <AccordionDetails id='borderless-panel1a-content'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus
+                ex, sit amet blandit leo lobortis eget.
               </AccordionDetails>
             </Accordion>
             <Accordion
@@ -281,15 +264,14 @@ export const Borders = story(
               square
             >
               <AccordionSummary
-                aria-controls="borderless-panel2a-content"
-                id="borderless-panel2a-header"
+                aria-controls='borderless-panel2a-content'
+                id='borderless-panel2a-header'
               >
                 Accordion 2
               </AccordionSummary>
-              <AccordionDetails id="borderless-panel2a-content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
+              <AccordionDetails id='borderless-panel2a-content'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus
+                ex, sit amet blandit leo lobortis eget.
               </AccordionDetails>
             </Accordion>
             <Accordion
@@ -300,15 +282,15 @@ export const Borders = story(
               disabled
             >
               <AccordionSummary
-                aria-controls="borderless-panel3a-content"
-                id="borderless-panel3a-header"
+                aria-controls='borderless-panel3a-content'
+                id='borderless-panel3a-header'
               >
                 Disabled Accordion
               </AccordionSummary>
             </Accordion>
           </Box>
-          <Box p={4} mt={2} bgcolor="error.lowEmphasis.main">
-            <Typography variant="subtitle1">A Section</Typography>
+          <Box p={4} mt={2} bgcolor='error.lowEmphasis.main'>
+            <Typography variant='subtitle1'>A Section</Typography>
           </Box>
         </Box>
       </Stack>
@@ -328,42 +310,33 @@ export const AccordionWithChip = story(
     return (
       <Box>
         <Accordion borderless>
-          <AccordionSummary
-            aria-controls="chip-panel1a-content"
-            id="chip-panel1a-header"
-          >
-            <Stack direction="row" spacing={2} alignItems="center">
-              <Chip size="small" color="default" label="10" />
+          <AccordionSummary aria-controls='chip-panel1a-content' id='chip-panel1a-header'>
+            <Stack direction='row' spacing={2} alignItems='center'>
+              <Chip size='small' color='default' label='10' />
               <span>Accordion 1</span>
             </Stack>
           </AccordionSummary>
-          <AccordionDetails id="chip-panel1a-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          <AccordionDetails id='chip-panel1a-content'>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
           </AccordionDetails>
         </Accordion>
         <Accordion borderless>
-          <AccordionSummary
-            aria-controls="chip-panel2a-content"
-            id="chip-panel2a-header"
-          >
-            <Stack direction="row" spacing={2} alignItems="center">
-              <Chip size="small" color="default" label="10" />
+          <AccordionSummary aria-controls='chip-panel2a-content' id='chip-panel2a-header'>
+            <Stack direction='row' spacing={2} alignItems='center'>
+              <Chip size='small' color='default' label='10' />
               <span>Accordion 2</span>
             </Stack>
           </AccordionSummary>
-          <AccordionDetails id="chip-panel2a-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          <AccordionDetails id='chip-panel2a-content'>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
           </AccordionDetails>
         </Accordion>
         <Accordion borderless disabled>
-          <AccordionSummary
-            aria-controls="chip-panel3a-content"
-            id="chip-panel3a-header"
-          >
-            <Stack direction="row" spacing={2} alignItems="center">
-              <Chip size="small" color="default" label="10" />
+          <AccordionSummary aria-controls='chip-panel3a-content' id='chip-panel3a-header'>
+            <Stack direction='row' spacing={2} alignItems='center'>
+              <Chip size='small' color='default' label='10' />
               <span>Disabled Accordion</span>
             </Stack>
           </AccordionSummary>
@@ -385,42 +358,33 @@ export const AccordionWithIcon = story(
     return (
       <div>
         <Accordion borderless>
-          <AccordionSummary
-            aria-controls="icon-panel1a-content"
-            id="icon-panel1a-header"
-          >
-            <Stack direction="row" spacing={2}>
-              <CheckCircle color="success" />
+          <AccordionSummary aria-controls='icon-panel1a-content' id='icon-panel1a-header'>
+            <Stack direction='row' spacing={2}>
+              <CheckCircle color='success' />
               <span>Accordion 1</span>
             </Stack>
           </AccordionSummary>
-          <AccordionDetails id="icon-panel1a-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          <AccordionDetails id='icon-panel1a-content'>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
           </AccordionDetails>
         </Accordion>
         <Accordion borderless>
-          <AccordionSummary
-            aria-controls="icon-panel2a-content"
-            id="icon-panel2a-header"
-          >
-            <Stack direction="row" spacing={2}>
-              <Warning color="warning" />
+          <AccordionSummary aria-controls='icon-panel2a-content' id='icon-panel2a-header'>
+            <Stack direction='row' spacing={2}>
+              <Warning color='warning' />
               <span>Accordion 2</span>
             </Stack>
           </AccordionSummary>
-          <AccordionDetails id="icon-panel2a-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          <AccordionDetails id='icon-panel2a-content'>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
           </AccordionDetails>
         </Accordion>
         <Accordion borderless disabled>
-          <AccordionSummary
-            aria-controls="icon-panel3a-content"
-            id="icon-panel3a-header"
-          >
-            <Stack direction="row" spacing={2}>
-              <Error color="error" />
+          <AccordionSummary aria-controls='icon-panel3a-content' id='icon-panel3a-header'>
+            <Stack direction='row' spacing={2}>
+              <Error color='error' />
               <span>Disabled Accordion</span>
             </Stack>
           </AccordionSummary>
@@ -444,10 +408,10 @@ export const Actions = story(() => {
       <AccordionDetails>Lorem ipsum dolor sit amet</AccordionDetails>
       <Divider />
       <AccordionActions>
-        <Button variant="text" color="primary">
+        <Button variant='text' color='primary'>
           Other Action
         </Button>
-        <Button variant="contained" color="primary">
+        <Button variant='contained' color='primary'>
           Main Action
         </Button>
       </AccordionActions>
@@ -468,15 +432,10 @@ const StyledAccordion = styled((props: AccordionProps) => (
 }))
 
 const StyledAccordionSummary = styled((props: AccordionSummaryProps) => (
-  <AccordionSummary
-    expandIcon={<ArrowForwardIosSharp sx={{ fontSize: '0.9rem' }} />}
-    {...props}
-  />
+  <AccordionSummary expandIcon={<ArrowForwardIosSharp sx={{ fontSize: '0.9rem' }} />} {...props} />
 ))(({ theme }) => ({
   backgroundColor:
-    theme.palette.mode === 'dark'
-      ? 'rgba(255, 255, 255, .05)'
-      : 'rgba(0, 0, 0, .03)',
+    theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, .05)' : 'rgba(0, 0, 0, .03)',
   flexDirection: 'row-reverse',
   '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
     transform: 'rotate(90deg)',
@@ -497,67 +456,45 @@ const StyledAccordionDetails = styled(AccordionDetails)(({ theme }) => ({
 export const CustomStyled = story(() => {
   const [expanded, setExpanded] = React.useState('panel1')
 
-  const handleChange =
-    (panel: string) => (_event: unknown, newExpanded: boolean) => {
-      setExpanded(newExpanded ? panel : '')
-    }
+  const handleChange = (panel: string) => (_event: unknown, newExpanded: boolean) => {
+    setExpanded(newExpanded ? panel : '')
+  }
 
   return (
     <div>
-      <StyledAccordion
-        expanded={expanded === 'panel1'}
-        onChange={handleChange('panel1')}
-      >
-        <StyledAccordionSummary
-          aria-controls="panel1d-content"
-          id="panel1d-header"
-        >
+      <StyledAccordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+        <StyledAccordionSummary aria-controls='panel1d-content' id='panel1d-header'>
           <Typography>Collapsible Group Item #1</Typography>
         </StyledAccordionSummary>
         <StyledAccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
           </Typography>
         </StyledAccordionDetails>
       </StyledAccordion>
-      <StyledAccordion
-        expanded={expanded === 'panel2'}
-        onChange={handleChange('panel2')}
-      >
-        <StyledAccordionSummary
-          aria-controls="panel2d-content"
-          id="panel2d-header"
-        >
+      <StyledAccordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+        <StyledAccordionSummary aria-controls='panel2d-content' id='panel2d-header'>
           <Typography>Collapsible Group Item #2</Typography>
         </StyledAccordionSummary>
         <StyledAccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
           </Typography>
         </StyledAccordionDetails>
       </StyledAccordion>
-      <StyledAccordion
-        expanded={expanded === 'panel3'}
-        onChange={handleChange('panel3')}
-      >
-        <StyledAccordionSummary
-          aria-controls="panel3d-content"
-          id="panel3d-header"
-        >
+      <StyledAccordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+        <StyledAccordionSummary aria-controls='panel3d-content' id='panel3d-header'>
           <Typography>Collapsible Group Item #3</Typography>
         </StyledAccordionSummary>
         <StyledAccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
           </Typography>
         </StyledAccordionDetails>
       </StyledAccordion>
@@ -580,7 +517,7 @@ const DummyCardStack = () => (
   </Stack>
 )
 
-export const InternalScroll = story<AccordionProps>(args => {
+export const InternalScroll = story<AccordionProps>((args) => {
   // For demo purposes. styled(Accordion) is recommended.
   const theme = useTheme()
   const accordionStyles: CSSInterpolation = {
@@ -603,13 +540,8 @@ export const InternalScroll = story<AccordionProps>(args => {
     },
   }
   return (
-    <Stack maxWidth={600} height="600px" bgcolor="background.default">
-      <Accordion
-        TransitionProps={{ timeout: 0 }}
-        square
-        sx={accordionStyles}
-        {...args}
-      >
+    <Stack maxWidth={600} height='600px' bgcolor='background.default'>
+      <Accordion TransitionProps={{ timeout: 0 }} square sx={accordionStyles} {...args}>
         <AccordionSummary>
           <Typography>Collapsible Group Item #1</Typography>
         </AccordionSummary>
@@ -619,12 +551,7 @@ export const InternalScroll = story<AccordionProps>(args => {
           </ScrollShadow>
         </AccordionDetails>
       </Accordion>
-      <Accordion
-        TransitionProps={{ timeout: 0 }}
-        square
-        sx={accordionStyles}
-        {...args}
-      >
+      <Accordion TransitionProps={{ timeout: 0 }} square sx={accordionStyles} {...args}>
         <AccordionSummary>
           <Typography>Collapsible Group Item #2</Typography>
         </AccordionSummary>

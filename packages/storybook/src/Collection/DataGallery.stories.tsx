@@ -46,7 +46,7 @@ const { columns } = createTable<FilterStoryRow>()(
     renderHeader: ({ colDef }) => (
       <React.Fragment>
         <Icons.Person />
-        <Typography variant="body2">{colDef.headerName}</Typography>
+        <Typography variant='body2'>{colDef.headerName}</Typography>
       </React.Fragment>
     ),
   },
@@ -56,15 +56,15 @@ const { columns } = createTable<FilterStoryRow>()(
     minWidth: 150,
     headerActions: ({ closeMenu }) => [
       <MenuItem
-        key="lastName-action1"
+        key='lastName-action1'
         onClick={() => {
           closeMenu()
         }}
       >
         Action 1
       </MenuItem>,
-      <MenuItem key="lastName-action2">Action 2</MenuItem>,
-      <MenuItem key="lastName-action3">Action 3</MenuItem>,
+      <MenuItem key='lastName-action2'>Action 2</MenuItem>,
+      <MenuItem key='lastName-action3'>Action 3</MenuItem>,
     ],
   },
   {
@@ -112,12 +112,7 @@ const { columns } = createTable<FilterStoryRow>()(
     field: 'actions',
     maxWidth: 48,
     getActions: () => [
-      <GridActionsCellItem
-        key={0}
-        showInMenu={false}
-        icon={<Icons.MoreVert />}
-        label="Action"
-      />,
+      <GridActionsCellItem key={0} showInMenu={false} icon={<Icons.MoreVert />} label='Action' />,
     ],
   },
 )
@@ -220,9 +215,7 @@ const Template = story<DataGridProps<{}>>(() => {
                 <Card sx={{ height: '100%' }}>
                   <CardHeader title={`${row.firstName} ${row.lastName}`} />
                   <CardContent>
-                    <Typography>
-                      Occupation: {capitalize(row.occupation)}
-                    </Typography>
+                    <Typography>Occupation: {capitalize(row.occupation)}</Typography>
                   </CardContent>
                 </Card>
               </Box>
@@ -322,13 +315,13 @@ export const AlignmentAndSpacing = story<DataGridProps<{}>>(
 
     return (
       <Stack>
-        <Stack direction="row" alignItems="center" p={8}>
-          <Typography variant="h1">Page Header</Typography>
+        <Stack direction='row' alignItems='center' p={8}>
+          <Typography variant='h1'>Page Header</Typography>
         </Stack>
         <div style={{ height: 600, width: '100%' }}>
           <DataGrid
             apiRef={apiRef}
-            viewStyle="gallery"
+            viewStyle='gallery'
             columns={columns}
             rows={rows}
             galleryProps={{
@@ -349,9 +342,7 @@ export const AlignmentAndSpacing = story<DataGridProps<{}>>(
                     <Card sx={{ height: '100%' }}>
                       <CardHeader title={`${row.firstName} ${row.lastName}`} />
                       <CardContent>
-                        <Typography>
-                          Occupation: {capitalize(row.occupation)}
-                        </Typography>
+                        <Typography>Occupation: {capitalize(row.occupation)}</Typography>
                       </CardContent>
                     </Card>
                   </Box>

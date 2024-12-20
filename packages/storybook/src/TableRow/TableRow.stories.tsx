@@ -9,7 +9,7 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Data Display/Table/TableRow', component: TableRow }
 
 const Template = story<TableRowProps>(
-  args => (
+  (args) => (
     <Table>
       <TableBody>
         <TableRow {...args}>

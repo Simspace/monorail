@@ -7,10 +7,10 @@ import { MoreVert } from '@monorail/components/icons'
 
 export default { title: 'Data Display/WidgetHeader', component: WidgetHeader }
 
-const Template: StoryFn<Partial<WidgetHeaderProps>> = args => (
-  <WidgetHeader title="Widget Name" {...args}>
-    <Button variant="text">Button</Button>
-    <IconButton aria-label="more">
+const Template: StoryFn<Partial<WidgetHeaderProps>> = (args) => (
+  <WidgetHeader title='Widget Name' {...args}>
+    <Button variant='text'>Button</Button>
+    <IconButton aria-label='more'>
       <MoreVert />
     </IconButton>
   </WidgetHeader>
@@ -18,10 +18,10 @@ const Template: StoryFn<Partial<WidgetHeaderProps>> = args => (
 
 export const Default = Template.bind({})
 
-export const WithSubtitle: StoryFn<Partial<WidgetHeaderProps>> = args => (
-  <WidgetHeader title="Widget Name" subtitle="Subtitle" {...args}>
-    <Button variant="text">Button</Button>
-    <IconButton aria-label="more">
+export const WithSubtitle: StoryFn<Partial<WidgetHeaderProps>> = (args) => (
+  <WidgetHeader title='Widget Name' subtitle='Subtitle' {...args}>
+    <Button variant='text'>Button</Button>
+    <IconButton aria-label='more'>
       <MoreVert />
     </IconButton>
   </WidgetHeader>

@@ -17,11 +17,11 @@ export default {
 }
 
 export const Default: StoryObj<typeof FlexDrawer> = {
-  render: args => {
+  render: (args) => {
     const [open, setOpen] = React.useState(false)
     return (
-      <Stack direction="row">
-        <FlexDrawer variant="persistent" open={open}>
+      <Stack direction='row'>
+        <FlexDrawer variant='persistent' open={open}>
           {args.children}
           <Button onClick={() => setOpen(!open)}>Toggle</Button>
         </FlexDrawer>

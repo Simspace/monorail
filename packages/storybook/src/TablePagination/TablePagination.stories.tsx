@@ -2,12 +2,7 @@
 import React from 'react'
 
 import type { TablePaginationProps } from '@monorail/components'
-import {
-  Table,
-  TableFooter,
-  TablePagination,
-  TableRow,
-} from '@monorail/components'
+import { Table, TableFooter, TablePagination, TableRow } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -17,7 +12,7 @@ export default {
 }
 
 const Template = story<TablePaginationProps>(
-  args => {
+  (args) => {
     const totalRows = 200
 
     // TODO: the story doesn't seem to work with the state updates... not sure why
@@ -35,7 +30,7 @@ const Template = story<TablePaginationProps>(
               rowsPerPage={rowsPerPage}
               rowsPerPageOptions={[5, 10, 25]}
               onPageChange={(_, newPage) => setPage(newPage)}
-              onRowsPerPageChange={e => {
+              onRowsPerPageChange={(e) => {
                 setRowsPerPage(parseInt(e.target.value, 10))
                 setPage(0)
               }}

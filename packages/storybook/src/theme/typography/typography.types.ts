@@ -4,10 +4,7 @@ import type { TableCellProps, TypographyProps } from '@monorail/components'
 
 export type TypographyTokenRowProps = {
   variant?: TypographyProps['variant']
-  fontWeightToken?: keyof Omit<
-    FontStyle,
-    'fontFamily' | 'fontSize' | 'htmlFontSize'
-  >
+  fontWeightToken?: keyof Omit<FontStyle, 'fontFamily' | 'fontSize' | 'htmlFontSize'>
   figmaStyle?: string
   fontSizePx?: number
   lineHeightPx?: number | string

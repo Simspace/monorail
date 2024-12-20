@@ -1,10 +1,6 @@
 // Edit this file to add new stories
 import React from 'react'
-import {
-  randomCreatedDate,
-  randomUpdatedDate,
-  useDemoData,
-} from '@mui/x-data-grid-generator'
+import { randomCreatedDate, randomUpdatedDate, useDemoData } from '@mui/x-data-grid-generator'
 
 import type {
   DataGridProps,
@@ -39,7 +35,7 @@ const Template = story<DataGridProps>((args: Partial<DataGridProps>) => {
         {...args}
         {...data}
         sortModel={sortModel}
-        onSortModelChange={model => setSortModel(model)}
+        onSortModelChange={(model) => setSortModel(model)}
       />
     </div>
   )
@@ -127,7 +123,7 @@ const rows: GridRowsProp = [
   },
 ]
 
-export const ComparatorSortingGrid = story<DataGridProps>(args => {
+export const ComparatorSortingGrid = story<DataGridProps>((args) => {
   const [sortModel, setSortModel] = React.useState<GridSortModel>([
     {
       field: 'username',
@@ -140,7 +136,7 @@ export const ComparatorSortingGrid = story<DataGridProps>(args => {
         sortModel={sortModel}
         rows={rows}
         columns={columns}
-        onSortModelChange={model => setSortModel(model)}
+        onSortModelChange={(model) => setSortModel(model)}
         {...args}
       />
     </div>
@@ -168,7 +164,7 @@ In the example below, the  \`username\`  column combines  \`name\`  and  \`age\`
   },
 }
 
-export const OrderSortingGrid = story<DataGridProps>(args => {
+export const OrderSortingGrid = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 10,
@@ -187,7 +183,7 @@ export const OrderSortingGrid = story<DataGridProps>(args => {
       <DataGrid
         sortingOrder={['desc', 'asc']}
         sortModel={sortModel}
-        onSortModelChange={model => setSortModel(model)}
+        onSortModelChange={(model) => setSortModel(model)}
         {...data}
         {...args}
       />
@@ -215,7 +211,7 @@ In the example below columns are only sortable in descending or ascending order.
   },
 }
 
-export const DisableSortingGrid = story<DataGridProps>(args => {
+export const DisableSortingGrid = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 10,
@@ -228,11 +224,11 @@ export const DisableSortingGrid = story<DataGridProps>(args => {
         {...args}
         {...data}
         columns={data.columns.map(
-          column =>
+          (column) =>
             ({
               ...column,
               sortable: false,
-            } as GridColDef),
+            }) as GridColDef,
         )}
       />
     </div>

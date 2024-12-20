@@ -46,10 +46,7 @@ export interface SimpleDialogProps {
   onSimpleDialogClose: () => void
 }
 
-const SimpleDialog = ({
-  onSimpleDialogClose,
-  ...props
-}: DialogProps & SimpleDialogProps) => {
+const SimpleDialog = ({ onSimpleDialogClose, ...props }: DialogProps & SimpleDialogProps) => {
   const handleClose = () => {
     onSimpleDialogClose()
   }
@@ -57,8 +54,8 @@ const SimpleDialog = ({
   return (
     <Dialog onClose={handleClose} {...props}>
       <DialogHeader
-        title="Dialog Header"
-        icon={<Person color="default" />}
+        title='Dialog Header'
+        icon={<Person color='default' />}
         slotProps={{ closeButton: { 'aria-label': 'close' } }}
       />
       <DialogContent>
@@ -67,7 +64,7 @@ const SimpleDialog = ({
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button variant="text" onClick={handleClose}>
+        <Button variant='text' onClick={handleClose}>
           Medium
         </Button>
         <Button onClick={handleClose} autoFocus>

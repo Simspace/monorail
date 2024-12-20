@@ -12,14 +12,13 @@ export default {
 }
 
 const Template = story<ScopedCssBaselineProps>(
-  args => (
+  (args) => (
     <ScopedCssBaseline {...args}>
       <div>
-        <code>ScopedCssBaseline</code> is useful when you need a CSS
-        reset/normalization at a level in the app that is more scoped. You might
-        be progressively migrating a website to Material-UI, using a global
-        reset might not be an option. It's possible to apply the baseline only
-        to the children by using the ScopedCssBaseline component.
+        <code>ScopedCssBaseline</code> is useful when you need a CSS reset/normalization at a level
+        in the app that is more scoped. You might be progressively migrating a website to
+        Material-UI, using a global reset might not be an option. It's possible to apply the
+        baseline only to the children by using the ScopedCssBaseline component.
       </div>
     </ScopedCssBaseline>
   ),

@@ -17,10 +17,7 @@ export default {
 const TierColors = () => {
   const theme = useTheme()
 
-  const rawColorMapping = React.useMemo(
-    () => getRawColorObject(theme.name),
-    [theme.name],
-  )
+  const rawColorMapping = React.useMemo(() => getRawColorObject(theme.name), [theme.name])
 
   const tiers: Array<ColorTokenRowProps> = React.useMemo(() => {
     if (theme.palette.tiers === undefined) {
@@ -54,7 +51,7 @@ const TierColors = () => {
     <></>
   ) : (
     <Box p={4}>
-      <Typography variant="h2" gutterBottom>
+      <Typography variant='h2' gutterBottom>
         Tiers
       </Typography>
       <Typography gutterBottom>{`theme.palette.tiers`}</Typography>
@@ -66,10 +63,7 @@ const TierColors = () => {
 const ScoreColors = () => {
   const theme = useTheme()
 
-  const rawColorMapping = React.useMemo(
-    () => getRawColorObject(theme.name),
-    [theme.name],
-  )
+  const rawColorMapping = React.useMemo(() => getRawColorObject(theme.name), [theme.name])
 
   const scoreColors:
     | Array<{
@@ -103,8 +97,7 @@ const ScoreColors = () => {
             token: '.low.contrastText',
             colorValue: theme.palette.score.low.contrastText,
             figmaStyle: 'score/low/contrastText',
-            description:
-              'Use for text or icons on containers with score background colors.',
+            description: 'Use for text or icons on containers with score background colors.',
           },
         ],
       },
@@ -130,8 +123,7 @@ const ScoreColors = () => {
             token: '.lowModerate.contrastText',
             colorValue: theme.palette.score.lowModerate.contrastText,
             figmaStyle: 'score/lowModerate/contrastText',
-            description:
-              'Use for text or icons on containers with score background colors.',
+            description: 'Use for text or icons on containers with score background colors.',
           },
         ],
       },
@@ -157,8 +149,7 @@ const ScoreColors = () => {
             token: '.moderate.contrastText',
             colorValue: theme.palette.score.moderate.contrastText,
             figmaStyle: 'score/moderate/contrastText',
-            description:
-              'Use for text or icons on containers with score background colors.',
+            description: 'Use for text or icons on containers with score background colors.',
           },
         ],
       },
@@ -184,8 +175,7 @@ const ScoreColors = () => {
             token: '.highModerate.contrastText',
             colorValue: theme.palette.score.highModerate.contrastText,
             figmaStyle: 'score/highModerate/contrastText',
-            description:
-              'Use for text or icons on containers with score background colors.',
+            description: 'Use for text or icons on containers with score background colors.',
           },
         ],
       },
@@ -211,8 +201,7 @@ const ScoreColors = () => {
             token: '.high.contrastText',
             colorValue: theme.palette.score.high.contrastText,
             figmaStyle: 'score/high/contrastText',
-            description:
-              'Use for text or icons on containers with score background colors.',
+            description: 'Use for text or icons on containers with score background colors.',
           },
         ],
       },
@@ -223,19 +212,16 @@ const ScoreColors = () => {
     <></>
   ) : (
     <Box gap={4} sx={{ p: 4 }}>
-      <Typography variant="h2" gutterBottom>
+      <Typography variant='h2' gutterBottom>
         Score Colors
       </Typography>
       <Typography mb={6}>{`theme.palette.score`}</Typography>
-      {scoreColors.map(score => (
+      {scoreColors.map((score) => (
         <React.Fragment key={`score-${score.name}`}>
-          <Typography variant="h3" gutterBottom>
+          <Typography variant='h3' gutterBottom>
             {score.name}
           </Typography>
-          <ColorTokenTable
-            colorMetadata={score.data}
-            rawColorObj={rawColorMapping}
-          />
+          <ColorTokenTable colorMetadata={score.data} rawColorObj={rawColorMapping} />
         </React.Fragment>
       ))}
     </Box>
@@ -245,10 +231,7 @@ const ScoreColors = () => {
 export const Other = () => {
   const theme = useTheme()
 
-  const rawColorMapping = React.useMemo(
-    () => getRawColorObject(theme.name),
-    [theme.name],
-  )
+  const rawColorMapping = React.useMemo(() => getRawColorObject(theme.name), [theme.name])
 
   const utilityColors = [
     {
@@ -274,8 +257,7 @@ export const Other = () => {
     },
     {
       token: 'theme.palette.backdropOverlay',
-      description:
-        'Background color for the Backdrop component when a Modal is opened.',
+      description: 'Background color for the Backdrop component when a Modal is opened.',
       colorValue: theme.palette.backdropOverlay,
       figmaStyle: 'other/backdropOverlay',
     },
@@ -287,8 +269,7 @@ export const Other = () => {
     },
     {
       token: 'theme.palette.snackbar',
-      description:
-        'Background color for the Snackbar component if no children are provided.',
+      description: 'Background color for the Snackbar component if no children are provided.',
       colorValue: theme.palette.snackbar,
       figmaStyle: 'other/snackbar',
     },
@@ -302,13 +283,10 @@ export const Other = () => {
 
   return (
     <Box gap={4} sx={{ p: 4 }}>
-      <Typography variant="h2" gutterBottom>
+      <Typography variant='h2' gutterBottom>
         Other Colors
       </Typography>
-      <ColorTokenTable
-        colorMetadata={utilityColors}
-        rawColorObj={rawColorMapping}
-      />
+      <ColorTokenTable colorMetadata={utilityColors} rawColorObj={rawColorMapping} />
       <ScoreColors />
       <TierColors />
     </Box>

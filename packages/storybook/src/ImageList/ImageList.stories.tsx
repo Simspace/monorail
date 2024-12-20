@@ -27,13 +27,13 @@ export default {
 const Template = story<ImageListProps>(
   (args: Partial<ImageListProps>) => (
     <ImageList {...args}>
-      {itemData.map(item => (
+      {itemData.map((item) => (
         <ImageListItem key={item.img}>
           <img
             src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
             srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
             alt={item.title}
-            loading="lazy"
+            loading='lazy'
           />
         </ImageListItem>
       ))}
@@ -63,19 +63,11 @@ export const Standard = story(Template, {
  * Quilted image lists emphasize certain items over others in a collection. They create hierarchy using varied container sizes and ratios.
  */
 export const Quilted = story<ImageListProps>(
-  args => (
+  (args) => (
     <ImageList {...args}>
-      {quiltedItemData.map(item => (
-        <ImageListItem
-          key={item.img}
-          cols={item.cols ?? 1}
-          rows={item.rows ?? 1}
-        >
-          <img
-            {...srcset(item.img, 121, item.rows, item.cols)}
-            alt={item.title}
-            loading="lazy"
-          />
+      {quiltedItemData.map((item) => (
+        <ImageListItem key={item.img} cols={item.cols ?? 1} rows={item.rows ?? 1}>
+          <img {...srcset(item.img, 121, item.rows, item.cols)} alt={item.title} loading='lazy' />
         </ImageListItem>
       ))}
     </ImageList>
@@ -95,16 +87,16 @@ export const Quilted = story<ImageListProps>(
  */
 export const WithTitleBars = story<ImageListProps>(() => (
   <ImageList sx={{ width: 500, height: 450 }}>
-    <ImageListItem key="Subheader" cols={2}>
-      <ListSubheader component="div">December</ListSubheader>
+    <ImageListItem key='Subheader' cols={2}>
+      <ListSubheader component='div'>December</ListSubheader>
     </ImageListItem>
-    {withTitleItemData.map(item => (
+    {withTitleItemData.map((item) => (
       <ImageListItem key={item.img}>
         <img
           src={`${item.img}?w=248&fit=crop&auto=format`}
           srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
           alt={item.title}
-          loading="lazy"
+          loading='lazy'
         />
         <ImageListItemBar
           title={item.title}
@@ -113,7 +105,7 @@ export const WithTitleBars = story<ImageListProps>(() => (
             <IconButton
               sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
               aria-label={`info about ${item.title}`}
-              size="large"
+              size='large'
             >
               <InfoIcon />
             </IconButton>
@@ -129,18 +121,18 @@ export const WithTitleBars = story<ImageListProps>(() => (
  */
 export const TitleBarBelowImage = story<ImageListProps>(() => (
   <ImageList sx={{ width: 500, height: 450 }}>
-    {withTitleItemData.map(item => (
+    {withTitleItemData.map((item) => (
       <ImageListItem key={item.img}>
         <img
           src={`${item.img}?w=248&fit=crop&auto=format`}
           srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
           alt={item.title}
-          loading="lazy"
+          loading='lazy'
         />
         <ImageListItemBar
           title={item.title}
           subtitle={<span>by: {item.author}</span>}
-          position="below"
+          position='below'
         />
       </ImageListItem>
     ))}
@@ -161,7 +153,7 @@ export const Custom = story<ImageListProps>(() => (
     rowHeight={200}
     gap={1}
   >
-    {withTitleItemData.map(item => {
+    {withTitleItemData.map((item) => {
       const cols = item.featured === true ? 2 : 1
       const rows = item.featured === true ? 2 : 1
 
@@ -170,7 +162,7 @@ export const Custom = story<ImageListProps>(() => (
           <img
             {...customSrcset(item.img, 250, 200, rows, cols)}
             alt={`${item.title} image`}
-            loading="lazy"
+            loading='lazy'
           />
           <ImageListItemBar
             sx={{
@@ -179,17 +171,13 @@ export const Custom = story<ImageListProps>(() => (
                 'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
             }}
             title={item.title}
-            position="top"
+            position='top'
             actionIcon={
-              <IconButton
-                sx={{ color: 'white' }}
-                aria-label={`star ${item.title}`}
-                size="large"
-              >
+              <IconButton sx={{ color: 'white' }} aria-label={`star ${item.title}`} size='large'>
                 <StarBorderIcon />
               </IconButton>
             }
-            actionPosition="left"
+            actionPosition='left'
           />
         </ImageListItem>
       )
@@ -386,23 +374,13 @@ const withTitleItemData = [
 function srcset(image: string, size: number, rows = 1, cols = 1) {
   return {
     src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
-    srcSet: `${image}?w=${size * cols}&h=${
-      size * rows
-    }&fit=crop&auto=format&dpr=2 2x`,
+    srcSet: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format&dpr=2 2x`,
   }
 }
 
-function customSrcset(
-  image: string,
-  width: number,
-  height: number,
-  rows = 1,
-  cols = 1,
-) {
+function customSrcset(image: string, width: number, height: number, rows = 1, cols = 1) {
   return {
     src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
-    srcSet: `${image}?w=${width * cols}&h=${
-      height * rows
-    }&fit=crop&auto=format&dpr=2 2x`,
+    srcSet: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format&dpr=2 2x`,
   }
 }

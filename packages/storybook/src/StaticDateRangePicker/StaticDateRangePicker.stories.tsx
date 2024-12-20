@@ -2,14 +2,8 @@
 import React from 'react'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
-import type {
-  DateRange,
-  StaticDateRangePickerProps,
-} from '@monorail/components'
-import {
-  LocalizationProvider,
-  StaticDateRangePicker,
-} from '@monorail/components'
+import type { DateRange, StaticDateRangePickerProps } from '@monorail/components'
+import { LocalizationProvider, StaticDateRangePicker } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -17,7 +11,7 @@ export default {
   title: 'Inputs/Date and Time/Date Range/StaticDateRangePicker',
 }
 
-const Template = story<StaticDateRangePickerProps<Date>>(args => {
+const Template = story<StaticDateRangePickerProps<Date>>((args) => {
   const [value, setValue] = React.useState<DateRange<Date>>([
     new Date('2021-01-01T12:34:00.000Z'),
     new Date('2021-01-03T12:34:00.000Z'),
@@ -26,9 +20,9 @@ const Template = story<StaticDateRangePickerProps<Date>>(args => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <StaticDateRangePicker
-        displayStaticWrapperAs="desktop"
+        displayStaticWrapperAs='desktop'
         value={value}
-        onChange={newValue => {
+        onChange={(newValue) => {
           setValue(newValue)
         }}
         {...args}

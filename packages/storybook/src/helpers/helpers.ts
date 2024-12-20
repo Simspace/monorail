@@ -11,8 +11,7 @@ import { RawColor as PcteLightRawColors } from '@monorail/themes/pcte/theme/ligh
 
 import { ThemeName } from '../theme/palette/palette.types'
 
-export const capitalizeFirstLetter = (str: string) =>
-  str.charAt(0).toUpperCase() + str.slice(1)
+export const capitalizeFirstLetter = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
 export const isMeteorTheme = (themeName: ThemeName) =>
   themeName === ThemeName.MeteorLight || themeName === ThemeName.MeteorDark

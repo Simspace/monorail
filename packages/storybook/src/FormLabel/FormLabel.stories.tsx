@@ -8,13 +8,10 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Inputs/FormLabel', component: FormLabel }
 
-const Template = story<FormLabelProps>(
-  (args: FormLabelProps) => <FormLabel {...args} />,
-  {
-    args: { children: "I'm a label!" },
-    muiName: 'MuiFormLabel',
-  },
-)
+const Template = story<FormLabelProps>((args: FormLabelProps) => <FormLabel {...args} />, {
+  args: { children: "I'm a label!" },
+  muiName: 'MuiFormLabel',
+})
 
 /**
  * `FormLabel` is a base component. It is unlikely to ever be used directly. You are likely to want to use `FormControlLabel` instead

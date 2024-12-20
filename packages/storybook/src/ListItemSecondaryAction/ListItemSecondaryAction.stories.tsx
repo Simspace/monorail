@@ -18,11 +18,11 @@ export default {
 }
 
 const Template = story<ListItemSecondaryActionProps>(
-  args => {
+  (args) => {
     return (
       <>
         <ListItemSecondaryAction {...args}>
-          <IconButton edge="start" aria-label="Delete" size="large">
+          <IconButton edge='start' aria-label='Delete' size='large'>
             <DeleteIcon />
           </IconButton>
         </ListItemSecondaryAction>

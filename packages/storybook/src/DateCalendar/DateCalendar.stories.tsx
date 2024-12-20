@@ -13,15 +13,13 @@ export default {
 }
 
 const Template = story<DateCalendarProps<Date>>(
-  args => {
-    const [date, setDate] = React.useState<Date | null>(
-      new Date('2021-01-01T12:34:00.000Z'),
-    )
+  (args) => {
+    const [date, setDate] = React.useState<Date | null>(new Date('2021-01-01T12:34:00.000Z'))
 
     return (
       <DateCalendar
         value={date}
-        onChange={newDate => {
+        onChange={(newDate) => {
           setDate(newDate)
           action('onChange')
         }}

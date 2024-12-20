@@ -17,13 +17,13 @@ export default {
   component: InfiniteList,
 }
 
-const Template: StoryFn<InfiniteListProps> = _ => {
+const Template: StoryFn<InfiniteListProps> = (_) => {
   const [items, setItems] = React.useState<Array<string>>([])
   const [isNextPageLoading, setNextPageLoading] = React.useState(false)
   const ref = React.useRef(null)
 
   const loadNextPage = () => {
-    return new Promise<void>(resolve => {
+    return new Promise<void>((resolve) => {
       if (!isNextPageLoading) {
         setNextPageLoading(true)
         setTimeout(() => {
@@ -63,12 +63,9 @@ const Template: StoryFn<InfiniteListProps> = _ => {
         </ListItem>
       )}
       slots={{
-        loader: props => (
+        loader: (props) => (
           <ListItem dense style={props.style}>
-            <Skeleton
-              variant="rounded"
-              sx={{ width: '100%', height: '100%' }}
-            />
+            <Skeleton variant='rounded' sx={{ width: '100%', height: '100%' }} />
           </ListItem>
         ),
       }}

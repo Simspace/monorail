@@ -1,7 +1,4 @@
-import type {
-  Palette,
-  PaletteOptions,
-} from '@mui/material/styles/createPalette'
+import type { Palette, PaletteOptions } from '@mui/material/styles/createPalette'
 
 export enum ThemeName {
   MeteorLight = 'meteorLight',

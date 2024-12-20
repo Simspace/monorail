@@ -26,7 +26,7 @@ interface FilterStoryRow {
   hireDate: Date
 }
 
-const Template = story<DataGridProps>(args => {
+const Template = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 5,
@@ -64,7 +64,7 @@ It's recommended to use a flex container to render the grid. This allows a flexi
   },
 }
 
-export const FixedSizeGrid = story<DataGridProps>(args => {
+export const FixedSizeGrid = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 5,
@@ -91,7 +91,7 @@ FixedSizeGrid.parameters = {
   },
 }
 
-export const AutoHeightGrid = story<DataGridProps>(args => {
+export const AutoHeightGrid = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 4,
@@ -139,7 +139,7 @@ export const ColumnAlignment = story<DataGridProps<{}>>(
         renderHeader: ({ colDef }) => (
           <React.Fragment>
             <Icons.Person />
-            <Typography variant="body2">{colDef.headerName}</Typography>
+            <Typography variant='body2'>{colDef.headerName}</Typography>
           </React.Fragment>
         ),
       },
@@ -149,15 +149,15 @@ export const ColumnAlignment = story<DataGridProps<{}>>(
         minWidth: 150,
         headerActions: ({ closeMenu }) => [
           <MenuItem
-            key="lastName-action1"
+            key='lastName-action1'
             onClick={() => {
               closeMenu()
             }}
           >
             Action 1
           </MenuItem>,
-          <MenuItem key="lastName-action2">Action 2</MenuItem>,
-          <MenuItem key="lastName-action3">Action 3</MenuItem>,
+          <MenuItem key='lastName-action2'>Action 2</MenuItem>,
+          <MenuItem key='lastName-action3'>Action 3</MenuItem>,
         ],
       },
       {
@@ -209,7 +209,7 @@ export const ColumnAlignment = story<DataGridProps<{}>>(
             key={0}
             showInMenu={false}
             icon={<Icons.MoreVert />}
-            label="Action"
+            label='Action'
           />,
         ],
       },

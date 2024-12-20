@@ -10,10 +10,8 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Utils/Popover', component: Popover }
 
 const Template = story<PopoverProps>(
-  args => {
-    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
-      null,
-    )
+  (args) => {
+    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
       setAnchorEl(event.currentTarget)
     }
@@ -24,7 +22,7 @@ const Template = story<PopoverProps>(
     const id = open ? 'simple-popover' : undefined
     return (
       <>
-        <Button aria-describedby={id} variant="contained" onClick={handleClick}>
+        <Button aria-describedby={id} variant='contained' onClick={handleClick}>
           Open Popover
         </Button>
         <Popover
@@ -62,9 +60,7 @@ export const Default = story(Template)
 export const Hover = story(() => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null)
 
-  const handlePopoverOpen = (
-    event: React.MouseEvent<HTMLElement, MouseEvent>,
-  ) => {
+  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setAnchorEl(event.currentTarget)
   }
 
@@ -83,7 +79,7 @@ export const Hover = story(() => {
         Hover with a Popover.
       </span>
       <Popover
-        id="mouse-over-popover"
+        id='mouse-over-popover'
         sx={{
           pointerEvents: 'none',
         }}

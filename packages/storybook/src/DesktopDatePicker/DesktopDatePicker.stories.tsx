@@ -14,15 +14,13 @@ export default {
 
 const Template = story<DesktopDatePickerProps<Date>>(
   (args: Partial<DesktopDatePickerProps<Date>>) => {
-    const [value, setValue] = React.useState<Date | null>(
-      new Date('2021-01-01T12:34:00.000Z'),
-    )
+    const [value, setValue] = React.useState<Date | null>(new Date('2021-01-01T12:34:00.000Z'))
 
     return (
       <DesktopDatePicker
-        label="Desktop Date Picker"
+        label='Desktop Date Picker'
         value={value}
-        onChange={newValue => {
+        onChange={(newValue) => {
           setValue(newValue)
           action('onChange')
         }}

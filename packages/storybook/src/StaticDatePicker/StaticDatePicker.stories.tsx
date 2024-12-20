@@ -11,17 +11,15 @@ export default {
   component: StaticDatePicker,
 }
 
-const Template = story<DatePickerProps<Date>>(args => {
-  const [value, setValue] = React.useState<Date | null>(
-    new Date('2021-01-01T12:34:00.000Z'),
-  )
+const Template = story<DatePickerProps<Date>>((args) => {
+  const [value, setValue] = React.useState<Date | null>(new Date('2021-01-01T12:34:00.000Z'))
 
   return (
     <StaticDatePicker
-      displayStaticWrapperAs="desktop"
-      openTo="year"
+      displayStaticWrapperAs='desktop'
+      openTo='year'
       value={value}
-      onChange={newValue => {
+      onChange={(newValue) => {
         setValue(newValue)
       }}
       {...args}

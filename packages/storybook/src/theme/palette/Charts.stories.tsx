@@ -18,17 +18,15 @@ export const Charts = () => {
 
   return (
     <Box p={4}>
-      <Typography variant="h2" gutterBottom>
+      <Typography variant='h2' gutterBottom>
         Chart
       </Typography>
       <Typography gutterBottom>theme.palette.chart</Typography>
-      {Object.keys(theme.palette.chart).map(chartColor => (
+      {Object.keys(theme.palette.chart).map((chartColor) => (
         <ColorShadesBox
           key={`chart-color-${chartColor}`}
           label={capitalize(chartColor)}
-          color={
-            theme.palette.chart[chartColor as keyof PaletteOptions['chart']]
-          }
+          color={theme.palette.chart[chartColor as keyof PaletteOptions['chart']]}
         />
       ))}
     </Box>

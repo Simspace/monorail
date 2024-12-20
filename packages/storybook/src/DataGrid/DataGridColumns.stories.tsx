@@ -43,7 +43,7 @@ export default {
   },
 }
 
-const Template = story<DataGridProps>(args => {
+const Template = story<DataGridProps>((args) => {
   return (
     <div style={{ height: 250, width: '100%' }}>
       <DataGrid
@@ -89,7 +89,7 @@ By default, columns are ordered according to the order they are included in the 
 }
 
 export const HeaderColumnsGrid = story<DataGridProps>(
-  args => {
+  (args) => {
     const rows = [
       {
         id: 1,
@@ -130,7 +130,7 @@ export const HeaderColumnsGrid = story<DataGridProps>(
 )
 
 export const ColumnWidthGrid = story<DataGridProps>(
-  args => {
+  (args) => {
     const rows = [
       {
         id: 1,
@@ -161,7 +161,7 @@ export const ColumnWidthGrid = story<DataGridProps>(
 )
 
 export const ColumnMinWidthGrid = story<DataGridProps>(
-  args => {
+  (args) => {
     const rows = [
       {
         id: 1,
@@ -192,7 +192,7 @@ export const ColumnMinWidthGrid = story<DataGridProps>(
 )
 
 export const ColumnFluidWidthGrid = story<DataGridProps>(
-  args => {
+  (args) => {
     const rows = [
       {
         id: 1,
@@ -303,7 +303,7 @@ const rows = [
 ]
 
 export const ValueGetterGrid = story<DataGridProps>(
-  args => {
+  (args) => {
     return (
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid rows={rows} columns={columns} {...args} />
@@ -348,7 +348,7 @@ The value generated is used for filtering, sorting, rendering, etc unless overri
 //#endregion
 
 export const ValueFormatterGrid = story<DataGridProps>(
-  args => {
+  (args) => {
     const rows = [
       {
         id: 1,
@@ -406,7 +406,7 @@ The value generated is only used for rendering purposes. Filtering and sorting w
 )
 
 export const ValueParserGrid = story<DataGridProps>(
-  args => {
+  (args) => {
     const rows = [
       {
         id: 1,
@@ -439,7 +439,7 @@ export const ValueParserGrid = story<DataGridProps>(
               headerName: 'Tax Rate',
               width: 150,
               valueFormatter: formatTaxRate,
-              valueParser: value => Number(value) / 100,
+              valueParser: (value) => Number(value) / 100,
             },
           ]}
         />
@@ -461,7 +461,7 @@ In the following demo, the tax rate is displayed as a percentage (e.g. 20%) but 
 )
 
 export const RenderCellGrid = story<DataGridProps>(
-  args => {
+  (args) => {
     const columns: Array<GridColDef> = [
       {
         field: 'date',
@@ -470,12 +470,7 @@ export const RenderCellGrid = story<DataGridProps>(
         renderCell: (params: GridRenderCellParams) => (
           <strong>
             {(params.value as Date).getFullYear()}
-            <Button
-              variant="contained"
-              color="primary"
-              size="small"
-              style={{ marginLeft: 16 }}
-            >
+            <Button variant='contained' color='primary' size='small' style={{ marginLeft: 16 }}>
               Open
             </Button>
           </strong>
@@ -572,15 +567,10 @@ const useStyles = makeStyles(() =>
 )
 
 function isOverflown(element: Element): boolean {
-  return (
-    element.scrollHeight > element.clientHeight ||
-    element.scrollWidth > element.clientWidth
-  )
+  return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth
 }
 
-const GridCellExpand = React.memo(function GridCellExpand(
-  props: GridCellExpandProps,
-) {
+const GridCellExpand = React.memo(function GridCellExpand(props: GridCellExpandProps) {
   const { width, value } = props
   const wrapper = React.useRef<HTMLDivElement | null>(null)
   const cellDiv = React.useRef(null)
@@ -637,7 +627,7 @@ const GridCellExpand = React.memo(function GridCellExpand(
           top: 0,
         }}
       />
-      <div ref={cellValue} className="cellValue">
+      <div ref={cellValue} className='cellValue'>
         {value}
       </div>
       {showPopper && (
@@ -646,11 +636,8 @@ const GridCellExpand = React.memo(function GridCellExpand(
           anchorEl={anchorEl}
           style={{ width, marginLeft: -17 }}
         >
-          <Paper
-            elevation={1}
-            style={{ minHeight: wrapper.current!.offsetHeight - 3 }}
-          >
-            <Typography variant="body2" style={{ padding: 8 }}>
+          <Paper elevation={1} style={{ minHeight: wrapper.current!.offsetHeight - 3 }}>
+            <Typography variant='body2' style={{ padding: 8 }}>
               {value}
             </Typography>
           </Paper>
@@ -663,18 +650,14 @@ const GridCellExpand = React.memo(function GridCellExpand(
 function renderCellExpand(params: GridRenderCellParams<{}, string>) {
   return (
     <GridCellExpand
-      value={
-        params.value !== undefined && params.value !== null
-          ? params.value.toString()
-          : ''
-      }
+      value={params.value !== undefined && params.value !== null ? params.value.toString() : ''}
       width={params.colDef.computedWidth}
     />
   )
 }
 
 export const RenderExpandCellGrid = story<DataGridProps>(
-  args => {
+  (args) => {
     const columns: Array<GridColDef> = [
       {
         field: 'col1',
@@ -752,7 +735,7 @@ export const RenderExpandCellGrid = story<DataGridProps>(
 )
 
 export const RenderHeaderGrid = story<DataGridProps>(
-  args => {
+  (args) => {
     const columns: Array<GridColDef> = [
       {
         field: 'date',
@@ -761,7 +744,7 @@ export const RenderHeaderGrid = story<DataGridProps>(
         renderHeader: () => (
           <strong>
             {'Birthday '}
-            <span role="img" aria-label="enjoy">
+            <span role='img' aria-label='enjoy'>
               🎂
             </span>
           </strong>
@@ -857,22 +840,20 @@ const initialRows = [
 type Row = (typeof initialRows)[number]
 
 //#region Column Types
-export const ColumnTypesGrid = story<DataGridProps>(args => {
+export const ColumnTypesGrid = story<DataGridProps>((args) => {
   const [rows, setRows] = React.useState<Array<Row>>(initialRows)
 
   const deleteUser = React.useCallback(
     (id: GridRowId) => () => {
-      setRows(prevRows => prevRows.filter(row => row.id !== id))
+      setRows((prevRows) => prevRows.filter((row) => row.id !== id))
     },
     [],
   )
 
   const toggleAdmin = React.useCallback(
     (id: GridRowId) => () => {
-      setRows(prevRows =>
-        prevRows.map(row =>
-          row.id === id ? { ...row, isAdmin: !row.isAdmin } : row,
-        ),
+      setRows((prevRows) =>
+        prevRows.map((row) => (row.id === id ? { ...row, isAdmin: !row.isAdmin } : row)),
       )
     },
     [],
@@ -880,8 +861,8 @@ export const ColumnTypesGrid = story<DataGridProps>(args => {
 
   const duplicateUser = React.useCallback(
     (id: GridRowId) => () => {
-      setRows(prevRows => {
-        const rowToDuplicate = prevRows.find(row => row.id === id)!
+      setRows((prevRows) => {
+        const rowToDuplicate = prevRows.find((row) => row.id === id)!
         const newRows = [...prevRows, { ...rowToDuplicate, id: Date.now() }]
         return newRows
       })
@@ -900,14 +881,7 @@ export const ColumnTypesGrid = story<DataGridProps>(args => {
         field: 'country',
         type: 'singleSelect',
         width: 120,
-        valueOptions: [
-          'Bulgaria',
-          'Netherlands',
-          'France',
-          'United Kingdom',
-          'Spain',
-          'Brazil',
-        ],
+        valueOptions: ['Bulgaria', 'Netherlands', 'France', 'United Kingdom', 'Spain', 'Brazil'],
       },
       {
         field: 'actions',
@@ -917,20 +891,20 @@ export const ColumnTypesGrid = story<DataGridProps>(args => {
           <GridActionsCellItem
             key={'Delete'}
             icon={<Delete />}
-            label="Delete"
+            label='Delete'
             onClick={deleteUser(params.id)}
           />,
           <GridActionsCellItem
             key={'Toggle Admin'}
             icon={<Security />}
-            label="Toggle Admin"
+            label='Toggle Admin'
             onClick={toggleAdmin(params.id)}
             showInMenu
           />,
           <GridActionsCellItem
             key={'Duplicate User'}
             icon={<FileCopy />}
-            label="Duplicate User"
+            label='Duplicate User'
             onClick={duplicateUser(params.id)}
             showInMenu
           />,
@@ -1014,7 +988,7 @@ const useCustomColumnTypesGridStyles = makeStyles({
   },
 })
 
-export const CustomColumnTypesGrid = story<DataGridProps>(args => {
+export const CustomColumnTypesGrid = story<DataGridProps>((args) => {
   const rows = [
     {
       id: 1,
@@ -1074,7 +1048,7 @@ const usdPrice: GridColTypeDef = {
 }
 //#endregion
 
-export const ColumnMenuGrid = story<DataGridProps>(args => {
+export const ColumnMenuGrid = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 20,
@@ -1100,7 +1074,7 @@ ColumnMenuGrid.parameters = {
   },
 }
 
-export const ColumnSelectorGrid = story<DataGridProps>(args => {
+export const ColumnSelectorGrid = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 10,

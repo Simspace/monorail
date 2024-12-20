@@ -3,11 +3,7 @@ import React from 'react'
 import { useMovieData } from '@mui/x-data-grid-generator'
 
 import type { DataGridProps } from '@monorail/components'
-import {
-  DataGrid,
-  useGridApiRef,
-  useKeepGroupedColumnsHidden,
-} from '@monorail/components'
+import { DataGrid, useGridApiRef, useKeepGroupedColumnsHidden } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -102,7 +98,7 @@ export const Grouping = story<DataGridProps>(() => {
         ]}
         rowReordering
         apiRef={apiRef}
-        rowGroupingColumnMode="single"
+        rowGroupingColumnMode='single'
         checkboxSelection
         initialState={initialState}
       />

@@ -28,13 +28,10 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Data Display/Divider', component: Divider }
 
-const Template = story<DividerProps>(
-  (args: DividerProps) => <Divider {...args} />,
-  {
-    args: {},
-    muiName: 'MuiDivider',
-  },
-)
+const Template = story<DividerProps>((args: DividerProps) => <Divider {...args} />, {
+  args: {},
+  muiName: 'MuiDivider',
+})
 
 export const Default = story(Template)
 
@@ -49,22 +46,22 @@ export const ListDividers = story<DividerProps>(() => {
         maxWidth: 360,
         bgcolor: 'background.paper',
       }}
-      component="nav"
-      aria-label="mailbox folders"
+      component='nav'
+      aria-label='mailbox folders'
     >
       <ListItemButton>
-        <ListItemText primary="Inbox" />
+        <ListItemText primary='Inbox' />
       </ListItemButton>
       <Divider />
       <ListItemButton divider>
-        <ListItemText primary="Drafts" />
+        <ListItemText primary='Drafts' />
       </ListItemButton>
       <ListItemButton>
-        <ListItemText primary="Trash" />
+        <ListItemText primary='Trash' />
       </ListItemButton>
       <Divider sx={{ opacity: 0.6 }} />
       <ListItemButton>
-        <ListItemText primary="Spam" />
+        <ListItemText primary='Spam' />
       </ListItemButton>
     </List>
   )
@@ -81,32 +78,26 @@ export const InsetDividers = story<DividerProps>(
     >
       <ListItem>
         <ListItemAvatar>
-          <Avatar
-            alt="Good Boi"
-            src="https://images.dog.ceo/breeds/boxer/n02108089_11154.jpg"
-          />
+          <Avatar alt='Good Boi' src='https://images.dog.ceo/breeds/boxer/n02108089_11154.jpg' />
         </ListItemAvatar>
-        <ListItemText primary="Photos" secondary="Jan 9, 2014" />
+        <ListItemText primary='Photos' secondary='Jan 9, 2014' />
       </ListItem>
-      <Divider variant="inset" component="li" />
+      <Divider variant='inset' component='li' />
+      <ListItem>
+        <ListItemAvatar>
+          <Avatar alt='Good Boi' src='https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg' />
+        </ListItemAvatar>
+        <ListItemText primary='Work' secondary='Jan 7, 2014' />
+      </ListItem>
+      <Divider variant='inset' component='li' />
       <ListItem>
         <ListItemAvatar>
           <Avatar
-            alt="Good Boi"
-            src="https://images.dog.ceo/breeds/labrador/n02099712_4323.jpg"
+            alt='Good Boi'
+            src='https://images.dog.ceo/breeds/sheepdog-english/n02105641_10048.jpg'
           />
         </ListItemAvatar>
-        <ListItemText primary="Work" secondary="Jan 7, 2014" />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar
-            alt="Good Boi"
-            src="https://images.dog.ceo/breeds/sheepdog-english/n02105641_10048.jpg"
-          />
-        </ListItemAvatar>
-        <ListItemText primary="Vacation" secondary="July 20, 2014" />
+        <ListItemText primary='Vacation' secondary='July 20, 2014' />
       </ListItem>
     </List>
   ),
@@ -139,27 +130,23 @@ export const Spacing = story<{
   withText: boolean
   variant: DividerProps['variant']
 }>(
-  args => {
+  (args) => {
     const withText = args.withText!!
     return (
       <Stack>
         <Stack>
-          {spacing.map(s => (
-            <Divider
-              key={`horizontal-spacing-${s}`}
-              spacing={s}
-              variant={args.variant}
-            >
+          {spacing.map((s) => (
+            <Divider key={`horizontal-spacing-${s}`} spacing={s} variant={args.variant}>
               {withText && s}
             </Divider>
           ))}
         </Stack>
-        <Stack height={200} direction="row">
-          {spacing.map(s => (
+        <Stack height={200} direction='row'>
+          {spacing.map((s) => (
             <Divider
               key={`vertical-spacing-${s}`}
               spacing={s}
-              orientation="vertical"
+              orientation='vertical'
               variant={args.variant}
             >
               {withText && s}
@@ -174,8 +161,7 @@ export const Spacing = story<{
     parameters: {
       docs: {
         description: {
-          story:
-            'You can use the `spacing` prop to increase the separation between two items.',
+          story: 'You can use the `spacing` prop to increase the separation between two items.',
         },
       },
     },
@@ -192,41 +178,38 @@ export const SubheaderDividers = story<DividerProps>(
       }}
     >
       <ListItem>
-        <ListItemText primary="Photos" secondary="Jan 9, 2014" />
+        <ListItemText primary='Photos' secondary='Jan 9, 2014' />
       </ListItem>
-      <Divider component="li" />
+      <Divider component='li' />
       <li>
         <Typography
           sx={{ mt: 0.5, ml: 2 }}
-          color="text.secondary"
-          display="block"
-          variant="caption"
+          color='text.secondary'
+          display='block'
+          variant='caption'
         >
           Divider
         </Typography>
       </li>
       <ListItem>
-        <ListItemText primary="Work" secondary="Jan 7, 2014" />
+        <ListItemText primary='Work' secondary='Jan 7, 2014' />
       </ListItem>
-      <Divider component="li" variant="inset" />
+      <Divider component='li' variant='inset' />
       <li>
         <Typography
           sx={{ mt: 0.5, ml: 18 }}
-          color="text.secondary"
-          display="block"
-          variant="caption"
+          color='text.secondary'
+          display='block'
+          variant='caption'
         >
           Leisure
         </Typography>
       </li>
       <ListItem>
         <ListItemAvatar>
-          <Avatar
-            alt="Good Boi"
-            src="https://images.dog.ceo/breeds/boxer/n02108089_11154.jpg"
-          />
+          <Avatar alt='Good Boi' src='https://images.dog.ceo/breeds/boxer/n02108089_11154.jpg' />
         </ListItemAvatar>
-        <ListItemText primary="Vacation" secondary="July 20, 2014" />
+        <ListItemText primary='Vacation' secondary='July 20, 2014' />
       </ListItem>
     </List>
   ),
@@ -243,33 +226,33 @@ export const MiddleDividers = () => {
   return (
     <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <Box sx={{ my: 3, mx: 2 }}>
-        <Grid container alignItems="center">
+        <Grid container alignItems='center'>
           <Grid item xs>
-            <Typography gutterBottom variant="h1" component="div">
+            <Typography gutterBottom variant='h1' component='div'>
               Toothbrush
             </Typography>
           </Grid>
           <Grid item>
-            <Typography gutterBottom variant="h3" component="div">
+            <Typography gutterBottom variant='h3' component='div'>
               $4.50
             </Typography>
           </Grid>
         </Grid>
-        <Typography color="text.secondary" variant="body2">
-          Pinstriped cornflower blue cotton blouse takes you on a walk to the
-          park or just down the hall.
+        <Typography color='text.secondary' variant='body2'>
+          Pinstriped cornflower blue cotton blouse takes you on a walk to the park or just down the
+          hall.
         </Typography>
       </Box>
-      <Divider variant="middle" />
+      <Divider variant='middle' />
       <Box sx={{ m: 2 }}>
-        <Typography gutterBottom variant="body1">
+        <Typography gutterBottom variant='body1'>
           Select type
         </Typography>
-        <Stack direction="row" spacing={1}>
-          <Chip label="Extra Soft" />
-          <Chip color="primary" label="Soft" />
-          <Chip label="Medium" />
-          <Chip label="Hard" />
+        <Stack direction='row' spacing={1}>
+          <Chip label='Extra Soft' />
+          <Chip color='primary' label='Soft' />
+          <Chip label='Medium' />
+          <Chip label='Hard' />
         </Stack>
       </Box>
       <Box sx={{ mt: 3, ml: 1, mb: 1 }}>
@@ -304,12 +287,12 @@ export const DividerText = story<DividerProps>(() => {
       {content}
       <Divider>CENTER</Divider>
       {content}
-      <Divider textAlign="left">LEFT</Divider>
+      <Divider textAlign='left'>LEFT</Divider>
       {content}
-      <Divider textAlign="right">RIGHT</Divider>
+      <Divider textAlign='right'>RIGHT</Divider>
       {content}
       <Divider>
-        <Chip label="CHIP" />
+        <Chip label='CHIP' />
       </Divider>
       {content}
     </Root>
@@ -327,7 +310,7 @@ export const VerticalDividers = story<DividerProps>(() => {
           display: 'flex',
           alignItems: 'center',
           width: 'fit-content',
-          border: theme => `1px solid ${theme.palette.divider}`,
+          border: (theme) => `1px solid ${theme.palette.divider}`,
           borderRadius: 1,
           bgcolor: 'background.paper',
           color: 'text.secondary',
@@ -342,7 +325,7 @@ export const VerticalDividers = story<DividerProps>(() => {
         <FormatAlignLeftIcon />
         <FormatAlignCenterIcon />
         <FormatAlignRightIcon />
-        <Divider orientation="vertical" flexItem />
+        <Divider orientation='vertical' flexItem />
         <FormatBoldIcon />
         <FormatItalicIcon />
       </Box>
@@ -361,7 +344,7 @@ export const VerticalDividerMiddle = story<DividerProps>(() => {
           display: 'flex',
           alignItems: 'center',
           width: 'fit-content',
-          border: theme => `1px solid ${theme.palette.divider}`,
+          border: (theme) => `1px solid ${theme.palette.divider}`,
           borderRadius: 1,
           bgcolor: 'background.paper',
           color: 'text.secondary',
@@ -376,7 +359,7 @@ export const VerticalDividerMiddle = story<DividerProps>(() => {
         <FormatAlignLeftIcon />
         <FormatAlignCenterIcon />
         <FormatAlignRightIcon />
-        <Divider orientation="vertical" variant="middle" flexItem />
+        <Divider orientation='vertical' variant='middle' flexItem />
         <FormatBoldIcon />
         <FormatItalicIcon />
       </Box>
@@ -409,7 +392,7 @@ export const VerticalDividerText = story<DividerProps>(() => {
       <StyledGrid item xs>
         {content}
       </StyledGrid>
-      <Divider orientation="vertical" flexItem>
+      <Divider orientation='vertical' flexItem>
         VERTICAL
       </Divider>
       <StyledGrid item xs>

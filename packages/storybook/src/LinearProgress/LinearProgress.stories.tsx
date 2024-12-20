@@ -8,13 +8,10 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Feedback/LinearProgress', component: LinearProgress }
 
-const Template = story<LinearProgressProps>(
-  args => <LinearProgress {...args} />,
-  {
-    args: {},
-    muiName: 'MuiLinearProgress',
-  },
-)
+const Template = story<LinearProgressProps>((args) => <LinearProgress {...args} />, {
+  args: {},
+  muiName: 'MuiLinearProgress',
+})
 
 export const Default = story(Template)
 
@@ -24,18 +21,15 @@ const colors = ['primary', 'error', 'default'] as const
 export function LinearIndeterminate() {
   return (
     <Stack spacing={8}>
-      {colors.map(color => (
+      {colors.map((color) => (
         <Stack
           key={`linear-progress-indeterminate-${color}`}
-          direction="row"
+          direction='row'
           spacing={8}
-          alignItems="center"
+          alignItems='center'
         >
-          {sizes.map(size => (
-            <Box
-              key={`linear-progress-indeterminate-${color}-${size}`}
-              sx={{ width: 156 }}
-            >
+          {sizes.map((size) => (
+            <Box key={`linear-progress-indeterminate-${color}-${size}`} sx={{ width: 156 }}>
               <LinearProgress color={color} size={size} />
             </Box>
           ))}
@@ -51,7 +45,7 @@ export const IndeterminateWithPercentage = story<LinearProgressProps>(
 
     React.useEffect(() => {
       const timer = setInterval(() => {
-        setProgress(oldProgress => {
+        setProgress((oldProgress) => {
           if (oldProgress === 100) {
             return 0
           }
@@ -66,12 +60,7 @@ export const IndeterminateWithPercentage = story<LinearProgressProps>(
     }, [])
     return (
       <Box width={256}>
-        <LinearProgress
-          size={'small'}
-          variant="indeterminate"
-          value={progress}
-          showPercentage
-        />
+        <LinearProgress size={'small'} variant='indeterminate' value={progress} showPercentage />
       </Box>
     )
   },
@@ -92,7 +81,7 @@ export function LinearDeterminate() {
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      setProgress(oldProgress => {
+      setProgress((oldProgress) => {
         if (oldProgress === 100) {
           return 0
         }
@@ -108,20 +97,17 @@ export function LinearDeterminate() {
 
   return (
     <Stack spacing={8}>
-      {colors.map(color => (
+      {colors.map((color) => (
         <Stack
           key={`linear-progress-determinate-${color}`}
-          direction="row"
+          direction='row'
           spacing={8}
-          alignItems="center"
+          alignItems='center'
         >
-          {sizes.map(size => (
-            <Box
-              key={`linear-progress-determinate-${color}-${size}`}
-              sx={{ width: 156 }}
-            >
+          {sizes.map((size) => (
+            <Box key={`linear-progress-determinate-${color}-${size}`} sx={{ width: 156 }}>
               <LinearProgress
-                variant="determinate"
+                variant='determinate'
                 color={color}
                 size={size}
                 value={progress}
@@ -170,20 +156,17 @@ export function LinearBuffer() {
 
   return (
     <Stack spacing={8}>
-      {colors.map(color => (
+      {colors.map((color) => (
         <Stack
           key={`linear-progress-buffer-${color}`}
-          direction="row"
+          direction='row'
           spacing={8}
-          alignItems="center"
+          alignItems='center'
         >
-          {sizes.map(size => (
-            <Box
-              key={`linear-progress-buffer-${color}-${size}`}
-              sx={{ width: 156 }}
-            >
+          {sizes.map((size) => (
+            <Box key={`linear-progress-buffer-${color}-${size}`} sx={{ width: 156 }}>
               <LinearProgress
-                variant="buffer"
+                variant='buffer'
                 color={color}
                 size={size}
                 value={progress}
@@ -202,9 +185,7 @@ export function LinearWithValueLabel() {
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      setProgress(prevProgress =>
-        prevProgress >= 100 ? 10 : prevProgress + 10,
-      )
+      setProgress((prevProgress) => (prevProgress >= 100 ? 10 : prevProgress + 10))
     }, 800)
     return () => {
       clearInterval(timer)
@@ -213,14 +194,10 @@ export function LinearWithValueLabel() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Stack direction="column" spacing={8}>
-        {colors.map(color => (
-          <Stack
-            key={`linear-progress-label-${color}`}
-            direction="row"
-            spacing={8}
-          >
-            {sizes.map(size => (
+      <Stack direction='column' spacing={8}>
+        {colors.map((color) => (
+          <Stack key={`linear-progress-label-${color}`} direction='row' spacing={8}>
+            {sizes.map((size) => (
               <Box
                 key={`linear-progress-label-${color}-${size}`}
                 sx={{ display: 'flex', alignItems: 'center' }}
@@ -229,15 +206,15 @@ export function LinearWithValueLabel() {
                   <LinearProgress
                     color={color}
                     size={size}
-                    variant="determinate"
+                    variant='determinate'
                     value={progress}
                   />
                 </Box>
-                <Box justifyContent="space-between" sx={{ width: 35 }}>
+                <Box justifyContent='space-between' sx={{ width: 35 }}>
                   <Typography
                     sx={{ ml: 1 }}
-                    variant="body2"
-                    color="text.secondary"
+                    variant='body2'
+                    color='text.secondary'
                   >{`${Math.round(progress)}%`}</Typography>
                 </Box>
               </Box>

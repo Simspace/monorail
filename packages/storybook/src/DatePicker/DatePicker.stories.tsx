@@ -39,7 +39,7 @@ const Template = story<DatePickerProps<Date>>(
     return (
       <DatePicker
         value={value}
-        onChange={newValue => {
+        onChange={(newValue) => {
           setValue(newValue)
           action('onChange')
         }}
@@ -57,12 +57,12 @@ export const Default = story(Template)
 
 export const NativeDatePicker = story<DatePickerProps>(() => {
   return (
-    <Box component="form" noValidate>
+    <Box component='form' noValidate>
       <TextField
-        id="date"
-        label="Birthday"
-        type="date"
-        defaultValue="2017-05-24"
+        id='date'
+        label='Birthday'
+        type='date'
+        defaultValue='2017-05-24'
         sx={{ width: 220 }}
       />
     </Box>
@@ -73,16 +73,14 @@ export const NativeDatePicker = story<DatePickerProps>(() => {
  * It's possible to render any date picker without the modal/popover and text field. This can be helpful when building custom popover/modal containers.
  */
 export const StaticMode = story<DatePickerProps<Date>>(() => {
-  const [value, setValue] = React.useState<Date | null>(
-    new Date('2021-01-01T12:34:00.000Z'),
-  )
+  const [value, setValue] = React.useState<Date | null>(new Date('2021-01-01T12:34:00.000Z'))
 
   return (
     <StaticDatePicker
-      displayStaticWrapperAs="desktop"
-      openTo="year"
+      displayStaticWrapperAs='desktop'
+      openTo='year'
       value={value}
-      onChange={newValue => {
+      onChange={(newValue) => {
         setValue(newValue)
       }}
     />
@@ -99,36 +97,34 @@ export const StaticMode = story<DatePickerProps<Date>>(() => {
  */
 export const Responsiveness = story<DatePickerProps<Date>>(
   () => {
-    const [value, setValue] = React.useState<Date | null>(
-      new Date('2021-01-01T12:34:00.000Z'),
-    )
+    const [value, setValue] = React.useState<Date | null>(new Date('2021-01-01T12:34:00.000Z'))
 
     return (
       <Stack spacing={3}>
         <MobileDatePicker
-          aria-label="for mobile"
-          label="For mobile"
+          aria-label='for mobile'
+          label='For mobile'
           value={value}
-          onChange={newValue => {
+          onChange={(newValue) => {
             setValue(newValue)
           }}
         />
         <DesktopDatePicker
-          aria-label="for desktop"
-          label="For desktop"
+          aria-label='for desktop'
+          label='For desktop'
           value={value}
           minDate={new Date('2017-01-01')}
-          onChange={newValue => {
+          onChange={(newValue) => {
             setValue(newValue)
           }}
         />
         <DatePicker
           disableFuture
-          label="Responsive"
-          openTo="year"
+          label='Responsive'
+          openTo='year'
           views={['year', 'month', 'day']}
           value={value}
-          onChange={newValue => {
+          onChange={(newValue) => {
             setValue(newValue)
           }}
         />
@@ -155,18 +151,18 @@ export const FormProps = story<DatePickerProps<Date>>(() => {
   return (
     <Stack spacing={3}>
       <DatePicker
-        label="disabled"
+        label='disabled'
         disabled
         value={value}
-        onChange={newValue => {
+        onChange={(newValue) => {
           setValue(newValue)
         }}
       />
       <DatePicker
-        label="read-only"
+        label='read-only'
         readOnly
         value={value}
-        onChange={newValue => {
+        onChange={(newValue) => {
           setValue(newValue)
         }}
       />
@@ -189,26 +185,17 @@ export const Localization = story<DatePickerProps<Date>>(() => {
 
   const [locale, setLocale] = React.useState<keyof typeof localeMap>('ru')
 
-  const [value, setValue] = React.useState<Date | null>(
-    new Date('2021-01-01T12:34:00.000Z'),
-  )
+  const [value, setValue] = React.useState<Date | null>(new Date('2021-01-01T12:34:00.000Z'))
 
   const selectLocale = (newLocale: Locale) => {
     setLocale(newLocale)
   }
 
   return (
-    <LocalizationProvider
-      dateAdapter={AdapterDateFns}
-      adapterLocale={localeMap[locale]}
-    >
+    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={localeMap[locale]}>
       <div>
-        <ToggleButtonGroup
-          value={locale}
-          exclusive
-          sx={{ mb: 2, display: 'block' }}
-        >
-          {Object.keys(localeMap).map(localeItem => (
+        <ToggleButtonGroup value={locale} exclusive sx={{ mb: 2, display: 'block' }}>
+          {Object.keys(localeMap).map((localeItem) => (
             <ToggleButton
               key={localeItem}
               value={localeItem}
@@ -218,7 +205,7 @@ export const Localization = story<DatePickerProps<Date>>(() => {
             </ToggleButton>
           ))}
         </ToggleButtonGroup>
-        <DatePicker value={value} onChange={newValue => setValue(newValue)} />
+        <DatePicker value={value} onChange={(newValue) => setValue(newValue)} />
       </div>
     </LocalizationProvider>
   )
@@ -229,53 +216,51 @@ export const Localization = story<DatePickerProps<Date>>(() => {
  */
 export const ViewsPlayground = story<DatePickerProps<Date>>(
   () => {
-    const [value, setValue] = React.useState<Date | null>(
-      new Date('2021-01-01T12:34:00.000Z'),
-    )
+    const [value, setValue] = React.useState<Date | null>(new Date('2021-01-01T12:34:00.000Z'))
 
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Stack spacing={3}>
           <DatePicker
             views={['year']}
-            label="Year only"
+            label='Year only'
             value={value}
-            onChange={newValue => {
+            onChange={(newValue) => {
               setValue(newValue)
             }}
           />
           <DatePicker
             views={['year', 'month']}
-            label="Year and Month"
+            label='Year and Month'
             minDate={new Date('2012-03-01')}
             maxDate={new Date('2023-06-01')}
             value={value}
-            onChange={newValue => {
+            onChange={(newValue) => {
               setValue(newValue)
             }}
           />
           <DatePicker
-            openTo="year"
+            openTo='year'
             views={['year', 'month', 'day']}
-            label="Year, month and date"
+            label='Year, month and date'
             value={value}
-            onChange={newValue => {
+            onChange={(newValue) => {
               setValue(newValue)
             }}
           />
           <DatePicker
             views={['day', 'month', 'year']}
-            label="Invert the order of views"
+            label='Invert the order of views'
             value={value}
-            onChange={newValue => {
+            onChange={(newValue) => {
               setValue(newValue)
             }}
           />
           <DatePicker
             views={['day']}
-            label="Just date"
+            label='Just date'
             value={value}
-            onChange={newValue => {
+            onChange={(newValue) => {
               setValue(newValue)
             }}
           />
@@ -298,18 +283,16 @@ export const ViewsPlayground = story<DatePickerProps<Date>>(
  * For ease of use, the date picker will automatically change the layout between portrait and landscape by subscription to the `window.orientation` change. You can force a specific layout using the `orientation` prop.
  */
 export const LandscapeOrientation = story<DatePickerProps<Date>>(() => {
-  const [value, setValue] = React.useState<Date | null>(
-    new Date('2021-01-01T12:34:00.000Z'),
-  )
+  const [value, setValue] = React.useState<Date | null>(new Date('2021-01-01T12:34:00.000Z'))
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <StaticDatePicker<Date>
-        orientation="landscape"
-        openTo="day"
+        orientation='landscape'
+        openTo='day'
         value={value}
         shouldDisableDate={isWeekend}
-        onChange={newValue => {
+        onChange={(newValue) => {
           setValue(newValue)
         }}
       />
@@ -321,16 +304,14 @@ export const LandscapeOrientation = story<DatePickerProps<Date>>(() => {
  * You can customize the rendering of the input with the renderInput prop. Make sure to spread `ref` and `inputProps` correctly to the custom input component.
  */
 export const CustomInputComponent = story<DatePickerProps<Date>>(() => {
-  const [value, setValue] = React.useState<Date | null>(
-    new Date('2021-01-01T12:34:00.000Z'),
-  )
+  const [value, setValue] = React.useState<Date | null>(new Date('2021-01-01T12:34:00.000Z'))
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DesktopDatePicker
-        label="Custom input"
+        label='Custom input'
         value={value}
-        onChange={newValue => {
+        onChange={(newValue) => {
           setValue(newValue)
         }}
         slots={{
@@ -346,7 +327,7 @@ export const CustomInputComponent = story<DatePickerProps<Date>>(() => {
             }
           }) => (
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <input aria-label="input" ref={inputRef} {...inputProps} />
+              <input aria-label='input' ref={inputRef} {...inputProps} />
               {InputProps?.endAdornment}
             </Box>
           ),
@@ -368,9 +349,7 @@ function fakeFetch(date: Date, { signal }: { signal: AbortSignal }) {
   return new Promise<{ daysToHighlight: Array<number> }>((resolve, reject) => {
     const timeout = setTimeout(() => {
       const daysInMonth = getDaysInMonth(date)
-      const daysToHighlight = [1, 2, 3].map(() =>
-        getRandomNumber(1, daysInMonth),
-      )
+      const daysToHighlight = [1, 2, 3].map(() => getRandomNumber(1, daysInMonth))
 
       resolve({ daysToHighlight })
     }, 500)
@@ -435,7 +414,7 @@ export const DynamicData = story<DatePickerProps<Date>>(() => {
       <DatePicker
         value={value}
         loading={isLoading}
-        onChange={newValue => {
+        onChange={(newValue) => {
           setValue(newValue)
         }}
         onMonthChange={handleMonthChange}
@@ -443,13 +422,12 @@ export const DynamicData = story<DatePickerProps<Date>>(() => {
         slots={{
           day: ({ day, ...props }) => {
             const isSelected =
-              !props.outsideCurrentMonth &&
-              highlightedDays.indexOf(day.getDate()) > 0
+              !props.outsideCurrentMonth && highlightedDays.indexOf(day.getDate()) > 0
 
             return (
               <Badge
                 key={day.toString()}
-                overlap="circular"
+                overlap='circular'
                 badgeContent={isSelected ? '🌚' : undefined}
               >
                 <PickersDay day={day} {...props} />
@@ -471,21 +449,16 @@ export const HelperText = story<DatePickerProps<Date>>(() => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
-        label="Helper text example"
+        label='Helper text example'
         value={value}
-        onChange={newValue => {
+        onChange={(newValue) => {
           setValue(newValue)
         }}
         slots={{
           textField: (params: {
             inputRef: React.Ref<HTMLInputElement>
             inputProps: React.InputHTMLAttributes<HTMLInputElement>
-          }) => (
-            <TextField
-              {...params}
-              helperText={params?.inputProps?.placeholder}
-            />
-          ),
+          }) => <TextField {...params} helperText={params?.inputProps?.placeholder} />,
         }}
       />
     </LocalizationProvider>

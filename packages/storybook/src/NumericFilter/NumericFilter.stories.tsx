@@ -12,7 +12,5 @@ export default {
 }
 
 export const Default: StoryObj<typeof NumericFilter> = {
-  render: () => (
-    <NumericFilter localeText={NUMERIC_FILTER_DEFAULT_LOCALE_TEXT} />
-  ),
+  render: () => <NumericFilter localeText={NUMERIC_FILTER_DEFAULT_LOCALE_TEXT} />,
 }

@@ -12,7 +12,7 @@ export default {
 }
 
 const Template = story<TimelineOppositeContentProps>(
-  args => <TimelineOppositeContent {...args} />,
+  (args) => <TimelineOppositeContent {...args} />,
   { args: {}, muiName: 'MuiTimelineOppositeContent' },
 )
 

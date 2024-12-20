@@ -13,10 +13,7 @@ import {
 
 import { ThemeName } from '../palette/palette.types'
 import { TypographyTokenTable } from './typography.components'
-import type {
-  TypographyTokenColumns,
-  TypographyTokenRowProps,
-} from './typography.types'
+import type { TypographyTokenColumns, TypographyTokenRowProps } from './typography.types'
 
 export default {
   title: 'Theme/Typography/Components',
@@ -295,7 +292,7 @@ export const Components = () => {
   return (
     <Box p={4}>
       <Box mb={4}>
-        <Typography variant="h2" gutterBottom>
+        <Typography variant='h2' gutterBottom>
           Component Typography Tokens
         </Typography>
         <Typography gutterBottom>{`theme.typography`}</Typography>

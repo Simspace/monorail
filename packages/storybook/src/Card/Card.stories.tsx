@@ -26,28 +26,25 @@ import { images } from '../helpers/testData.js'
 export default { title: 'Surfaces/Card', component: Card }
 
 const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
+  <Box component='span' sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}>
     •
   </Box>
 )
 
 const Template = story<CardProps>(
-  args => (
+  (args) => (
     <Card sx={{ maxWidth: 275 }} {...args}>
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        <Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
           Word of the Day
         </Typography>
-        <Typography variant="h2" component="div">
+        <Typography variant='h2' component='div'>
           be{bull}nev{bull}o{bull}lent
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        <Typography sx={{ mb: 1.5 }} color='text.secondary'>
           adjective
         </Typography>
-        <Typography variant="body2">
+        <Typography variant='body2'>
           well meaning and kindly.
           <br />
           {'"a benevolent smile"'}
@@ -71,20 +68,20 @@ export const Default = story(Template)
 /**
  * Set `variant="outlined"` to render an outlined card.
  */
-export const OutlinedCard = story<CardProps>(args => {
+export const OutlinedCard = story<CardProps>((args) => {
   return (
-    <Card sx={{ maxWidth: 275 }} variant="outlined" {...args}>
+    <Card sx={{ maxWidth: 275 }} variant='outlined' {...args}>
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        <Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
           Word of the Day
         </Typography>
-        <Typography variant="h2" component="div">
+        <Typography variant='h2' component='div'>
           be{bull}nev{bull}o{bull}lent
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        <Typography sx={{ mb: 1.5 }} color='text.secondary'>
           adjective
         </Typography>
-        <Typography variant="body2">
+        <Typography variant='body2'>
           well meaning and kindly.
           <br />
           {'"a benevolent smile"'}
@@ -101,21 +98,17 @@ export const OutlinedCard = story<CardProps>(args => {
  * Example of a card using an image to reinforce the content.
  */
 export const MediaCard = story<CardProps>(
-  args => {
+  (args) => {
     return (
       <Card sx={{ maxWidth: 345 }} {...args}>
-        <CardMedia
-          sx={{ height: 140 }}
-          image={images.lizard.url}
-          title={images.lizard.title}
-        />
+        <CardMedia sx={{ height: 140 }} image={images.lizard.url} title={images.lizard.title} />
         <CardContent>
-          <Typography gutterBottom variant="h2" component="div">
+          <Typography gutterBottom variant='h2' component='div'>
             Lizard
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+          <Typography variant='body2' color='text.secondary'>
+            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+            across all continents except Antarctica
           </Typography>
         </CardContent>
         <CardActions>
@@ -139,23 +132,23 @@ export const MediaCard = story<CardProps>(
  * By default, MUI uses the combination of a `<div>` element and a background image to display the media. It can be problematic in some situations, for example, you might want to display a video or a responsive image. Use the `component` prop for these use cases:
  */
 export const ResponsiveMediaCard = story<CardProps>(
-  args => {
+  (args) => {
     return (
       <Card sx={{ maxWidth: 345 }} {...args}>
         <CardMedia
-          component="img"
+          component='img'
           alt={images.lizard.alt}
-          height="140"
+          height='140'
           image={images.lizard.url}
           title={images.lizard.title}
         />
         <CardContent>
-          <Typography gutterBottom variant="h2" component="div">
+          <Typography gutterBottom variant='h2' component='div'>
             Lizard
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+          <Typography variant='body2' color='text.secondary'>
+            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+            across all continents except Antarctica
           </Typography>
         </CardContent>
         <CardActions>
@@ -181,22 +174,18 @@ export const ResponsiveMediaCard = story<CardProps>(
  * Often a card allow users to interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen or some other behavior. The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.
  */
 export const ActionAreaCard = story<CardActionAreaProps>(
-  args => {
+  (args) => {
     return (
       <Card sx={{ maxWidth: 345 }}>
         <CardActionArea {...args}>
-          <CardMedia
-            sx={{ height: 140 }}
-            image={images.lizard.url}
-            title={images.lizard.title}
-          />
+          <CardMedia sx={{ height: 140 }} image={images.lizard.url} title={images.lizard.title} />
           <CardContent>
-            <Typography gutterBottom variant="h2" component="div">
+            <Typography gutterBottom variant='h2' component='div'>
               Lizard
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
+            <Typography variant='body2' color='text.secondary'>
+              Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+              across all continents except Antarctica
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -222,27 +211,23 @@ export const ActionAreaCard = story<CardActionAreaProps>(
  * A card can also offer supplemental actions which should stand detached from the main action area in order to avoid event overlap.
  */
 export const MultiActionAreaCard = story<CardProps>(
-  args => {
+  (args) => {
     return (
       <Card sx={{ maxWidth: 345 }} {...args}>
         <CardActionArea>
-          <CardMedia
-            sx={{ height: 140 }}
-            image={images.lizard.url}
-            title={images.lizard.title}
-          />
+          <CardMedia sx={{ height: 140 }} image={images.lizard.url} title={images.lizard.title} />
           <CardContent>
-            <Typography gutterBottom variant="h2" component="div">
+            <Typography gutterBottom variant='h2' component='div'>
               Lizard
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
+            <Typography variant='body2' color='text.secondary'>
+              Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+              across all continents except Antarctica
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button color="primary">Share</Button>
+          <Button color='primary'>Share</Button>
         </CardActions>
       </Card>
     )
@@ -262,14 +247,14 @@ export const MultiActionAreaCard = story<CardProps>(
 /**
  * A basic card with actions in the header and footer to compare with Figma
  */
-export const SimpleActionCard = story<CardProps>(args => {
+export const SimpleActionCard = story<CardProps>((args) => {
   return (
     <Card sx={{ maxWidth: 444 }} {...args}>
       <CardHeader
-        title="Card header"
-        subheader="Subheader"
+        title='Card header'
+        subheader='Subheader'
         action={
-          <IconButton aria-label="Card actions">
+          <IconButton aria-label='Card actions'>
             <MoreVertIcon />
           </IconButton>
         }
@@ -279,8 +264,8 @@ export const SimpleActionCard = story<CardProps>(args => {
         <Typography>Content Goes Here</Typography>
       </CardContent>
       <CardActions>
-        <Button variant="text">Small</Button>
-        <Button variant="outlined">Small</Button>
+        <Button variant='text'>Small</Button>
+        <Button variant='outlined'>Small</Button>
       </CardActions>
     </Card>
   )
@@ -290,52 +275,33 @@ export const SimpleActionCard = story<CardProps>(args => {
  * Supplemental actions within the card are explicitly called out using icons, text, and UI controls, typically placed at the bottom of the card. Here's an example of a media control card.
  */
 export const MediaControlCard = story<CardProps>(
-  args => {
+  (args) => {
     const theme = useTheme()
 
     return (
-      <Card
-        sx={{ display: 'flex', maxWidth: 400, justifyContent: 'space-between' }}
-        {...args}
-      >
+      <Card sx={{ display: 'flex', maxWidth: 400, justifyContent: 'space-between' }} {...args}>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <CardContent sx={{ flex: '1 0 auto' }}>
-            <Typography component="div" variant="h2">
+            <Typography component='div' variant='h2'>
               Live From Space
             </Typography>
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              component="div"
-            >
+            <Typography variant='subtitle1' color='text.secondary' component='div'>
               Mac Miller
             </Typography>
           </CardContent>
           <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-            <IconButton aria-label="previous" size="large">
-              {theme.direction === 'rtl' ? (
-                <SkipNextIcon />
-              ) : (
-                <SkipPreviousIcon />
-              )}
+            <IconButton aria-label='previous' size='large'>
+              {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
             </IconButton>
-            <IconButton aria-label="play/pause" size="large">
+            <IconButton aria-label='play/pause' size='large'>
               <PlayArrowIcon sx={{ height: 38, width: 38 }} />
             </IconButton>
-            <IconButton aria-label="next" size="large">
-              {theme.direction === 'rtl' ? (
-                <SkipPreviousIcon />
-              ) : (
-                <SkipNextIcon />
-              )}
+            <IconButton aria-label='next' size='large'>
+              {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
             </IconButton>
           </Box>
         </Box>
-        <CardMedia
-          sx={{ width: 151 }}
-          image={images.album.url}
-          title={images.album.title}
-        />
+        <CardMedia sx={{ width: 151 }} image={images.album.url} title={images.album.title} />
       </Card>
     )
   },

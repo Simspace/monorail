@@ -3,11 +3,7 @@ import React from 'react'
 import { useDemoData } from '@mui/x-data-grid-generator'
 
 import type { DataGridProps } from '@monorail/components'
-import {
-  DataGrid,
-  GridToolbarContainer,
-  GridToolbarExport,
-} from '@monorail/components'
+import { DataGrid, GridToolbarContainer, GridToolbarExport } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -29,7 +25,7 @@ function CustomToolbar() {
   )
 }
 
-const Template = story<DataGridProps>(args => {
+const Template = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 4,

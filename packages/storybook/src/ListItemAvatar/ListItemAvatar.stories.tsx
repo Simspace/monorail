@@ -13,7 +13,7 @@ export default {
 }
 
 const Template = story<ListItemAvatarProps>(
-  args => (
+  (args) => (
     <ListItemAvatar {...args}>
       <Avatar>
         <FolderIcon />

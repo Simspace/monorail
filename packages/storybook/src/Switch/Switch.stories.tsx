@@ -20,7 +20,7 @@ export default {
 }
 
 const Template = story<SwitchProps>(
-  args => <Switch inputProps={{ 'aria-label': 'Switch' }} {...args} />,
+  (args) => <Switch inputProps={{ 'aria-label': 'Switch' }} {...args} />,
   {
     args: {},
     muiName: 'MuiSwitch',
@@ -43,8 +43,8 @@ export const BasicSwitches = story(() => (
 const colors = ['default', 'primary', 'error', 'info', 'success'] as const
 
 export const ColorSwitches = story(() => (
-  <Stack direction="row" gap={4}>
-    {colors.map(color => (
+  <Stack direction='row' gap={4}>
+    {colors.map((color) => (
       <Switch key={`switch-${color}`} {...label} defaultChecked color={color} />
     ))}
   </Stack>
@@ -58,29 +58,25 @@ export const ControlledSwitches = story(() => {
   }
 
   return (
-    <Switch
-      checked={checked}
-      onChange={handleChange}
-      inputProps={{ 'aria-label': 'controlled' }}
-    />
+    <Switch checked={checked} onChange={handleChange} inputProps={{ 'aria-label': 'controlled' }} />
   )
 })
 
 export const FormControlLabelPosition = story(() => (
-  <FormControl component="fieldset">
-    <FormLabel component="legend">Label placement</FormLabel>
-    <FormGroup aria-label="position" row>
+  <FormControl component='fieldset'>
+    <FormLabel component='legend'>Label placement</FormLabel>
+    <FormGroup aria-label='position' row>
       <FormControlLabel
-        value="start"
-        control={<Switch color="primary" edge={false} />}
-        label="Start"
-        labelPlacement="start"
+        value='start'
+        control={<Switch color='primary' edge={false} />}
+        label='Start'
+        labelPlacement='start'
       />
       <FormControlLabel
-        value="end"
-        control={<Switch color="primary" edge={false} />}
-        label="End"
-        labelPlacement="end"
+        value='end'
+        control={<Switch color='primary' edge={false} />}
+        label='End'
+        labelPlacement='end'
       />
     </FormGroup>
   </FormControl>
@@ -88,8 +84,8 @@ export const FormControlLabelPosition = story(() => (
 
 export const SwitchLabels = story(() => (
   <FormGroup>
-    <FormControlLabel control={<Switch defaultChecked />} label="Label" />
-    <FormControlLabel disabled control={<Switch />} label="Disabled" />
+    <FormControlLabel control={<Switch defaultChecked />} label='Label' />
+    <FormControlLabel disabled control={<Switch />} label='Disabled' />
   </FormGroup>
 ))
 
@@ -108,38 +104,20 @@ export const SwitchesGroup = story(() => {
   }
 
   return (
-    <FormControl component="fieldset" variant="standard">
-      <FormLabel component="legend">Assign responsibility</FormLabel>
+    <FormControl component='fieldset' variant='standard'>
+      <FormLabel component='legend'>Assign responsibility</FormLabel>
       <FormGroup>
         <FormControlLabel
-          control={
-            <Switch
-              checked={state.gilad}
-              onChange={handleChange}
-              name="gilad"
-            />
-          }
-          label="Gilad Gray"
+          control={<Switch checked={state.gilad} onChange={handleChange} name='gilad' />}
+          label='Gilad Gray'
         />
         <FormControlLabel
-          control={
-            <Switch
-              checked={state.jason}
-              onChange={handleChange}
-              name="jason"
-            />
-          }
-          label="Jason Killian"
+          control={<Switch checked={state.jason} onChange={handleChange} name='jason' />}
+          label='Jason Killian'
         />
         <FormControlLabel
-          control={
-            <Switch
-              checked={state.antoine}
-              onChange={handleChange}
-              name="antoine"
-            />
-          }
-          label="Antoine Llorca"
+          control={<Switch checked={state.antoine} onChange={handleChange} name='antoine' />}
+          label='Antoine Llorca'
         />
       </FormGroup>
       <FormHelperText>Be careful</FormHelperText>
@@ -149,7 +127,7 @@ export const SwitchesGroup = story(() => {
 
 export const SwitchesSize = story(() => (
   <div>
-    <Switch {...label} defaultChecked size="small" />
+    <Switch {...label} defaultChecked size='small' />
     <Switch {...label} defaultChecked />
   </div>
 ))

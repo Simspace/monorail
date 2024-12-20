@@ -17,7 +17,7 @@ export default {
   },
 }
 
-const Template = story<DataGridProps>(args => {
+const Template = story<DataGridProps>((args) => {
   return (
     <div style={{ height: 250, width: '100%' }}>
       <DataGrid
@@ -217,7 +217,7 @@ apiRef.current.updateRows([{ id: 1, _action: 'delete' }]);
   },
 }
 
-export const DenseHeightGrid = story<DataGridProps>(args => {
+export const DenseHeightGrid = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 100,

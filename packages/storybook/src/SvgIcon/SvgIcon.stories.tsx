@@ -18,13 +18,10 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Data Display/SvgIcon', component: SvgIcon }
 
-const Template = story<SvgIconProps>(
-  args => <SvgIcon component={Icons.Default} {...args} />,
-  {
-    args: {},
-    muiName: 'MuiSvgIcon',
-  },
-)
+const Template = story<SvgIconProps>((args) => <SvgIcon component={Icons.Default} {...args} />, {
+  args: {},
+  muiName: 'MuiSvgIcon',
+})
 
 export const Default = story(Template)
 
@@ -34,21 +31,10 @@ const IconsContainer = styled('div')`
   }
 `
 
-const IconContainer = ({
-  icon,
-  label,
-}: {
-  icon: JSX.Element
-  label: string
-}) => (
-  <Box
-    gridColumn="span 3"
-    display="grid"
-    minHeight={80}
-    sx={{ placeItems: 'center' }}
-  >
+const IconContainer = ({ icon, label }: { icon: JSX.Element; label: string }) => (
+  <Box gridColumn='span 3' display='grid' minHeight={80} sx={{ placeItems: 'center' }}>
     {icon}
-    <Typography align="center" mt={2}>
+    <Typography align='center' mt={2}>
       {label}
     </Typography>
   </Box>
@@ -57,32 +43,26 @@ const IconContainer = ({
 export const MaterialIcons = story<IconProps>(
   () => (
     <IconsContainer>
-      <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={8}>
-        <IconContainer label="Home" icon={<HomeIcon color="default" />} />
+      <Box display='grid' gridTemplateColumns='repeat(12, 1fr)' gap={8}>
+        <IconContainer label='Home' icon={<HomeIcon color='default' />} />
+        <IconContainer label='Home Outlined' icon={<HomeOutlinedIcon color='default' />} />
+        <IconContainer label='Delete' icon={<DeleteIcon color='default' />} />
         <IconContainer
-          label="Home Outlined"
-          icon={<HomeOutlinedIcon color="default" />}
+          label='Delete Outlined'
+          icon={<DeleteOutlineOutlinedIcon color='default' />}
         />
-        <IconContainer label="Delete" icon={<DeleteIcon color="default" />} />
+        <IconContainer label='Account Circle' icon={<AccountCircleIcon color='default' />} />
         <IconContainer
-          label="Delete Outlined"
-          icon={<DeleteOutlineOutlinedIcon color="default" />}
-        />
-        <IconContainer
-          label="Account Circle"
-          icon={<AccountCircleIcon color="default" />}
+          label='Account Circle Outlined'
+          icon={<AccountCircleOutlinedIcon color='default' />}
         />
         <IconContainer
-          label="Account Circle Outlined"
-          icon={<AccountCircleOutlinedIcon color="default" />}
+          label='Arrow Drop Down Circle'
+          icon={<ArrowDropDownCircleIcon color='default' />}
         />
         <IconContainer
-          label="Arrow Drop Down Circle"
-          icon={<ArrowDropDownCircleIcon color="default" />}
-        />
-        <IconContainer
-          label="Arrow Drop Down Circle Outlined"
-          icon={<ArrowDropDownCircleOutlinedIcon color="default" />}
+          label='Arrow Drop Down Circle Outlined'
+          icon={<ArrowDropDownCircleOutlinedIcon color='default' />}
         />
       </Box>
     </IconsContainer>
@@ -113,13 +93,9 @@ const colors = [
 
 export const Colors = story<IconProps>(() => (
   <IconsContainer>
-    <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={8}>
-      {colors.map(color => (
-        <IconContainer
-          key={`icon-${color}`}
-          label={color}
-          icon={<HomeIcon color={color} />}
-        />
+    <Box display='grid' gridTemplateColumns='repeat(12, 1fr)' gap={8}>
+      {colors.map((color) => (
+        <IconContainer key={`icon-${color}`} label={color} icon={<HomeIcon color={color} />} />
       ))}
     </Box>
   </IconsContainer>
@@ -128,28 +104,24 @@ export const Colors = story<IconProps>(() => (
 const sizes = ['small', 'medium', 'large', 'inherit'] as const
 
 export const Sizes = story<IconProps>(() => (
-  <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={8}>
-    {sizes.map(size => (
-      <IconContainer
-        key={`icon-${size}`}
-        label={size}
-        icon={<HomeIcon fontSize={size} />}
-      />
+  <Box display='grid' gridTemplateColumns='repeat(12, 1fr)' gap={8}>
+    {sizes.map((size) => (
+      <IconContainer key={`icon-${size}`} label={size} icon={<HomeIcon fontSize={size} />} />
     ))}
   </Box>
 ))
 
-export const AllCustomIcons = story<IconProps>(args => (
+export const AllCustomIcons = story<IconProps>((args) => (
   <IconsContainer>
     <Box mt={4}>
-      <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={8}>
+      <Box display='grid' gridTemplateColumns='repeat(12, 1fr)' gap={8}>
         {Object.keys(Icons)
           .sort()
           .map((icon, index) => (
             <Box
               key={index}
-              gridColumn="span 3"
-              display="grid"
+              gridColumn='span 3'
+              display='grid'
               height={80}
               sx={{ placeItems: 'center' }}
             >
@@ -167,23 +139,17 @@ export const AllCustomIcons = story<IconProps>(args => (
 
 export const AppIcons = story<IconProps>(() => (
   <IconsContainer>
-    <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={8}>
-      <IconContainer label="Admin" icon={<Icons.AdminApp />} />
-      <IconContainer label="Catalog" icon={<Icons.CatalogApp />} />
-      <IconContainer label="Events" icon={<Icons.EventsApp />} />
-      <IconContainer label="Home" icon={<Icons.HomeApp />} />
-      <IconContainer label="My Org" icon={<Icons.MyOrgApp />} />
-      <IconContainer
-        label="Product Scoring"
-        icon={<Icons.ProductScoringApp />}
-      />
-      <IconContainer
-        label="Reports Analytics"
-        icon={<Icons.ReportsAnalyticsApp />}
-      />
-      <IconContainer label="Risk" icon={<Icons.RiskApp />} />
-      <IconContainer label="Tech Ops" icon={<Icons.TechOpsApp />} />
-      <IconContainer label="Training" icon={<Icons.TrainingApp />} />
+    <Box display='grid' gridTemplateColumns='repeat(12, 1fr)' gap={8}>
+      <IconContainer label='Admin' icon={<Icons.AdminApp />} />
+      <IconContainer label='Catalog' icon={<Icons.CatalogApp />} />
+      <IconContainer label='Events' icon={<Icons.EventsApp />} />
+      <IconContainer label='Home' icon={<Icons.HomeApp />} />
+      <IconContainer label='My Org' icon={<Icons.MyOrgApp />} />
+      <IconContainer label='Product Scoring' icon={<Icons.ProductScoringApp />} />
+      <IconContainer label='Reports Analytics' icon={<Icons.ReportsAnalyticsApp />} />
+      <IconContainer label='Risk' icon={<Icons.RiskApp />} />
+      <IconContainer label='Tech Ops' icon={<Icons.TechOpsApp />} />
+      <IconContainer label='Training' icon={<Icons.TrainingApp />} />
     </Box>
   </IconsContainer>
 ))
@@ -192,12 +158,12 @@ const ILLUSTRATION_SIZE = 136
 
 export const Illustrations = story<IconProps>(() => (
   <Box mt={4}>
-    <Typography variant="h2" mb={4}>
+    <Typography variant='h2' mb={4}>
       Spot Illustrations
     </Typography>
-    <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={8}>
+    <Box display='grid' gridTemplateColumns='repeat(12, 1fr)' gap={8}>
       <IconContainer
-        label="Bare Tree"
+        label='Bare Tree'
         icon={
           <Icons.BareTree
             sx={{
@@ -208,7 +174,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Broken Heart"
+        label='Broken Heart'
         icon={
           <Icons.BrokenHeart
             sx={{
@@ -219,7 +185,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Calendar"
+        label='Calendar'
         icon={
           <Icons.Calendar
             sx={{
@@ -230,7 +196,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Chickenlets"
+        label='Chickenlets'
         icon={
           <Icons.Chickenlets
             sx={{
@@ -241,7 +207,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="DNS Outline"
+        label='DNS Outline'
         icon={
           <Icons.DnsOutline
             sx={{
@@ -252,7 +218,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Empty Upload"
+        label='Empty Upload'
         icon={
           <Icons.EmptyUpload
             sx={{
@@ -263,7 +229,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Event Complete"
+        label='Event Complete'
         icon={
           <Icons.EventComplete
             sx={{
@@ -274,7 +240,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Event Paused"
+        label='Event Paused'
         icon={
           <Icons.EventPaused
             sx={{
@@ -285,7 +251,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Ghost Empty"
+        label='Ghost Empty'
         icon={
           <Icons.GhostEmpty
             sx={{
@@ -296,7 +262,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Ghost Link"
+        label='Ghost Link'
         icon={
           <Icons.GhostLink
             sx={{
@@ -307,7 +273,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Ghost Shrug"
+        label='Ghost Shrug'
         icon={
           <Icons.GhostShrug
             sx={{
@@ -318,7 +284,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Happy Sun"
+        label='Happy Sun'
         icon={
           <Icons.HappySun
             sx={{
@@ -329,7 +295,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="No Results"
+        label='No Results'
         icon={
           <Icons.NoResults
             sx={{
@@ -340,7 +306,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Shrug"
+        label='Shrug'
         icon={
           <Icons.Shrug
             sx={{
@@ -351,7 +317,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Telescope"
+        label='Telescope'
         icon={
           <Icons.Telescope
             sx={{
@@ -362,7 +328,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Target Empty"
+        label='Target Empty'
         icon={
           <Icons.EmptyTarget
             sx={{
@@ -373,12 +339,12 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
     </Box>
-    <Typography variant="h2" mt={10} mb={4}>
+    <Typography variant='h2' mt={10} mb={4}>
       Other Illustrations
     </Typography>
-    <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={8}>
+    <Box display='grid' gridTemplateColumns='repeat(12, 1fr)' gap={8}>
       <IconContainer
-        label="Browse Content Catalog"
+        label='Browse Content Catalog'
         icon={
           <Icons.BrowseContentCatalog
             sx={{
@@ -389,7 +355,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Content Catalog Training"
+        label='Content Catalog Training'
         icon={
           <Icons.ContentCatalogTraining
             sx={{
@@ -400,7 +366,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Pac Man"
+        label='Pac Man'
         icon={
           <Icons.PacMan
             sx={{
@@ -411,7 +377,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Readiness Rollup"
+        label='Readiness Rollup'
         icon={
           <Icons.ReadinessRollup
             sx={{
@@ -422,7 +388,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Spider Chart"
+        label='Spider Chart'
         icon={
           <Icons.SpiderChart
             sx={{
@@ -433,7 +399,7 @@ export const Illustrations = story<IconProps>(() => (
         }
       />
       <IconContainer
-        label="Welcome"
+        label='Welcome'
         icon={
           <Icons.Welcome
             sx={{
@@ -448,9 +414,5 @@ export const Illustrations = story<IconProps>(() => (
 ))
 
 export const TwoColor = () => (
-  <WarningTwoColor
-    fontSize="large"
-    color="warning"
-    secondaryColor="text.primary"
-  />
+  <WarningTwoColor fontSize='large' color='warning' secondaryColor='text.primary' />
 )

@@ -24,7 +24,7 @@ export default {
   },
 }
 
-const Template = story(args => <LoadingIndicator {...args} />, {
+const Template = story((args) => <LoadingIndicator {...args} />, {
   args: {},
 })
 

@@ -9,8 +9,8 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Navigation/Menu/MenuItem', component: MenuItem }
 
 const Template = story<MenuItemProps>(
-  args => (
-    <div role="menu">
+  (args) => (
+    <div role='menu'>
       <MenuItem {...args} />
     </div>
   ),

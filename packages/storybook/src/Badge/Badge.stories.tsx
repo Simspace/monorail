@@ -24,9 +24,9 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Data Display/Badge', component: Badge }
 
 const Template = story<BadgeProps>(
-  args => (
+  (args) => (
     <Badge {...args}>
-      <MailIcon color="default" />
+      <MailIcon color='default' />
     </Badge>
   ),
   {
@@ -37,29 +37,17 @@ const Template = story<BadgeProps>(
 
 export const Default = story(Template)
 
-const colors = [
-  'default',
-  'primary',
-  'success',
-  'error',
-  'warning',
-  'info',
-] as const
+const colors = ['default', 'primary', 'success', 'error', 'warning', 'info'] as const
 
 /**
  * Use `color` prop to apply theme palette to component.
  */
 export const Color = story(() => (
   <Stack spacing={4}>
-    {colors.map(color => (
-      <Stack
-        alignItems="center"
-        direction="row"
-        key={`badge-${color}`}
-        spacing={6}
-      >
+    {colors.map((color) => (
+      <Stack alignItems='center' direction='row' key={`badge-${color}`} spacing={6}>
         <Badge badgeContent={4} color={color}>
-          <MailIcon color="default" />
+          <MailIcon color='default' />
         </Badge>
         <Typography>{color}</Typography>
       </Stack>
@@ -70,9 +58,9 @@ export const Color = story(() => (
 /**
  * Use the `badgeContent` prop to display an icon.
  */
-export const Icon = story(args => (
-  <Badge badgeContent={<PriorityHigh />} color="error" {...args}>
-    <MailIcon color="default" />
+export const Icon = story((args) => (
+  <Badge badgeContent={<PriorityHigh />} color='error' {...args}>
+    <MailIcon color='default' />
   </Badge>
 ))
 
@@ -89,7 +77,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
  * Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](https://material-ui.com/customization/components/).
  */
 export const CustomizedBadges = story(() => (
-  <IconButton aria-label="cart" size="large">
+  <IconButton aria-label='cart' size='large'>
     <StyledBadge badgeContent={4}>
       <MailIcon />
     </StyledBadge>
@@ -127,33 +115,31 @@ export const BadgeVisibility = story(() => {
         </Badge>
         <ButtonGroup>
           <Button
-            aria-label="reduce"
+            aria-label='reduce'
             onClick={() => {
               setCount(Math.max(count - 1, 0))
             }}
           >
-            <RemoveIcon fontSize="small" />
+            <RemoveIcon fontSize='small' />
           </Button>
           <Button
-            aria-label="increase"
+            aria-label='increase'
             onClick={() => {
               setCount(count + 1)
             }}
           >
-            <AddIcon fontSize="small" />
+            <AddIcon fontSize='small' />
           </Button>
         </ButtonGroup>
       </div>
       <div>
-        <Badge variant="dot" invisible={invisible}>
+        <Badge variant='dot' invisible={invisible}>
           <MailIcon />
         </Badge>
         <FormControlLabel
           sx={{ color: 'text.primary' }}
-          control={
-            <Switch checked={!invisible} onChange={handleBadgeVisibility} />
-          }
-          label="Show Badge"
+          control={<Switch checked={!invisible} onChange={handleBadgeVisibility} />}
+          label='Show Badge'
         />
       </div>
     </Box>
@@ -164,7 +150,7 @@ export const BadgeVisibility = story(() => {
  * The badge auto hides with `badgeContent` is zero. You can override this with the `showZero` prop.
  */
 export const ShowZeroBadge = story(() => (
-  <Stack spacing={4} direction="row" sx={{ color: 'default.main' }}>
+  <Stack spacing={4} direction='row' sx={{ color: 'default.main' }}>
     <Badge badgeContent={0}>
       <MailIcon />
     </Badge>
@@ -178,7 +164,7 @@ export const ShowZeroBadge = story(() => (
  * You can use the `max` prop to cap the value of the badge content.
  */
 export const MaximumValue = story(() => (
-  <Stack spacing={8} direction="row" sx={{ color: 'default.main' }}>
+  <Stack spacing={8} direction='row' sx={{ color: 'default.main' }}>
     <Badge badgeContent={99}>
       <MailIcon />
     </Badge>
@@ -196,7 +182,7 @@ export const MaximumValue = story(() => (
  */
 export const DotBadge = story(() => (
   <Box sx={{ color: 'default.main' }}>
-    <Badge variant="dot">
+    <Badge variant='dot'>
       <MailIcon />
     </Badge>
   </Box>
@@ -204,24 +190,22 @@ export const DotBadge = story(() => (
 
 const shapeStyles = { bgcolor: 'primary.dark', width: 40, height: 40 }
 const shapeCircleStyles = { borderRadius: '50%' }
-const rectangle = <Box component="span" sx={shapeStyles} />
-const circle = (
-  <Box component="span" sx={{ ...shapeStyles, ...shapeCircleStyles }} />
-)
+const rectangle = <Box component='span' sx={shapeStyles} />
+const circle = <Box component='span' sx={{ ...shapeStyles, ...shapeCircleStyles }} />
 
 /**
  * You can use the `overlap` prop to place the badge relative to the corner of the wrapped element.
  */
 export const BadgeOverlap = story(() => (
-  <Stack spacing={3} direction="row">
-    <Badge badgeContent=" ">{rectangle}</Badge>
-    <Badge badgeContent=" " variant="dot">
+  <Stack spacing={3} direction='row'>
+    <Badge badgeContent=' '>{rectangle}</Badge>
+    <Badge badgeContent=' ' variant='dot'>
       {rectangle}
     </Badge>
-    <Badge overlap="circular" badgeContent=" ">
+    <Badge overlap='circular' badgeContent=' '>
       {circle}
     </Badge>
-    <Badge overlap="circular" badgeContent=" " variant="dot">
+    <Badge overlap='circular' badgeContent=' ' variant='dot'>
       {circle}
     </Badge>
   </Stack>
@@ -253,7 +237,7 @@ function notificationsLabel(count: number) {
  * You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`.
  */
 export const Accessibility = story(() => (
-  <IconButton aria-label={notificationsLabel(100)} size="large">
+  <IconButton aria-label={notificationsLabel(100)} size='large'>
     <Badge badgeContent={100}>
       <MailIcon />
     </Badge>

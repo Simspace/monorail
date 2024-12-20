@@ -20,7 +20,7 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Inputs/Checkbox', component: Checkbox }
 
-const Template = story<CheckboxProps>(args => <Checkbox {...args} />, {
+const Template = story<CheckboxProps>((args) => <Checkbox {...args} />, {
   args: { inputProps: { 'aria-label': 'Checkbox' } },
   muiName: 'MuiCheckbox',
 })
@@ -29,16 +29,9 @@ export const Default = story(Template)
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } }
 
-const colors = [
-  'default',
-  'primary',
-  'error',
-  'info',
-  'success',
-  'warning',
-] as const
+const colors = ['default', 'primary', 'error', 'info', 'success', 'warning'] as const
 
-export const Checkboxes = story<CheckboxProps>(args => {
+export const Checkboxes = story<CheckboxProps>((args) => {
   return (
     <div>
       <Checkbox {...label} defaultChecked {...args} />
@@ -49,26 +42,19 @@ export const Checkboxes = story<CheckboxProps>(args => {
   )
 })
 
-export const CheckboxLabels = story<CheckboxProps>(args => {
+export const CheckboxLabels = story<CheckboxProps>((args) => {
   return (
     <FormGroup>
-      <FormControlLabel
-        control={<Checkbox defaultChecked {...args} />}
-        label="Label"
-      />
-      <FormControlLabel
-        disabled
-        control={<Checkbox {...args} />}
-        label="Disabled"
-      />
+      <FormControlLabel control={<Checkbox defaultChecked {...args} />} label='Label' />
+      <FormControlLabel disabled control={<Checkbox {...args} />} label='Disabled' />
     </FormGroup>
   )
 })
 
-export const SizeCheckboxes = story<CheckboxProps>(args => {
+export const SizeCheckboxes = story<CheckboxProps>((args) => {
   return (
     <div>
-      <Checkbox {...label} defaultChecked size="small" {...args} />
+      <Checkbox {...label} defaultChecked size='small' {...args} />
       <Checkbox {...label} defaultChecked {...args} />
       <Checkbox
         {...label}
@@ -80,22 +66,16 @@ export const SizeCheckboxes = story<CheckboxProps>(args => {
   )
 })
 
-export const ColorCheckboxes = story<CheckboxProps>(args => {
+export const ColorCheckboxes = story<CheckboxProps>((args) => {
   return (
     <>
       <div>
-        {colors.map(color => (
-          <Checkbox
-            key={`checkbox-${color}`}
-            {...label}
-            color={color}
-            defaultChecked
-            {...args}
-          />
+        {colors.map((color) => (
+          <Checkbox key={`checkbox-${color}`} {...label} color={color} defaultChecked {...args} />
         ))}
       </div>
       <div>
-        {colors.map(color => (
+        {colors.map((color) => (
           <Checkbox
             key={`checkbox-${color}-disabled`}
             {...label}
@@ -110,26 +90,16 @@ export const ColorCheckboxes = story<CheckboxProps>(args => {
   )
 })
 
-export const IconCheckboxes = story<CheckboxProps>(args => {
+export const IconCheckboxes = story<CheckboxProps>((args) => {
   return (
     <div>
-      <Checkbox
-        {...label}
-        icon={<FavoriteBorder />}
-        checkedIcon={<Favorite />}
-        {...args}
-      />
-      <Checkbox
-        {...label}
-        icon={<BookmarkBorder />}
-        checkedIcon={<Bookmark />}
-        {...args}
-      />
+      <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} {...args} />
+      <Checkbox {...label} icon={<BookmarkBorder />} checkedIcon={<Bookmark />} {...args} />
     </div>
   )
 })
 
-export const ControlledCheckbox = story<CheckboxProps>(args => {
+export const ControlledCheckbox = story<CheckboxProps>((args) => {
   const [checked, setChecked] = React.useState(true)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -146,7 +116,7 @@ export const ControlledCheckbox = story<CheckboxProps>(args => {
   )
 })
 
-export const IndeterminateCheckbox = story<CheckboxProps>(args => {
+export const IndeterminateCheckbox = story<CheckboxProps>((args) => {
   const [checked, setChecked] = React.useState([true, false])
 
   const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -164,16 +134,12 @@ export const IndeterminateCheckbox = story<CheckboxProps>(args => {
   const children = (
     <Box sx={{ display: 'flex', flexDirection: 'column', ml: 6 }}>
       <FormControlLabel
-        label="Child 1"
-        control={
-          <Checkbox checked={checked[0]} onChange={handleChange2} {...args} />
-        }
+        label='Child 1'
+        control={<Checkbox checked={checked[0]} onChange={handleChange2} {...args} />}
       />
       <FormControlLabel
-        label="Child 2"
-        control={
-          <Checkbox checked={checked[1]} onChange={handleChange3} {...args} />
-        }
+        label='Child 2'
+        control={<Checkbox checked={checked[1]} onChange={handleChange3} {...args} />}
       />
     </Box>
   )
@@ -181,7 +147,7 @@ export const IndeterminateCheckbox = story<CheckboxProps>(args => {
   return (
     <div>
       <FormControlLabel
-        label="Parent"
+        label='Parent'
         control={
           <Checkbox
             checked={checked[0] && checked[1]}
@@ -196,7 +162,7 @@ export const IndeterminateCheckbox = story<CheckboxProps>(args => {
   )
 })
 
-export const CheckboxesGroup = story<CheckboxProps>(args => {
+export const CheckboxesGroup = story<CheckboxProps>((args) => {
   const [state, setState] = React.useState({
     gilad: true,
     jason: false,
@@ -211,90 +177,46 @@ export const CheckboxesGroup = story<CheckboxProps>(args => {
   }
 
   const { gilad, jason, antoine } = state
-  const error = [gilad, jason, antoine].filter(v => v).length !== 2
+  const error = [gilad, jason, antoine].filter((v) => v).length !== 2
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <FormControl sx={{ m: 6 }} component="fieldset" variant="standard">
-        <FormLabel component="legend">Assign responsibility</FormLabel>
+      <FormControl sx={{ m: 6 }} component='fieldset' variant='standard'>
+        <FormLabel component='legend'>Assign responsibility</FormLabel>
         <FormGroup>
           <FormControlLabel
-            control={
-              <Checkbox
-                checked={gilad}
-                onChange={handleChange}
-                name="gilad"
-                {...args}
-              />
-            }
-            label="Gilad Gray"
+            control={<Checkbox checked={gilad} onChange={handleChange} name='gilad' {...args} />}
+            label='Gilad Gray'
+          />
+          <FormControlLabel
+            control={<Checkbox checked={jason} onChange={handleChange} name='jason' {...args} />}
+            label='Jason Killian'
           />
           <FormControlLabel
             control={
-              <Checkbox
-                checked={jason}
-                onChange={handleChange}
-                name="jason"
-                {...args}
-              />
+              <Checkbox checked={antoine} onChange={handleChange} name='antoine' {...args} />
             }
-            label="Jason Killian"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={antoine}
-                onChange={handleChange}
-                name="antoine"
-                {...args}
-              />
-            }
-            label="Antoine Llorca"
+            label='Antoine Llorca'
           />
         </FormGroup>
         <FormHelperText>Be careful</FormHelperText>
       </FormControl>
-      <FormControl
-        required
-        error={error}
-        component="fieldset"
-        sx={{ m: 6 }}
-        variant="standard"
-      >
-        <FormLabel component="legend">Pick two</FormLabel>
+      <FormControl required error={error} component='fieldset' sx={{ m: 6 }} variant='standard'>
+        <FormLabel component='legend'>Pick two</FormLabel>
         <FormGroup>
           <FormControlLabel
-            control={
-              <Checkbox
-                checked={gilad}
-                onChange={handleChange}
-                name="gilad"
-                {...args}
-              />
-            }
-            label="Gilad Gray"
+            control={<Checkbox checked={gilad} onChange={handleChange} name='gilad' {...args} />}
+            label='Gilad Gray'
+          />
+          <FormControlLabel
+            control={<Checkbox checked={jason} onChange={handleChange} name='jason' {...args} />}
+            label='Jason Killian'
           />
           <FormControlLabel
             control={
-              <Checkbox
-                checked={jason}
-                onChange={handleChange}
-                name="jason"
-                {...args}
-              />
+              <Checkbox checked={antoine} onChange={handleChange} name='antoine' {...args} />
             }
-            label="Jason Killian"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={antoine}
-                onChange={handleChange}
-                name="antoine"
-                {...args}
-              />
-            }
-            label="Antoine Llorca"
+            label='Antoine Llorca'
           />
         </FormGroup>
         <FormHelperText>You can display an error</FormHelperText>
@@ -303,22 +225,22 @@ export const CheckboxesGroup = story<CheckboxProps>(args => {
   )
 })
 
-export const FormControlLabelPosition = story<CheckboxProps>(args => {
+export const FormControlLabelPosition = story<CheckboxProps>((args) => {
   return (
-    <FormControl component="fieldset">
-      <FormLabel component="legend">Label placement</FormLabel>
-      <FormGroup aria-label="position" row>
+    <FormControl component='fieldset'>
+      <FormLabel component='legend'>Label placement</FormLabel>
+      <FormGroup aria-label='position' row>
         <FormControlLabel
-          value="start"
+          value='start'
           control={<Checkbox {...args} />}
-          label="Start"
-          labelPlacement="start"
+          label='Start'
+          labelPlacement='start'
         />
         <FormControlLabel
-          value="end"
+          value='end'
           control={<Checkbox {...args} />}
-          label="End"
-          labelPlacement="end"
+          label='End'
+          labelPlacement='end'
         />
       </FormGroup>
     </FormControl>

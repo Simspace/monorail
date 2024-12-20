@@ -59,10 +59,7 @@ type LayoutParameter = {
 }
 
 export type Meta = StorybookMeta & A11yParameters
-export type Story<Args = DefaultArgs> = AnnotatedStoryFn<
-  ReactRenderer,
-  Partial<Args>
-> &
+export type Story<Args = DefaultArgs> = AnnotatedStoryFn<ReactRenderer, Partial<Args>> &
   A11yParameters
 
 /**
@@ -149,10 +146,7 @@ export const A11Y_ELEMENT__COMPONENT = {
 type StoryConfiguration<T> = {
   args?: Partial<T>
   argTypes?: StorybookArgTypes
-  parameters?: StorybookParameters &
-    A11yParameter &
-    DocsParameter &
-    LayoutParameter
+  parameters?: StorybookParameters & A11yParameter & DocsParameter & LayoutParameter
   storyName?: string
 }
 
@@ -219,9 +213,7 @@ export function story<T extends DefaultArgs>(
   }
   const NewStory = Template.bind({}) as Story<T>
   NewStory.args = { ...themeProps, ...Template.args, ...args } as Partial<T>
-  NewStory.argTypes = { ...Template.argTypes, ...argTypes } as Partial<
-    ArgTypes<Partial<T>>
-  >
+  NewStory.argTypes = { ...Template.argTypes, ...argTypes } as Partial<ArgTypes<Partial<T>>>
   NewStory.parameters = { ...Template.parameters, ...parameters }
 
   if (isNonEmptyString(storyName)) {

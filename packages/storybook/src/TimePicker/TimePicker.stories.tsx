@@ -11,14 +11,14 @@ export default {
   component: TimePicker,
 }
 
-const Template = story<TimePickerProps<Date>>(args => {
+const Template = story<TimePickerProps<Date>>((args) => {
   const [value, setValue] = React.useState<Date | null>(null)
 
   return (
     <TimePicker
-      label="Basic example"
+      label='Basic example'
       value={value}
-      onChange={newValue => {
+      onChange={(newValue) => {
         setValue(newValue)
       }}
       {...args}
@@ -33,12 +33,12 @@ export const Default = story(Template)
 
 export const NativeTimePicker = story<TimePickerProps>(() => {
   return (
-    <Box component="form" noValidate>
+    <Box component='form' noValidate>
       <TextField
-        id="time"
-        label="Alarm clock"
-        type="time"
-        defaultValue="07:30"
+        id='time'
+        label='Alarm clock'
+        type='time'
+        defaultValue='07:30'
         inputProps={{
           step: 300, // 5 min
         }}

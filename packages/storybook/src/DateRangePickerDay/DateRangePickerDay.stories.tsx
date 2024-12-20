@@ -50,9 +50,9 @@ const Template = story<DateRangePickerDayProps<Date>>(
     return (
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <StaticDateRangePicker
-          displayStaticWrapperAs="desktop"
+          displayStaticWrapperAs='desktop'
           value={value}
-          onChange={newValue => setValue(newValue)}
+          onChange={(newValue) => setValue(newValue)}
           slots={{
             day: StyledDateRangePickerDay,
           }}

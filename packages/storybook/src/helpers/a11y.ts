@@ -1,8 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import type {
-  Meta as StorybookMeta,
-  StoryFn as StorybookStory,
-} from '@storybook/react'
+import type { Meta as StorybookMeta, StoryFn as StorybookStory } from '@storybook/react'
 import { configureAxe } from 'jest-axe'
 
 import { renderStory } from './render.js'
@@ -47,9 +44,7 @@ function isStory(item: Story | Meta): item is Story {
   return typeof item === 'function'
 }
 
-function isA11yStoryEntry(
-  entry: [string, Story | Meta],
-): entry is [string, Story] {
+function isA11yStoryEntry(entry: [string, Story | Meta]): entry is [string, Story] {
   return isStory(entry[1]) && shouldCheckA11y(entry[1])
 }
 
@@ -78,9 +73,7 @@ function isValidTargetElement(targetElement?: string): targetElement is string {
 export async function generateA11yStoryTests(
   storyModule: Record<string, StorybookStory | StorybookMeta>,
 ): Promise<void>
-export async function generateA11yStoryTests(
-  storyModule: Record<string, Story | Meta>,
-) {
+export async function generateA11yStoryTests(storyModule: Record<string, Story | Meta>) {
   jest.setTimeout(60000)
   const storiesTargetElement = storyModule.default.parameters?.a11y?.element
 
@@ -88,17 +81,13 @@ export async function generateA11yStoryTests(
     .filter(isA11yStoryEntry)
     .forEach(([storyName, story]) => {
       it(`${storyName} story is accessible`, async () => {
-        const targetElement =
-          story.parameters?.a11y?.element ?? storiesTargetElement
+        const targetElement = story.parameters?.a11y?.element ?? storiesTargetElement
         const rules = story.parameters?.a11y?.config ?? {}
 
         const { baseElement, container } = renderStory(story)
 
         const results = isValidTargetElement(targetElement)
-          ? await axe(
-              baseElement.querySelector(targetElement) ?? baseElement,
-              rules,
-            )
+          ? await axe(baseElement.querySelector(targetElement) ?? baseElement, rules)
           : await axe(container, rules)
 
         expect(results).toHaveNoViolations()

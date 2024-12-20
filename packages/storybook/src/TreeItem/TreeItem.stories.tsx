@@ -2,12 +2,7 @@
 import React from 'react'
 
 import type { TreeItemProps } from '@monorail/components'
-import {
-  SimpleTreeView,
-  Stack,
-  TreeItem,
-  Typography,
-} from '@monorail/components'
+import { SimpleTreeView, Stack, TreeItem, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -17,9 +12,9 @@ export default {
 }
 
 const Template = story<TreeItemProps>(
-  args => (
+  (args) => (
     <SimpleTreeView>
-      <TreeItem itemId="a" {...args} />
+      <TreeItem itemId='a' {...args} />
     </SimpleTreeView>
   ),
   {
@@ -35,16 +30,16 @@ export const Default = story(Template, {
   args: { label: "I'm a tree item!", itemId: 'a' },
 })
 
-export const WithSecondaryLabel = story(args => (
+export const WithSecondaryLabel = story((args) => (
   <SimpleTreeView>
     <TreeItem
-      itemId="a"
+      itemId='a'
       label={
-        <Stack direction="row" alignItems="baseline">
-          <Typography variant="inherit" flexGrow={1}>
+        <Stack direction='row' alignItems='baseline'>
+          <Typography variant='inherit' flexGrow={1}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit
           </Typography>
-          <Typography variant="caption" color="text.secondary" ml={2}>
+          <Typography variant='caption' color='text.secondary' ml={2}>
             99
           </Typography>
         </Stack>
@@ -55,16 +50,16 @@ export const WithSecondaryLabel = story(args => (
   </SimpleTreeView>
 ))
 
-export const TruncatedLabel = story(args => (
+export const TruncatedLabel = story((args) => (
   <SimpleTreeView>
     <TreeItem
-      itemId="a"
+      itemId='a'
       label={
-        <Stack direction="row" alignItems="baseline" minWidth={0}>
-          <Typography variant="inherit" flexGrow={1} lineClamp={1}>
+        <Stack direction='row' alignItems='baseline' minWidth={0}>
+          <Typography variant='inherit' flexGrow={1} lineClamp={1}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit
           </Typography>
-          <Typography variant="caption" color="text.secondary" ml={2}>
+          <Typography variant='caption' color='text.secondary' ml={2}>
             99
           </Typography>
         </Stack>

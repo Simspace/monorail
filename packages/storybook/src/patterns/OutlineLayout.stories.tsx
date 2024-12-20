@@ -28,7 +28,7 @@ function TabPanelV(props: TabPanelProps) {
 
   return (
     <div
-      role="tabpanel"
+      role='tabpanel'
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
@@ -53,7 +53,7 @@ function a11yPropsV(index: number) {
 /**
  * To make vertical tabs instead of default horizontal ones, there is `orientation="vertical"`:
  */
-export const VerticalTabs = story<TabsProps>(args => {
+export const VerticalTabs = story<TabsProps>((args) => {
   const [value, setValue] = React.useState(0)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -70,21 +70,21 @@ export const VerticalTabs = story<TabsProps>(args => {
       }}
     >
       <Tabs
-        orientation="vertical"
-        variant="scrollable"
+        orientation='vertical'
+        variant='scrollable'
         value={value}
         onChange={handleChange}
-        aria-label="Vertical tabs example"
+        aria-label='Vertical tabs example'
         sx={{ borderRight: 1, borderColor: 'divider' }}
         {...args}
       >
-        <Tab label="Item One" {...a11yPropsV(0)} />
-        <Tab label="Item Two" {...a11yPropsV(1)} />
-        <Tab label="Item Three" {...a11yPropsV(2)} />
-        <Tab label="Item Four" {...a11yPropsV(3)} />
-        <Tab label="Item Five" {...a11yPropsV(4)} />
-        <Tab label="Item Six" {...a11yPropsV(5)} />
-        <Tab label="Item Seven" {...a11yPropsV(6)} />
+        <Tab label='Item One' {...a11yPropsV(0)} />
+        <Tab label='Item Two' {...a11yPropsV(1)} />
+        <Tab label='Item Three' {...a11yPropsV(2)} />
+        <Tab label='Item Four' {...a11yPropsV(3)} />
+        <Tab label='Item Five' {...a11yPropsV(4)} />
+        <Tab label='Item Six' {...a11yPropsV(5)} />
+        <Tab label='Item Seven' {...a11yPropsV(6)} />
       </Tabs>
       <TabPanelV value={value} index={0}>
         Item One

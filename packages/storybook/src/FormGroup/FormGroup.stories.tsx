@@ -11,9 +11,9 @@ export default { title: 'Inputs/FormGroup', component: FormGroup }
 const Template = story<FormGroupProps>(
   (args: FormGroupProps) => (
     <FormGroup {...args}>
-      <FormControlLabel control={<Checkbox />} label="Option 1" />
-      <FormControlLabel control={<Checkbox />} label="Option 2" />
-      <FormControlLabel control={<Checkbox />} label="Option 3" />
+      <FormControlLabel control={<Checkbox />} label='Option 1' />
+      <FormControlLabel control={<Checkbox />} label='Option 2' />
+      <FormControlLabel control={<Checkbox />} label='Option 3' />
     </FormGroup>
   ),
   {
