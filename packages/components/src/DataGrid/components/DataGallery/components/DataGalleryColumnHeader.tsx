@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+ 
 import React from 'react'
 import type { GridStateColDef } from '@mui/x-data-grid/internals'
 import clsx from 'clsx'

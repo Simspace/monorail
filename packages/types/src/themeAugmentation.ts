@@ -1,7 +1,3 @@
-// eslint-disable-next-line no-restricted-imports
-import type { Color } from '@mui/material'
-import * as _MUI from '@mui/material'
-
 // This file is intended to house all our interface extensions/module augmentations for the MUI theme types.
 //
 // This includes:
@@ -13,22 +9,22 @@ import * as _MUI from '@mui/material'
 // provided by the theme creator and then the actual output theme types used by the theme consumer.
 
 export type ColorShades = {
-  50?: string
-  100: string
-  200: string
-  300: string
-  400: string
-  500: string
-  600: string
-  700: string
-  800?: string
-  900?: string
-  950?: string
-  A100?: string
-  A200?: string
-  A400?: string
-  A700?: string
-}
+  50?: string;
+  100: string;
+  200: string;
+  300: string;
+  400: string;
+  500: string;
+  600: string;
+  700: string;
+  800?: string;
+  900?: string;
+  950?: string;
+  A100?: string;
+  A200?: string;
+  A400?: string;
+  A700?: string;
+};
 
 export enum ThemeName {
   ClassicLight = 'classicLight',
@@ -43,11 +39,11 @@ export enum ThemeName {
 
 declare module '@mui/material/styles/createTheme' {
   interface ThemeOptions {
-    name?: string
+    name?: string;
   }
 
   interface Theme {
-    name: ThemeName
+    name: ThemeName;
   }
 }
 
@@ -62,63 +58,63 @@ declare module '@mui/material/styles/createPalette' {
      * Tertiary colors. Named `default` to mirror MUI's color variant.
      * @see IconButton,Badge,Checkbox,Radio,Chip,Progress
      * */
-    default: PaletteColor
+    default: PaletteColor;
 
     score: {
-      high: PaletteColor
-      highModerate: PaletteColor
-      moderate: PaletteColor
-      lowModerate: PaletteColor
-      low: PaletteColor
-    }
+      high: PaletteColor;
+      highModerate: PaletteColor;
+      moderate: PaletteColor;
+      lowModerate: PaletteColor;
+      low: PaletteColor;
+    };
 
     tiers: {
-      one: string
-      two: string
-      three: string
-      four: string
-    }
+      one: string;
+      two: string;
+      three: string;
+      four: string;
+    };
 
     chart: {
-      blue: Color
-      orange: Color
-      teal: Color
-      fuchsia: Color
-      purple: Color
-    }
+      blue: Color;
+      orange: Color;
+      teal: Color;
+      fuchsia: Color;
+      purple: Color;
+    };
 
     appIcon: {
       orange: {
-        main: string
-      }
+        main: string;
+      };
       blue: {
-        main: string
-        dark: string
-      }
-    }
+        main: string;
+        dark: string;
+      };
+    };
     illustration: {
       orange: {
-        light: string
-        dark: string
-      }
+        light: string;
+        dark: string;
+      };
       blue: {
-        light: string
-        main: string
-      }
-    }
+        light: string;
+        main: string;
+      };
+    };
 
     /** Color token for `Rating` when filled */
-    rating: string
+    rating: string;
     /** Commonly used for outlined input fields */
-    outlinedBorder: string
-    filledInputBackground: string
-    standardInputLine: string
+    outlinedBorder: string;
+    filledInputBackground: string;
+    standardInputLine: string;
     /** Background color for the `Tooltip` component */
-    tooltip: string
+    tooltip: string;
     /** Background color for the `Snackbar` component if no children are provided */
-    snackbar: string
+    snackbar: string;
     /** Background color for the Backdrop component (AKA "scrim"). */
-    backdropOverlay: string
+    backdropOverlay: string;
   }
 
   /**
@@ -131,63 +127,63 @@ declare module '@mui/material/styles/createPalette' {
      * Tertiary colors. Named `default` to mirror MUI's color variant.
      * @see IconButton,Badge,Checkbox,Radio,Chip,Progress
      * */
-    default?: PaletteColorOptions
+    default?: PaletteColorOptions;
 
     score?: Partial<{
-      high: SimplePaletteColorOptions
-      highModerate: SimplePaletteColorOptions
-      moderate: SimplePaletteColorOptions
-      lowModerate: SimplePaletteColorOptions
-      low: SimplePaletteColorOptions
-    }>
+      high: SimplePaletteColorOptions;
+      highModerate: SimplePaletteColorOptions;
+      moderate: SimplePaletteColorOptions;
+      lowModerate: SimplePaletteColorOptions;
+      low: SimplePaletteColorOptions;
+    }>;
 
     tiers?: Partial<{
-      one: string
-      two: string
-      three: string
-      four: string
-    }>
+      one: string;
+      two: string;
+      three: string;
+      four: string;
+    }>;
 
     chart?: Partial<{
-      blue: PaletteColorOptions | Record<string, string>
-      orange: PaletteColorOptions | Record<string, string>
-      teal: PaletteColorOptions | Record<string, string>
-      fuchsia: PaletteColorOptions | Record<string, string>
-      purple: PaletteColorOptions | Record<string, string>
-    }>
+      blue: PaletteColorOptions | Record<string, string>;
+      orange: PaletteColorOptions | Record<string, string>;
+      teal: PaletteColorOptions | Record<string, string>;
+      fuchsia: PaletteColorOptions | Record<string, string>;
+      purple: PaletteColorOptions | Record<string, string>;
+    }>;
 
     appIcon?: {
       orange: {
-        main: string
-      }
+        main: string;
+      };
       blue: {
-        main: string
-        dark: string
-      }
-    }
+        main: string;
+        dark: string;
+      };
+    };
     illustration?: {
       orange: {
-        light: string
-        dark: string
-      }
+        light: string;
+        dark: string;
+      };
       blue: {
-        light: string
-        main: string
-      }
-    }
+        light: string;
+        main: string;
+      };
+    };
 
     /** Color token for `Rating` when filled */
-    rating?: string
+    rating?: string;
     /** Commonly used for outlined input fields */
-    outlinedBorder?: string
-    filledInputBackground?: string
-    standardInputLine?: string
+    outlinedBorder?: string;
+    filledInputBackground?: string;
+    standardInputLine?: string;
     /** Background color for the `Tooltip` component */
-    tooltip?: string
+    tooltip?: string;
     /** Background color for the `Snackbar` component if no children are provided */
-    snackbar?: string
+    snackbar?: string;
     /** Background color for the Backdrop component (AKA "scrim"). */
-    backdropOverlay?: string
+    backdropOverlay?: string;
   }
 
   interface PaletteColor {
@@ -200,46 +196,46 @@ declare module '@mui/material/styles/createPalette' {
      * This is a replacement for `@mui/material/colors` since we aren't able to directly modify its color scale.
      *
      */
-    shades: ColorShades
+    shades: ColorShades;
     /** Shade: 700 (300 for Orange) */
-    hover: string
+    hover: string;
     /** Shade: 800 (400 for Orange) */
-    active: string
+    active: string;
     /**
      * Subdued color scheme for less prominent elements.
      * Commonly used for `outlined` and `text` (chromeless) variants.
      */
     lowEmphasis: {
       /** Shade: 50 */
-      light: string
+      light: string;
       /** Shade: 100 */
-      main: string
+      main: string;
       /** Shade: 300 */
-      dark: string
+      dark: string;
       /** Shade: 600 */
-      contrastText: string
+      contrastText: string;
       /** Shade: 100 */
-      hover: string
+      hover: string;
       /** Shade: 300 */
-      active: string
-    }
+      active: string;
+    };
     border: {
       /** Shade: 400 */
-      light: string
+      light: string;
       /** Shade: 600 (500 for Orange) */
-      main: string
+      main: string;
       /** Shade: 800 */
-      dark: string
-    }
+      dark: string;
+    };
     /**
      * Pre-defined inner and outer focus ring color pairing
      */
     focusRing: {
       /** Shade: 800 */
-      inner: string
+      inner: string;
       /** Shade: 400 */
-      outer: string
-    }
+      outer: string;
+    };
   }
 
   interface SimplePaletteColorOptions {
@@ -252,116 +248,116 @@ declare module '@mui/material/styles/createPalette' {
      * This is a replacement for `@mui/material/colors` since we aren't able to directly modify its color scale.
      *
      */
-    shades?: ColorShades
+    shades?: ColorShades;
     /** Shade: 700 (300 for Orange) */
-    hover?: string
+    hover?: string;
     /** Shade: 800 (400 for Orange) */
-    active?: string
+    active?: string;
     /**
      * Subdued color scheme for less prominent elements.
      * Commonly used for `outlined` and `text` (chromeless) variants.
      */
     lowEmphasis?: Partial<{
       /** Shade: 50 */
-      light: string
+      light: string;
       /** Shade: 100 */
-      main: string
+      main: string;
       /** Shade: 300 */
-      dark: string
+      dark: string;
       /** Shade: 600 */
-      contrastText: string
+      contrastText: string;
       /** Shade: 100 */
-      hover: string
+      hover: string;
       /** Shade: 300 */
-      active: string
-    }>
+      active: string;
+    }>;
     border?: Partial<{
       /** Shade: 400 */
-      light: string
+      light: string;
       /** Shade: 600 (500 for Orange) */
-      main: string
+      main: string;
       /** Shade: 800 */
-      dark: string
-    }>
+      dark: string;
+    }>;
     /**
      * Pre-defined inner and outer focus ring color pairing
      */
     focusRing?: Partial<{
       /** Shade: 800 */
-      inner: string
+      inner: string;
       /** Shade: 400 */
-      outer: string
-    }>
+      outer: string;
+    }>;
   }
 
   interface TypeText {
-    link: string
-    placeholder: string
+    link: string;
+    placeholder: string;
   }
 }
 
 declare module '@mui/material/styles/createTypography' {
   interface Typography {
-    data1: React.CSSProperties
-    data2: React.CSSProperties
-    data3: React.CSSProperties
-    monoBody1: React.CSSProperties
-    monoBody2: React.CSSProperties
-    monoBody3: React.CSSProperties
-    alertTitle: React.CSSProperties
-    avatarInitials: React.CSSProperties
-    badgeLabel: React.CSSProperties
-    bottomNavActiveLabel: React.CSSProperties
-    buttonLarge: React.CSSProperties
-    buttonMedium: React.CSSProperties
-    buttonSmall: React.CSSProperties
-    chip: React.CSSProperties
-    inputLabel: React.CSSProperties
-    helperText: React.CSSProperties
-    inputText: React.CSSProperties
-    tableHeader: React.CSSProperties
-    listSubheader: React.CSSProperties
-    menuItem: React.CSSProperties
-    menuItemDense: React.CSSProperties
-    tabActive: React.CSSProperties
-    tabInactive: React.CSSProperties
-    tooltip: React.CSSProperties
+    data1: React.CSSProperties;
+    data2: React.CSSProperties;
+    data3: React.CSSProperties;
+    monoBody1: React.CSSProperties;
+    monoBody2: React.CSSProperties;
+    monoBody3: React.CSSProperties;
+    alertTitle: React.CSSProperties;
+    avatarInitials: React.CSSProperties;
+    badgeLabel: React.CSSProperties;
+    bottomNavActiveLabel: React.CSSProperties;
+    buttonLarge: React.CSSProperties;
+    buttonMedium: React.CSSProperties;
+    buttonSmall: React.CSSProperties;
+    chip: React.CSSProperties;
+    inputLabel: React.CSSProperties;
+    helperText: React.CSSProperties;
+    inputText: React.CSSProperties;
+    tableHeader: React.CSSProperties;
+    listSubheader: React.CSSProperties;
+    menuItem: React.CSSProperties;
+    menuItemDense: React.CSSProperties;
+    tabActive: React.CSSProperties;
+    tabInactive: React.CSSProperties;
+    tooltip: React.CSSProperties;
   }
 
   export interface FontStyle {
-    fontWeightExtraLight: React.CSSProperties['fontWeight']
-    fontWeightSemiBold: React.CSSProperties['fontWeight']
-    fontWeightBlack: React.CSSProperties['fontWeight']
+    fontWeightExtraLight: React.CSSProperties['fontWeight'];
+    fontWeightSemiBold: React.CSSProperties['fontWeight'];
+    fontWeightBlack: React.CSSProperties['fontWeight'];
   }
 
   // allow configuration using `createTheme`
   interface TypographyOptions {
-    data1?: React.CSSProperties
-    data2?: React.CSSProperties
-    data3?: React.CSSProperties
-    monoBody1?: React.CSSProperties
-    monoBody2?: React.CSSProperties
-    monoBody3?: React.CSSProperties
-    alertTitle?: React.CSSProperties
-    avatarInitials?: React.CSSProperties
-    badgeLabel?: React.CSSProperties
-    bottomNavActiveLabel?: React.CSSProperties
-    buttonLarge?: React.CSSProperties
-    buttonMedium?: React.CSSProperties
-    buttonSmall?: React.CSSProperties
-    chip?: React.CSSProperties
-    inputLabel?: React.CSSProperties
-    helperText?: React.CSSProperties
-    inputText?: React.CSSProperties
-    tableHeader?: React.CSSProperties
-    listSubheader?: React.CSSProperties
-    menuItem?: React.CSSProperties
-    menuItemDense?: React.CSSProperties
-    tabActive?: React.CSSProperties
-    tabInactive?: React.CSSProperties
-    tooltip?: React.CSSProperties
-    fontWeightExtraLight?: React.CSSProperties['fontWeight']
-    fontWeightSemiBold?: React.CSSProperties['fontWeight']
-    fontWeightBlack?: React.CSSProperties['fontWeight']
+    data1?: React.CSSProperties;
+    data2?: React.CSSProperties;
+    data3?: React.CSSProperties;
+    monoBody1?: React.CSSProperties;
+    monoBody2?: React.CSSProperties;
+    monoBody3?: React.CSSProperties;
+    alertTitle?: React.CSSProperties;
+    avatarInitials?: React.CSSProperties;
+    badgeLabel?: React.CSSProperties;
+    bottomNavActiveLabel?: React.CSSProperties;
+    buttonLarge?: React.CSSProperties;
+    buttonMedium?: React.CSSProperties;
+    buttonSmall?: React.CSSProperties;
+    chip?: React.CSSProperties;
+    inputLabel?: React.CSSProperties;
+    helperText?: React.CSSProperties;
+    inputText?: React.CSSProperties;
+    tableHeader?: React.CSSProperties;
+    listSubheader?: React.CSSProperties;
+    menuItem?: React.CSSProperties;
+    menuItemDense?: React.CSSProperties;
+    tabActive?: React.CSSProperties;
+    tabInactive?: React.CSSProperties;
+    tooltip?: React.CSSProperties;
+    fontWeightExtraLight?: React.CSSProperties['fontWeight'];
+    fontWeightSemiBold?: React.CSSProperties['fontWeight'];
+    fontWeightBlack?: React.CSSProperties['fontWeight'];
   }
 }

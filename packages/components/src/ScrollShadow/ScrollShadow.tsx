@@ -150,8 +150,8 @@ export const ScrollShadow = React.forwardRef(function ScrollShadow(
     if (slotProps.scrollContainer?.ref !== undefined) {
       if (typeof slotProps.scrollContainer.ref === 'function') {
         slotProps.scrollContainer.ref(element)
-      } else {
-        // @ts-expect-error
+      } else if (typeof slotProps.scrollContainer.ref === 'object') {
+        // @ts-expect-error -- assigning to "readonly" property
         slotProps.scrollContainer.ref.current = element
       }
     }

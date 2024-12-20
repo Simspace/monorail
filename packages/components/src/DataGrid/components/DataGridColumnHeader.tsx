@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+ 
 import React from 'react'
 import MoreVert from '@mui/icons-material/MoreVert'
 import Sort from '@mui/icons-material/Sort'
@@ -21,7 +21,6 @@ import { GridNumericFilter } from '../filters/GridNumericFilter.js'
 import { TextFilter } from '../filters/TextFilter.js'
 import type {
   GridColDef,
-  GridColumnHeaderEventLookup,
   GridColumnHeaderParams,
   GridEvents,
   GridSortDirection,
@@ -90,9 +89,9 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
     ) !== undefined
 
   const publishEvent = React.useCallback(
-    function <E extends keyof GridColumnHeaderEventLookup>(
+    <E extends GridEvents>(
       eventName: E,
-    ): (event: React.SyntheticEvent) => void {
+    ): (event: React.SyntheticEvent) => void => {
       return event => {
         if (!event.currentTarget.contains(event.target as Element)) {
           return
@@ -131,7 +130,7 @@ export function DataGridColumnHeader(props: DataGridColumnHeaderProps) {
   }, [colDef, rootProps.filter])
 
   const headerActions = React.useMemo(() => {
-    // eslint-disable-next-line eqeqeq
+     
     if (colDef.headerActions == null) {
       return null
     }

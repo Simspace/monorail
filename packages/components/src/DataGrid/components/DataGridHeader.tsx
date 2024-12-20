@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+ 
 import React from 'react'
 import { useGridPrivateApiContext } from '@mui/x-data-grid/internals'
 import { useGridRootProps } from '@mui/x-data-grid-premium'

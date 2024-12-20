@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+ 
 import { DialogContent as MuiDialogContent, styled } from '@mui/material'
 
 import { excludeProps } from '@monorail/utils'
@@ -28,8 +28,7 @@ export const DialogContent = styled(MuiDialogContent, {
   }),
 })) as typeof MuiDialogContent
 
-// @ts-expect-error
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+// @ts-expect-error -- assigning muiName
 DialogContent.muiName = MuiDialogContent.muiName
 
 export * from '@mui/material/DialogContent'

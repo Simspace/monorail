@@ -6,7 +6,7 @@ export const textFilterOperator: GridFilterOperator = {
   label: 'Text',
   value: 'text',
   getApplyFilterFn: filterItem => {
-    // eslint-disable-next-line eqeqeq
+     
     if (filterItem.value == null) {
       return null
     }

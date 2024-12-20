@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+ 
 import React from 'react'
 import { FixedSizeGrid } from 'react-window'
 import { getTotalHeaderHeight } from '@mui/x-data-grid/hooks/features/columns/gridColumnsUtils'

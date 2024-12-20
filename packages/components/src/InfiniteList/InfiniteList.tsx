@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable eqeqeq */
+ 
 import React from 'react'
 import type {
   FixedSizeListProps,

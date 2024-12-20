@@ -1,5 +1,4 @@
 import type { CircularProgressProps as MuiCircularProgressProps } from '@mui/material'
-// eslint-disable-next-line no-duplicate-imports
 import { CircularProgress as MuiCircularProgress } from '@mui/material'
 
 declare module '@mui/material/CircularProgress' {

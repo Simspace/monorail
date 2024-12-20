@@ -23,7 +23,7 @@ export function DataGridRow(props: GridRowProps) {
       if (!rowNode || rowNode.type !== 'group' || !isRowGroup) {
         return
       }
-      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+       
       apiRef.current.setRowChildrenExpansion(rowId, !rowNode.childrenExpanded)
     },
     [apiRef, rowId, rowNode, isRowGroup],

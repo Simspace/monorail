@@ -52,8 +52,7 @@ export const Button = React.forwardRef(
   >
 >
 
-// @ts-expect-error
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+// @ts-expect-error -- assigning muiName
 Button.muiName = MuiButton.muiName
 
 export * from '@mui/material/Button'

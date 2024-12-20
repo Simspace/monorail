@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+ 
 import React from 'react'
 import createCache from '@emotion/cache'
 import type { EmotionCache } from '@emotion/react'

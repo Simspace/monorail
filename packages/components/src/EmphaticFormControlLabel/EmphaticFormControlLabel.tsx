@@ -1,5 +1,5 @@
-/* eslint-disable eqeqeq */
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+ 
+ 
 import React from 'react'
 import type { TypographyProps } from '@mui/material'
 import {

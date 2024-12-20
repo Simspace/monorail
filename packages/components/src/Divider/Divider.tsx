@@ -41,8 +41,7 @@ export const Divider = React.forwardRef(
   ),
 ) as OverridableComponent<DividerTypeMap<DividerExtraProps, 'hr'>>
 
-// @ts-expect-error
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+// @ts-expect-error -- assigning muiName
 Divider.muiName = MuiDivider.muiName
 
 export * from '@mui/material/Divider'

@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/unified-signatures */
-/* eslint-disable eqeqeq */
+ 
+ 
 import React from 'react'
 import { Close } from '@mui/icons-material'
 import type { CSSObject } from '@mui/material'

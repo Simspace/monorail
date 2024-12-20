@@ -7,7 +7,7 @@ import type { CSSObject, SxProps, SystemStyleObject } from '@mui/system'
  * @param styles An `SxProps` value
  * @returns A CSS object
  */
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
+ 
 export const sx =
   (styles: SxProps<Theme>): (({ theme }: { theme: Theme }) => CSSObject) =>
   ({ theme }) =>

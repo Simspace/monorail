@@ -18,6 +18,9 @@
     },
     {
       "path": "../themes/tsconfig.build.json"
+    },
+    {
+      "path": "./tsconfig.configs.json"
     }
   ]
 }

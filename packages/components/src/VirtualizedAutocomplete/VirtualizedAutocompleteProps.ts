@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+ 
 import type { GroupProps, ItemProps, VirtuosoProps } from 'react-virtuoso'
 import type { SxProps, Theme } from '@mui/material'
 import type { ListProps } from '@mui/material/List'

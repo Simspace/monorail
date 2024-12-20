@@ -67,8 +67,7 @@ export const Typography = TypographyRoot as OverridableComponent<
   TypographyTypeMap<TypographyExtraProps>
 >
 
-// @ts-expect-error
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+// @ts-expect-error -- assignin muiName
 Typography.muiName = MuiTypography.muiName
 
 export * from '@mui/material/Typography'

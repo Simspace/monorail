@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-restricted-imports
+ 
 import type {} from '@mui/lab/themeAugmentation'
 import type { Theme, ThemeOptions } from '@mui/material'
 import type {} from '@mui/x-data-grid-pro/themeAugmentation'

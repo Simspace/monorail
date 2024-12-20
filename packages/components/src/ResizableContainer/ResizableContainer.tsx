@@ -30,6 +30,7 @@ export const ResizableContainer = React.forwardRef(function ResizableContainer(
     name: 'MonorailResizableContainer',
   })
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { children, className, apiRef: apiRefProp, ref: _, direction, ...others } = props
 
   const forceUpdaters = React.useRef(new Set<() => void>())

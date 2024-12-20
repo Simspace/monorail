@@ -6,6 +6,7 @@
   "repository": "https://gitlab.com/simspace/monorail",
   "license": "UNLICENSED",
   "author": "SimSpace",
+  "type": "module",
   "scripts": {
     "build": "tsc -b ./tsconfig.json",
     "build-storybook": "storybook build -s assets",

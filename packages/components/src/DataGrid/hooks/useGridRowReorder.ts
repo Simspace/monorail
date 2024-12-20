@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+ 
+ 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react'
 import { unstable_composeClasses as composeClasses } from '@mui/utils'

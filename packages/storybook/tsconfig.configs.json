@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "emitDeclarationOnly": true,
+    "lib": ["DOM", "ESNext"],
+    "outDir": "build/_configs",
+    "allowJs": true
+  },
+  "include": ["./*.ts", "./*.tsx", "./*.js", "./*.jsx", "./vitest/*.ts"],
+}

@@ -95,8 +95,7 @@ export const LinearProgress = React.forwardRef((inProps, ref) => {
   return linearProgressComponent
 }) as (props: LinearProgressProps) => JSX.Element
 
-// @ts-expect-error
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+// @ts-expect-error -- assigning muiName
 LinearProgress.muiName = MuiLinearProgress.muiName
 
 export * from '@mui/material/LinearProgress'

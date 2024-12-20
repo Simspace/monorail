@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+ 
 import React from 'react'
 import type { ListItemTextProps as MuiListItemTextProps } from '@mui/material'
 import { ListItemText as MuiListItemText } from '@mui/material'
