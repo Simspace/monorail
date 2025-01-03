@@ -166,8 +166,8 @@ export const DisableRowSelection = story<DataGridProps>((args) => {
       <DataGrid
         {...args}
         {...data}
-        isRowSelectable={(params: GridRowParams<{ quantity: number }>) =>
-          params.row.quantity > 50000
+        isRowSelectable={(params: GridRowParams) =>
+          (params.row as { quantity: number }).quantity > 50000
         }
         checkboxSelection
       />
