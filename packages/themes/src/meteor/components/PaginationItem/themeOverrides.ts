@@ -52,7 +52,7 @@ export const MonorailPaginationItemOverrides: Components<Theme>['MuiPaginationIt
           },
         }
       },
-      previousNext: ({theme}) => ({
+      previousNext: ({ theme }) => ({
         color: theme.palette.secondary.lowEmphasis.contrastText,
       }),
       ellipsis: ({ theme }) => ({
