@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "build": "yarn org:build",
-    "build-pack": "yarn workspaces -Atp  run build-pack",
+    "build-pack": "yarn workspaces foreach -Atp run build-pack",
     "build-storybook": "yarn workspace @monorail/storybook build-storybook --output-dir storybook",
     "build-playroom": "NODE_OPTIONS=\"--max-old-space-size=8192\" yarn playroom build",
     "clean": "yarn workspaces foreach -Ap run clean",
@@ -48,6 +48,7 @@
     "@0x706b/eslint-plugin-module-specifier-extensions": "^0.2.0",
     "@babel/cli": "^7.21.5",
     "@babel/core": "^7.22.1",
+    "@changesets/cli": "^2.27.11",
     "@eslint/compat": "^1.2.4",
     "@fncts/codegen": "^0.0.22",
     "@simspace/config-eslint": "^1.0.5",
@@ -79,5 +80,5 @@
     "typescript-eslint": "^8.18.1",
     "ultra-runner": "^3.10.5"
   },
-  "packageManager": "yarn@4.5.3"
+  "packageManager": "yarn@4.6.0"
 }

@@ -8,7 +8,7 @@
   "author": "SimSpace",
   "type": "module",
   "scripts": {
-    "build": "tsc -b ./tsconfig.json",
+    "build": "yarn org:tsc -b ./tsconfig.json",
     "build-storybook": "storybook build -s assets",
     "clean": "rm -rf build",
     "eslint": "NODE_OPTIONS=\"--max-old-space-size=8192\" yarn org:eslint \"src/**/*.{js,ts,tsx}\"",

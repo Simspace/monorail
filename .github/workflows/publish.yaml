@@ -1,0 +1,79 @@
+name: Changesets Packages Publishing
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check:
+    uses: ./.github/workflows/check.yaml
+    secrets: inherit
+
+  publish:
+    name: Publish
+    runs-on: ubuntu-24.04
+    needs: [check] # only run after all other jobs have completed
+    steps:
+      - name: Load Secrets
+        id: op-load-secrets
+        uses: 1password/load-secrets-action@v1
+        with:
+          export-env: false
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          GH_TOKEN: op://github-actions/gh-creds/GH_TOKEN
+          GH_USERNAME: op://github-actions/gh-creds/GH_USERNAME
+          GH_EMAIL: op://github-actions/gh-creds/GH_EMAIL
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ steps.op-load-secrets.outputs.GH_TOKEN  }}
+
+      - name: Download dist artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-artifacts
+          path: packages/
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.11.1"
+          cache: "yarn"
+          cache-dependency-path: ./yarn.lock
+
+      - name: Restore yarn cache
+        uses: actions/cache@v4
+        with:
+          path: .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install
+        run: |
+          yarn install --immutable
+
+      - name: Set NPM Auth Token
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${{ steps.op-load-secrets.outputs.GH_TOKEN }}" >> .npmrc
+
+      - name: Set github bot user
+        run: |
+          git config --local user.email "${{ steps.op-load-secrets.outputs.GH_EMAIL }}"
+          git config --local user.name "${{ steps.op-load-secrets.outputs.GH_USERNAME }}"
+
+      - name: Changeset
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: node .github/changeset-version.cjs
+          publish: yarn changeset publish
+          setupGitUser: 'false'
+        env:
+          GITHUB_TOKEN: ${{ steps.op-load-secrets.outputs.GH_TOKEN }}
+          NPM_TOKEN: ${{ steps.op-load-secrets.outputs.GH_TOKEN }}
+

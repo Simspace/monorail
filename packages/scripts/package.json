@@ -15,10 +15,8 @@
     "format": "prettier --list-different -w src/**/*.ts && eslint --fix src/**/*.ts"
   },
   "devDependencies": {
-    "@monorail/config": "workspace:*",
-    "@monorail/eslint-config": "workspace:*",
-    "@yarnpkg/cli": "4.0.0-rc.27",
-    "@yarnpkg/core": "4.0.0-rc.27",
+    "@yarnpkg/cli": "4.6.0",
+    "@yarnpkg/core": "4.2.0",
     "typescript": "^5.7.2"
   }
 }
