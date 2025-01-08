@@ -17,19 +17,16 @@ export default {
   },
 }
 
-const Template = story<CardMediaProps<'img'>>(
-  args => <CardMedia component="img" {...args} />,
-  {
-    args: {
-      image: images.paella.url,
-      alt: 'An image of a paella',
-      sx: {
-        height: 160,
-      },
+const Template = story<CardMediaProps<'img'>>((args) => <CardMedia component='img' {...args} />, {
+  args: {
+    image: images.paella.url,
+    alt: 'An image of a paella',
+    sx: {
+      height: 160,
     },
-    muiName: 'MuiCardMedia',
   },
-)
+  muiName: 'MuiCardMedia',
+})
 
 export const Default = story(Template, {
   parameters: {

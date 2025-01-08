@@ -12,17 +12,15 @@ export default {
 }
 
 const Template = story<TimeClockProps<Date>>(
-  args => {
-    const [date, setDate] = React.useState<Date>(
-      new Date('2021-01-01T12:34:00.000Z'),
-    )
+  (args) => {
+    const [date, setDate] = React.useState<Date>(new Date('2021-01-01T12:34:00.000Z'))
 
     return (
       <Stack spacing={2} direction={'row'}>
         <Typography>{`${date.getHours()}:${date.getMinutes()}`}</Typography>
         <TimeClock
           value={date}
-          onChange={newDate => newDate !== null && setDate(newDate)}
+          onChange={(newDate) => newDate !== null && setDate(newDate)}
           {...args}
         />
       </Stack>

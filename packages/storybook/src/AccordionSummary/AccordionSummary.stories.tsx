@@ -13,7 +13,7 @@ export default {
 }
 
 const Template = story<AccordionSummaryProps>(
-  args => (
+  (args) => (
     <AccordionSummary {...args} expandIcon={<ExpandMore />}>
       Accordion Summary
     </AccordionSummary>

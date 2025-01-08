@@ -12,7 +12,7 @@ export default {
 }
 
 const Template = story<TableSortLabelProps>(
-  args => {
+  (args) => {
     const [direction, setDirection] = React.useState<'asc' | 'desc'>('asc')
 
     return (

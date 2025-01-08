@@ -37,7 +37,7 @@ const { columns } = createTable<FilterStoryRow>()(
     renderHeader: ({ colDef }) => (
       <React.Fragment>
         <Icons.Person />
-        <Typography variant="body2">{colDef.headerName}</Typography>
+        <Typography variant='body2'>{colDef.headerName}</Typography>
       </React.Fragment>
     ),
   },
@@ -48,15 +48,15 @@ const { columns } = createTable<FilterStoryRow>()(
     editable: true,
     headerActions: ({ closeMenu }) => [
       <MenuItem
-        key="lastName-action1"
+        key='lastName-action1'
         onClick={() => {
           closeMenu()
         }}
       >
         Action 1
       </MenuItem>,
-      <MenuItem key="lastName-action2">Action 2</MenuItem>,
-      <MenuItem key="lastName-action3">Action 3</MenuItem>,
+      <MenuItem key='lastName-action2'>Action 2</MenuItem>,
+      <MenuItem key='lastName-action3'>Action 3</MenuItem>,
     ],
   },
   {
@@ -77,7 +77,7 @@ const { columns } = createTable<FilterStoryRow>()(
 )
 
 const Template = story<DataGridProps>(
-  args => {
+  (args) => {
     const apiRef = useGridApiRef()
     const rows = [
       { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
@@ -147,7 +147,7 @@ const filterStoryColumns = createTable<FilterStoryRow>()(
     renderHeader: ({ colDef }) => (
       <React.Fragment>
         <Icons.Person />
-        <Typography variant="body2">{colDef.headerName}</Typography>
+        <Typography variant='body2'>{colDef.headerName}</Typography>
       </React.Fragment>
     ),
   },
@@ -157,22 +157,22 @@ const filterStoryColumns = createTable<FilterStoryRow>()(
     minWidth: 150,
     headerActions: ({ closeMenu }) => [
       <MenuItem
-        key="lastName-action1"
+        key='lastName-action1'
         onClick={() => {
           closeMenu()
         }}
       >
         Action 1
       </MenuItem>,
-      <MenuItem key="lastName-action2">Action 2</MenuItem>,
-      <MenuItem key="lastName-action3">Action 3</MenuItem>,
+      <MenuItem key='lastName-action2'>Action 2</MenuItem>,
+      <MenuItem key='lastName-action3'>Action 3</MenuItem>,
     ],
   },
   {
     field: 'occupation',
     headerName: 'Occupation',
     type: 'string',
-    valueFormatter: value => value.name,
+    valueFormatter: (value) => value.name,
     minWidth: 110,
     filter: {
       type: 'enum',
@@ -210,32 +210,30 @@ const filterStoryColumns = createTable<FilterStoryRow>()(
     filterOperators: [
       {
         value: 'my-custom-filter',
-        getApplyFilterFn: filterItem => value => {
+        getApplyFilterFn: (filterItem) => (value) => {
           if (value === undefined) {
             return true
           }
           return (value as string)
             .toLocaleLowerCase()
-            .includes(
-              (filterItem.value as { value: string }).value.toLocaleLowerCase(),
-            )
+            .includes((filterItem.value as { value: string }).value.toLocaleLowerCase())
         },
       },
     ],
     filter: {
       type: 'custom',
       operator: 'my-custom-filter',
-      renderFilter: params => (
+      renderFilter: (params) => (
         <TextField
           autoFocus
-          label="Custom filter"
+          label='Custom filter'
           value={(params.state as CustomFilterState).value}
-          onChange={event => {
+          onChange={(event) => {
             params.setState({ value: event.target.value })
           }}
         />
       ),
-      getIsFiltered: state => {
+      getIsFiltered: (state) => {
         return (state as CustomFilterState).value.length !== 0
       },
       getInitialState: () => ({
@@ -247,12 +245,7 @@ const filterStoryColumns = createTable<FilterStoryRow>()(
     type: 'actions',
     field: 'actions',
     getActions: () => [
-      <GridActionsCellItem
-        key={0}
-        showInMenu={false}
-        icon={<Icons.MoreVert />}
-        label="Action"
-      />,
+      <GridActionsCellItem key={0} showInMenu={false} icon={<Icons.MoreVert />} label='Action' />,
     ],
   },
 )
@@ -368,9 +361,7 @@ const operatorFilterStoryColumns = createTable<FilterStoryRow>()(
         InputComponent: Autocomplete,
         InputComponentProps: {
           options: ['One', 'Two', 'Three'],
-          renderInput: (params: Record<string, unknown>) => (
-            <TextField label="Value" {...params} />
-          ),
+          renderInput: (params: Record<string, unknown>) => <TextField label='Value' {...params} />,
         },
       },
     ],
@@ -382,7 +373,7 @@ const operatorFilterStoryColumns = createTable<FilterStoryRow>()(
     renderHeader: ({ colDef }) => (
       <React.Fragment>
         <Icons.Person />
-        <Typography variant="body2" lineClamp={1}>
+        <Typography variant='body2' lineClamp={1}>
           {colDef.headerName}
         </Typography>
       </React.Fragment>
@@ -394,22 +385,22 @@ const operatorFilterStoryColumns = createTable<FilterStoryRow>()(
     minWidth: 150,
     headerActions: ({ closeMenu }) => [
       <MenuItem
-        key="lastName-action1"
+        key='lastName-action1'
         onClick={() => {
           closeMenu()
         }}
       >
         Action 1
       </MenuItem>,
-      <MenuItem key="lastName-action2">Action 2</MenuItem>,
-      <MenuItem key="lastName-action3">Action 3</MenuItem>,
+      <MenuItem key='lastName-action2'>Action 2</MenuItem>,
+      <MenuItem key='lastName-action3'>Action 3</MenuItem>,
     ],
   },
   {
     field: 'occupation',
     headerName: 'Occupation',
     type: 'string',
-    valueFormatter: value => value.name,
+    valueFormatter: (value) => value.name,
     minWidth: 110,
   },
   {
@@ -430,12 +421,7 @@ const operatorFilterStoryColumns = createTable<FilterStoryRow>()(
     type: 'actions',
     field: 'actions',
     getActions: () => [
-      <GridActionsCellItem
-        key={0}
-        showInMenu={false}
-        icon={<Icons.MoreVert />}
-        label="Action"
-      />,
+      <GridActionsCellItem key={0} showInMenu={false} icon={<Icons.MoreVert />} label='Action' />,
     ],
   },
 )
@@ -526,7 +512,7 @@ export const OperatorFilter = () => {
         columns={operatorFilterStoryColumns.columns}
         rows={rows}
         checkboxSelection
-        filter="operator"
+        filter='operator'
       />
     </div>
   )

@@ -4,11 +4,7 @@ import { styled } from '@mui/material'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { addWeeks } from 'date-fns'
 
-import type {
-  DateRange,
-  DateRangePickerDayProps,
-  DateRangePickerProps,
-} from '@monorail/components'
+import type { DateRange, DateRangePickerDayProps, DateRangePickerProps } from '@monorail/components'
 import {
   Box,
   DateRangePicker,
@@ -29,27 +25,25 @@ export default {
   //component: DateRangePicker,
 }
 
-const Template = story<DateRangePickerProps<Date>>(
-  (args: Partial<DateRangePickerProps<Date>>) => {
-    const [value, setValue] = React.useState<DateRange<Date>>([
-      new Date('2021-01-05T12:34:00.000Z'),
-      new Date('2021-01-09T12:34:00.000Z'),
-    ])
+const Template = story<DateRangePickerProps<Date>>((args: Partial<DateRangePickerProps<Date>>) => {
+  const [value, setValue] = React.useState<DateRange<Date>>([
+    new Date('2021-01-05T12:34:00.000Z'),
+    new Date('2021-01-09T12:34:00.000Z'),
+  ])
 
-    return (
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <DateRangePicker
-          localeText={{ start: 'Check-in', end: 'Check-out' }}
-          value={value}
-          onChange={newValue => {
-            setValue(newValue)
-          }}
-          {...args}
-        />
-      </LocalizationProvider>
-    )
-  },
-)
+  return (
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <DateRangePicker
+        localeText={{ start: 'Check-in', end: 'Check-out' }}
+        value={value}
+        onChange={(newValue) => {
+          setValue(newValue)
+        }}
+        {...args}
+      />
+    </LocalizationProvider>
+  )
+})
 
 /**
  * `DateRangePicker` lets the user select a range of dates. You can pass any prop from DatePicker to `DateRangePicker`.
@@ -68,9 +62,9 @@ export const StaticMode = story(() => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <StaticDateRangePicker
-        displayStaticWrapperAs="desktop"
+        displayStaticWrapperAs='desktop'
         value={value}
-        onChange={newValue => {
+        onChange={(newValue) => {
           setValue(newValue)
         }}
       />
@@ -98,14 +92,14 @@ export const Responsiveness = story(() => {
         <MobileDateRangePicker
           localeText={{ start: 'Mobile start' }}
           value={value}
-          onChange={newValue => {
+          onChange={(newValue) => {
             setValue(newValue)
           }}
         />
         <DesktopDateRangePicker
           localeText={{ start: 'Desktop start' }}
           value={value}
-          onChange={newValue => {
+          onChange={(newValue) => {
             setValue(newValue)
           }}
         />
@@ -130,7 +124,7 @@ export const FormProps = story(() => {
           disabled
           localeText={{ start: 'disabled start', end: 'disabled end' }}
           value={value}
-          onChange={newValue => {
+          onChange={(newValue) => {
             setValue(newValue)
           }}
         />
@@ -138,7 +132,7 @@ export const FormProps = story(() => {
           readOnly
           localeText={{ start: 'read-only start', end: 'read-only end' }}
           value={value}
-          onChange={newValue => {
+          onChange={(newValue) => {
             setValue(newValue)
           }}
         />
@@ -163,7 +157,7 @@ export const DifferentNumberOfMonths = story(() => {
         <DateRangePicker
           calendars={1}
           value={value}
-          onChange={newValue => {
+          onChange={(newValue) => {
             setValue(newValue)
           }}
         />
@@ -171,7 +165,7 @@ export const DifferentNumberOfMonths = story(() => {
         <DateRangePicker
           calendars={2}
           value={value}
-          onChange={newValue => {
+          onChange={(newValue) => {
             setValue(newValue)
           }}
         />
@@ -179,7 +173,7 @@ export const DifferentNumberOfMonths = story(() => {
         <DateRangePicker
           calendars={3}
           value={value}
-          onChange={newValue => {
+          onChange={(newValue) => {
             setValue(newValue)
           }}
         />
@@ -207,7 +201,7 @@ export const DisablingDates = story(() => {
         disablePast
         value={value}
         maxDate={getWeeksAfter(value[0], 4)}
-        onChange={newValue => {
+        onChange={(newValue) => {
           setValue(newValue)
         }}
       />
@@ -225,18 +219,12 @@ export const CustomInputComponent = story(() => {
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateRangePicker
         value={value}
-        onChange={newValue => setValue(newValue)}
+        onChange={(newValue) => setValue(newValue)}
         slots={{
           textField: (props: {
             inputRef: React.Ref<HTMLInputElement>
             inputProps: React.InputHTMLAttributes<HTMLInputElement>
-          }) => (
-            <input
-              aria-label="start"
-              ref={props.inputRef}
-              {...props.inputProps}
-            />
-          ),
+          }) => <input aria-label='start' ref={props.inputRef} {...props.inputProps} />,
         }}
       />
     </LocalizationProvider>
@@ -278,9 +266,9 @@ export const CustomizedDayRendering = story(() => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <StaticDateRangePicker
-        displayStaticWrapperAs="desktop"
+        displayStaticWrapperAs='desktop'
         value={value}
-        onChange={newValue => setValue(newValue)}
+        onChange={(newValue) => setValue(newValue)}
         slots={{
           day: StyledDateRangePickerDay,
         }}

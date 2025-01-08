@@ -8,7 +8,7 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Feedback/Alert/AlertTitle', component: AlertTitle }
 
-const Template = story<AlertTitleProps>(args => <AlertTitle {...args} />, {
+const Template = story<AlertTitleProps>((args) => <AlertTitle {...args} />, {
   args: { children: 'Alert Title' },
   muiName: 'MuiAlertTitle',
 })

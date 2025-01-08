@@ -76,13 +76,13 @@ const argTypes = {
 }
 
 const Template = story<ListItemStoryArgs>(
-  args => (
+  (args) => (
     <ul>
       <ListItem
         {...args}
         secondaryAction={
           args.secondaryAction === true && (
-            <IconButton aria-label="Comment">
+            <IconButton aria-label='Comment'>
               <Comment />
             </IconButton>
           )
@@ -90,8 +90,8 @@ const Template = story<ListItemStoryArgs>(
       >
         {args.avatar! && (
           <ListItemAvatar>
-            <Avatar size="small">
-              <FolderIcon fontSize="medium" />
+            <Avatar size='small'>
+              <FolderIcon fontSize='medium' />
             </Avatar>
           </ListItemAvatar>
         )}
@@ -106,7 +106,7 @@ const Template = story<ListItemStoryArgs>(
           </ListItemIcon>
         )}
         <ListItemText
-          primary="Primary text"
+          primary='Primary text'
           secondary={args.secondaryText! ? 'Secondary text' : null}
         />
       </ListItem>

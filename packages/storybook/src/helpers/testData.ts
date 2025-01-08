@@ -71,8 +71,7 @@ export const movies: ReadonlyArray<Movie> = [
   { label: 'Alien', year: 1979 },
   { label: 'Sunset Boulevard', year: 1950 },
   {
-    label:
-      'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+    label: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
     year: 1964,
   },
   { label: 'The Great Dictator', year: 1940 },
@@ -136,9 +135,7 @@ export function countryToFlag(isoCode: string): string {
   return typeof String.fromCodePoint !== 'undefined'
     ? isoCode
         .toUpperCase()
-        .replace(/./g, char =>
-          String.fromCodePoint(char.charCodeAt(0) + 127397),
-        )
+        .replace(/./g, (char) => String.fromCodePoint(char.charCodeAt(0) + 127397))
     : isoCode
 }
 

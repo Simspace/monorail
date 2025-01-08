@@ -15,38 +15,38 @@ export default {
 }
 
 export const Default: StoryObj<typeof PasswordTextField> = {
-  render: args => (
-    <Box component="form" width={300} autoComplete="off">
-      <PasswordTextField label="PasswordTextField" {...args} />
+  render: (args) => (
+    <Box component='form' width={300} autoComplete='off'>
+      <PasswordTextField label='PasswordTextField' {...args} />
     </Box>
   ),
 }
 
 export const ControlledVsUncontrolled: StoryObj<typeof PasswordTextField> = {
-  render: args => {
+  render: (args) => {
     const { isVisible, ...restArgs } = args
 
     return (
       <Box
-        component="form"
+        component='form'
         sx={{
           '& > :not(style)': { m: 1, width: '25ch' },
         }}
         noValidate
-        autoComplete="off"
+        autoComplete='off'
       >
         <PasswordTextField
-          id="password-textfield-controlled"
-          label="Controlled"
-          defaultValue="foo"
+          id='password-textfield-controlled'
+          label='Controlled'
+          defaultValue='foo'
           isVisible={isVisible}
           onVisibilityChange={action('onVisibilityChange')}
           {...restArgs}
         />
         <PasswordTextField
-          id="password-textfield-uncontrolled"
-          label="Uncontrolled"
-          defaultValue="bar"
+          id='password-textfield-uncontrolled'
+          label='Uncontrolled'
+          defaultValue='bar'
           onVisibilityChange={action('onVisibilityChange')}
           defaultIsVisible={false}
           {...restArgs}
@@ -57,20 +57,20 @@ export const ControlledVsUncontrolled: StoryObj<typeof PasswordTextField> = {
 }
 
 export const CustomIcon: StoryObj<typeof PasswordTextField> = {
-  render: args => {
+  render: (args) => {
     return (
       <Box
-        component="form"
+        component='form'
         sx={{
           '& > :not(style)': { m: 1, width: '25ch' },
         }}
         noValidate
-        autoComplete="off"
+        autoComplete='off'
       >
         <PasswordTextField
-          id="custom-icon"
-          label="Custom Icon"
-          defaultValue="bar"
+          id='custom-icon'
+          label='Custom Icon'
+          defaultValue='bar'
           disabled
           onVisibilityChange={action('onVisibilityChange')}
           defaultIsVisible={false}
@@ -80,7 +80,7 @@ export const CustomIcon: StoryObj<typeof PasswordTextField> = {
           slotProps={{
             iconButton: { disabled: true },
             visibilityOffIcon: {
-              sx: theme => ({ color: theme.palette.default.main }),
+              sx: (theme) => ({ color: theme.palette.default.main }),
             },
           }}
           {...args}

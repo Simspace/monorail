@@ -24,15 +24,14 @@ export default {
 }
 
 const Template = story<SwipeableDrawerProps>(
-  args => {
+  (args) => {
     const [open, setOpen] = React.useState(false)
     return (
       <>
         <Typography>
-          SwipableDrawer adds the ability to handle mobile touch/swipe gestures
-          with the Drawer. View this example in a mobile device emulator (e.g.
-          Chrome dev tools). Click `Toggle` to open the Drawer, then swipe in
-          the opposite direction or click the backdrop to close.
+          SwipableDrawer adds the ability to handle mobile touch/swipe gestures with the Drawer.
+          View this example in a mobile device emulator (e.g. Chrome dev tools). Click `Toggle` to
+          open the Drawer, then swipe in the opposite direction or click the backdrop to close.
         </Typography>
         <Button onClick={() => setOpen(!open)}>Toggle</Button>
         <SwipeableDrawer
@@ -64,10 +63,7 @@ interface Props {
 
 const Root = styled('div')(({ theme }) => ({
   height: '100%',
-  backgroundColor:
-    theme.palette.mode === 'light'
-      ? grey[100]
-      : theme.palette.background.default,
+  backgroundColor: theme.palette.mode === 'light' ? grey[100] : theme.palette.background.default,
 }))
 
 const StyledBox = styled('div')(({ theme }) => ({
@@ -97,8 +93,7 @@ export const SwipeableEdgeDrawer = story<Props>((props: Props) => {
   const [open, setOpen] = React.useState(false)
 
   // This is used only for the example
-  const container =
-    window !== undefined ? () => window().document.body : undefined
+  const container = window !== undefined ? () => window().document.body : undefined
 
   return (
     <Root>
@@ -113,7 +108,7 @@ export const SwipeableEdgeDrawer = story<Props>((props: Props) => {
         }}
       />
         */}
-      <style type="text/css">{`
+      <style type='text/css'>{`
           /* Scope these styles to this example only. This is very hacky and is just to serve as a demonstration. */
           .swipable-edge-drawer.MuiDrawer-root > .MuiPaper-root {
             height: calc(50% - ${drawerBleeding}px);
@@ -122,23 +117,18 @@ export const SwipeableEdgeDrawer = story<Props>((props: Props) => {
       `}</style>
       <Box sx={{ textAlign: 'center', pt: 1 }}>
         <Typography>
-          View this example in a mobile device emulator (e.g. Chrome dev tools).
-          Click the `Show Drawer` button to show the drawer at the bottom of the
-          page, then click `Open Drawer` or swipe up to open it. Swipe down or
-          click the backdrop to close it.
+          View this example in a mobile device emulator (e.g. Chrome dev tools). Click the `Show
+          Drawer` button to show the drawer at the bottom of the page, then click `Open Drawer` or
+          swipe up to open it. Swipe down or click the backdrop to close it.
         </Typography>
-        <Button onClick={() => setVisible(!visible)}>
-          {visible ? 'Hide' : 'Show'} Drawer
-        </Button>
-        {visible && (
-          <Button onClick={() => setOpen(!open)}>Toggle Drawer</Button>
-        )}
+        <Button onClick={() => setVisible(!visible)}>{visible ? 'Hide' : 'Show'} Drawer</Button>
+        {visible && <Button onClick={() => setOpen(!open)}>Toggle Drawer</Button>}
       </Box>
       {visible && (
         <SwipeableDrawer
-          className="swipable-edge-drawer"
+          className='swipable-edge-drawer'
           container={container}
-          anchor="bottom"
+          anchor='bottom'
           open={open}
           onClose={() => setOpen(false)}
           onOpen={() => setOpen(true)}
@@ -160,9 +150,7 @@ export const SwipeableEdgeDrawer = story<Props>((props: Props) => {
             }}
           >
             <Puller />
-            <Typography sx={{ p: 2, color: 'text.secondary' }}>
-              51 results
-            </Typography>
+            <Typography sx={{ p: 2, color: 'text.secondary' }}>51 results</Typography>
           </StyledBox>
           <StyledBox
             sx={{
@@ -172,7 +160,7 @@ export const SwipeableEdgeDrawer = story<Props>((props: Props) => {
               overflow: 'auto',
             }}
           >
-            <Skeleton variant="rectangular" height="100%" />
+            <Skeleton variant='rectangular' height='100%' />
           </StyledBox>
         </SwipeableDrawer>
       )}

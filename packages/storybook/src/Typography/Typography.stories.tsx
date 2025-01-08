@@ -10,7 +10,7 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Data Display/Typography', component: Typography }
 
-const Template = story<TypographyProps>(args => <Typography {...args} />, {
+const Template = story<TypographyProps>((args) => <Typography {...args} />, {
   args: { children: 'Typography is used for rendering text' },
   muiName: 'MuiTypography',
 })
@@ -22,73 +22,67 @@ export const Default = story(Template)
  */
 export const Variants = story<TypographyProps>(() => (
   <Box sx={{ width: '100%', maxWidth: 800 }}>
-    <Typography variant="data1" gutterBottom component="div">
+    <Typography variant='data1' gutterBottom component='div'>
       data1. Heading
     </Typography>
     <Divider />
-    <Typography variant="data2" gutterBottom component="div">
+    <Typography variant='data2' gutterBottom component='div'>
       data2. Heading
     </Typography>
     <Divider />
-    <Typography variant="data3" gutterBottom component="div">
+    <Typography variant='data3' gutterBottom component='div'>
       data3. Heading
     </Typography>
     <Divider />
-    <Typography variant="h1" component="div" gutterBottom>
+    <Typography variant='h1' component='div' gutterBottom>
       h1. Heading
     </Typography>
     <Divider />
-    <Typography variant="h2" gutterBottom component="div">
+    <Typography variant='h2' gutterBottom component='div'>
       h2. Heading
     </Typography>
     <Divider />
-    <Typography variant="h3" gutterBottom component="div">
+    <Typography variant='h3' gutterBottom component='div'>
       h3. Heading
     </Typography>
     <Divider />
-    <Typography variant="subtitle1" gutterBottom component="div">
-      subtitle1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-      blanditiis tenetur
+    <Typography variant='subtitle1' gutterBottom component='div'>
+      subtitle1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
     </Typography>
     <Divider />
-    <Typography variant="subtitle2" gutterBottom component="div">
-      subtitle2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-      blanditiis tenetur
+    <Typography variant='subtitle2' gutterBottom component='div'>
+      subtitle2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
     </Typography>
     <Divider />
-    <Typography variant="monoBody1" gutterBottom component="div">
-      monoBody1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-      blanditiis tenetur
+    <Typography variant='monoBody1' gutterBottom component='div'>
+      monoBody1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
     </Typography>
     <Divider />
-    <Typography variant="monoBody2" gutterBottom component="div">
-      monoBody2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-      blanditiis tenetur
+    <Typography variant='monoBody2' gutterBottom component='div'>
+      monoBody2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
     </Typography>
     <Divider />
-    <Typography variant="body1" gutterBottom>
-      body1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-      blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
-      neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti?
-      Eum quasi quidem quibusdam.
+    <Typography variant='body1' gutterBottom>
+      body1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
+      suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
+      dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
     </Typography>
     <Divider />
-    <Typography variant="body2" gutterBottom>
-      body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-      blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
-      neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti?
-      Eum quasi quidem quibusdam.
+    <Typography variant='body2' gutterBottom>
+      body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
+      suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
+      dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
     </Typography>
     <Divider />
-    <Typography variant="button" display="block" gutterBottom>
+    <Typography variant='button' display='block' gutterBottom>
       button text
     </Typography>
     <Divider />
-    <Typography variant="caption" display="block" gutterBottom>
+    <Typography variant='caption' display='block' gutterBottom>
       caption text
     </Typography>
     <Divider />
-    <Typography variant="overline" display="block" gutterBottom>
+    <Typography variant='overline' display='block' gutterBottom>
       overline text
     </Typography>
   </Box>
@@ -100,15 +94,15 @@ export const Variants = story<TypographyProps>(() => (
 export const LineClamp = story<TypographyProps>(() => {
   const [lineClamp, setLineClamp] = React.useState(3)
   return (
-    <Stack direction="column" minHeight={400} justifyContent="space-between">
+    <Stack direction='column' minHeight={400} justifyContent='space-between'>
       <Typography lineClamp={lineClamp}>{loremIpsum({ count: 20 })}</Typography>
       <Box p={2}>
-        <Stack direction="column">
-          <Typography id="lineClamp-value-label" variant="monoBody1">
+        <Stack direction='column'>
+          <Typography id='lineClamp-value-label' variant='monoBody1'>
             lineClamp={lineClamp}
           </Typography>
           <Slider
-            aria-labelledby="lineClamp-value-label"
+            aria-labelledby='lineClamp-value-label'
             value={lineClamp}
             onChange={(_, value) => setLineClamp(value as number)}
             min={1}
@@ -134,12 +128,8 @@ const CustomButtonDiv = styled('div')(({ theme }) => ({
 export const TypographyFromTheTheme = story<TypographyProps>(() => {
   return (
     <>
-      <CustomButtonDiv>
-        The typography in this div is styled like a button
-      </CustomButtonDiv>
-      <Typography variant="caption">
-        (See the code for how the div is styled)
-      </Typography>
+      <CustomButtonDiv>The typography in this div is styled like a button</CustomButtonDiv>
+      <Typography variant='caption'>(See the code for how the div is styled)</Typography>
     </>
   )
 })
@@ -149,7 +139,7 @@ export const TypographyFromTheTheme = story<TypographyProps>(() => {
  */
 export const ChangingTheSemanticElement = story<TypographyProps>(() => {
   return (
-    <Typography variant="h1" component="h2">
+    <Typography variant='h1' component='h2'>
       h1. Heading (with h2 element)
     </Typography>
   )
@@ -174,13 +164,13 @@ export const UsingSystemProps = story<TypographyProps>(() => {
  */
 export const Gutters = story<TypographyProps>(() => {
   return (
-    <Stack direction="row" spacing={1}>
-      <Stack direction="column">
+    <Stack direction='row' spacing={1}>
+      <Stack direction='column'>
         <Typography gutterBottom>Gutter bottom</Typography>
         <Typography gutterBottom>Gutter bottom</Typography>
         <Typography gutterBottom>Gutter bottom</Typography>
       </Stack>
-      <Stack direction="column">
+      <Stack direction='column'>
         <Typography gutterBottom={false}>No gutter bottom</Typography>
         <Typography gutterBottom={false}>No gutter bottom</Typography>
         <Typography gutterBottom={false}>No gutter bottom</Typography>

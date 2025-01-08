@@ -12,16 +12,14 @@ export default {
   component: MobileDatePicker,
 }
 
-const Template = story<MobileDatePickerProps<Date>>(args => {
-  const [value, setValue] = React.useState<Date | null>(
-    new Date('2021-01-01T12:34:00.000Z'),
-  )
+const Template = story<MobileDatePickerProps<Date>>((args) => {
+  const [value, setValue] = React.useState<Date | null>(new Date('2021-01-01T12:34:00.000Z'))
 
   return (
     <MobileDatePicker
-      aria-label="mobile picker"
+      aria-label='mobile picker'
       value={value}
-      onChange={newValue => {
+      onChange={(newValue) => {
         setValue(newValue)
         action('onChange')
       }}

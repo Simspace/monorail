@@ -17,7 +17,7 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Inputs/Rating', component: Rating }
 
-const Template = story<RatingProps>(args => <Rating {...args} />, {
+const Template = story<RatingProps>((args) => <Rating {...args} />, {
   args: {},
   muiName: 'MuiRating',
 })
@@ -32,20 +32,20 @@ export const BasicRating = story<RatingProps>(() => {
         '& > legend': { mt: 2 },
       }}
     >
-      <Typography component="legend">Controlled</Typography>
+      <Typography component='legend'>Controlled</Typography>
       <Rating
-        name="simple-controlled"
+        name='simple-controlled'
         value={value}
         onChange={(_, newValue) => {
           setValue(newValue)
         }}
       />
-      <Typography component="legend">Read only</Typography>
-      <Rating name="read-only" value={value} readOnly />
-      <Typography component="legend">Disabled</Typography>
-      <Rating name="disabled" value={value} disabled />
-      <Typography component="legend">No rating given</Typography>
-      <Rating name="no-value" value={null} />
+      <Typography component='legend'>Read only</Typography>
+      <Rating name='read-only' value={value} readOnly />
+      <Typography component='legend'>Disabled</Typography>
+      <Rating name='disabled' value={value} disabled />
+      <Typography component='legend'>No rating given</Typography>
+      <Rating name='no-value' value={null} />
     </Box>
   )
 })
@@ -56,13 +56,8 @@ export const BasicRating = story<RatingProps>(() => {
 export const HalfRating = story<RatingProps>(() => {
   return (
     <Stack spacing={1}>
-      <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
-      <Rating
-        name="half-rating-read"
-        defaultValue={2.5}
-        precision={0.5}
-        readOnly
-      />
+      <Rating name='half-rating' defaultValue={2.5} precision={0.5} />
+      <Rating name='half-rating-read' defaultValue={2.5} precision={0.5} readOnly />
     </Stack>
   )
 })
@@ -96,7 +91,7 @@ export const HoverFeedback = story<RatingProps>(() => {
       }}
     >
       <Rating
-        name="hover-feedback"
+        name='hover-feedback'
         value={value}
         precision={0.5}
         onChange={(_, newValue) => {
@@ -105,11 +100,9 @@ export const HoverFeedback = story<RatingProps>(() => {
         onChangeActive={(_, newHover) => {
           setHover(newHover)
         }}
-        emptyIcon={<StarIcon fontSize="inherit" />}
+        emptyIcon={<StarIcon fontSize='inherit' />}
       />
-      {value !== null && (
-        <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
-      )}
+      {value !== null && <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>}
     </Box>
   )
 })
@@ -120,9 +113,9 @@ export const HoverFeedback = story<RatingProps>(() => {
 export const Sizes = story<RatingProps>(() => {
   return (
     <Stack spacing={1}>
-      <Rating name="size-small" defaultValue={2} size="small" />
-      <Rating name="size-medium" defaultValue={2} />
-      <Rating name="size-large" defaultValue={2} size="large" />
+      <Rating name='size-small' defaultValue={2} size='small' />
+      <Rating name='size-medium' defaultValue={2} />
+      <Rating name='size-large' defaultValue={2} size='large' />
     </Stack>
   )
 })
@@ -146,19 +139,17 @@ export const CustomizedRating = story<RatingProps>(() => {
         '& > legend': { mt: 2 },
       }}
     >
-      <Typography component="legend">Custom icon and color</Typography>
+      <Typography component='legend'>Custom icon and color</Typography>
       <StyledRating
-        name="customized-color"
+        name='customized-color'
         defaultValue={2}
-        getLabelText={(value: number) =>
-          `${value} Heart${value !== 1 ? 's' : ''}`
-        }
+        getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
         precision={0.5}
-        icon={<FavoriteIcon fontSize="inherit" />}
-        emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+        icon={<FavoriteIcon fontSize='inherit' />}
+        emptyIcon={<FavoriteBorderIcon fontSize='inherit' />}
       />
-      <Typography component="legend">10 stars</Typography>
-      <Rating name="customized-10" defaultValue={2} max={10} />
+      <Typography component='legend'>10 stars</Typography>
+      <Rating name='customized-10' defaultValue={2} max={10} />
     </Box>
   )
 })
@@ -202,7 +193,7 @@ const IconContainer = (props: IconContainerProps) => {
 export const RadioGroup = story<RatingProps>(() => {
   return (
     <Rating
-      name="highlight-selected-only"
+      name='highlight-selected-only'
       defaultValue={2}
       IconContainerComponent={IconContainer}
       highlightSelectedOnly

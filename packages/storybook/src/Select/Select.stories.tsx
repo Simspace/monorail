@@ -21,7 +21,7 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Inputs/Select', component: Select }
 
 const Template = story<SelectProps<string>>(
-  args => {
+  (args) => {
     const [age, setAge] = React.useState('')
 
     const handleChange = (event: SelectChangeEvent<string>) => {
@@ -31,12 +31,12 @@ const Template = story<SelectProps<string>>(
     return (
       <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Age</InputLabel>
+          <InputLabel id='demo-simple-select-label'>Age</InputLabel>
           <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
+            labelId='demo-simple-select-label'
+            id='demo-simple-select'
             value={age}
-            label="Age"
+            label='Age'
             onChange={handleChange}
             {...args}
           >
@@ -77,14 +77,14 @@ export const Sizes = story<SelectProps<string>>(() => {
   return (
     <div>
       <FormControl sx={{ m: 2, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-small-label">Small</InputLabel>
+        <InputLabel id='demo-simple-select-small-label'>Small</InputLabel>
         <Select
-          size="small"
-          labelId="demo-simple-select-small-label"
-          id="demo-simple-select-small-standard"
+          size='small'
+          labelId='demo-simple-select-small-label'
+          id='demo-simple-select-small-standard'
           value={age}
           onChange={handleChange}
-          label="Small"
+          label='Small'
         >
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
@@ -92,10 +92,10 @@ export const Sizes = story<SelectProps<string>>(() => {
         </Select>
       </FormControl>
       <FormControl sx={{ m: 2, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-medium-label">Medium</InputLabel>
+        <InputLabel id='demo-simple-select-medium-label'>Medium</InputLabel>
         <Select
-          labelId="demo-simple-select-medium-label"
-          id="demo-simple-select-medium-filled"
+          labelId='demo-simple-select-medium-label'
+          id='demo-simple-select-medium-filled'
           value={age}
           onChange={handleChange}
         >
@@ -106,11 +106,11 @@ export const Sizes = story<SelectProps<string>>(() => {
       </FormControl>
       {isMeteorTheme(theme.name) && (
         <FormControl sx={{ m: 2, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-large-label">Large</InputLabel>
+          <InputLabel id='demo-simple-select-large-label'>Large</InputLabel>
           <Select
-            size="large"
-            labelId="demo-simple-select-large-label"
-            id="demo-simple-select-large-filled"
+            size='large'
+            labelId='demo-simple-select-large-label'
+            id='demo-simple-select-large-filled'
             value={age}
             onChange={handleChange}
           >
@@ -132,12 +132,12 @@ export const LabelsAndHelperText = story<SelectProps<string>>(() => {
   }
 
   return (
-    <Stack direction="row">
+    <Stack direction='row'>
       <FormControl sx={{ m: 4, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
+        <InputLabel id='demo-simple-select-helper-label'>Age</InputLabel>
         <Select
-          labelId="demo-simple-select-helper-label"
-          id="demo-simple-select-helper"
+          labelId='demo-simple-select-helper-label'
+          id='demo-simple-select-helper'
           value={age}
           displayEmpty
           onChange={handleChange}
@@ -169,7 +169,7 @@ export const LabelsAndHelperText = story<SelectProps<string>>(() => {
           alignItems: 'baseline',
         }}
       >
-        <InputLabel sx={{ left: 0, mr: 3 }} id="label-on-left">
+        <InputLabel sx={{ left: 0, mr: 3 }} id='label-on-left'>
           Select
         </InputLabel>
         <div>
@@ -201,19 +201,19 @@ export const Adornments = story<SelectProps<string>>(() => {
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 80 }}>
-        <InputLabel id="demo-simple-select-autowidth-label">Age</InputLabel>
+        <InputLabel id='demo-simple-select-autowidth-label'>Age</InputLabel>
         <Select
           startAdornment={
-            <InputAdornment position="start">
+            <InputAdornment position='start'>
               <Person />
             </InputAdornment>
           }
-          labelId="demo-simple-select-autowidth-label"
-          id="demo-simple-select-autowidth"
+          labelId='demo-simple-select-autowidth-label'
+          id='demo-simple-select-autowidth'
           value={age}
           onChange={handleChange}
           autoWidth
-          label="Age"
+          label='Age'
         >
           <MenuItem value={10}>Twenty</MenuItem>
           <MenuItem value={21}>Twenty one</MenuItem>
@@ -234,14 +234,14 @@ export const AutoWidth = story<SelectProps<string>>(() => {
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 80 }}>
-        <InputLabel id="demo-simple-select-autowidth-label">Age</InputLabel>
+        <InputLabel id='demo-simple-select-autowidth-label'>Age</InputLabel>
         <Select
-          labelId="demo-simple-select-autowidth-label"
-          id="demo-simple-select-autowidth"
+          labelId='demo-simple-select-autowidth-label'
+          id='demo-simple-select-autowidth'
           value={age}
           onChange={handleChange}
           autoWidth
-          label="Age"
+          label='Age'
         >
           <MenuItem value={10}>Twenty</MenuItem>
           <MenuItem value={21}>Twenty one</MenuItem>
@@ -262,12 +262,12 @@ export const OtherProps = story<SelectProps<string>>(() => {
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 120 }} disabled>
-        <InputLabel id="demo-simple-select-disabled-label">Age</InputLabel>
+        <InputLabel id='demo-simple-select-disabled-label'>Age</InputLabel>
         <Select
-          labelId="demo-simple-select-disabled-label"
-          id="demo-simple-select-disabled"
+          labelId='demo-simple-select-disabled-label'
+          id='demo-simple-select-disabled'
           value={age}
-          label="Age"
+          label='Age'
           onChange={handleChange}
         >
           <MenuItem value={10}>Ten</MenuItem>
@@ -277,14 +277,14 @@ export const OtherProps = story<SelectProps<string>>(() => {
         <FormHelperText>Disabled</FormHelperText>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: 120 }} error>
-        <InputLabel id="demo-simple-select-error-label">Age</InputLabel>
+        <InputLabel id='demo-simple-select-error-label'>Age</InputLabel>
         <Select
-          labelId="demo-simple-select-error-label"
-          id="demo-simple-select-error"
+          labelId='demo-simple-select-error-label'
+          id='demo-simple-select-error'
           value={age}
-          label="Age"
+          label='Age'
           onChange={handleChange}
-          renderValue={value => `${value}`}
+          renderValue={(value) => `${value}`}
         >
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
@@ -293,12 +293,12 @@ export const OtherProps = story<SelectProps<string>>(() => {
         <FormHelperText>Error</FormHelperText>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-readonly-label">Age</InputLabel>
+        <InputLabel id='demo-simple-select-readonly-label'>Age</InputLabel>
         <Select
-          labelId="demo-simple-select-readonly-label"
-          id="demo-simple-select-readonly"
+          labelId='demo-simple-select-readonly-label'
+          id='demo-simple-select-readonly'
           value={age}
-          label="Age"
+          label='Age'
           onChange={handleChange}
           inputProps={{ readOnly: true }}
         >
@@ -309,12 +309,12 @@ export const OtherProps = story<SelectProps<string>>(() => {
         <FormHelperText>Read only</FormHelperText>
       </FormControl>
       <FormControl required sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-required-label">Age</InputLabel>
+        <InputLabel id='demo-simple-select-required-label'>Age</InputLabel>
         <Select
-          labelId="demo-simple-select-required-label"
-          id="demo-simple-select-required"
+          labelId='demo-simple-select-required-label'
+          id='demo-simple-select-required'
           value={age}
-          label="Age *"
+          label='Age *'
           onChange={handleChange}
         >
           <MenuItem value={10}>Ten</MenuItem>

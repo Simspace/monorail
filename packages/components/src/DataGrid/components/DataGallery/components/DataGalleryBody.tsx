@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+ 
 import React from 'react'
 import { useGridPrivateApiContext } from '@mui/x-data-grid/internals'
 import { GridOverlays, useGridRootProps } from '@mui/x-data-grid-premium'

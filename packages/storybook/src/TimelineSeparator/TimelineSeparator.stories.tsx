@@ -16,13 +16,10 @@ export default {
   },
 }
 
-const Template = story<TimelineSeparatorProps>(
-  args => <TimelineSeparator {...args} />,
-  {
-    args: {},
-    muiName: 'MuiTimelineSeparator',
-  },
-)
+const Template = story<TimelineSeparatorProps>((args) => <TimelineSeparator {...args} />, {
+  args: {},
+  muiName: 'MuiTimelineSeparator',
+})
 
 export const Default = story(Template, {
   parameters: {

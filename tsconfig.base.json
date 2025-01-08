@@ -1,0 +1,32 @@
+{
+  "extends": "./node_modules/@simspace/config-typescript/tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "incremental": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "esnext",
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "stripInternal": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "strict": true,
+    "module": "es2022",
+    "paths": {
+      "@monorail/components": ["packages/components/src/index"],
+      "@monorail/components/*": ["packages/components/src/*"],
+      "@monorail/types": ["packages/types/src/index"],
+      "@monorail/types/*": ["packages/types/src/*"],
+      "@monorail/utils": ["packages/utils/src/index"],
+      "@monorail/utils/*": ["packages/utils/src/*"],
+      "@monorail/themes": ["packages/themes/src/index"],
+      "@monorail/themes/*": ["packages/themes/src/*"]
+    }
+  },
+  "exclude": ["node_modules", "build", "dist"],
+  "include": []
+}

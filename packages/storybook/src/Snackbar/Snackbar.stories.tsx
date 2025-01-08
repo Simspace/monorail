@@ -27,25 +27,21 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Feedback/Snackbar', component: Snackbar }
 
 const Template = story<SnackbarProps>(
-  args => {
+  (args) => {
     const [open, setOpen] = React.useState(false)
     const [transition, setTransition] = React.useState<
       React.ComponentType<TransitionPropsWithChild> | undefined
     >(undefined)
 
     function TransitionRight(props: TransitionPropsWithChild) {
-      return <Slide {...props} direction="left" />
+      return <Slide {...props} direction='left' />
     }
-    const handleClick =
-      (Transition: React.ComponentType<TransitionPropsWithChild>) => () => {
-        setTransition(() => Transition)
-        setOpen(true)
-      }
+    const handleClick = (Transition: React.ComponentType<TransitionPropsWithChild>) => () => {
+      setTransition(() => Transition)
+      setOpen(true)
+    }
 
-    const handleClose = (
-      _event: React.SyntheticEvent | Event,
-      reason?: string,
-    ) => {
+    const handleClose = (_event: React.SyntheticEvent | Event, reason?: string) => {
       if (reason === 'clickaway') {
         return
       }
@@ -55,16 +51,9 @@ const Template = story<SnackbarProps>(
 
     return (
       <div>
-        <Button onClick={handleClick(TransitionRight)}>
-          Open simple snackbar
-        </Button>
-        <Snackbar
-          open={open}
-          autoHideDuration={6000}
-          TransitionComponent={transition}
-          {...args}
-        >
-          <Alert severity="success" onClose={handleClose}>
+        <Button onClick={handleClick(TransitionRight)}>Open simple snackbar</Button>
+        <Snackbar open={open} autoHideDuration={6000} TransitionComponent={transition} {...args}>
+          <Alert severity='success' onClose={handleClose}>
             <AlertTitle>Success!</AlertTitle>
             Note archived
           </Alert>
@@ -87,19 +76,15 @@ export const Toast = story<SnackbarProps>(() => {
   >(undefined)
 
   function TransitionRight(props: TransitionPropsWithChild) {
-    return <Slide {...props} direction="left" />
+    return <Slide {...props} direction='left' />
   }
 
-  const handleClick =
-    (Transition: React.ComponentType<TransitionPropsWithChild>) => () => {
-      setTransition(() => Transition)
-      setOpen(true)
-    }
+  const handleClick = (Transition: React.ComponentType<TransitionPropsWithChild>) => () => {
+    setTransition(() => Transition)
+    setOpen(true)
+  }
 
-  const handleClose = (
-    _event?: React.SyntheticEvent | Event,
-    reason?: string,
-  ) => {
+  const handleClose = (_event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return
     }
@@ -109,10 +94,7 @@ export const Toast = story<SnackbarProps>(() => {
 
   return (
     <Stack>
-      <Button
-        onClick={handleClick(TransitionRight)}
-        sx={{ mb: 4, alignSelf: 'center' }}
-      >
+      <Button onClick={handleClick(TransitionRight)} sx={{ mb: 4, alignSelf: 'center' }}>
         Open snackbar
       </Button>
       <Snackbar
@@ -121,21 +103,21 @@ export const Toast = story<SnackbarProps>(() => {
         onClose={handleClose}
         TransitionComponent={transition}
       >
-        <Alert severity="error" onClose={handleClose}>
+        <Alert severity='error' onClose={handleClose}>
           <AlertTitle>Error</AlertTitle>This is an error message!
         </Alert>
       </Snackbar>
       <Stack spacing={4}>
-        <Alert severity="error" onClose={() => {}}>
+        <Alert severity='error' onClose={() => {}}>
           This is an error message!
         </Alert>
-        <Alert severity="warning" onClose={() => {}}>
+        <Alert severity='warning' onClose={() => {}}>
           This is a warning message!
         </Alert>
-        <Alert severity="info" onClose={() => {}}>
+        <Alert severity='info' onClose={() => {}}>
           This is an information message!
         </Alert>
-        <Alert severity="success" onClose={() => {}}>
+        <Alert severity='success' onClose={() => {}}>
           This is a success message!
         </Alert>
       </Stack>
@@ -168,10 +150,10 @@ export const Positioned = story<SnackbarProps>(() => {
 
   const buttons = (
     <React.Fragment>
-      <Grid container justifyContent="center">
+      <Grid container justifyContent='center'>
         <Grid item>
           <Button
-            variant="text"
+            variant='text'
             onClick={handleClick({
               vertical: 'top',
               horizontal: 'left',
@@ -181,7 +163,7 @@ export const Positioned = story<SnackbarProps>(() => {
           </Button>
 
           <Button
-            variant="text"
+            variant='text'
             onClick={handleClick({
               vertical: 'top',
               horizontal: 'center',
@@ -191,7 +173,7 @@ export const Positioned = story<SnackbarProps>(() => {
           </Button>
 
           <Button
-            variant="text"
+            variant='text'
             onClick={handleClick({
               vertical: 'top',
               horizontal: 'right',
@@ -201,10 +183,10 @@ export const Positioned = story<SnackbarProps>(() => {
           </Button>
         </Grid>
       </Grid>
-      <Grid container justifyContent="center">
+      <Grid container justifyContent='center'>
         <Grid item>
           <Button
-            variant="text"
+            variant='text'
             onClick={handleClick({
               vertical: 'bottom',
               horizontal: 'left',
@@ -213,7 +195,7 @@ export const Positioned = story<SnackbarProps>(() => {
             Bottom-Left
           </Button>
           <Button
-            variant="text"
+            variant='text'
             onClick={handleClick({
               vertical: 'bottom',
               horizontal: 'center',
@@ -222,7 +204,7 @@ export const Positioned = story<SnackbarProps>(() => {
             Bottom-Center
           </Button>
           <Button
-            variant="text"
+            variant='text'
             onClick={handleClick({
               vertical: 'bottom',
               horizontal: 'right',
@@ -238,12 +220,8 @@ export const Positioned = story<SnackbarProps>(() => {
   return (
     <Box>
       {buttons}
-      <Snackbar
-        anchorOrigin={{ vertical, horizontal }}
-        open={open}
-        key={vertical + horizontal}
-      >
-        <Chip label="I love snacks" onDelete={handleClose} />
+      <Snackbar anchorOrigin={{ vertical, horizontal }} open={open} key={vertical + horizontal}>
+        <Chip label='I love snacks' onDelete={handleClose} />
       </Snackbar>
     </Box>
   )
@@ -264,24 +242,17 @@ export const Autosave = story<SnackbarProps>(() => {
   >(undefined)
 
   function TransitionDown(props: TransitionPropsWithChild) {
-    return <Slide {...props} direction="up" />
+    return <Slide {...props} direction='up' />
   }
 
   const handleClick =
-    (
-      status: PillStatus,
-      Transition: React.ComponentType<TransitionPropsWithChild>,
-    ) =>
-    () => {
+    (status: PillStatus, Transition: React.ComponentType<TransitionPropsWithChild>) => () => {
       setState({ ...state, open: true, status })
       setTransition(() => Transition)
       // setOpen(true)
     }
 
-  const handleClose = (
-    _event: React.SyntheticEvent | Event,
-    reason?: string,
-  ) => {
+  const handleClose = (_event: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return
     }
@@ -290,10 +261,10 @@ export const Autosave = story<SnackbarProps>(() => {
 
   return (
     <div>
-      <Button variant="text" onClick={handleClick('success', TransitionDown)}>
+      <Button variant='text' onClick={handleClick('success', TransitionDown)}>
         Show autosave success
       </Button>
-      <Button variant="text" onClick={handleClick('error', TransitionDown)}>
+      <Button variant='text' onClick={handleClick('error', TransitionDown)}>
         Show autosave fail
       </Button>
       <Snackbar
@@ -307,12 +278,9 @@ export const Autosave = story<SnackbarProps>(() => {
         }}
       >
         {state.status === 'success' ? (
-          <Chip icon={<CheckIcon color="success" />} label="Changes Saved" />
+          <Chip icon={<CheckIcon color='success' />} label='Changes Saved' />
         ) : (
-          <Chip
-            icon={<ErrorIcon color="error" />}
-            label="Failed To Save Changes"
-          />
+          <Chip icon={<ErrorIcon color='error' />} label='Failed To Save Changes' />
         )}
       </Snackbar>
     </div>
@@ -331,7 +299,7 @@ type TransitionPropsWithChild = TransitionProps & {
  */
 export const OtherTransitions = story<SnackbarProps>(() => {
   function SlideTransition(props: TransitionPropsWithChild) {
-    return <Slide {...props} direction="left" />
+    return <Slide {...props} direction='left' />
   }
 
   function GrowTransition(props: TransitionPropsWithChild) {
@@ -370,13 +338,13 @@ export const OtherTransitions = story<SnackbarProps>(() => {
 
   return (
     <div>
-      <Button variant="text" onClick={handleClick(GrowTransition)}>
+      <Button variant='text' onClick={handleClick(GrowTransition)}>
         Grow Transition
       </Button>
-      <Button variant="text" onClick={handleClick(Fade)}>
+      <Button variant='text' onClick={handleClick(Fade)}>
         Fade Transition
       </Button>
-      <Button variant="text" onClick={handleClick(SlideTransition)}>
+      <Button variant='text' onClick={handleClick(SlideTransition)}>
         Slide Transition
       </Button>
       <Snackbar
@@ -384,7 +352,7 @@ export const OtherTransitions = story<SnackbarProps>(() => {
         TransitionComponent={state.Transition}
         key={state.Transition.name}
       >
-        <Alert severity="info" onClose={handleClose}>
+        <Alert severity='info' onClose={handleClose}>
           I love snacks
         </Alert>
       </Snackbar>
@@ -397,19 +365,19 @@ export const OtherTransitions = story<SnackbarProps>(() => {
  */
 export const SlideDirection = story<SnackbarProps>(() => {
   function TransitionLeft(props: TransitionPropsWithChild) {
-    return <Slide {...props} direction="left" />
+    return <Slide {...props} direction='left' />
   }
 
   function TransitionUp(props: TransitionPropsWithChild) {
-    return <Slide {...props} direction="up" />
+    return <Slide {...props} direction='up' />
   }
 
   function TransitionRight(props: TransitionPropsWithChild) {
-    return <Slide {...props} direction="right" />
+    return <Slide {...props} direction='right' />
   }
 
   function TransitionDown(props: TransitionPropsWithChild) {
-    return <Slide {...props} direction="down" />
+    return <Slide {...props} direction='down' />
   }
 
   const [open, setOpen] = React.useState(false)
@@ -417,11 +385,10 @@ export const SlideDirection = story<SnackbarProps>(() => {
     React.ComponentType<TransitionPropsWithChild> | undefined
   >(undefined)
 
-  const handleClick =
-    (Transition: React.ComponentType<TransitionPropsWithChild>) => () => {
-      setTransition(() => Transition)
-      setOpen(true)
-    }
+  const handleClick = (Transition: React.ComponentType<TransitionPropsWithChild>) => () => {
+    setTransition(() => Transition)
+    setOpen(true)
+  }
 
   const handleClose = () => {
     setOpen(false)
@@ -429,16 +396,16 @@ export const SlideDirection = story<SnackbarProps>(() => {
 
   return (
     <div>
-      <Button variant="text" onClick={handleClick(TransitionLeft)}>
+      <Button variant='text' onClick={handleClick(TransitionLeft)}>
         Right
       </Button>
-      <Button variant="text" onClick={handleClick(TransitionUp)}>
+      <Button variant='text' onClick={handleClick(TransitionUp)}>
         Up
       </Button>
-      <Button variant="text" onClick={handleClick(TransitionRight)}>
+      <Button variant='text' onClick={handleClick(TransitionRight)}>
         Left
       </Button>
-      <Button variant="text" onClick={handleClick(TransitionDown)}>
+      <Button variant='text' onClick={handleClick(TransitionDown)}>
         Down
       </Button>
       <Snackbar
@@ -446,7 +413,7 @@ export const SlideDirection = story<SnackbarProps>(() => {
         TransitionComponent={transition}
         key={transition ? transition.name : ''}
       >
-        <Alert severity="success" onClose={handleClose}>
+        <Alert severity='success' onClose={handleClose}>
           I love snacks
         </Alert>
       </Snackbar>
@@ -468,7 +435,7 @@ const MyApp = () => {
         horizontal: 'right',
       },
       content: (key, message) => (
-        <StyledAlert severity="error" key={key}>
+        <StyledAlert severity='error' key={key}>
           <AlertTitle>Error</AlertTitle>
           {message}
         </StyledAlert>
@@ -485,7 +452,7 @@ const MyApp = () => {
         horizontal: 'right',
       },
       content: (key, message) => (
-        <StyledAlert severity="success" key={key}>
+        <StyledAlert severity='success' key={key}>
           <AlertTitle>Success</AlertTitle>
           {message}
         </StyledAlert>
@@ -495,10 +462,10 @@ const MyApp = () => {
 
   return (
     <React.Fragment>
-      <Button variant="text" onClick={handleClick}>
+      <Button variant='text' onClick={handleClick}>
         Show error toast
       </Button>
-      <Button variant="text" onClick={handleClickVariant('success')}>
+      <Button variant='text' onClick={handleClickVariant('success')}>
         Show success toast
       </Button>
     </React.Fragment>

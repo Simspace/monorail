@@ -12,17 +12,15 @@ export default {
   component: StaticTimePicker,
 }
 
-const Template = story<StaticTimePickerProps<Date>>(args => {
-  const [value, setValue] = React.useState<Date | null>(
-    new Date('2021-01-01T12:34:00.000Z'),
-  )
+const Template = story<StaticTimePickerProps<Date>>((args) => {
+  const [value, setValue] = React.useState<Date | null>(new Date('2021-01-01T12:34:00.000Z'))
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <StaticTimePicker
-        displayStaticWrapperAs="mobile"
+        displayStaticWrapperAs='mobile'
         value={value}
-        onChange={newValue => {
+        onChange={(newValue) => {
           setValue(newValue)
         }}
         {...args}

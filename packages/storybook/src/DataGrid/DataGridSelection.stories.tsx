@@ -96,7 +96,7 @@ To select multiple rows on the \`DataGridPro\` component, hold the \`CTRL\` key 
 /**
  * Checkbox selection
  */
-export const CheckboxSelectionGrid = story<DataGridProps>(args => {
+export const CheckboxSelectionGrid = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 10,
@@ -125,7 +125,7 @@ CheckboxSelectionGrid.parameters = {
 /**
  * Disable selection on click
  */
-export const DisableClickSelectionGrid = story<DataGridProps>(args => {
+export const DisableClickSelectionGrid = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 10,
@@ -134,12 +134,7 @@ export const DisableClickSelectionGrid = story<DataGridProps>(args => {
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        checkboxSelection
-        disableRowSelectionOnClick
-        {...args}
-        {...data}
-      />
+      <DataGrid checkboxSelection disableRowSelectionOnClick {...args} {...data} />
     </div>
   )
 })
@@ -159,7 +154,7 @@ DisableClickSelectionGrid.parameters = {
 /**
  * Disable selection on certain rows
  */
-export const DisableRowSelection = story<DataGridProps>(args => {
+export const DisableRowSelection = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 100,
@@ -171,8 +166,8 @@ export const DisableRowSelection = story<DataGridProps>(args => {
       <DataGrid
         {...args}
         {...data}
-        isRowSelectable={(params: GridRowParams<{ quantity: number }>) =>
-          params.row.quantity > 50000
+        isRowSelectable={(params: GridRowParams) =>
+          (params.row as { quantity: number }).quantity > 50000
         }
         checkboxSelection
       />
@@ -197,21 +192,20 @@ In the demo below only rows with quantity above 50000 can be selected:`,
 /**
  * Controlled selection
  */
-export const ControlledSelectionGrid = story<DataGridProps>(args => {
+export const ControlledSelectionGrid = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 10,
     maxColumns: 6,
   })
 
-  const [selectionModel, setSelectionModel] =
-    React.useState<GridRowSelectionModel>([])
+  const [selectionModel, setSelectionModel] = React.useState<GridRowSelectionModel>([])
 
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
         checkboxSelection
-        onRowSelectionModelChange={newSelectionModel => {
+        onRowSelectionModelChange={(newSelectionModel) => {
           setSelectionModel(newSelectionModel)
         }}
         rowSelectionModel={selectionModel}
@@ -238,79 +232,77 @@ ControlledSelectionGrid.parameters = {
  * Usage with server-side pagination
  */
 function loadServerRows(page: number, data: GridDemoData): Promise<any> {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve(data.rows.slice(page * 5, (page + 1) * 5))
-    }, Math.random() * 500 + 100) // simulate network latency
+  return new Promise((resolve) => {
+    setTimeout(
+      () => {
+        resolve(data.rows.slice(page * 5, (page + 1) * 5))
+      },
+      Math.random() * 500 + 100,
+    ) // simulate network latency
   })
 }
 
-export const ControlledSelectionServerPaginationGrid = story<DataGridProps>(
-  args => {
-    const { data } = useDemoData({
-      dataSet: 'Commodity',
-      rowLength: 100,
-      maxColumns: 6,
-    })
+export const ControlledSelectionServerPaginationGrid = story<DataGridProps>((args) => {
+  const { data } = useDemoData({
+    dataSet: 'Commodity',
+    rowLength: 100,
+    maxColumns: 6,
+  })
 
-    const [page, setPage] = React.useState(0)
-    const [rows, setRows] = React.useState<GridRowsProp>([])
-    const [loading, setLoading] = React.useState(false)
-    const [selectionModel, setSelectionModel] =
-      React.useState<GridRowSelectionModel>([])
-    const prevSelectionModel =
-      React.useRef<GridRowSelectionModel>(selectionModel)
+  const [page, setPage] = React.useState(0)
+  const [rows, setRows] = React.useState<GridRowsProp>([])
+  const [loading, setLoading] = React.useState(false)
+  const [selectionModel, setSelectionModel] = React.useState<GridRowSelectionModel>([])
+  const prevSelectionModel = React.useRef<GridRowSelectionModel>(selectionModel)
 
-    React.useEffect(() => {
-      let active = true
+  React.useEffect(() => {
+    let active = true
 
-      ;(async () => {
-        setLoading(true)
-        const newRows = await loadServerRows(page, data)
+    ;(async () => {
+      setLoading(true)
+      const newRows = await loadServerRows(page, data)
 
-        if (!active) {
-          return
-        }
-
-        setRows(newRows)
-        setLoading(false)
-        setTimeout(() => {
-          setSelectionModel(prevSelectionModel.current)
-        })
-      })()
-
-      return () => {
-        active = false
+      if (!active) {
+        return
       }
-    }, [page, data])
 
-    return (
-      <div style={{ height: 400, width: '100%' }}>
-        <DataGrid
-          {...args}
-          rows={rows}
-          columns={data.columns}
-          pagination
-          checkboxSelection
-          pageSizeOptions={[5]}
-          rowCount={100}
-          paginationMode="server"
-          onPaginationModelChange={newPaginationModel => {
-            prevSelectionModel.current = selectionModel
-            setPage(newPaginationModel.page)
-          }}
-          onRowSelectionModelChange={newSelectionModel => {
-            setSelectionModel(newSelectionModel)
-          }}
-          rowSelectionModel={selectionModel}
-          loading={loading}
-        />
-      </div>
-    )
-  },
-)
-ControlledSelectionServerPaginationGrid.storyName =
-  'Usage with server-side pagination'
+      setRows(newRows)
+      setLoading(false)
+      setTimeout(() => {
+        setSelectionModel(prevSelectionModel.current)
+      })
+    })()
+
+    return () => {
+      active = false
+    }
+  }, [page, data])
+
+  return (
+    <div style={{ height: 400, width: '100%' }}>
+      <DataGrid
+        {...args}
+        rows={rows}
+        columns={data.columns}
+        pagination
+        checkboxSelection
+        pageSizeOptions={[5]}
+        rowCount={100}
+        paginationMode='server'
+        onPaginationModelChange={(newPaginationModel) => {
+          prevSelectionModel.current = selectionModel
+          setPage(newPaginationModel.page)
+        }}
+        onRowSelectionModelChange={(newSelectionModel) => {
+          setSelectionModel(newSelectionModel)
+        }}
+        rowSelectionModel={selectionModel}
+        loading={loading}
+      />
+    </div>
+  )
+})
+ControlledSelectionServerPaginationGrid.storyName = 'Usage with server-side pagination'
 ControlledSelectionServerPaginationGrid.parameters = {
   docs: {
     description: {

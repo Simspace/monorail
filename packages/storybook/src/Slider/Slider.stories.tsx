@@ -22,13 +22,10 @@ export default {
   },
 }
 
-const Template = story<SliderProps>(
-  args => <Slider aria-label="I am aria-labeled" {...args} />,
-  {
-    args: {},
-    muiName: 'MuiSlider',
-  },
-)
+const Template = story<SliderProps>((args) => <Slider aria-label='I am aria-labeled' {...args} />, {
+  args: {},
+  muiName: 'MuiSlider',
+})
 
 export const Default = story(Template)
 
@@ -41,12 +38,12 @@ export function ContinuousSlider() {
 
   return (
     <Box sx={{ width: 200 }}>
-      <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
+      <Stack spacing={2} direction='row' sx={{ mb: 1 }} alignItems='center'>
         <VolumeDown />
-        <Slider aria-label="Volume" value={value} onChange={handleChange} />
+        <Slider aria-label='Volume' value={value} onChange={handleChange} />
         <VolumeUp />
       </Stack>
-      <Slider disabled defaultValue={30} aria-label="Disabled slider" />
+      <Slider disabled defaultValue={30} aria-label='Disabled slider' />
     </Box>
   )
 }
@@ -74,11 +71,11 @@ export function ContinuousSliderLabel() {
   return (
     <Box sx={{ width: 300, mt: 8 }}>
       <Slider
-        aria-label="Always visible"
+        aria-label='Always visible'
         defaultValue={80}
         getAriaValueText={valuetext}
         marks={marks}
-        valueLabelDisplay="on"
+        valueLabelDisplay='on'
       />
     </Box>
   )
@@ -87,13 +84,8 @@ export function ContinuousSliderLabel() {
 export function SliderSizes() {
   return (
     <Box sx={{ width: 300, mt: 8 }}>
-      <Slider
-        size="small"
-        defaultValue={70}
-        aria-label="Small"
-        valueLabelDisplay="auto"
-      />
-      <Slider defaultValue={50} aria-label="Default" valueLabelDisplay="auto" />
+      <Slider size='small' defaultValue={70} aria-label='Small' valueLabelDisplay='auto' />
+      <Slider defaultValue={50} aria-label='Default' valueLabelDisplay='auto' />
     </Box>
   )
 }
@@ -106,28 +98,28 @@ export function DiscreteSlider() {
   return (
     <Box sx={{ width: 300, mt: 8 }}>
       <Slider
-        aria-label="Temperature"
+        aria-label='Temperature'
         defaultValue={30}
         getAriaValueText={valuetext}
-        valueLabelDisplay="auto"
+        valueLabelDisplay='auto'
         step={10}
         marks
         min={10}
         max={110}
-        size="small"
+        size='small'
       />
       <Slider
-        aria-label="Temperature"
+        aria-label='Temperature'
         defaultValue={30}
         getAriaValueText={valuetext}
-        valueLabelDisplay="auto"
+        valueLabelDisplay='auto'
         step={10}
         marks
         min={10}
         max={110}
       />
       <Slider
-        aria-label="temperature2"
+        aria-label='temperature2'
         defaultValue={30}
         step={10}
         marks
@@ -148,14 +140,14 @@ export const DiscreteSliderSteps = story(
     return (
       <Box sx={{ width: 300, mt: 8 }}>
         <Slider
-          aria-label="Small steps"
+          aria-label='Small steps'
           defaultValue={0.00000005}
           getAriaValueText={valuetext}
           step={0.00000001}
           marks
           min={-0.00000005}
           max={0.0000001}
-          valueLabelDisplay="auto"
+          valueLabelDisplay='auto'
         />
       </Box>
     )
@@ -194,11 +186,11 @@ export function DiscreteSliderMarks() {
   return (
     <Box sx={{ width: 300, mt: 8 }}>
       <Slider
-        aria-label="Custom marks"
+        aria-label='Custom marks'
         defaultValue={20}
         getAriaValueText={valuetext}
         step={10}
-        valueLabelDisplay="auto"
+        valueLabelDisplay='auto'
         marks={marks}
       />
     </Box>
@@ -230,17 +222,17 @@ export function DiscreteSliderValues() {
   }
 
   function valueLabelFormat(value: number) {
-    return marks.findIndex(mark => mark.value === value) + 1
+    return marks.findIndex((mark) => mark.value === value) + 1
   }
   return (
     <Box sx={{ width: 300, mt: 8 }}>
       <Slider
-        aria-label="Restricted values"
+        aria-label='Restricted values'
         defaultValue={20}
         valueLabelFormat={valueLabelFormat}
         getAriaValueText={valuetext}
         step={null}
-        valueLabelDisplay="auto"
+        valueLabelDisplay='auto'
         marks={marks}
       />
     </Box>
@@ -274,12 +266,12 @@ export function DiscreteSliderLabel() {
   return (
     <Box sx={{ width: 300, mt: 8 }}>
       <Slider
-        aria-label="Always visible"
+        aria-label='Always visible'
         defaultValue={80}
         getAriaValueText={valuetext}
         step={10}
         marks={marks}
-        valueLabelDisplay="on"
+        valueLabelDisplay='on'
       />
     </Box>
   )
@@ -301,7 +293,7 @@ export function RangeSlider() {
         getAriaLabel={() => 'Temperature range'}
         value={value}
         onChange={handleChange}
-        valueLabelDisplay="auto"
+        valueLabelDisplay='auto'
         getAriaValueText={valuetext}
       />
     </Box>
@@ -317,11 +309,7 @@ export function MinimumDistanceSlider() {
 
   const [value1, setValue1] = React.useState<Array<number>>([20, 37])
 
-  const handleChange1 = (
-    _event: Event,
-    newValue: number | Array<number>,
-    activeThumb: number,
-  ) => {
+  const handleChange1 = (_event: Event, newValue: number | Array<number>, activeThumb: number) => {
     if (!Array.isArray(newValue)) {
       return
     }
@@ -335,11 +323,7 @@ export function MinimumDistanceSlider() {
 
   const [value2, setValue2] = React.useState<Array<number>>([20, 37])
 
-  const handleChange2 = (
-    _event: Event,
-    newValue: number | Array<number>,
-    activeThumb: number,
-  ) => {
+  const handleChange2 = (_event: Event, newValue: number | Array<number>, activeThumb: number) => {
     if (!Array.isArray(newValue)) {
       return
     }
@@ -363,7 +347,7 @@ export function MinimumDistanceSlider() {
         getAriaLabel={() => 'Minimum distance'}
         value={value1}
         onChange={handleChange1}
-        valueLabelDisplay="auto"
+        valueLabelDisplay='auto'
         getAriaValueText={valuetext}
         disableSwap
       />
@@ -371,7 +355,7 @@ export function MinimumDistanceSlider() {
         getAriaLabel={() => 'Minimum distance shift'}
         value={value2}
         onChange={handleChange2}
-        valueLabelDisplay="auto"
+        valueLabelDisplay='auto'
         getAriaValueText={valuetext}
         disableSwap
       />
@@ -384,14 +368,9 @@ export function InputSlider() {
     width: 42px;
   `
 
-  const [value, setValue] = React.useState<
-    number | string | Array<number | string>
-  >(30)
+  const [value, setValue] = React.useState<number | string | Array<number | string>>(30)
 
-  const handleSliderChange = (
-    _event: Event,
-    newValue: number | Array<number>,
-  ) => {
+  const handleSliderChange = (_event: Event, newValue: number | Array<number>) => {
     setValue(newValue)
   }
 
@@ -411,10 +390,10 @@ export function InputSlider() {
 
   return (
     <Box sx={{ width: 250 }}>
-      <Typography id="input-slider" gutterBottom>
+      <Typography id='input-slider' gutterBottom>
         Volume
       </Typography>
-      <Grid container spacing={2} alignItems="center">
+      <Grid container spacing={2} alignItems='center'>
         <Grid item>
           <VolumeUp />
         </Grid>
@@ -422,13 +401,13 @@ export function InputSlider() {
           <Slider
             value={typeof value === 'number' ? value : 0}
             onChange={handleSliderChange}
-            aria-labelledby="input-slider"
+            aria-labelledby='input-slider'
           />
         </Grid>
         <Grid item>
           <Input
             value={value}
-            size="small"
+            size='small'
             onChange={handleInputChange}
             onBlur={handleBlur}
             inputProps={{
@@ -477,23 +456,23 @@ export function TrackFalseSlider() {
 
   return (
     <Box sx={{ width: 250 }}>
-      <Typography id="track-false-slider" gutterBottom>
+      <Typography id='track-false-slider' gutterBottom>
         Removed track
       </Typography>
       <Slider
         track={false}
-        aria-labelledby="track-false-slider"
+        aria-labelledby='track-false-slider'
         getAriaValueText={valuetext}
         defaultValue={30}
         marks={marks}
       />
       <Separator />
-      <Typography id="track-false-range-slider" gutterBottom>
+      <Typography id='track-false-range-slider' gutterBottom>
         Removed track range slider
       </Typography>
       <Slider
         track={false}
-        aria-labelledby="track-false-range-slider"
+        aria-labelledby='track-false-range-slider'
         getAriaValueText={valuetext}
         defaultValue={[20, 37, 50]}
         marks={marks}
@@ -534,23 +513,23 @@ export function TrackInvertedSlider() {
 
   return (
     <Box sx={{ width: 250 }}>
-      <Typography id="track-inverted-slider" gutterBottom>
+      <Typography id='track-inverted-slider' gutterBottom>
         Inverted track
       </Typography>
       <Slider
-        track="inverted"
-        aria-labelledby="track-inverted-slider"
+        track='inverted'
+        aria-labelledby='track-inverted-slider'
         getAriaValueText={valuetext}
         defaultValue={30}
         marks={marks}
       />
       <Separator />
-      <Typography id="track-inverted-range-slider" gutterBottom>
+      <Typography id='track-inverted-range-slider' gutterBottom>
         Inverted track range
       </Typography>
       <Slider
-        track="inverted"
-        aria-labelledby="track-inverted-range-slider"
+        track='inverted'
+        aria-labelledby='track-inverted-range-slider'
         getAriaValueText={valuetext}
         defaultValue={[20, 37]}
         marks={marks}
@@ -588,7 +567,7 @@ export function NonLinearSlider() {
 
   return (
     <Box sx={{ width: 250 }}>
-      <Typography id="non-linear-slider" gutterBottom>
+      <Typography id='non-linear-slider' gutterBottom>
         Storage: {valueLabelFormat(calculateValue(value))}
       </Typography>
       <Slider
@@ -600,8 +579,8 @@ export function NonLinearSlider() {
         getAriaValueText={valueLabelFormat}
         valueLabelFormat={valueLabelFormat}
         onChange={handleChange}
-        valueLabelDisplay="auto"
-        aria-labelledby="non-linear-slider"
+        valueLabelDisplay='auto'
+        aria-labelledby='non-linear-slider'
       />
     </Box>
   )

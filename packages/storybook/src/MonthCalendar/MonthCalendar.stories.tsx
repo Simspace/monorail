@@ -12,20 +12,18 @@ export default {
 }
 
 const Template = story<MonthCalendarProps<Date>>(
-  args => {
+  (args) => {
     const minDate = new Date('2020-01-01T00:00:00.000')
     const maxDate = new Date('2034-01-01T00:00:00.000')
 
-    const [date, setDate] = React.useState<Date | null>(
-      new Date('2021-01-01T12:34:00.000Z'),
-    )
+    const [date, setDate] = React.useState<Date | null>(new Date('2021-01-01T12:34:00.000Z'))
 
     return (
       <MonthCalendar
         value={date}
         minDate={minDate}
         maxDate={maxDate}
-        onChange={newDate => setDate(newDate)}
+        onChange={(newDate) => setDate(newDate)}
         {...args}
       />
     )

@@ -8,12 +8,9 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Utils/Hidden', component: Hidden }
 
-const Template = story<HiddenProps>(
-  (args: HiddenProps) => <Hidden {...args} />,
-  {
-    args: { children: 'This content may be hidden at certain screen sizes.' },
-  },
-)
+const Template = story<HiddenProps>((args: HiddenProps) => <Hidden {...args} />, {
+  args: { children: 'This content may be hidden at certain screen sizes.' },
+})
 
 export const Default = story(Template)
 
@@ -26,8 +23,7 @@ export const Deprecated = story<HiddenProps>(() => {
   return (
     <div>
       <Typography>
-        Use the <code>sx</code> prop to replace{' '}
-        <code>implementation="css"</code>:
+        Use the <code>sx</code> prop to replace <code>implementation="css"</code>:
       </Typography>
 
       <pre>
@@ -43,8 +39,7 @@ export const Deprecated = story<HiddenProps>(() => {
 +<Box component="button" sx={{ display: { xs: 'none', md: 'block' } }} />`}</pre>
 
       <Typography>
-        Use the <code>useMediaQuery</code> hook to replace{' '}
-        <code>implementation="js"</code>:
+        Use the <code>useMediaQuery</code> hook to replace <code>implementation="js"</code>:
       </Typography>
 
       <pre>{`-<Hidden implementation="js" xlUp><Paper /></Hidden>

@@ -200,7 +200,7 @@ function DataGridGlobalSearch(props: DataGridGlobalSearchProps) {
 
   const handleSearchChangeDebounced = React.useCallback(
     (event: React.SyntheticEvent, value: string, reason: 'input' | 'clear') => {
-      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+       
       if (disableQuickFilter !== true && apiRef.current.setFilterModel) {
         apiRef.current.setFilterModel({
           items: [],

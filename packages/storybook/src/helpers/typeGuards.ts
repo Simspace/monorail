@@ -33,8 +33,7 @@ export const isString = (x: unknown): x is string => typeof x === 'string'
 /**
  * Test whether or not an argument is a non-empty string
  */
-export const isNonEmptyString = (x: unknown): x is string =>
-  isString(x) && x.length > 0
+export const isNonEmptyString = (x: unknown): x is string => isString(x) && x.length > 0
 
 /**
  * Type guard for the `Array` type with `.length > 0`

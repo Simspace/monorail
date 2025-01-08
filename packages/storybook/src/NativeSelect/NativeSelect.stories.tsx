@@ -2,23 +2,18 @@
 import React from 'react'
 
 import type { NativeSelectProps } from '@monorail/components'
-import {
-  Box,
-  FormControl,
-  InputLabel,
-  NativeSelect,
-} from '@monorail/components'
+import { Box, FormControl, InputLabel, NativeSelect } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
 export default { title: 'Inputs/NativeSelect', component: NativeSelect }
 
 const Template = story<NativeSelectProps>(
-  args => {
+  (args) => {
     return (
       <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth>
-          <InputLabel variant="standard" htmlFor="uncontrolled-native">
+          <InputLabel variant='standard' htmlFor='uncontrolled-native'>
             Age
           </InputLabel>
           <NativeSelect

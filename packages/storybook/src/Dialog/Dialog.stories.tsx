@@ -5,11 +5,7 @@ import { useTheme } from '@mui/material'
 import type { TransitionProps } from '@mui/material/transitions'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
-import type {
-  DialogProps,
-  PaperProps,
-  SelectChangeEvent,
-} from '@monorail/components'
+import type { DialogProps, PaperProps, SelectChangeEvent } from '@monorail/components'
 import {
   Box,
   Button,
@@ -47,10 +43,7 @@ export interface SimpleDialogProps {
   onSimpleDialogClose: () => void
 }
 
-const SimpleDialog = ({
-  onSimpleDialogClose,
-  ...props
-}: DialogProps & SimpleDialogProps) => {
+const SimpleDialog = ({ onSimpleDialogClose, ...props }: DialogProps & SimpleDialogProps) => {
   const handleClose = () => {
     onSimpleDialogClose()
   }
@@ -64,7 +57,7 @@ const SimpleDialog = ({
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button variant="text" onClick={handleClose}>
+        <Button variant='text' onClick={handleClose}>
           Medium
         </Button>
         <Button onClick={handleClose} autoFocus>
@@ -134,12 +127,12 @@ export const SelectionDialog = story(() => {
           <ListItemIcon>
             <Checkbox
               checked={checked.current.has(index)}
-              edge="start"
+              edge='start'
               tabIndex={-1}
               disableHover
             />
           </ListItemIcon>
-          <ListItemText primary="List Item" />
+          <ListItemText primary='List Item' />
         </ListItemButton>
       </ListItem>
     ))
@@ -147,9 +140,9 @@ export const SelectionDialog = story(() => {
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Button onClick={handleClickOpen}>Open dialog</Button>
-      <Dialog maxWidth="sm" fullWidth open={open} onClose={handleClickClose}>
+      <Dialog maxWidth='sm' fullWidth open={open} onClose={handleClickClose}>
         <DialogHeader
-          title="Dialog Title"
+          title='Dialog Title'
           slotProps={{
             closeButton: {
               'aria-label': 'close',
@@ -166,7 +159,7 @@ export const SelectionDialog = story(() => {
           disableBorder
         />
         <DialogActions divider>
-          <Button variant="text">Medium</Button>
+          <Button variant='text'>Medium</Button>
           <Button onClick={handleClickClose}>Close</Button>
         </DialogActions>
       </Dialog>
@@ -190,27 +183,18 @@ export const Sizes = story<DialogProps>(() => {
     setOpen(false)
   }
 
-  const handleMaxWidthChange = (
-    event: SelectChangeEvent<DialogProps['maxWidth']>,
-  ) => {
+  const handleMaxWidthChange = (event: SelectChangeEvent<DialogProps['maxWidth']>) => {
     setMaxWidth(event.target.value as DialogProps['maxWidth'])
   }
 
-  const handleFullWidthChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleFullWidthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFullWidth(event.target.checked)
   }
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Button onClick={handleClickOpen}>Open dialog</Button>
-      <Dialog
-        fullWidth={fullWidth}
-        maxWidth={maxWidth}
-        open={open}
-        onClose={handleClose}
-      >
+      <Dialog fullWidth={fullWidth} maxWidth={maxWidth} open={open} onClose={handleClose}>
         <DialogTitle>Sizes</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -218,7 +202,7 @@ export const Sizes = story<DialogProps>(() => {
           </DialogContentText>
           <Box
             noValidate
-            component="form"
+            component='form'
             sx={{
               display: 'flex',
               flexDirection: 'column',
@@ -227,31 +211,29 @@ export const Sizes = story<DialogProps>(() => {
             }}
           >
             <FormControl sx={{ mt: 2, minWidth: 120 }}>
-              <InputLabel htmlFor="max-width">maxWidth</InputLabel>
+              <InputLabel htmlFor='max-width'>maxWidth</InputLabel>
               <Select
                 autoFocus
                 value={maxWidth}
                 onChange={handleMaxWidthChange}
-                label="maxWidth"
+                label='maxWidth'
                 inputProps={{
                   name: 'max-width',
                   id: 'max-width',
                 }}
               >
                 <MenuItem value={''}>false</MenuItem>
-                <MenuItem value="xs">xs</MenuItem>
-                <MenuItem value="sm">sm</MenuItem>
-                <MenuItem value="md">md</MenuItem>
-                <MenuItem value="lg">lg</MenuItem>
-                <MenuItem value="xl">xl</MenuItem>
+                <MenuItem value='xs'>xs</MenuItem>
+                <MenuItem value='sm'>sm</MenuItem>
+                <MenuItem value='md'>md</MenuItem>
+                <MenuItem value='lg'>lg</MenuItem>
+                <MenuItem value='xl'>xl</MenuItem>
               </Select>
             </FormControl>
             <FormControlLabel
               sx={{ mt: 1 }}
-              control={
-                <Switch checked={fullWidth} onChange={handleFullWidthChange} />
-              }
-              label="Full width"
+              control={<Switch checked={fullWidth} onChange={handleFullWidthChange} />}
+              label='Full width'
             />
           </Box>
         </DialogContent>
@@ -290,20 +272,20 @@ export const ScrollDialog = story<DialogProps>(() => {
   }, [open])
 
   return (
-    <Stack direction="row" spacing={8} justifyContent="center">
+    <Stack direction='row' spacing={8} justifyContent='center'>
       <Button onClick={handleClickOpen('paper')}>scroll=paper</Button>
       <Button onClick={handleClickOpen('body')}>scroll=body</Button>
       <Dialog
         open={open}
         onClose={handleClose}
         scroll={scroll}
-        aria-labelledby="scroll-dialog-title"
-        aria-describedby="scroll-dialog-description"
+        aria-labelledby='scroll-dialog-title'
+        aria-describedby='scroll-dialog-description'
       >
-        <DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id='scroll-dialog-title'>Subscribe</DialogTitle>
         <DialogContent dividers={scroll === 'paper'}>
           <DialogContentText
-            id="scroll-dialog-description"
+            id='scroll-dialog-description'
             ref={descriptionElementRef}
             tabIndex={-1}
           >
@@ -325,7 +307,7 @@ const Transition = React.forwardRef(function Transition(
   },
   ref: React.Ref<unknown>,
 ) {
-  return <Slide direction="up" ref={ref} {...props} />
+  return <Slide direction='up' ref={ref} {...props} />
 })
 
 /**
@@ -350,17 +332,17 @@ export const Transitions = story<DialogProps>(() => {
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
+        aria-describedby='alert-dialog-slide-description'
       >
         <DialogTitle>{"Use Google's location service?"}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
+          <DialogContentText id='alert-dialog-slide-description'>
+            Let Google help apps determine location. This means sending anonymous location data to
+            Google, even when no apps are running.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button variant="text" onClick={handleClose}>
+          <Button variant='text' onClick={handleClose}>
             Disagree
           </Button>
           <Button onClick={handleClose}>Agree</Button>
@@ -391,20 +373,20 @@ export const FormDialog = story<DialogProps>(() => {
         <DialogTitle>Subscribe</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
+            To subscribe to this website, please enter your email address here. We will send updates
+            occasionally.
           </DialogContentText>
           <TextField
             autoFocus
-            id="name"
-            label="Email Address"
-            type="email"
+            id='name'
+            label='Email Address'
+            type='email'
             fullWidth
-            variant="outlined"
+            variant='outlined'
           />
         </DialogContent>
         <DialogActions>
-          <Button variant="text" onClick={handleClose}>
+          <Button variant='text' onClick={handleClose}>
             Cancel
           </Button>
           <Button onClick={handleClose}>Subscribe</Button>
@@ -436,7 +418,7 @@ export const FullScreenDialog = story<DialogProps>(() => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button variant="text" onClick={handleClose}>
+          <Button variant='text' onClick={handleClose}>
             Medium
           </Button>
           <Button onClick={handleClose} autoFocus>
@@ -471,15 +453,13 @@ export const ResponsiveDialog = story<DialogProps>(() => {
         fullScreen={fullScreen}
         open={open}
         onClose={handleClose}
-        aria-labelledby="responsive-dialog-title"
+        aria-labelledby='responsive-dialog-title'
       >
-        <DialogTitle id="responsive-dialog-title">
-          {"Use Google's location service?"}
-        </DialogTitle>
+        <DialogTitle id='responsive-dialog-title'>{"Use Google's location service?"}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
+            Let Google help apps determine location. This means sending anonymous location data to
+            Google, even when no apps are running.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -497,10 +477,7 @@ export const ResponsiveDialog = story<DialogProps>(() => {
 
 const PaperComponent = (props: PaperProps) => {
   return (
-    <Draggable
-      handle="#draggable-dialog-title"
-      cancel={'[class*="MuiDialogContent-root"]'}
-    >
+    <Draggable handle='#draggable-dialog-title' cancel={'[class*="MuiDialogContent-root"]'}>
       <Paper {...props} />
     </Draggable>
   )
@@ -527,19 +504,19 @@ export const DraggableDialog = story<DialogProps>(() => {
         open={open}
         onClose={handleClose}
         PaperComponent={PaperComponent}
-        aria-labelledby="draggable-dialog-title"
+        aria-labelledby='draggable-dialog-title'
       >
-        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+        <DialogTitle style={{ cursor: 'move' }} id='draggable-dialog-title'>
           Subscribe
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
+            To subscribe to this website, please enter your email address here. We will send updates
+            occasionally.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus variant="text" onClick={handleClose}>
+          <Button autoFocus variant='text' onClick={handleClose}>
             Cancel
           </Button>
           <Button onClick={handleClose}>Subscribe</Button>

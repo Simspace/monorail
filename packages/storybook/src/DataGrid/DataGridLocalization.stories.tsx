@@ -9,7 +9,7 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Data Grid/Localization', component: DataGrid }
 
-const Template = story<DataGridProps>(args => {
+const Template = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 4,

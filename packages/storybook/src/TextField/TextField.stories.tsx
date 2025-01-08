@@ -21,7 +21,7 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Inputs/TextField', component: TextField }
 
-const Template = story<TextFieldProps>(args => <TextField {...args} />, {
+const Template = story<TextFieldProps>((args) => <TextField {...args} />, {
   args: {
     label: 'Text Field',
     placeholder: 'Placeholder',
@@ -33,21 +33,16 @@ const Template = story<TextFieldProps>(args => <TextField {...args} />, {
 export const Default = story(Template)
 
 export const BasicTextField = story(
-  args => (
+  (args) => (
     <Box
-      component="form"
+      component='form'
       sx={{
         '& > :not(style)': { mr: 1, width: '25ch' },
       }}
       noValidate
-      autoComplete="off"
+      autoComplete='off'
     >
-      <TextField
-        id="outlined-basic"
-        label="Outlined"
-        variant="outlined"
-        {...args}
-      />
+      <TextField id='outlined-basic' label='Outlined' variant='outlined' {...args} />
     </Box>
   ),
   {
@@ -65,47 +60,37 @@ export const BasicTextField = story(
 export const FormProps = story(
   () => (
     <Box
-      component="form"
+      component='form'
       sx={{
         '& .MuiTextField-root': { mr: 2, width: '25ch' },
       }}
       noValidate
-      autoComplete="off"
+      autoComplete='off'
     >
       <div>
+        <TextField required id='outlined-required' label='Required' defaultValue='Hello World' />
+        <TextField disabled id='outlined-disabled' label='Disabled' defaultValue='Hello World' />
         <TextField
-          required
-          id="outlined-required"
-          label="Required"
-          defaultValue="Hello World"
+          id='outlined-password-input'
+          label='Password'
+          type='password'
+          autoComplete='current-password'
         />
         <TextField
-          disabled
-          id="outlined-disabled"
-          label="Disabled"
-          defaultValue="Hello World"
-        />
-        <TextField
-          id="outlined-password-input"
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-        />
-        <TextField
-          id="outlined-read-only-input"
-          label="Read Only"
-          defaultValue="Hello World"
+          id='outlined-read-only-input'
+          label='Read Only'
+          defaultValue='Hello World'
           InputProps={{
             readOnly: true,
           }}
         />
-        <TextField id="outlined-number" label="Number" type="number" />
-        <TextField id="outlined-search" label="Search field" type="search" />
+        <TextField id='outlined-number' label='Number' type='number' />
+        <TextField id='outlined-search' label='Search field' type='search' />
         <TextField
-          id="outlined-helperText"
-          label="Helper text"
-          defaultValue="Default Value"
-          helperText="Some important text"
+          id='outlined-helperText'
+          label='Helper text'
+          defaultValue='Default Value'
+          helperText='Some important text'
         />
       </div>
     </Box>
@@ -125,26 +110,21 @@ export const FormProps = story(
 export const Validation = story(
   () => (
     <Box
-      component="form"
+      component='form'
       sx={{
         '& .MuiTextField-root': { mr: 2, width: '25ch' },
       }}
       noValidate
-      autoComplete="off"
+      autoComplete='off'
     >
       <div>
+        <TextField error id='outlined-error' label='Error' defaultValue='Hello World' />
         <TextField
           error
-          id="outlined-error"
-          label="Error"
-          defaultValue="Hello World"
-        />
-        <TextField
-          error
-          id="outlined-error-helper-text"
-          label="Error"
-          defaultValue="Hello World"
-          helperText="Incorrect entry."
+          id='outlined-error-helper-text'
+          label='Error'
+          defaultValue='Hello World'
+          helperText='Incorrect entry.'
         />
       </div>
     </Box>
@@ -170,34 +150,34 @@ export const Multiline = story(
     }
     return (
       <Box
-        component="form"
+        component='form'
         sx={{
           '& .MuiTextField-root': { mr: 2, width: '25ch' },
         }}
         noValidate
-        autoComplete="off"
+        autoComplete='off'
       >
         <div>
           <TextField
-            id="outlined-multiline-flexible"
-            label="Multiline"
+            id='outlined-multiline-flexible'
+            label='Multiline'
             multiline
             maxRows={4}
             value={value}
             onChange={handleChange}
           />
           <TextField
-            id="outlined-textarea"
-            label="Multiline Placeholder"
-            placeholder="Placeholder"
+            id='outlined-textarea'
+            label='Multiline Placeholder'
+            placeholder='Placeholder'
             multiline
           />
           <TextField
-            id="outlined-multiline-static"
-            label="Multiline"
+            id='outlined-multiline-static'
+            label='Multiline'
             multiline
             rows={4}
-            defaultValue="Default Value"
+            defaultValue='Default Value'
           />
         </div>
       </Box>
@@ -234,7 +214,7 @@ const currencies = [
   },
 ]
 
-export const SelectTextFields = story<TextFieldProps>(args => {
+export const SelectTextFields = story<TextFieldProps>((args) => {
   const [currency, setCurrency] = React.useState('EUR')
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -243,42 +223,42 @@ export const SelectTextFields = story<TextFieldProps>(args => {
 
   return (
     <Box
-      component="form"
+      component='form'
       sx={{
         '& .MuiTextField-root': { m: 1, width: '25ch' },
       }}
       noValidate
-      autoComplete="off"
+      autoComplete='off'
     >
       <div>
         <TextField
-          id="outlined-select-currency"
+          id='outlined-select-currency'
           select
-          label="Select"
+          label='Select'
           value={currency}
           onChange={handleChange}
-          helperText="Please select your currency"
+          helperText='Please select your currency'
           {...args}
         >
-          {currencies.map(option => (
+          {currencies.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
           ))}
         </TextField>
         <TextField
-          id="outlined-select-currency-native"
+          id='outlined-select-currency-native'
           select
-          label="Native select"
+          label='Native select'
           value={currency}
           onChange={handleChange}
           SelectProps={{
             native: true,
           }}
-          helperText="Please select your currency"
+          helperText='Please select your currency'
           {...args}
         >
-          {currencies.map(option => (
+          {currencies.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
@@ -306,10 +286,9 @@ export const InputAdornments = story(
       showPassword: false,
     })
 
-    const handleChange =
-      (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValues({ ...values, [prop]: event.target.value })
-      }
+    const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      setValues({ ...values, [prop]: event.target.value })
+    }
 
     const handleClickShowPassword = () => {
       setValues({
@@ -318,9 +297,7 @@ export const InputAdornments = story(
       })
     }
 
-    const handleMouseDownPassword = (
-      event: React.MouseEvent<HTMLButtonElement>,
-    ) => {
+    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault()
     }
 
@@ -328,64 +305,56 @@ export const InputAdornments = story(
       <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
         <div>
           <TextField
-            label="With normal TextField"
-            id="outlined-start-adornment"
+            label='With normal TextField'
+            id='outlined-start-adornment'
             sx={{ mr: 2, width: '25ch' }}
             InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">kg</InputAdornment>
-              ),
+              startAdornment: <InputAdornment position='start'>kg</InputAdornment>,
             }}
           />
-          <FormControl sx={{ mr: 2, width: '25ch' }} variant="outlined">
+          <FormControl sx={{ mr: 2, width: '25ch' }} variant='outlined'>
             <OutlinedInput
-              id="outlined-adornment-weight"
+              id='outlined-adornment-weight'
               value={values.weight}
               onChange={handleChange('weight')}
-              endAdornment={<InputAdornment position="end">kg</InputAdornment>}
-              aria-describedby="outlined-weight-helper-text"
+              endAdornment={<InputAdornment position='end'>kg</InputAdornment>}
+              aria-describedby='outlined-weight-helper-text'
               inputProps={{
                 'aria-label': 'weight',
               }}
             />
-            <FormHelperText id="outlined-weight-helper-text">
-              Weight
-            </FormHelperText>
+            <FormHelperText id='outlined-weight-helper-text'>Weight</FormHelperText>
           </FormControl>
-          <FormControl sx={{ mr: 2, width: '25ch' }} variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">
-              Password
-            </InputLabel>
+          <FormControl sx={{ mr: 2, width: '25ch' }} variant='outlined'>
+            <InputLabel htmlFor='outlined-adornment-password'>Password</InputLabel>
             <OutlinedInput
-              id="outlined-adornment-password"
+              id='outlined-adornment-password'
               type={values.showPassword ? 'text' : 'password'}
               value={values.password}
               onChange={handleChange('password')}
               endAdornment={
-                <InputAdornment position="end">
+                <InputAdornment position='end'>
                   <IconButton
-                    aria-label="toggle password visibility"
+                    aria-label='toggle password visibility'
                     onClick={handleClickShowPassword}
                     onMouseDown={handleMouseDownPassword}
-                    edge="end"
+                    edge='end'
                   >
                     {values.showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
               }
-              label="Password"
+              label='Password'
             />
           </FormControl>
           <FormControl fullWidth sx={{ mr: 2 }}>
-            <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
+            <InputLabel htmlFor='outlined-adornment-amount'>Amount</InputLabel>
             <OutlinedInput
-              id="outlined-adornment-amount"
+              id='outlined-adornment-amount'
               value={values.amount}
               onChange={handleChange('amount')}
-              startAdornment={
-                <InputAdornment position="start">$</InputAdornment>
-              }
-              label="Amount"
+              startAdornment={<InputAdornment position='start'>$</InputAdornment>}
+              label='Amount'
             />
           </FormControl>
         </div>
@@ -409,32 +378,18 @@ export const Sizes = story(
     const theme = useTheme()
     return (
       <Box
-        component="form"
+        component='form'
         sx={{
           '& .MuiTextField-root': { mr: 1, width: '25ch' },
         }}
         noValidate
-        autoComplete="off"
+        autoComplete='off'
       >
         <div>
-          <TextField
-            label="Size"
-            id="outlined-size-small"
-            defaultValue="Small"
-            size="small"
-          />
-          <TextField
-            label="Size"
-            id="outlined-size-medium"
-            defaultValue="Medium"
-          />
+          <TextField label='Size' id='outlined-size-small' defaultValue='Small' size='small' />
+          <TextField label='Size' id='outlined-size-medium' defaultValue='Medium' />
           {isMeteorTheme(theme.name) && (
-            <TextField
-              label="Size"
-              id="outlined-size-large"
-              defaultValue="Large"
-              size="large"
-            />
+            <TextField label='Size' id='outlined-size-large' defaultValue='Large' size='large' />
           )}
         </div>
       </Box>
@@ -458,10 +413,8 @@ export const Margin = story(
         <Box
           sx={{
             height: 20,
-            backgroundColor: theme =>
-              theme.palette.mode === 'light'
-                ? 'rgba(255, 0, 0, 0.1)'
-                : 'rgb(255 132 132 / 25%)',
+            backgroundColor: (theme) =>
+              theme.palette.mode === 'light' ? 'rgba(255, 0, 0, 0.1)' : 'rgb(255 132 132 / 25%)',
           }}
         />
       )
@@ -475,15 +428,11 @@ export const Margin = story(
         }}
       >
         <RedBar />
-        <TextField label={'margin="none"'} id="margin-none" />
+        <TextField label={'margin="none"'} id='margin-none' />
         <RedBar />
-        <TextField label={'margin="dense"'} id="margin-dense" margin="dense" />
+        <TextField label={'margin="dense"'} id='margin-dense' margin='dense' />
         <RedBar />
-        <TextField
-          label={'margin="normal"'}
-          id="margin-normal"
-          margin="normal"
-        />
+        <TextField label={'margin="normal"'} id='margin-normal' margin='normal' />
         <RedBar />
       </Box>
     )
@@ -500,7 +449,7 @@ export const Margin = story(
   },
 )
 
-export const FullWidth = story<TextFieldProps>(args => {
+export const FullWidth = story<TextFieldProps>((args) => {
   return (
     <Box
       sx={{
@@ -508,12 +457,12 @@ export const FullWidth = story<TextFieldProps>(args => {
         maxWidth: '100%',
       }}
     >
-      <TextField fullWidth label="fullWidth" id="fullWidth" {...args} />
+      <TextField fullWidth label='fullWidth' id='fullWidth' {...args} />
     </Box>
   )
 })
 
-export const ControlledVsUncontrolled = story<TextFieldProps>(args => {
+export const ControlledVsUncontrolled = story<TextFieldProps>((args) => {
   const [name, setName] = React.useState('Cat in the Hat')
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value)
@@ -521,26 +470,15 @@ export const ControlledVsUncontrolled = story<TextFieldProps>(args => {
 
   return (
     <Box
-      component="form"
+      component='form'
       sx={{
         '& > :not(style)': { m: 1, width: '25ch' },
       }}
       noValidate
-      autoComplete="off"
+      autoComplete='off'
     >
-      <TextField
-        id="outlined-name"
-        label="Name"
-        value={name}
-        onChange={handleChange}
-        {...args}
-      />
-      <TextField
-        id="outlined-uncontrolled"
-        label="Uncontrolled"
-        defaultValue="foo"
-        {...args}
-      />
+      <TextField id='outlined-name' label='Name' value={name} onChange={handleChange} {...args} />
+      <TextField id='outlined-uncontrolled' label='Uncontrolled' defaultValue='foo' {...args} />
     </Box>
   )
 })
@@ -555,71 +493,60 @@ export const ComposedTextField = story(
 
     return (
       <Box
-        component="form"
+        component='form'
         sx={{
           '& > :not(style)': { mr: 2 },
         }}
         noValidate
-        autoComplete="off"
+        autoComplete='off'
       >
-        <FormControl variant="outlined">
-          <InputLabel htmlFor="component-simple">Name</InputLabel>
-          <OutlinedInput
-            id="component-simple"
-            value={name}
-            onChange={handleChange}
-          />
+        <FormControl variant='outlined'>
+          <InputLabel htmlFor='component-simple'>Name</InputLabel>
+          <OutlinedInput id='component-simple' value={name} onChange={handleChange} />
         </FormControl>
         <FormControl>
-          <InputLabel htmlFor="component-helper">Name</InputLabel>
+          <InputLabel htmlFor='component-helper'>Name</InputLabel>
           <OutlinedInput
-            id="component-helper"
+            id='component-helper'
             value={name}
             onChange={handleChange}
-            aria-describedby="component-helper-text"
+            aria-describedby='component-helper-text'
           />
-          <FormHelperText id="component-helper-text">
-            Some important helper text
-          </FormHelperText>
+          <FormHelperText id='component-helper-text'>Some important helper text</FormHelperText>
         </FormControl>
         <FormControl disabled>
-          <InputLabel htmlFor="component-disabled">Name</InputLabel>
+          <InputLabel htmlFor='component-disabled'>Name</InputLabel>
           <OutlinedInput
-            id="component-disabled"
+            id='component-disabled'
             value={name}
             onChange={handleChange}
-            aria-describedby="component-disabled-text"
+            aria-describedby='component-disabled-text'
           />
-          <FormHelperText id="component-disabled-text">Disabled</FormHelperText>
+          <FormHelperText id='component-disabled-text'>Disabled</FormHelperText>
         </FormControl>
         <FormControl error>
-          <InputLabel htmlFor="component-error">Name</InputLabel>
+          <InputLabel htmlFor='component-error'>Name</InputLabel>
           <OutlinedInput
-            id="component-error"
+            id='component-error'
             value={name}
             onChange={handleChange}
-            aria-describedby="component-error-text"
+            aria-describedby='component-error-text'
           />
-          <FormHelperText id="component-error-text">Error</FormHelperText>
+          <FormHelperText id='component-error-text'>Error</FormHelperText>
         </FormControl>
 
         <FormControl sx={{ display: 'flex', flexDirection: 'row' }}>
-          <InputLabel
-            htmlFor="label-on-left"
-            sx={{ m: 0, mt: 3, mr: 3, left: 0 }}
-          >
+          <InputLabel htmlFor='label-on-left' sx={{ m: 0, mt: 3, mr: 3, left: 0 }}>
             Select
           </InputLabel>
           <Box>
             <OutlinedInput
-              id="label-on-left"
+              id='label-on-left'
               value={name}
               onChange={handleChange}
-              aria-describedby="label-on-left-text"
+              aria-describedby='label-on-left-text'
             />
-            <FormHelperText id="label-on-left-text">
-              Some important helper text
-            </FormHelperText>
+            <FormHelperText id='label-on-left-text'>Some important helper text</FormHelperText>
           </Box>
         </FormControl>
       </Box>
@@ -668,11 +595,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     border: '1px solid #ced4da',
     fontSize: 16,
     padding: '10px 12px',
-    transition: theme.transitions.create([
-      'border-color',
-      'background-color',
-      'box-shadow',
-    ]),
+    transition: theme.transitions.create(['border-color', 'background-color', 'box-shadow']),
     // Use the system font instead of the default Roboto font.
     fontFamily: [
       '-apple-system',
@@ -694,21 +617,14 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 }))
 
 const RedditTextField = styled((props: TextFieldProps) => (
-  <TextField
-    InputProps={{ disableUnderline: true } as Partial<OutlinedInputProps>}
-    {...props}
-  />
+  <TextField InputProps={{ disableUnderline: true } as Partial<OutlinedInputProps>} {...props} />
 ))(({ theme }) => ({
   '& .MuiFilledInput-root': {
     border: '1px solid #e2e2e1',
     overflow: 'hidden',
     borderRadius: 4,
     backgroundColor: theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
-    transition: theme.transitions.create([
-      'border-color',
-      'background-color',
-      'box-shadow',
-    ]),
+    transition: theme.transitions.create(['border-color', 'background-color', 'box-shadow']),
     '&:hover': {
       backgroundColor: 'transparent',
     },
@@ -738,7 +654,7 @@ const ValidationTextField = styled(TextField)({
 export const Customization = story(
   () => (
     <Box
-      component="form"
+      component='form'
       noValidate
       sx={{
         display: 'grid',
@@ -746,26 +662,26 @@ export const Customization = story(
         gap: 2,
       }}
     >
-      <FormControl variant="standard">
-        <InputLabel shrink htmlFor="bootstrap-input">
+      <FormControl variant='standard'>
+        <InputLabel shrink htmlFor='bootstrap-input'>
           Bootstrap
         </InputLabel>
-        <BootstrapInput defaultValue="react-bootstrap" id="bootstrap-input" />
+        <BootstrapInput defaultValue='react-bootstrap' id='bootstrap-input' />
       </FormControl>
       <RedditTextField
-        label="Reddit"
-        defaultValue="react-reddit"
-        id="reddit-input"
-        variant="filled"
+        label='Reddit'
+        defaultValue='react-reddit'
+        id='reddit-input'
+        variant='filled'
         style={{ marginTop: 11 }}
       />
-      <CssTextField label="Custom CSS" id="custom-css-outlined-input" />
+      <CssTextField label='Custom CSS' id='custom-css-outlined-input' />
       <ValidationTextField
-        label="CSS validation style"
+        label='CSS validation style'
         required
-        variant="outlined"
-        defaultValue="Success"
-        id="validation-outlined-input"
+        variant='outlined'
+        defaultValue='Success'
+        id='validation-outlined-input'
       />
     </Box>
   ),
@@ -798,9 +714,9 @@ function MyFormHelperText() {
 export const UseFormControl = story<TextFieldProps>(
   () => {
     return (
-      <Box component="form" noValidate autoComplete="off">
+      <Box component='form' noValidate autoComplete='off'>
         <FormControl sx={{ width: '25ch' }}>
-          <OutlinedInput placeholder="Please enter text" />
+          <OutlinedInput placeholder='Please enter text' />
           <MyFormHelperText />
         </FormControl>
       </Box>

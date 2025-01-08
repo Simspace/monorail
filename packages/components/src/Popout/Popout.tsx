@@ -64,8 +64,10 @@ export function Popout(props: PopoutProps): JSX.Element | null {
         newExternalRoot = newExternalWindow.document.createElement('div')
         newExternalWindow.document.body.appendChild(newExternalRoot)
         newExternalWindow.document.title = title
-        onWindowClose &&
+
+        if (onWindowClose) {
           newExternalWindow.addEventListener('beforeunload', onWindowClose)
+        }
       }
 
       externalWindow.current = newExternalWindow

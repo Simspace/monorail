@@ -10,22 +10,14 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Inputs/AvatarButton', component: AvatarButton }
 
-const colors = [
-  'primary',
-  'secondary',
-  'default',
-  'info',
-  'error',
-  'success',
-  'warning',
-] as const
+const colors = ['primary', 'secondary', 'default', 'info', 'error', 'success', 'warning'] as const
 
 const Template = story<AvatarButtonProps>(
-  args => {
+  (args) => {
     return (
-      <Stack direction="row" gap={2}>
+      <Stack direction='row' gap={2}>
         <AvatarButton {...args}>{args.children}</AvatarButton>
-        <AvatarButton variant="rounded" {...args}>
+        <AvatarButton variant='rounded' {...args}>
           {args.children}
         </AvatarButton>
       </Stack>
@@ -58,9 +50,9 @@ export const Icon = story(Template, {
 })
 
 export const Colors = story<AvatarButtonProps>(
-  args => (
-    <Stack direction="row" gap={2}>
-      {colors.map(color => (
+  (args) => (
+    <Stack direction='row' gap={2}>
+      {colors.map((color) => (
         <AvatarButton {...args} key={color} color={color}>
           AB
         </AvatarButton>

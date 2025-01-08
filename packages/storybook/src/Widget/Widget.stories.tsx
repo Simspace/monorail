@@ -14,11 +14,11 @@ import { MoreVert } from '@monorail/components/icons'
 
 export default { title: 'Data Display/Widget', component: Widget }
 
-const Template: StoryFn<Partial<WidgetProps>> = args => (
+const Template: StoryFn<Partial<WidgetProps>> = (args) => (
   <Widget>
-    <WidgetHeader title="Widget Name" subtitle="Subtitle" {...args}>
-      <Button variant="text">Button</Button>
-      <IconButton aria-label="more">
+    <WidgetHeader title='Widget Name' subtitle='Subtitle' {...args}>
+      <Button variant='text'>Button</Button>
+      <IconButton aria-label='more'>
         <MoreVert />
       </IconButton>
     </WidgetHeader>

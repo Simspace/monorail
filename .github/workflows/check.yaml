@@ -1,0 +1,266 @@
+name: Check
+on:
+  workflow_call:
+  pull_request:
+
+jobs:
+  install-node-modules:
+    name: Install node-modules
+    runs-on: ubuntu-24.04
+    steps:
+    - name: Load Secrets
+      id: op-load-secrets
+      uses: 1password/load-secrets-action@v1
+      with:
+        export-env: false
+      env:
+        OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+        GH_TOKEN: op://github-actions/gh-creds/GH_TOKEN
+
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.11.1'
+        cache: 'yarn'
+        cache-dependency-path: ./yarn.lock
+
+    - name: Restore .yarn/cache
+      uses: actions/cache@v4
+      with:
+        path: .yarn/cache
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
+    - name: Restore node_modules
+      uses: actions/cache@v4
+      with:
+        path: |
+          node_modules
+          packages/**/node_modules
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-node-modules-
+
+    - name: Install core dependencies
+      run: |
+        npm install --location=global yarn
+        corepack enable
+
+    - name: Install packages
+      run: |
+        yarn config set 'npmRegistries["//npm.pkg.github.com"].npmAuthToken' ${{ steps.op-load-secrets.outputs.GH_TOKEN }}
+        yarn install --immutable
+
+  lint:
+    name: Lint
+    needs: install-node-modules
+    runs-on: ubuntu-24.04
+    steps:
+    - name: Load Secrets
+      id: op-load-secrets
+      uses: 1password/load-secrets-action@v1
+      with:
+        export-env: false
+      env:
+        OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+        GH_TOKEN: op://github-actions/gh-creds/GH_TOKEN
+      
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.11.1'
+        cache: 'yarn'
+        cache-dependency-path: ./yarn.lock
+
+    - name: Restore .yarn/cache
+      uses: actions/cache@v4
+      with:
+        path: .yarn/cache
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
+    - name: Restore node_modules
+      uses: actions/cache@v4
+      with:
+        path: |
+          node_modules
+          packages/**/node_modules
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-node-modules-
+
+    - name: Install
+      run: yarn install --immutable
+
+    - name: Lint
+      run: |
+        yarn lint:check
+        yarn format:check
+
+  build:
+    name: Build
+    needs: install-node-modules
+    runs-on: ubuntu-24.04
+    steps:
+    - name: Load Secrets
+      id: op-load-secrets
+      uses: 1password/load-secrets-action@v1
+      with:
+        export-env: false
+      env:
+        OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+        GH_TOKEN: op://github-actions/gh-creds/GH_TOKEN
+      
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.11.1'
+        cache: 'yarn'
+        cache-dependency-path: ./yarn.lock
+
+    - name: Restore .yarn/cache
+      uses: actions/cache@v4
+      with:
+        path: .yarn/cache
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
+    - name: Restore node_modules
+      uses: actions/cache@v4
+      with:
+        path: |
+          node_modules
+          packages/**/node_modules
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-node-modules-
+
+    - name: Build
+      run: |
+        yarn install --immutable
+        yarn build
+        yarn build-pack
+
+    - name: Save build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts
+        path: |
+          packages/components/build/
+          packages/themes/build/
+          packages/utils/build/
+          packages/types/build/
+
+    - name: Save dist artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: dist-artifacts
+        path: |
+          packages/components/dist/
+          packages/themes/dist/
+          packages/utils/dist/
+          packages/types/dist/
+
+  storybook:
+    name: Storybook
+    needs: install-node-modules
+    runs-on: ubuntu-24.04
+    steps:
+    - name: Load Secrets
+      id: op-load-secrets
+      uses: 1password/load-secrets-action@v1
+      with:
+        export-env: false
+      env:
+        OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+        GH_TOKEN: op://github-actions/gh-creds/GH_TOKEN
+      
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.11.1'
+        cache: 'yarn'
+        cache-dependency-path: ./yarn.lock
+
+    - name: Get branch slug
+      run: echo "slug=${node ./.github/workflows/get-git-branch-slug.mjs}" >> $GITHUB_OUTPUT
+      id: get-git-branch-slug
+
+    - name: Restore .yarn/cache
+      uses: actions/cache@v4
+      with:
+        path: .yarn/cache
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
+    - name: Restore node_modules
+      uses: actions/cache@v4
+      with:
+        path: |
+          node_modules
+          packages/**/node_modules
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-node-modules-
+
+    - name: Install
+      run: yarn install --immutable
+
+    - name: Build Storybook
+      run: |
+        yarn build-storybook --output-dir storybook
+
+    - name: Checkout pages branch
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+        ref: pages
+        path: ../pages
+    
+    - name: Commit storybook artifacts
+      run: |
+        rm -rf ../pages/${{ steps.get-git-branch-slug.outputs.slug }}
+        mkdir -p ../pages/${{ steps.get-git-branch-slug.outputs.slug }}
+        cp -r storybook ../pages/${{ steps.get-git-branch-slug.outputs.slug }}
+
+        cd ../pages
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions"
+        git reset --soft HEAD^
+        git add . && git commit -m "ci: pages" && git push -f
+
+    - name: Add comment to pr
+      uses: actions/github-script@v7
+      with:
+        github-token: ${{ steps.op-load-secrets.outputs.GH_TOKEN }}
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: "Storybook: https://simspace.github.io/monorail/${{ steps.get-git-branch-slug.outputs.slug }}/storybook"
+          })

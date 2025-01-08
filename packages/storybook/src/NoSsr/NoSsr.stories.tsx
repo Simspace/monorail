@@ -16,7 +16,7 @@ export default {
   },
 }
 
-const Template = story<NoSsrProps>(args => <NoSsr {...args} />, {
+const Template = story<NoSsrProps>((args) => <NoSsr {...args} />, {
   args: {},
   parameters: {
     creevey: {

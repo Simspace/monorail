@@ -13,7 +13,7 @@ export const Default: StoryObj<typeof EnumFilter> = {
     <EnumFilter
       values={['One', 'Two', 'Three']}
       localeText={{
-        clearSelectionButton: count => `Clear ${count} Items`,
+        clearSelectionButton: (count) => `Clear ${count} Items`,
       }}
     />
   ),

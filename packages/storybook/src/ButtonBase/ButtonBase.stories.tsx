@@ -8,7 +8,7 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Inputs/ButtonBase', component: ButtonBase }
 
-const Template = story<ButtonBaseProps>(args => <ButtonBase {...args} />, {
+const Template = story<ButtonBaseProps>((args) => <ButtonBase {...args} />, {
   args: { children: 'Button Base' },
   muiName: 'MuiButtonBase',
 })

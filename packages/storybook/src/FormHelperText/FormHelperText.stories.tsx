@@ -2,11 +2,7 @@
 import React from 'react'
 
 import type { FormHelperTextProps } from '@monorail/components'
-import {
-  Checkbox,
-  FormControlLabel,
-  FormHelperText,
-} from '@monorail/components'
+import { Checkbox, FormControlLabel, FormHelperText } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -15,10 +11,7 @@ export default { title: 'Inputs/FormHelperText', component: FormHelperText }
 const Template = story<FormHelperTextProps>(
   (args: FormHelperTextProps) => (
     <>
-      <FormControlLabel
-        control={<Checkbox onChange={() => void 0} />}
-        label="Do the Thing"
-      />
+      <FormControlLabel control={<Checkbox onChange={() => void 0} />} label='Do the Thing' />
       <FormHelperText {...args} />
     </>
   ),

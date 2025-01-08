@@ -9,7 +9,7 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Navigation/Menu/MenuList', component: MenuList }
 
 const Template = story<MenuListProps>(
-  args => (
+  (args) => (
     <MenuList {...args}>
       <MenuItem>Item 1</MenuItem>
       <MenuItem>Item 2</MenuItem>

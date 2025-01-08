@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+ 
 import React from 'react'
 import type { PopperPlacementType } from '@mui/base'
 import { appendOwnerState } from '@mui/base'

@@ -2,13 +2,7 @@
 import React from 'react'
 
 import type { CollapseProps } from '@monorail/components'
-import {
-  Box,
-  Collapse,
-  FormControlLabel,
-  Paper,
-  Switch,
-} from '@monorail/components'
+import { Box, Collapse, FormControlLabel, Paper, Switch } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -16,23 +10,23 @@ export default { title: 'Utils/Transitions/Collapse', component: Collapse }
 
 const box = (
   <Paper sx={{ m: 1 }} elevation={4}>
-    <Box component="svg" sx={{ width: 100, height: 100 }}></Box>
+    <Box component='svg' sx={{ width: 100, height: 100 }}></Box>
   </Paper>
 )
 
 const Template = story<CollapseProps>(
-  args => {
+  (args) => {
     const [checked, setChecked] = React.useState(false)
 
     const handleChange = () => {
-      setChecked(prev => !prev)
+      setChecked((prev) => !prev)
     }
 
     return (
       <Box sx={{ height: 300 }}>
         <FormControlLabel
           control={<Switch checked={checked} onChange={handleChange} />}
-          label="Show"
+          label='Show'
         />
         <Box
           sx={{
@@ -54,17 +48,12 @@ const Template = story<CollapseProps>(
           </div>
           <div>
             <Box sx={{ width: '50%' }}>
-              <Collapse orientation="horizontal" in={checked}>
+              <Collapse orientation='horizontal' in={checked}>
                 {box}
               </Collapse>
             </Box>
             <Box sx={{ width: '50%' }}>
-              <Collapse
-                orientation="horizontal"
-                in={checked}
-                collapsedSize={40}
-                {...args}
-              >
+              <Collapse orientation='horizontal' in={checked} collapsedSize={40} {...args}>
                 {box}
               </Collapse>
             </Box>

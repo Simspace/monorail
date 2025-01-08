@@ -17,7 +17,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }))
 
 const Template = story<StackProps>(
-  args => (
+  (args) => (
     <Stack direction={'row'} justifyContent={'center'}>
       <Stack {...args}>
         <Item>Item 1</Item>

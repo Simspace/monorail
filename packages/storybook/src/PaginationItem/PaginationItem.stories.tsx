@@ -10,12 +10,9 @@ export default {
   component: PaginationItem,
 }
 
-const Template = story<PaginationItemProps>(
-  args => <PaginationItem {...args} />,
-  {
-    args: { page: 1 },
-    muiName: 'MuiPaginationItem',
-  },
-)
+const Template = story<PaginationItemProps>((args) => <PaginationItem {...args} />, {
+  args: { page: 1 },
+  muiName: 'MuiPaginationItem',
+})
 
 export const Default = story(Template)

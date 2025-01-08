@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+ 
 
 import type { GridFilterOperator } from '@monorail/components/DataGrid'
 
@@ -7,7 +7,7 @@ import { isRangeFilterState } from '../models.js'
 
 export const rangeFilterGetApplyFilterFn: GridFilterOperator['getApplyFilterFn'] =
   filterItem => {
-    // eslint-disable-next-line eqeqeq
+     
     if (filterItem.value == null) {
       return null
     }

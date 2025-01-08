@@ -3,11 +3,7 @@ import React from 'react'
 import { useDemoData } from '@mui/x-data-grid-generator'
 
 import type { DataGridProps } from '@monorail/components'
-import {
-  DataGrid,
-  GridToolbarContainer,
-  GridToolbarDensitySelector,
-} from '@monorail/components'
+import { DataGrid, GridToolbarContainer, GridToolbarDensitySelector } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -29,7 +25,7 @@ const CustomToolbar = () => {
   )
 }
 
-const Template = story<DataGridProps>(args => {
+const Template = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 4,
@@ -89,7 +85,7 @@ To hide the density selector add the disableDensitySelector prop to the data gri
 /**
  * Density prop
  */
-export const DensitySelectorSmallGrid = story<DataGridProps>(args => {
+export const DensitySelectorSmallGrid = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 4,
@@ -101,7 +97,7 @@ export const DensitySelectorSmallGrid = story<DataGridProps>(args => {
       <DataGrid
         {...args}
         {...data}
-        density="compact"
+        density='compact'
         slots={{
           toolbar: CustomToolbar,
         }}

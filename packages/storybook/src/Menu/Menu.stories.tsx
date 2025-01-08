@@ -43,7 +43,7 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Navigation/Menu', component: Menu }
 
 const Template = story<MenuProps>(
-  args => {
+  (args) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
     const open = Boolean(anchorEl)
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -55,8 +55,8 @@ const Template = story<MenuProps>(
     return (
       <div>
         <Button
-          id="basic-button"
-          aria-haspopup="true"
+          id='basic-button'
+          aria-haspopup='true'
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
         >
@@ -96,7 +96,7 @@ export const IconMenu = story<MenuProps>(() => (
           <ContentCut />
         </ListItemIcon>
         <ListItemText>Cut</ListItemText>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant='body2' color='text.secondary'>
           ⌘X
         </Typography>
       </MenuItem>
@@ -105,7 +105,7 @@ export const IconMenu = story<MenuProps>(() => (
           <ContentCopy />
         </ListItemIcon>
         <ListItemText>Copy</ListItemText>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant='body2' color='text.secondary'>
           ⌘C
         </Typography>
       </MenuItem>
@@ -114,7 +114,7 @@ export const IconMenu = story<MenuProps>(() => (
           <ContentPaste />
         </ListItemIcon>
         <ListItemText>Paste</ListItemText>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant='body2' color='text.secondary'>
           ⌘V
         </Typography>
       </MenuItem>
@@ -195,27 +195,23 @@ export const SelectedMenu = story<MenuProps>(
 
     return (
       <div>
-        <List
-          component="nav"
-          aria-label="Device settings"
-          sx={{ bgcolor: 'background.paper' }}
-        >
+        <List component='nav' aria-label='Device settings' sx={{ bgcolor: 'background.paper' }}>
           <ListItemButton
-            id="lock-button"
-            aria-haspopup="listbox"
-            aria-controls="lock-menu"
-            aria-label="when device is locked"
+            id='lock-button'
+            aria-haspopup='listbox'
+            aria-controls='lock-menu'
+            aria-label='when device is locked'
             aria-expanded={open ? 'true' : undefined}
             onClick={handleClickListItem}
           >
             <ListItemText
-              primary="When device is locked"
+              primary='When device is locked'
               secondary={selectedMenuOptions[selectedIndex]}
             />
           </ListItemButton>
         </List>
         <Menu
-          id="lock-menu"
+          id='lock-menu'
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
@@ -262,17 +258,17 @@ export const PositionedMenu = story<MenuProps>(
     return (
       <div>
         <Button
-          id="demo-positioned-button"
-          aria-controls="demo-positioned-menu"
-          aria-haspopup="true"
+          id='demo-positioned-button'
+          aria-controls='demo-positioned-menu'
+          aria-haspopup='true'
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
         >
           Dashboard
         </Button>
         <Menu
-          id="demo-positioned-menu"
-          aria-labelledby="demo-positioned-button"
+          id='demo-positioned-menu'
+          aria-labelledby='demo-positioned-button'
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
@@ -316,21 +312,21 @@ export const AccountMenu = story<MenuProps>(() => {
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Typography sx={{ minWidth: 100 }}>Contact</Typography>
         <Typography sx={{ minWidth: 100 }}>Profile</Typography>
-        <Tooltip title="Account settings">
+        <Tooltip title='Account settings'>
           <IconButton
-            aria-labelledby="menu-avatar-1"
+            aria-labelledby='menu-avatar-1'
             onClick={handleClick}
             sx={{ ml: 2.5 }}
             aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
+            aria-haspopup='true'
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar id="menu-avatar-1">M</Avatar>
+            <Avatar id='menu-avatar-1'>M</Avatar>
           </IconButton>
         </Tooltip>
         <Menu
           anchorEl={anchorEl}
-          id="account-menu"
+          id='account-menu'
           open={open}
           onClose={handleClose}
           onClick={handleClose}
@@ -352,10 +348,10 @@ export const AccountMenu = story<MenuProps>(() => {
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
           <MenuItem>
-            <Avatar size="small" /> Profile
+            <Avatar size='small' /> Profile
           </MenuItem>
           <MenuItem>
-            <Avatar size="small" /> My account
+            <Avatar size='small' /> My account
           </MenuItem>
           <Divider />
           <MenuItem>
@@ -400,10 +396,7 @@ export const CustomizedMenu = story<MenuProps>(
       '& .MuiPaper-root': {
         borderRadius: 6,
         minWidth: 180,
-        color:
-          theme.palette.mode === 'light'
-            ? 'rgb(55, 65, 81)'
-            : theme.palette.grey[300],
+        color: theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
         boxShadow:
           'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
         '& .MuiMenu-list': {
@@ -437,11 +430,11 @@ export const CustomizedMenu = story<MenuProps>(
     return (
       <div>
         <Button
-          id="demo-customized-button"
-          aria-controls="demo-customized-menu"
-          aria-haspopup="true"
+          id='demo-customized-button'
+          aria-controls='demo-customized-menu'
+          aria-haspopup='true'
           aria-expanded={open ? 'true' : undefined}
-          variant="contained"
+          variant='contained'
           disableElevation
           onClick={handleClick}
           endIcon={<KeyboardArrowDown />}
@@ -449,7 +442,7 @@ export const CustomizedMenu = story<MenuProps>(
           Options
         </Button>
         <StyledMenu
-          id="demo-customized-menu"
+          id='demo-customized-menu'
           MenuListProps={{
             'aria-labelledby': 'demo-customized-button',
           }}
@@ -521,18 +514,18 @@ export const MaxHeight = story<MenuProps>(
     return (
       <div>
         <IconButton
-          aria-label="more"
-          id="long-button"
-          aria-controls="long-menu"
+          aria-label='more'
+          id='long-button'
+          aria-controls='long-menu'
           aria-expanded={open ? 'true' : undefined}
-          aria-haspopup="true"
+          aria-haspopup='true'
           onClick={handleClick}
-          size="large"
+          size='large'
         >
           <MoreVert />
         </IconButton>
         <Menu
-          id="long-menu"
+          id='long-menu'
           MenuListProps={{
             'aria-labelledby': 'long-button',
           }}
@@ -546,12 +539,8 @@ export const MaxHeight = story<MenuProps>(
             },
           }}
         >
-          {maxHeightOptions.map(option => (
-            <MenuItem
-              key={option}
-              selected={option === 'Pyxis'}
-              onClick={handleClose}
-            >
+          {maxHeightOptions.map((option) => (
+            <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
               {option}
             </MenuItem>
           ))}
@@ -576,21 +565,19 @@ export const Limitations = story<MenuProps>(() => (
         <ListItemIcon>
           <Send />
         </ListItemIcon>
-        <Typography variant="inherit">A short message</Typography>
+        <Typography variant='inherit'>A short message</Typography>
       </MenuItem>
       <MenuItem>
         <ListItemIcon>
           <PriorityHigh />
         </ListItemIcon>
-        <Typography variant="inherit">
-          A very long text that overflows
-        </Typography>
+        <Typography variant='inherit'>A very long text that overflows</Typography>
       </MenuItem>
       <MenuItem>
         <ListItemIcon>
           <Drafts />
         </ListItemIcon>
-        <Typography variant="inherit" noWrap>
+        <Typography variant='inherit' noWrap>
           A very long text that overflows
         </Typography>
       </MenuItem>

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+ 
 import React from 'react'
 import type { GridGroupNode, GridRowId } from '@mui/x-data-grid'
 import {
@@ -22,12 +22,12 @@ export function useSetRowIndex(
       const node = apiRef.current.getRowNode(rowId)
 
       if (!node) {
-        throw new Error(`MUI: No row with id #${rowId} found`)
+        throw new Error(`MUI: No row with id ${rowId} found`)
       }
 
       if (node.type !== 'leaf') {
         throw new Error(
-          `MUI: The row reordering do not support reordering of footer or grouping rows`,
+          `MUI: Row reordering does not support footer or grouping rows`,
         )
       }
 
@@ -128,7 +128,7 @@ export function useSetRowIndex(
     [apiRef, logger],
   )
 
-  // @ts-expect-error
+  // @ts-expect-error -- assigning overtop of setRowIndex
   apiRef.current.setRowIndex = setRowIndex
   apiRef.current.setRowIndexWithNewParent = setRowIndex
 }

@@ -2,13 +2,7 @@
 import React from 'react'
 
 import type { GrowProps } from '@monorail/components'
-import {
-  Box,
-  FormControlLabel,
-  Grow,
-  Paper,
-  Switch,
-} from '@monorail/components'
+import { Box, FormControlLabel, Grow, Paper, Switch } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -16,23 +10,23 @@ export default { title: 'Utils/Transitions/Grow', component: Grow }
 
 const box = (
   <Paper sx={{ m: 1 }} elevation={4}>
-    <Box component="svg" sx={{ width: 100, height: 100 }}></Box>
+    <Box component='svg' sx={{ width: 100, height: 100 }}></Box>
   </Paper>
 )
 
 const Template = story<GrowProps>(
-  args => {
+  (args) => {
     const [checked, setChecked] = React.useState(false)
 
     const handleChange = () => {
-      setChecked(prev => !prev)
+      setChecked((prev) => !prev)
     }
 
     return (
       <Box sx={{ height: 180 }}>
         <FormControlLabel
           control={<Switch checked={checked} onChange={handleChange} />}
-          label="Show"
+          label='Show'
         />
         <Box sx={{ display: 'flex' }}>
           <Grow in={checked} {...args}>

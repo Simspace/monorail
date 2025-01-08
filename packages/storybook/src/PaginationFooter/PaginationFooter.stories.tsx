@@ -29,7 +29,7 @@ export const Default: StoryObj<typeof PaginationFooter> = {
           setPage(page)
         }}
         pageItems={10}
-        onPageSizeChange={event => {
+        onPageSizeChange={(event) => {
           setPageSize(event.target.value)
         }}
         selectedCount={10}
@@ -45,15 +45,9 @@ export const Resize: StoryObj<typeof PaginationFooter> = {
 
     return (
       <Box height={100}>
-        <ResizableContainer id="pagination-footer-group" direction="row">
-          <ResizableElement id="pagination-footer-group-1" minSize="10%">
-            <Box
-              flex={1}
-              width={1}
-              height={1}
-              display="flex"
-              alignItems="center"
-            >
+        <ResizableContainer id='pagination-footer-group' direction='row'>
+          <ResizableElement id='pagination-footer-group-1' minSize='10%'>
+            <Box flex={1} width={1} height={1} display='flex' alignItems='center'>
               <PaginationFooter
                 page={page}
                 totalItems={100}
@@ -62,7 +56,7 @@ export const Resize: StoryObj<typeof PaginationFooter> = {
                   setPage(page)
                 }}
                 pageItems={10}
-                onPageSizeChange={event => {
+                onPageSizeChange={(event) => {
                   setPageSize(event.target.value)
                 }}
                 selectedCount={10}
@@ -70,7 +64,7 @@ export const Resize: StoryObj<typeof PaginationFooter> = {
             </Box>
           </ResizableElement>
           <ResizableHandle />
-          <ResizableElement id="pagination-footer-group-2" minSize="10%" />
+          <ResizableElement id='pagination-footer-group-2' minSize='10%' />
         </ResizableContainer>
       </Box>
     )

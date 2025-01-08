@@ -55,8 +55,7 @@ export const Avatar = React.forwardRef((inProps, ref) => {
   )
 }) as OverridableComponent<AvatarTypeMap>
 
-// @ts-expect-error
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+// @ts-expect-error -- assigning muiName
 Avatar.muiName = MuiAvatar.muiName
 
 export * from '@mui/material/Avatar'

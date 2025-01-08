@@ -13,7 +13,7 @@ export default {
 }
 
 const Template = story<CircularProgressProps>(
-  args => <CircularProgress aria-label="Circular Progress" {...args} />,
+  (args) => <CircularProgress aria-label='Circular Progress' {...args} />,
   { args: {}, muiName: 'MuiCircularProgress' },
 )
 
@@ -26,15 +26,15 @@ const colors = ['primary', 'error', 'default'] as const
  * The `CircularProgress` component supports a variety of color variants.
  */
 export const CircularIndeterminate = story<CircularProgressProps>(() => (
-  <Stack direction="row" spacing={1}>
-    {colors.flatMap(color => (
+  <Stack direction='row' spacing={1}>
+    {colors.flatMap((color) => (
       <Stack
-        direction="column"
-        alignItems="center"
+        direction='column'
+        alignItems='center'
         spacing={8}
         key={`circular-progress-indeterminate-${color}`}
       >
-        {sizes.map(size => (
+        {sizes.map((size) => (
           <CircularProgress
             key={`circular-progress-indeterminate-${color}-${size}`}
             color={color}
@@ -53,7 +53,7 @@ export const CircularDeterminate = story<CircularProgressProps>(() => {
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      setProgress(prevProgress => (prevProgress >= 100 ? 0 : prevProgress + 10))
+      setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10))
     }, 800)
 
     return () => {
@@ -62,20 +62,20 @@ export const CircularDeterminate = story<CircularProgressProps>(() => {
   }, [])
 
   return (
-    <Stack direction="row" spacing={2}>
-      {colors.flatMap(color => (
+    <Stack direction='row' spacing={2}>
+      {colors.flatMap((color) => (
         <Stack
-          direction="column"
-          alignItems="center"
+          direction='column'
+          alignItems='center'
           spacing={8}
           key={`circular-progress-indeterminate-${color}`}
         >
-          {sizes.map(size => (
+          {sizes.map((size) => (
             <CircularProgress
               key={`circular-progress-indeterminate-${color}-${size}`}
               color={color}
               size={size}
-              variant="determinate"
+              variant='determinate'
               value={progress}
             />
           ))}
@@ -93,7 +93,7 @@ export const CircularProgressWithLabel = story<CircularProgressProps>(() => {
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      setProgress(prevProgress => (prevProgress >= 100 ? 0 : prevProgress + 10))
+      setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10))
     }, 800)
     return () => {
       clearInterval(timer)
@@ -101,15 +101,15 @@ export const CircularProgressWithLabel = story<CircularProgressProps>(() => {
   }, [])
 
   return (
-    <Stack direction="row" spacing={2}>
-      {colors.flatMap(color => (
+    <Stack direction='row' spacing={2}>
+      {colors.flatMap((color) => (
         <Stack
-          direction="column"
-          alignItems="center"
+          direction='column'
+          alignItems='center'
           spacing={8}
           key={`circular-progress-label-${color}`}
         >
-          {(['medium', 'large'] as const).map(size => (
+          {(['medium', 'large'] as const).map((size) => (
             <Box
               key={`circular-progress-label-${color}-${size}`}
               sx={{ position: 'relative', display: 'inline-flex' }}
@@ -118,7 +118,7 @@ export const CircularProgressWithLabel = story<CircularProgressProps>(() => {
                 color={color}
                 size={size}
                 thickness={4}
-                variant="determinate"
+                variant='determinate'
                 value={progress}
               />
               <Box
@@ -134,9 +134,9 @@ export const CircularProgressWithLabel = story<CircularProgressProps>(() => {
                 }}
               >
                 <Typography
-                  variant="caption"
-                  component="div"
-                  color="text.secondary"
+                  variant='caption'
+                  component='div'
+                  color='text.secondary'
                 >{`${Math.round(progress)}%`}</Typography>
               </Box>
             </Box>
@@ -149,15 +149,15 @@ export const CircularProgressWithLabel = story<CircularProgressProps>(() => {
 
 export const CircularProgressWithIcon = story<CircularProgressProps>(() => {
   return (
-    <Stack direction="row" spacing={1}>
-      {colors.flatMap(color => (
+    <Stack direction='row' spacing={1}>
+      {colors.flatMap((color) => (
         <Stack
-          direction="column"
-          alignItems="center"
+          direction='column'
+          alignItems='center'
           spacing={8}
           key={`circular-progress-icon-${color}`}
         >
-          {(['medium', 'large'] as const).map(size => (
+          {(['medium', 'large'] as const).map((size) => (
             <Box
               key={`circular-progress-icon-${color}-${size}`}
               sx={{ position: 'relative', display: 'inline-flex' }}

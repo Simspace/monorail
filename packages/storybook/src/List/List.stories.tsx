@@ -68,17 +68,17 @@ declare module '@mui/styles/defaultTheme' {
 export default { title: 'Data Display/List', component: List }
 
 const Template = story<ListProps>(
-  args => {
+  (args) => {
     return (
       <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-        <nav aria-label="main mailbox folders">
+        <nav aria-label='main mailbox folders'>
           <List {...args}>
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
                   <InboxIcon />
                 </ListItemIcon>
-                <ListItemText primary="Inbox" />
+                <ListItemText primary='Inbox' />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
@@ -86,22 +86,22 @@ const Template = story<ListProps>(
                 <ListItemIcon>
                   <DraftsIcon />
                 </ListItemIcon>
-                <ListItemText primary="Drafts" />
+                <ListItemText primary='Drafts' />
               </ListItemButton>
             </ListItem>
           </List>
         </nav>
         <Divider />
-        <nav aria-label="secondary mailbox folders">
+        <nav aria-label='secondary mailbox folders'>
           <List {...args}>
             <ListItem disablePadding>
               <ListItemButton>
-                <ListItemText primary="Trash" />
+                <ListItemText primary='Trash' />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton component="a" href="#simple-list">
-                <ListItemText primary="Spam (link)" />
+              <ListItemButton component='a' href='#simple-list'>
+                <ListItemText primary='Spam (link)' />
               </ListItemButton>
             </ListItem>
           </List>
@@ -117,7 +117,7 @@ export const Default = story(Template)
 /**
  * List with `Buttons`, `Icons`, `Text`, and `Collapse` for nesting.
  */
-export const NestedList = story<ListProps>(args => {
+export const NestedList = story<ListProps>((args) => {
   const [open, setOpen] = React.useState(true)
 
   const handleClick = () => {
@@ -127,10 +127,10 @@ export const NestedList = story<ListProps>(args => {
   return (
     <List
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-      component="nav"
-      aria-labelledby="nested-list-subheader"
+      component='nav'
+      aria-labelledby='nested-list-subheader'
       subheader={
-        <ListSubheader component="div" id="nested-list-subheader">
+        <ListSubheader component='div' id='nested-list-subheader'>
           Nested List Items
         </ListSubheader>
       }
@@ -140,28 +140,28 @@ export const NestedList = story<ListProps>(args => {
         <ListItemIcon>
           <SendIcon />
         </ListItemIcon>
-        <ListItemText primary="Sent mail" />
+        <ListItemText primary='Sent mail' />
       </ListItemButton>
       <ListItemButton>
         <ListItemIcon>
           <DraftsIcon />
         </ListItemIcon>
-        <ListItemText primary="Drafts" />
+        <ListItemText primary='Drafts' />
       </ListItemButton>
       <ListItemButton onClick={handleClick}>
         <ListItemIcon>
           <InboxIcon />
         </ListItemIcon>
-        <ListItemText primary="Inbox" />
+        <ListItemText primary='Inbox' />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
-      <Collapse in={open} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
+      <Collapse in={open} timeout='auto' unmountOnExit>
+        <List component='div' disablePadding>
           <ListItemButton sx={{ pl: 8 }}>
             <ListItemIcon>
               <StarBorder />
             </ListItemIcon>
-            <ListItemText primary="Starred" />
+            <ListItemText primary='Starred' />
           </ListItemButton>
         </List>
       </Collapse>
@@ -172,42 +172,39 @@ export const NestedList = story<ListProps>(args => {
 /**
  * List with avatars, text, icons.
  */
-export const FolderList = story<ListProps>(args => {
+export const FolderList = story<ListProps>((args) => {
   return (
-    <List
-      sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-      {...args}
-    >
+    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} {...args}>
       <ListItem>
         <ListItemAvatar>
-          <Avatar size="small">
+          <Avatar size='small'>
             <ImageIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText primary="Photos" secondary="Jan 9, 2014" />
+        <ListItemText primary='Photos' secondary='Jan 9, 2014' />
       </ListItem>
       <ListItem>
         <ListItemAvatar>
-          <Avatar size="small">
+          <Avatar size='small'>
             <WorkIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText primary="Work" secondary="Jan 7, 2014" />
+        <ListItemText primary='Work' secondary='Jan 7, 2014' />
       </ListItem>
       <ListItem>
         <ListItemAvatar>
-          <Avatar size="small">
+          <Avatar size='small'>
             <BeachAccessIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText primary="Vacation" secondary="July 20, 2014" />
+        <ListItemText primary='Vacation' secondary='July 20, 2014' />
       </ListItem>
     </List>
   )
 })
 
 function generate(prefix: string, element: (id: string) => React.ReactElement) {
-  return [0, 1, 2].map(value => {
+  return [0, 1, 2].map((value) => {
     const id = `${prefix}-${value}`
     return React.cloneElement(element(id), {
       key: id,
@@ -231,26 +228,23 @@ export const InteractiveList = story<ListProps>(() => {
       <FormGroup row>
         <FormControlLabel
           control={
-            <Checkbox
-              checked={dense}
-              onChange={event => setDense(event.target.checked)}
-            />
+            <Checkbox checked={dense} onChange={(event) => setDense(event.target.checked)} />
           }
-          label="Enable dense"
+          label='Enable dense'
         />
         <FormControlLabel
           control={
             <Checkbox
               checked={secondary}
-              onChange={event => setSecondary(event.target.checked)}
+              onChange={(event) => setSecondary(event.target.checked)}
             />
           }
-          label="Enable secondary text"
+          label='Enable secondary text'
         />
       </FormGroup>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
-          <Typography sx={{ mt: 4, mb: 2 }} variant="h3" component="div">
+          <Typography sx={{ mt: 4, mb: 2 }} variant='h3' component='div'>
             Text only
           </Typography>
           <Demo>
@@ -258,7 +252,7 @@ export const InteractiveList = story<ListProps>(() => {
               {generate('interactive-list-item-0', () => (
                 <ListItem>
                   <ListItemText
-                    primary="Single-line item"
+                    primary='Single-line item'
                     secondary={secondary ? 'Secondary text' : null}
                   />
                 </ListItem>
@@ -267,7 +261,7 @@ export const InteractiveList = story<ListProps>(() => {
           </Demo>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Typography sx={{ mt: 4, mb: 2 }} variant="h3" component="div">
+          <Typography sx={{ mt: 4, mb: 2 }} variant='h3' component='div'>
             Icon with text
           </Typography>
           <Demo>
@@ -275,7 +269,7 @@ export const InteractiveList = story<ListProps>(() => {
               {generate('interactive-list-item-1', () => (
                 <ListItem
                   secondaryAction={
-                    <IconButton edge="end" aria-label="delete" size="small">
+                    <IconButton edge='end' aria-label='delete' size='small'>
                       <DeleteIcon />
                     </IconButton>
                   }
@@ -284,7 +278,7 @@ export const InteractiveList = story<ListProps>(() => {
                     <FolderIcon />
                   </ListItemIcon>
                   <ListItemText
-                    primary="Single-line item"
+                    primary='Single-line item'
                     secondary={secondary ? 'Secondary text' : null}
                   />
                 </ListItem>
@@ -295,22 +289,19 @@ export const InteractiveList = story<ListProps>(() => {
       </Grid>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
-          <Typography sx={{ mt: 4, mb: 2 }} variant="h3" component="div">
+          <Typography sx={{ mt: 4, mb: 2 }} variant='h3' component='div'>
             Checkbox with text
           </Typography>
           <Demo>
             <List dense={dense}>
-              {generate('interactive-list-item-2', id => (
+              {generate('interactive-list-item-2', (id) => (
                 <ListItem>
                   <ListItemIcon>
-                    <Checkbox
-                      size="small"
-                      inputProps={{ 'aria-labelledby': id }}
-                    />
+                    <Checkbox size='small' inputProps={{ 'aria-labelledby': id }} />
                   </ListItemIcon>
                   <ListItemText
                     id={id}
-                    primary="Single-line item"
+                    primary='Single-line item'
                     secondary={secondary ? 'Secondary text' : null}
                   />
                 </ListItem>
@@ -319,7 +310,7 @@ export const InteractiveList = story<ListProps>(() => {
           </Demo>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Typography sx={{ mt: 4, mb: 2 }} variant="h3" component="div">
+          <Typography sx={{ mt: 4, mb: 2 }} variant='h3' component='div'>
             Avatar with text and icon
           </Typography>
           <Demo>
@@ -327,7 +318,7 @@ export const InteractiveList = story<ListProps>(() => {
               {generate('interactive-list-item-3', () => (
                 <ListItem
                   secondaryAction={
-                    <IconButton edge="end" aria-label="delete">
+                    <IconButton edge='end' aria-label='delete'>
                       <DeleteIcon />
                     </IconButton>
                   }
@@ -338,7 +329,7 @@ export const InteractiveList = story<ListProps>(() => {
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText
-                    primary="Single-line item"
+                    primary='Single-line item'
                     secondary={secondary ? 'Secondary text' : null}
                   />
                 </ListItem>
@@ -354,7 +345,7 @@ export const InteractiveList = story<ListProps>(() => {
 /**
  * Show selected list items.
  */
-export const SelectedListItem = story<ListProps>(args => {
+export const SelectedListItem = story<ListProps>((args) => {
   const [selectedIndex, setSelectedIndex] = React.useState(1)
 
   const handleListItemClick = (index: number) => () => {
@@ -363,39 +354,27 @@ export const SelectedListItem = story<ListProps>(args => {
 
   return (
     <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      <List component="nav" aria-label="main mailbox folders" {...args}>
-        <ListItemButton
-          selected={selectedIndex === 0}
-          onClick={handleListItemClick(0)}
-        >
+      <List component='nav' aria-label='main mailbox folders' {...args}>
+        <ListItemButton selected={selectedIndex === 0} onClick={handleListItemClick(0)}>
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
-          <ListItemText primary="Inbox" />
+          <ListItemText primary='Inbox' />
         </ListItemButton>
-        <ListItemButton
-          selected={selectedIndex === 1}
-          onClick={handleListItemClick(1)}
-        >
+        <ListItemButton selected={selectedIndex === 1} onClick={handleListItemClick(1)}>
           <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon>
-          <ListItemText primary="Drafts" />
+          <ListItemText primary='Drafts' />
         </ListItemButton>
       </List>
       <Divider />
-      <List component="nav" aria-label="secondary mailbox folder" {...args}>
-        <ListItemButton
-          selected={selectedIndex === 2}
-          onClick={handleListItemClick(2)}
-        >
-          <ListItemText primary="Trash" />
+      <List component='nav' aria-label='secondary mailbox folder' {...args}>
+        <ListItemButton selected={selectedIndex === 2} onClick={handleListItemClick(2)}>
+          <ListItemText primary='Trash' />
         </ListItemButton>
-        <ListItemButton
-          selected={selectedIndex === 3}
-          onClick={handleListItemClick(3)}
-        >
-          <ListItemText primary="Spam" />
+        <ListItemButton selected={selectedIndex === 3} onClick={handleListItemClick(3)}>
+          <ListItemText primary='Spam' />
         </ListItemButton>
       </List>
     </Box>
@@ -405,27 +384,24 @@ export const SelectedListItem = story<ListProps>(args => {
 /**
  * You should change the list item alignment when displaying 3 lines or more, set the `alignItems` prop to `"flex-start"`.
  */
-export const AlignListItems = story<ListProps>(args => {
+export const AlignListItems = story<ListProps>((args) => {
   return (
-    <List
-      sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-      {...args}
-    >
-      <ListItem alignItems="flex-start">
+    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} {...args}>
+      <ListItem alignItems='flex-start'>
         <ListItemAvatar>
-          <Avatar size="small" alt="Remy Sharp">
+          <Avatar size='small' alt='Remy Sharp'>
             RS
           </Avatar>
         </ListItemAvatar>
         <ListItemText
-          primary="Brunch this weekend?"
+          primary='Brunch this weekend?'
           secondary={
             <React.Fragment>
               <Typography
                 sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
+                component='span'
+                variant='body2'
+                color='text.primary'
               >
                 Ali Connors
               </Typography>
@@ -434,22 +410,22 @@ export const AlignListItems = story<ListProps>(args => {
           }
         />
       </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
+      <Divider variant='inset' component='li' />
+      <ListItem alignItems='flex-start'>
         <ListItemAvatar>
-          <Avatar size="small" alt="Travis Howard">
+          <Avatar size='small' alt='Travis Howard'>
             TH
           </Avatar>
         </ListItemAvatar>
         <ListItemText
-          primary="Summer BBQ"
+          primary='Summer BBQ'
           secondary={
             <React.Fragment>
               <Typography
                 sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
+                component='span'
+                variant='body2'
+                color='text.primary'
               >
                 to Scott, Alex, Jennifer
               </Typography>
@@ -458,22 +434,22 @@ export const AlignListItems = story<ListProps>(args => {
           }
         />
       </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
+      <Divider variant='inset' component='li' />
+      <ListItem alignItems='flex-start'>
         <ListItemAvatar>
-          <Avatar size="small" alt="Cindy Baker">
+          <Avatar size='small' alt='Cindy Baker'>
             CB
           </Avatar>
         </ListItemAvatar>
         <ListItemText
-          primary="Oui Oui"
+          primary='Oui Oui'
           secondary={
             <React.Fragment>
               <Typography
                 sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
+                component='span'
+                variant='body2'
+                color='text.primary'
               >
                 Sandra Adams
               </Typography>
@@ -491,7 +467,7 @@ export const AlignListItems = story<ListProps>(args => {
  *
  * The checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.
  */
-export const ListControlsCheckbox = story<ListProps>(args => {
+export const ListControlsCheckbox = story<ListProps>((args) => {
   const [checked, setChecked] = React.useState([0])
 
   const handleToggle = (value: number) => () => {
@@ -508,33 +484,26 @@ export const ListControlsCheckbox = story<ListProps>(args => {
   }
 
   return (
-    <List
-      sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-      {...args}
-    >
-      {[0, 1, 2, 3].map(value => {
+    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} {...args}>
+      {[0, 1, 2, 3].map((value) => {
         const labelId = `checkbox-list-label-${value}`
 
         return (
           <ListItem
             key={value}
             secondaryAction={
-              <IconButton edge="end" aria-label="comments" shape="circular">
+              <IconButton edge='end' aria-label='comments' shape='circular'>
                 <CommentIcon />
               </IconButton>
             }
             disablePadding
           >
-            <ListItemButton
-              role={undefined}
-              onClick={handleToggle(value)}
-              dense
-            >
+            <ListItemButton role={undefined} onClick={handleToggle(value)} dense>
               <ListItemIcon>
                 <Checkbox
-                  size="small"
-                  edge="start"
-                  security="small"
+                  size='small'
+                  edge='start'
+                  security='small'
                   checked={checked.indexOf(value) !== -1}
                   tabIndex={-1}
                   disableRipple
@@ -553,7 +522,7 @@ export const ListControlsCheckbox = story<ListProps>(args => {
 /**
  * The checkbox is the secondary action for the list item and a separate target.
  */
-export const ListControlsCheckboxSecondary = story<ListProps>(args => {
+export const ListControlsCheckboxSecondary = story<ListProps>((args) => {
   const [checked, setChecked] = React.useState([1])
 
   const handleToggle = (value: number) => () => {
@@ -570,20 +539,16 @@ export const ListControlsCheckboxSecondary = story<ListProps>(args => {
   }
 
   return (
-    <List
-      dense
-      sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-      {...args}
-    >
-      {[0, 1, 2, 3].map(value => {
+    <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} {...args}>
+      {[0, 1, 2, 3].map((value) => {
         const labelId = `checkbox-list-secondary-label-${value}`
         return (
           <ListItem
             key={value}
             secondaryAction={
               <Checkbox
-                size="small"
-                edge="end"
+                size='small'
+                edge='end'
                 onChange={handleToggle(value)}
                 checked={checked.indexOf(value) !== -1}
                 inputProps={{ 'aria-labelledby': labelId }}
@@ -593,7 +558,7 @@ export const ListControlsCheckboxSecondary = story<ListProps>(args => {
           >
             <ListItemButton>
               <ListItemAvatar>
-                <Avatar size="small">AA</Avatar>
+                <Avatar size='small'>AA</Avatar>
               </ListItemAvatar>
               <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
             </ListItemButton>
@@ -607,7 +572,7 @@ export const ListControlsCheckboxSecondary = story<ListProps>(args => {
 /**
  * The switch is the secondary action and a separate target.
  */
-export const ListControlsSwitch = story<ListProps>(args => {
+export const ListControlsSwitch = story<ListProps>((args) => {
   const [checked, setChecked] = React.useState(['wifi'])
 
   const handleToggle = (value: string) => () => {
@@ -633,9 +598,9 @@ export const ListControlsSwitch = story<ListProps>(args => {
         <ListItemIcon>
           <WifiIcon />
         </ListItemIcon>
-        <ListItemText id="switch-list-label-wifi" primary="Wi-Fi" />
+        <ListItemText id='switch-list-label-wifi' primary='Wi-Fi' />
         <Switch
-          edge="end"
+          edge='end'
           onChange={handleToggle('wifi')}
           checked={checked.indexOf('wifi') !== -1}
           inputProps={{
@@ -647,9 +612,9 @@ export const ListControlsSwitch = story<ListProps>(args => {
         <ListItemIcon>
           <BluetoothIcon />
         </ListItemIcon>
-        <ListItemText id="switch-list-label-bluetooth" primary="Bluetooth" />
+        <ListItemText id='switch-list-label-bluetooth' primary='Bluetooth' />
         <Switch
-          edge="end"
+          edge='end'
           onChange={handleToggle('bluetooth')}
           checked={checked.indexOf('bluetooth') !== -1}
           inputProps={{
@@ -664,7 +629,7 @@ export const ListControlsSwitch = story<ListProps>(args => {
 /**
  * Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader. This feature relies on CSS sticky positioning. (⚠️ no IE 11 support)
  */
-export const StickySubheader = story<ListProps>(args => {
+export const StickySubheader = story<ListProps>((args) => {
   return (
     <List
       sx={{
@@ -679,13 +644,13 @@ export const StickySubheader = story<ListProps>(args => {
       subheader={<li />}
       {...args}
     >
-      {[0, 1, 2, 3, 4].map(sectionId => (
+      {[0, 1, 2, 3, 4].map((sectionId) => (
         <li key={`section-${sectionId}`}>
           <ul>
             <ListSubheader
               sx={{ bgcolor: 'background.paper', top: -1 }}
             >{`I'm sticky ${sectionId}`}</ListSubheader>
-            {[0, 1, 2].map(item => (
+            {[0, 1, 2].map((item) => (
               <ListItem key={`item-${sectionId}-${item}`}>
                 <ListItemText primary={`Item ${item}`} />
               </ListItem>
@@ -700,25 +665,25 @@ export const StickySubheader = story<ListProps>(args => {
 /**
  * The `inset` prop enables a list item that does not have a leading icon or avatar to align correctly with items that do.
  */
-export const InsetListItem = story<ListProps>(args => {
+export const InsetListItem = story<ListProps>((args) => {
   return (
     <List
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-      aria-label="contacts"
+      aria-label='contacts'
       dense
       {...args}
     >
       <ListItem disablePadding>
         <ListItemButton>
           <ListItemIcon>
-            <StarIcon fontSize="small" />
+            <StarIcon fontSize='small' />
           </ListItemIcon>
-          <ListItemText primary="Chelsea Otakan" />
+          <ListItemText primary='Chelsea Otakan' />
         </ListItemButton>
       </ListItem>
       <ListItem disablePadding>
         <ListItemButton>
-          <ListItemText inset primary="Eric Hoffman" />
+          <ListItemText inset primary='Eric Hoffman' />
         </ListItemButton>
       </ListItem>
     </List>
@@ -728,18 +693,15 @@ export const InsetListItem = story<ListProps>(args => {
 /**
  * When rendering a list within a component that defines its own gutters, `ListItem` gutters can be disabled with `disableGutters`.
  */
-export const GutterlessListItem = story<ListProps>(args => {
+export const GutterlessListItem = story<ListProps>((args) => {
   return (
-    <List
-      sx={{ width: '100%', maxWidth: 240, bgcolor: 'background.paper' }}
-      {...args}
-    >
-      {[1, 2, 3].map(value => (
+    <List sx={{ width: '100%', maxWidth: 240, bgcolor: 'background.paper' }} {...args}>
+      {[1, 2, 3].map((value) => (
         <ListItem
           key={value}
           disableGutters
           secondaryAction={
-            <IconButton aria-label="Comment">
+            <IconButton aria-label='Comment'>
               <CommentIcon />
             </IconButton>
           }
@@ -766,13 +728,7 @@ export const VirtualizedList = story<ListProps>(() => {
         bgcolor: 'background.paper',
       }}
     >
-      <FixedSizeList
-        height={400}
-        width={360}
-        itemSize={itemSize}
-        itemCount={200}
-        overscanCount={5}
-      >
+      <FixedSizeList height={400} width={360} itemSize={itemSize} itemCount={200} overscanCount={5}>
         {renderRow}
       </FixedSizeList>
     </Box>
@@ -783,7 +739,7 @@ function renderRow(props: ListChildComponentProps) {
   const { index, style } = props
 
   return (
-    <ListItem style={style} key={index} component="div" disablePadding>
+    <ListItem style={style} key={index} component='div' disablePadding>
       <ListItemButton>
         <ListItemText primary={`Item ${index + 1}`} />
       </ListItemButton>
@@ -794,13 +750,11 @@ function renderRow(props: ListChildComponentProps) {
 export const NumberedList = story<ListProps>(() => {
   return (
     <Box sx={{ width: 360 }}>
-      <Typography variant="h3">Instructions</Typography>
-      <List component="ol" sx={{ listStyle: 'auto', pl: 6 }}>
-        {[1, 2, 3, 4, 5].map(item => (
+      <Typography variant='h3'>Instructions</Typography>
+      <List component='ol' sx={{ listStyle: 'auto', pl: 6 }}>
+        {[1, 2, 3, 4, 5].map((item) => (
           <ListItem key={item} sx={{ display: 'list-item' }}>
-            <ListItemText
-              sx={{ display: 'inline-block' }}
-            >{`Step ${item}`}</ListItemText>
+            <ListItemText sx={{ display: 'inline-block' }}>{`Step ${item}`}</ListItemText>
           </ListItem>
         ))}
       </List>
@@ -823,8 +777,7 @@ const initialListItems = [
 
 export const DraggableList = story<ListProps>(() => {
   const [listItems, setListItems] = React.useState(initialListItems)
-  const [toggleScrollContainer, setToggleScrollContainer] =
-    React.useState(false)
+  const [toggleScrollContainer, setToggleScrollContainer] = React.useState(false)
 
   const onDragEnd = ({ destination, source }: DropResult) => {
     // dropped outside the list
@@ -848,10 +801,10 @@ export const DraggableList = story<ListProps>(() => {
             }}
           />
         }
-        label="Toggle scroll container"
+        label='Toggle scroll container'
       />
       <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="droppable-list">
+        <Droppable droppableId='droppable-list'>
           {(provided: DroppableProvided) => (
             <List
               ref={provided.innerRef}
@@ -872,16 +825,13 @@ export const DraggableList = story<ListProps>(() => {
 
                 return (
                   <Draggable key={item.id} index={index} draggableId={item.id}>
-                    {(
-                      provided: DraggableProvided,
-                      snapshot: DraggableStateSnapshot,
-                    ) => (
+                    {(provided: DraggableProvided, snapshot: DraggableStateSnapshot) => (
                       <ListItem
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         dense
                         aria-label={`Draggable item: ${item.primaryText}`}
-                        sx={theme => ({
+                        sx={(theme) => ({
                           ...provided.draggableProps.style,
                           position: 'relative',
                           bgcolor: hasWarning
@@ -902,7 +852,7 @@ export const DraggableList = story<ListProps>(() => {
                         <Box
                           {...provided.dragHandleProps}
                           aria-label={`Draggable handle for ${item.primaryText}`}
-                          className="drag-handle"
+                          className='drag-handle'
                           sx={{
                             display: 'flex',
                             alignItems: 'center',
@@ -924,7 +874,7 @@ export const DraggableList = story<ListProps>(() => {
                         </Box>
                         <ListItemIcon>
                           <Checkbox
-                            security="small"
+                            security='small'
                             disableRipple
                             inputProps={{ 'aria-labelledby': item.id }}
                           />
@@ -936,16 +886,12 @@ export const DraggableList = story<ListProps>(() => {
                             hasWarning && (
                               <>
                                 <WarningAmber
-                                  fontSize="inherit"
+                                  fontSize='inherit'
                                   sx={{
                                     color: 'warning.lowEmphasis.contrastText',
                                   }}
                                 />
-                                <Typography
-                                  component="span"
-                                  variant="inherit"
-                                  color="inherit"
-                                >
+                                <Typography component='span' variant='inherit' color='inherit'>
                                   {item.secondaryText}
                                 </Typography>
                               </>
@@ -971,11 +917,7 @@ export const DraggableList = story<ListProps>(() => {
   )
 })
 
-function reorder<T>(
-  list: Array<T>,
-  startIndex: number,
-  endIndex: number,
-): Array<T> {
+function reorder<T>(list: Array<T>, startIndex: number, endIndex: number): Array<T> {
   const result = Array.from(list)
   const [removed] = result.splice(startIndex, 1)
   result.splice(endIndex, 0, removed)

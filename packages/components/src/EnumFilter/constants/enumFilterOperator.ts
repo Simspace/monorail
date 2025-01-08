@@ -7,7 +7,7 @@ export const enumFilterOperator: GridFilterOperator = {
   label: 'Enum',
   value: 'enum',
   getApplyFilterFn: filterItem => {
-    // eslint-disable-next-line eqeqeq
+     
     if (filterItem.value == null) {
       return null
     }

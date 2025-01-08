@@ -9,8 +9,8 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Navigation/Tab', component: Tab }
 
 const Template = story<TabProps>(
-  args => (
-    <div role="tablist">
+  (args) => (
+    <div role='tablist'>
       <Tab {...args} />
     </div>
   ),

@@ -11,11 +11,11 @@ export default { title: 'Navigation/Stepper/Step', component: Step }
  * `Stepper`s convey progress through numbered steps. It provides a wizard-like workflow.
  */
 export const Default = story<StepProps>(
-  args => (
+  (args) => (
     <Box sx={{ width: '100%' }}>
       <Stepper>
         <Step {...args}>
-          <StepLabel optional="Optional">Step title</StepLabel>
+          <StepLabel optional='Optional'>Step title</StepLabel>
         </Step>
       </Stepper>
     </Box>

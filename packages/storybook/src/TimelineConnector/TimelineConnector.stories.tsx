@@ -16,18 +16,15 @@ export default {
   },
 }
 
-const Template = story<TimelineConnectorProps>(
-  args => <TimelineConnector {...args} />,
-  {
-    args: {},
-    parameters: {
-      creevey: {
-        skip: 'No story yet',
-      },
+const Template = story<TimelineConnectorProps>((args) => <TimelineConnector {...args} />, {
+  args: {},
+  parameters: {
+    creevey: {
+      skip: 'No story yet',
     },
-    muiName: 'MuiTimelineConnector',
   },
-)
+  muiName: 'MuiTimelineConnector',
+})
 
 export const Default = story(Template, {})
 // TODO: add more stories below

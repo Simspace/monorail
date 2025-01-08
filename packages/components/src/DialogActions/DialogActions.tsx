@@ -38,8 +38,7 @@ export const DialogActions = React.forwardRef((inProps, ref) => {
   )
 }) as typeof MuiDialogActions
 
-// @ts-expect-error
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+// @ts-expect-error -- assigning muiName
 DialogActions.muiName = MuiDialogActions.muiName
 
 export * from '@mui/material/DialogActions'

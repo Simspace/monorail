@@ -8,7 +8,7 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Surfaces/Card/CardContent', component: CardContent }
 
-const Template = story<CardContentProps>(args => <CardContent {...args} />, {
+const Template = story<CardContentProps>((args) => <CardContent {...args} />, {
   args: { children: 'Card Content' },
   muiName: 'MuiCardContent',
 })

@@ -9,10 +9,10 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Surfaces/Card/CardActions', component: CardActions }
 
 const Template = story<CardActionsProps>(
-  args => (
+  (args) => (
     <CardActions {...args}>
-      <Button variant="text">Action 1</Button>
-      <Button variant="contained">Action 2</Button>
+      <Button variant='text'>Action 1</Button>
+      <Button variant='contained'>Action 2</Button>
     </CardActions>
   ),
   {

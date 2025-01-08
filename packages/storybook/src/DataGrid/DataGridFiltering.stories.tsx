@@ -35,7 +35,7 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Data Grid/Filtering', component: DataGrid }
 
-const Template = story<DataGridProps>(args => {
+const Template = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 100,
@@ -112,7 +112,7 @@ const columns: Array<GridColDef> = [
   },
 ]
 
-export const FilterOperators = story<DataGridProps>(args => {
+export const FilterOperators = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Employee',
     rowLength: 10,
@@ -143,7 +143,7 @@ The following demo allows to explore the different operators available:`,
 /**
  * Disable filtering
  */
-export const DisableFilteringGrid = story<DataGridProps>(args => {
+export const DisableFilteringGrid = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 10,
@@ -156,11 +156,11 @@ export const DisableFilteringGrid = story<DataGridProps>(args => {
         {...args}
         {...data}
         columns={data.columns.map(
-          column =>
+          (column) =>
             ({
               ...column,
               filterable: false,
-            } as GridColDef),
+            }) as GridColDef,
         )}
       />
     </div>
@@ -214,7 +214,7 @@ function RatingInputValue(props: GridFilterInputValueProps) {
   return (
     <div className={classes.root}>
       <Rating
-        name="custom-rating-filter-operator"
+        name='custom-rating-filter-operator'
         value={Number(item.value)}
         onChange={handleFilterChange}
         precision={0.5}
@@ -223,7 +223,7 @@ function RatingInputValue(props: GridFilterInputValueProps) {
   )
 }
 
-export const ExtendNumericOperator = story<DataGridProps>(args => {
+export const ExtendNumericOperator = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Employee',
     rowLength: 100,
@@ -235,15 +235,13 @@ export const ExtendNumericOperator = story<DataGridProps>(args => {
   })
 
   if (columns.length > 0) {
-    const ratingColumn = columns.find(column => column.field === 'rating')!
-    const ratingColIndex = columns.findIndex(col => col.field === 'rating')
+    const ratingColumn = columns.find((column) => column.field === 'rating')!
+    const ratingColIndex = columns.findIndex((col) => col.field === 'rating')
 
-    const ratingFilterOperators = getGridNumericOperators().map(
-      (operator: GridFilterOperator) => ({
-        ...operator,
-        InputComponent: RatingInputValue,
-      }),
-    )
+    const ratingFilterOperators = getGridNumericOperators().map((operator: GridFilterOperator) => ({
+      ...operator,
+      InputComponent: RatingInputValue,
+    }))
     columns[ratingColIndex] = {
       ...ratingColumn,
       filterOperators: ratingFilterOperators,
@@ -256,7 +254,7 @@ export const ExtendNumericOperator = story<DataGridProps>(args => {
         rows={data.rows}
         columns={columns}
         filterModel={filterModel}
-        onFilterModelChange={model => setFilterModel(model)}
+        onFilterModelChange={(model) => setFilterModel(model)}
       />
     </div>
   )
@@ -286,25 +284,25 @@ In this demo, the Rating column reuses the numeric filter and the same rating co
 const priceColumnType: GridColTypeDef = {
   type: 'number',
   filterOperators: getGridNumericOperators()
-    .filter(operator => operator.value === '>' || operator.value === '<')
-    .map(operator => {
+    .filter((operator) => operator.value === '>' || operator.value === '<')
+    .map((operator) => {
       return {
         ...operator,
         InputComponentProps: {
           InputProps: {
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+            startAdornment: <InputAdornment position='start'>$</InputAdornment>,
           },
         },
       }
     }),
 }
 
-export const ColumnTypeFilteringGrid = story<DataGridProps>(args => {
+export const ColumnTypeFilteringGrid = story<DataGridProps>((args) => {
   const { data } = useDemoData({ dataSet: 'Commodity', rowLength: 100 })
   const columns = React.useMemo(() => {
     if (data.columns.length > 0) {
       // const visibleFields = ['desk', 'commodity', 'totalPrice']
-      const mappedColumns = data.columns.map(dataColumn => {
+      const mappedColumns = data.columns.map((dataColumn) => {
         let mappedColumn: GridColDef = {
           ...dataColumn,
           // hide: visibleFields.indexOf((dataColumn as GridColDef).field) === -1,
@@ -376,7 +374,7 @@ const ratingOnlyOperators = [
   },
 ]
 
-export const CustomRatingOperator = story<DataGridProps>(args => {
+export const CustomRatingOperator = story<DataGridProps>((args) => {
   const { data } = useDemoData({ dataSet: 'Employee', rowLength: 100 })
   const columns = [...(data.columns as Array<GridColDef>)]
   const [filterModel, setFilterModel] = React.useState<GridFilterModel>({
@@ -384,14 +382,12 @@ export const CustomRatingOperator = story<DataGridProps>(args => {
   })
 
   if (columns.length > 0) {
-    const ratingColumn: GridColDef = columns.find(
-      col => col.field === 'rating',
-    ) as GridColDef
+    const ratingColumn: GridColDef = columns.find((col) => col.field === 'rating') as GridColDef
     const newRatingColumn = {
       ...ratingColumn!,
       filterOperators: ratingOnlyOperators,
     }
-    const ratingColIndex = columns.findIndex(col => col.field === 'rating')
+    const ratingColIndex = columns.findIndex((col) => col.field === 'rating')
     columns[ratingColIndex] = newRatingColumn
   }
 
@@ -402,7 +398,7 @@ export const CustomRatingOperator = story<DataGridProps>(args => {
         rows={data.rows}
         columns={columns}
         filterModel={filterModel}
-        onFilterModelChange={model => setFilterModel(model)}
+        onFilterModelChange={(model) => setFilterModel(model)}
       />
     </div>
   )
@@ -444,9 +440,7 @@ In this demo, you can see how to create a completely new operator for the Rating
 /**
  * Server-side filtering
  */
-function loadServerRows(
-  commodityFilterValue?: string,
-): Promise<Array<GridValidRowModel>> {
+function loadServerRows(commodityFilterValue?: string): Promise<Array<GridValidRowModel>> {
   const serverRows = [
     { id: '1', commodity: 'rice' },
     { id: '2', commodity: 'soybeans' },
@@ -455,26 +449,26 @@ function loadServerRows(
     { id: '5', commodity: 'oats' },
   ]
 
-  return new Promise<Array<GridValidRowModel>>(resolve => {
-    setTimeout(() => {
-      if (commodityFilterValue === undefined) {
-        resolve(serverRows)
-        return
-      }
-      resolve(
-        serverRows.filter(
-          row =>
-            row.commodity.toLowerCase().indexOf(commodityFilterValue!) > -1,
-        ),
-      )
-    }, Math.random() * 500 + 100) // simulate network latency
+  return new Promise<Array<GridValidRowModel>>((resolve) => {
+    setTimeout(
+      () => {
+        if (commodityFilterValue === undefined) {
+          resolve(serverRows)
+          return
+        }
+        resolve(
+          serverRows.filter(
+            (row) => row.commodity.toLowerCase().indexOf(commodityFilterValue!) > -1,
+          ),
+        )
+      },
+      Math.random() * 500 + 100,
+    ) // simulate network latency
   })
 }
 
-export const ServerFilterGrid = story<DataGridProps>(args => {
-  const [columns] = React.useState<Array<GridColDef>>([
-    { field: 'commodity', width: 150 },
-  ])
+export const ServerFilterGrid = story<DataGridProps>((args) => {
+  const [columns] = React.useState<Array<GridColDef>>([{ field: 'commodity', width: 150 }])
   const [rows, setRows] = React.useState<Array<GridRowModel>>([])
   const [filterValue, setFilterValue] = React.useState<string | undefined>()
   const [loading, setLoading] = React.useState(false)
@@ -509,7 +503,7 @@ export const ServerFilterGrid = story<DataGridProps>(args => {
         {...args}
         rows={rows}
         columns={columns}
-        filterMode="server"
+        filterMode='server'
         onFilterModelChange={onFilterChange}
         loading={loading}
       />
@@ -623,8 +617,7 @@ export const MultiFilteringWithOrGrid = story<DataGridProps>(() => {
   )
 })
 
-MultiFilteringWithOrGrid.storyName =
-  'Multi-column filtering: changing the operator'
+MultiFilteringWithOrGrid.storyName = 'Multi-column filtering: changing the operator'
 MultiFilteringWithOrGrid.parameters = {
   docs: {
     description: {
@@ -697,22 +690,22 @@ function QuickSearchToolbar(props: QuickSearchToolbarProps) {
         <GridToolbarDensitySelector />
       </div>
       <TextField
-        variant="standard"
+        variant='standard'
         value={props.value}
         onChange={props.onChange}
-        placeholder="Search…"
+        placeholder='Search…'
         className={classes.textField}
         InputProps={{
-          startAdornment: <Search fontSize="small" />,
+          startAdornment: <Search fontSize='small' />,
           endAdornment: (
             <IconButton
-              title="Clear"
-              aria-label="Clear"
-              size="small"
+              title='Clear'
+              aria-label='Clear'
+              size='small'
               style={{ visibility: props.value ? 'visible' : 'hidden' }}
               onClick={props.clearSearch}
             >
-              <Clear fontSize="small" />
+              <Clear fontSize='small' />
             </IconButton>
           ),
         }}
@@ -721,7 +714,7 @@ function QuickSearchToolbar(props: QuickSearchToolbarProps) {
   )
 }
 
-export const QuickFilteringGrid = story<DataGridProps>(args => {
+export const QuickFilteringGrid = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 100,
@@ -752,7 +745,7 @@ export const QuickFilteringGrid = story<DataGridProps>(args => {
       <DataGrid
         {...args}
         slots={{
-          toolbar: props => (
+          toolbar: (props) => (
             <QuickSearchToolbar
               {...props}
               value={searchText}

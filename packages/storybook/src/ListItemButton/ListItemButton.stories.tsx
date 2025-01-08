@@ -12,9 +12,9 @@ export default {
 }
 
 const Template = story<ListItemButtonProps>(
-  args => (
+  (args) => (
     <ListItemButton {...args}>
-      <ListItemText primary="Spam" />
+      <ListItemText primary='Spam' />
     </ListItemButton>
   ),
   { args: {}, muiName: 'MuiListItemButton' },

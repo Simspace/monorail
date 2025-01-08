@@ -9,7 +9,7 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Utils/Portal', component: Portal }
 
 const Template = story<PortalProps>(
-  args => {
+  (args) => {
     const [show, setShow] = React.useState(false)
     const container = React.useRef(null)
 
@@ -19,7 +19,7 @@ const Template = story<PortalProps>(
 
     return (
       <>
-        <button type="button" onClick={handleClick}>
+        <button type='button' onClick={handleClick}>
           {show ? 'Unmount children' : 'Mount children'}
         </button>
         {show ? (

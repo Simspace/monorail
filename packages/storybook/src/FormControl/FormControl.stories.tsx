@@ -2,13 +2,7 @@
 import React from 'react'
 
 import type { FormControlProps } from '@monorail/components'
-import {
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormLabel,
-} from '@monorail/components'
+import { Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -17,20 +11,11 @@ export default { title: 'Inputs/FormControl', component: FormControl }
 const Template = story<FormControlProps>(
   (args: FormControlProps) => (
     <FormControl {...args}>
-      <FormLabel component="legend">Pick two</FormLabel>
+      <FormLabel component='legend'>Pick two</FormLabel>
       <FormGroup>
-        <FormControlLabel
-          control={<Checkbox name="gilad" />}
-          label="Gilad Gray"
-        />
-        <FormControlLabel
-          control={<Checkbox name="jason" />}
-          label="Jason Killian"
-        />
-        <FormControlLabel
-          control={<Checkbox name="antoine" />}
-          label="Antoine Llorca"
-        />
+        <FormControlLabel control={<Checkbox name='gilad' />} label='Gilad Gray' />
+        <FormControlLabel control={<Checkbox name='jason' />} label='Jason Killian' />
+        <FormControlLabel control={<Checkbox name='antoine' />} label='Antoine Llorca' />
       </FormGroup>
     </FormControl>
   ),

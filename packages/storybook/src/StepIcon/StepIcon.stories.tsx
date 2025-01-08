@@ -9,14 +9,7 @@ import {
 } from '@mui/icons-material'
 
 import type { StepIconProps } from '@monorail/components'
-import {
-  Box,
-  Step,
-  StepButton,
-  StepIcon,
-  StepLabel,
-  Stepper,
-} from '@monorail/components'
+import { Box, Step, StepButton, StepIcon, StepLabel, Stepper } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -66,9 +59,7 @@ export const IconStepButton = story(() => (
   <Box sx={{ width: '100%' }}>
     <Stepper>
       <Step>
-        <StepButton icon={<IceSkatingOutlined />}>
-          IceSkatingOutlined
-        </StepButton>
+        <StepButton icon={<IceSkatingOutlined />}>IceSkatingOutlined</StepButton>
       </Step>
       <Step>
         <StepButton icon={<IceSkatingTwoTone />}>IceSkatingTwoTone</StepButton>

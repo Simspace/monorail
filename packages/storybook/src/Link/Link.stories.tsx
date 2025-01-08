@@ -8,7 +8,7 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Navigation/Link', component: Link }
 
-const Template = story<LinkProps>(args => <Link {...args} />, {
+const Template = story<LinkProps>((args) => <Link {...args} />, {
   args: { children: 'A Simple Link' },
   muiName: 'MuiLink',
 })
@@ -19,16 +19,16 @@ export const Default = story(Template)
  * The `Link` component is built on top of the `Typography` component, meaning that you can use its props.
  */
 export const Basic = story<LinkProps>(() => (
-  <Stack direction="row" spacing={2}>
-    <Link href="#">Link</Link>
-    <Link href="#" color="inherit">
+  <Stack direction='row' spacing={2}>
+    <Link href='#'>Link</Link>
+    <Link href='#' color='inherit'>
       {'color="inherit"'}
     </Link>
-    <Link href="#" variant="body2">
+    <Link href='#' variant='body2'>
       {'variant="body2"'}
     </Link>
-    <Stack direction="column" maxWidth={100}>
-      <Link lineClamp={1} href="#">
+    <Stack direction='column' maxWidth={100}>
+      <Link lineClamp={1} href='#'>
         Truncated link
       </Link>
     </Stack>
@@ -39,14 +39,14 @@ export const Basic = story<LinkProps>(() => (
  * The `underline` prop can be used to set the underline behavior. The default is hover.
  */
 export const Underline = story<LinkProps>(() => (
-  <Stack direction="row" spacing={2}>
-    <Link href="#" underline="none">
+  <Stack direction='row' spacing={2}>
+    <Link href='#' underline='none'>
       {'underline="none"'}
     </Link>
-    <Link href="#" underline="hover">
+    <Link href='#' underline='hover'>
       {'underline="hover"'}
     </Link>
-    <Link href="#" underline="always">
+    <Link href='#' underline='always'>
       {'underline="always"'}
     </Link>
   </Stack>

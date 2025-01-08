@@ -59,7 +59,7 @@ const useData = (rowLength: number, columnLength: number) => {
   return data
 }
 
-const Template = story<DataGridProps>(args => {
+const Template = story<DataGridProps>((args) => {
   const data = useData(100, 1000)
 
   return (

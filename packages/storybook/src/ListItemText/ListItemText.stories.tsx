@@ -12,7 +12,7 @@ export default {
   component: ListItemText,
 }
 
-const Template = story<ListItemTextProps>(args => <ListItemText {...args} />, {
+const Template = story<ListItemTextProps>((args) => <ListItemText {...args} />, {
   args: { primary: 'Primary', secondary: 'Secondary' },
   muiName: 'MuiListItemText',
 })

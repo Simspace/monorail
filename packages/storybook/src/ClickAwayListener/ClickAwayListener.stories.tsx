@@ -13,11 +13,11 @@ export default {
 }
 
 const Template = story<ClickAwayListenerProps>(
-  args => {
+  (args) => {
     const [open, setOpen] = React.useState(false)
 
     const handleClick = () => {
-      setOpen(prev => !prev)
+      setOpen((prev) => !prev)
     }
 
     const handleClickAway = () => {
@@ -38,13 +38,11 @@ const Template = story<ClickAwayListenerProps>(
     return (
       <ClickAwayListener onClickAway={handleClickAway} {...args}>
         <Box sx={{ position: 'relative' }}>
-          <button type="button" onClick={handleClick}>
+          <button type='button' onClick={handleClick}>
             Open menu dropdown
           </button>
           {open ? (
-            <Box sx={styles}>
-              Click me, I will stay visible until you click outside.
-            </Box>
+            <Box sx={styles}>Click me, I will stay visible until you click outside.</Box>
           ) : null}
         </Box>
       </ClickAwayListener>
@@ -62,7 +60,7 @@ export const WithPortal = story<ClickAwayListenerProps>(() => {
   const [open, setOpen] = React.useState(false)
 
   const handleClick = () => {
-    setOpen(prev => !prev)
+    setOpen((prev) => !prev)
   }
 
   const handleClickAway = () => {
@@ -83,14 +81,13 @@ export const WithPortal = story<ClickAwayListenerProps>(() => {
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
       <div>
-        <button type="button" onClick={handleClick}>
+        <button type='button' onClick={handleClick}>
           Open menu dropdown
         </button>
         {open ? (
           <Portal>
             <Box sx={styles}>
-              Click me, I will stay visible until you click outside. This
-              content is in a Portal.
+              Click me, I will stay visible until you click outside. This content is in a Portal.
             </Box>
           </Portal>
         ) : null}
@@ -106,7 +103,7 @@ export const LeadingEdge = story<ClickAwayListenerProps>(() => {
   const [open, setOpen] = React.useState(false)
 
   const handleClick = () => {
-    setOpen(prev => !prev)
+    setOpen((prev) => !prev)
   }
 
   const handleClickAway = () => {
@@ -126,18 +123,16 @@ export const LeadingEdge = story<ClickAwayListenerProps>(() => {
 
   return (
     <ClickAwayListener
-      mouseEvent="onMouseDown"
-      touchEvent="onTouchStart"
+      mouseEvent='onMouseDown'
+      touchEvent='onTouchStart'
       onClickAway={handleClickAway}
     >
       <Box sx={{ position: 'relative' }}>
-        <button type="button" onClick={handleClick}>
+        <button type='button' onClick={handleClick}>
           Open menu dropdown
         </button>
         {open ? (
-          <Box sx={styles}>
-            Click me, I will stay visible until you click outside.
-          </Box>
+          <Box sx={styles}>Click me, I will stay visible until you click outside.</Box>
         ) : null}
       </Box>
     </ClickAwayListener>

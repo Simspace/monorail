@@ -5,11 +5,7 @@ import { createTheme, darken, lighten } from '@mui/material/styles'
 import { createStyles, makeStyles } from '@mui/styles'
 import { useDemoData } from '@mui/x-data-grid-generator'
 
-import type {
-  DataGridProps,
-  GridCellParams,
-  GridColDef,
-} from '@monorail/components'
+import type { DataGridProps, GridCellParams, GridColDef } from '@monorail/components'
 import {
   DataGrid,
   gridPageCountSelector,
@@ -73,7 +69,7 @@ const useStyles = makeStyles({
   },
 })
 
-const Template = story<DataGridProps>(args => {
+const Template = story<DataGridProps>((args) => {
   const classes = useStyles()
 
   return (
@@ -123,7 +119,7 @@ The  \`GridColDef\`  type has properties to apply class names and custom CSS on 
  * Styling rows
  */
 const useStylesStylingRows = makeStyles(
-  theme => {
+  (theme) => {
     const getBackgroundColor = (color: string) =>
       theme.palette.mode === 'dark' ? darken(color, 0.6) : lighten(color, 0.6)
 
@@ -141,17 +137,13 @@ const useStylesStylingRows = makeStyles(
         '& .super-app-theme--Filled': {
           backgroundColor: getBackgroundColor(theme.palette.success.main),
           '&:hover': {
-            backgroundColor: getHoverBackgroundColor(
-              theme.palette.success.main,
-            ),
+            backgroundColor: getHoverBackgroundColor(theme.palette.success.main),
           },
         },
         '& .super-app-theme--PartiallyFilled': {
           backgroundColor: getBackgroundColor(theme.palette.warning.main),
           '&:hover': {
-            backgroundColor: getHoverBackgroundColor(
-              theme.palette.warning.main,
-            ),
+            backgroundColor: getHoverBackgroundColor(theme.palette.warning.main),
           },
         },
         '& .super-app-theme--Rejected': {
@@ -166,7 +158,7 @@ const useStylesStylingRows = makeStyles(
   { defaultTheme },
 )
 
-export const StylingRowsGrid = story<DataGridProps>(args => {
+export const StylingRowsGrid = story<DataGridProps>((args) => {
   const classes = useStylesStylingRows()
 
   const { data } = useDemoData({
@@ -179,7 +171,7 @@ export const StylingRowsGrid = story<DataGridProps>(args => {
       <DataGrid
         {...args}
         {...data}
-        getRowClassName={params =>
+        getRowClassName={(params) =>
           // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           `super-app-theme--${params.row.status}`
         }
@@ -250,7 +242,7 @@ const useStylesStylingCells = makeStyles({
   },
 })
 
-export const StylingCellsGrid = story<DataGridProps>(args => {
+export const StylingCellsGrid = story<DataGridProps>((args) => {
   const classes = useStylesStylingCells()
 
   const columns: Array<GridColDef> = [
@@ -345,7 +337,7 @@ const useStylesStylingAllCells = makeStyles({
   },
 })
 
-export const StylingAllCells = story<DataGridProps>(args => {
+export const StylingAllCells = story<DataGridProps>((args) => {
   const classes = useStylesStylingAllCells()
   const columns: Array<GridColDef> = [
     { field: 'city' },
@@ -410,9 +402,7 @@ const customCheckbox = (theme: Theme) => {
       width: 16,
       height: 16,
       backgroundColor: 'transparent',
-      border: `1px solid ${
-        theme.palette.mode === 'light' ? '#d9d9d9' : 'rgb(67, 67, 67)'
-      }`,
+      border: `1px solid ${theme.palette.mode === 'light' ? '#d9d9d9' : 'rgb(67, 67, 67)'}`,
       borderRadius: 2,
     },
     '& .MuiCheckbox-root svg path': {
@@ -437,27 +427,23 @@ const customCheckbox = (theme: Theme) => {
       width: 5.71428571,
       height: 9.14285714,
     },
-    '& .MuiCheckbox-root.MuiCheckbox-indeterminate .MuiIconButton-label:after':
-      {
-        width: 8,
-        height: 8,
-        backgroundColor: '#1890ff',
-        transform: 'none',
-        top: '39%',
-        border: 0,
-      },
+    '& .MuiCheckbox-root.MuiCheckbox-indeterminate .MuiIconButton-label:after': {
+      width: 8,
+      height: 8,
+      backgroundColor: '#1890ff',
+      transform: 'none',
+      top: '39%',
+      border: 0,
+    },
   }
 }
 
 const useStylesCustomTheme = makeStyles(
-  theme =>
+  (theme) =>
     createStyles({
       root: {
         border: 0,
-        color:
-          theme.palette.mode === 'light'
-            ? 'rgba(0,0,0,.85)'
-            : 'rgba(255,255,255,0.85)',
+        color: theme.palette.mode === 'light' ? 'rgba(0,0,0,.85)' : 'rgba(255,255,255,0.85)',
         fontFamily: [
           '-apple-system',
           'BlinkMacSystemFont',
@@ -473,27 +459,19 @@ const useStylesCustomTheme = makeStyles(
         WebkitFontSmoothing: 'auto',
         letterSpacing: 'normal',
         '& .MuiDataGrid-columnsContainer': {
-          backgroundColor:
-            theme.palette.mode === 'light' ? '#fafafa' : '#1d1d1d',
+          backgroundColor: theme.palette.mode === 'light' ? '#fafafa' : '#1d1d1d',
         },
         '& .MuiDataGrid-iconSeparator': {
           display: 'none',
         },
         '& .MuiDataGrid-columnHeader, .MuiDataGrid-cell': {
-          borderRight: `1px solid ${
-            theme.palette.mode === 'light' ? '#f0f0f0' : '#303030'
-          }`,
+          borderRight: `1px solid ${theme.palette.mode === 'light' ? '#f0f0f0' : '#303030'}`,
         },
         '& .MuiDataGrid-columnsContainer, .MuiDataGrid-cell': {
-          borderBottom: `1px solid ${
-            theme.palette.mode === 'light' ? '#f0f0f0' : '#303030'
-          }`,
+          borderBottom: `1px solid ${theme.palette.mode === 'light' ? '#f0f0f0' : '#303030'}`,
         },
         '& .MuiDataGrid-cell': {
-          color:
-            theme.palette.mode === 'light'
-              ? 'rgba(0,0,0,.85)'
-              : 'rgba(255,255,255,0.65)',
+          color: theme.palette.mode === 'light' ? 'rgba(0,0,0,.85)' : 'rgba(255,255,255,0.65)',
         },
         '& .MuiPaginationItem-root': {
           borderRadius: 0,
@@ -509,45 +487,41 @@ const CustomPagination = () => {
 
   return (
     <Pagination
-      color="primary"
-      variant="outlined"
-      shape="rounded"
+      color='primary'
+      variant='outlined'
+      shape='rounded'
       page={gridPageSelector(apiRef)}
       count={gridPageCountSelector(apiRef)}
       // renderItem was causing the table to not render (GS 10/7/21)
       // renderItem={props2 => <PaginationItem {...props2} disableRipple />}
-      onChange={(event: React.ChangeEvent<unknown>, value: number) =>
-        apiRef.current.setPage(value)
-      }
+      onChange={(event: React.ChangeEvent<unknown>, value: number) => apiRef.current.setPage(value)}
     />
   )
 }
 
-export const AntDesignGrid = story<DataGridProps>(
-  (args: Partial<DataGridProps>) => {
-    const { data } = useDemoData({
-      dataSet: 'Commodity',
-      rowLength: 10,
-      maxColumns: 10,
-    })
-    const classes = useStylesCustomTheme()
+export const AntDesignGrid = story<DataGridProps>((args: Partial<DataGridProps>) => {
+  const { data } = useDemoData({
+    dataSet: 'Commodity',
+    rowLength: 10,
+    maxColumns: 10,
+  })
+  const classes = useStylesCustomTheme()
 
-    return (
-      <div style={{ height: 400, width: '100%' }}>
-        <DataGrid
-          {...args}
-          className={classes.root}
-          checkboxSelection
-          pageSizeOptions={[5]}
-          slots={{
-            pagination: CustomPagination,
-          }}
-          {...data}
-        />
-      </div>
-    )
-  },
-)
+  return (
+    <div style={{ height: 400, width: '100%' }}>
+      <DataGrid
+        {...args}
+        className={classes.root}
+        checkboxSelection
+        pageSizeOptions={[5]}
+        slots={{
+          pagination: CustomPagination,
+        }}
+        {...data}
+      />
+    </div>
+  )
+})
 
 AntDesignGrid.storyName = 'Cell alignment'
 AntDesignGrid.parameters = {
@@ -567,7 +541,7 @@ The following demo leverages the CSS customization API to match the Ant Design s
   },
 }
 
-export const StripedGrid = story<DataGridProps>(args => {
+export const StripedGrid = story<DataGridProps>((args) => {
   const { data, loading } = useDemoData({
     dataSet: 'Employee',
     rowLength: 200,

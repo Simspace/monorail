@@ -22,7 +22,7 @@ export default { title: 'Inputs/Search', component: Search }
 
 const Template = story<SearchProps>(
   (args: Partial<SearchProps>) => (
-    <Box component="form" width={300} noValidate autoComplete="off">
+    <Box component='form' width={300} noValidate autoComplete='off'>
       <Search {...args} />
     </Box>
   ),
@@ -42,14 +42,14 @@ export const Default = story(Template)
 export const BasicSearch = story(
   () => (
     <Box
-      component="form"
+      component='form'
       sx={{
         '& > :not(style)': { mr: 1, width: '25ch' },
       }}
       noValidate
-      autoComplete="off"
+      autoComplete='off'
     >
-      <Search id="search-basic" />
+      <Search id='search-basic' />
     </Box>
   ),
   {
@@ -69,19 +69,17 @@ export const Sizes = story(
     const theme = useTheme()
     return (
       <Box
-        component="form"
+        component='form'
         sx={{
           '& .MonorailSearch-root': { mr: 4, width: '25ch' },
         }}
         noValidate
-        autoComplete="off"
+        autoComplete='off'
       >
         <div>
-          <Search label="Small" id="size-small" size="small" />
-          <Search label="Medium" id="size-medium" />
-          {isMeteorTheme(theme.name) && (
-            <Search label="Large" id="size-medium" size="large" />
-          )}
+          <Search label='Small' id='size-small' size='small' />
+          <Search label='Medium' id='size-medium' />
+          {isMeteorTheme(theme.name) && <Search label='Large' id='size-medium' size='large' />}
         </div>
       </Box>
     )
@@ -98,17 +96,17 @@ export const Sizes = story(
 )
 
 export const WithAutocomplete = story<SearchProps>(
-  args => {
+  (args) => {
     return (
       <Box sx={{ width: 300 }}>
         <Autocomplete
           freeSolo
-          id="search-with-autocomplete"
-          options={movies.map(option => option.label)}
-          renderInput={params => (
+          id='search-with-autocomplete'
+          options={movies.map((option) => option.label)}
+          renderInput={(params) => (
             <Search
               ref={params.InputProps.ref}
-              label="Search movies"
+              label='Search movies'
               disableClearable
               slotProps={{
                 Input: params.InputProps,
@@ -134,7 +132,7 @@ export const WithAutocomplete = story<SearchProps>(
   },
 )
 
-export const ControlledVsUncontrolled = story<SearchProps>(args => {
+export const ControlledVsUncontrolled = story<SearchProps>((args) => {
   const [name, setName] = React.useState('Cat in the Hat')
   const handleChange: SearchProps['onChange'] = (_event, value, _reason) => {
     setName(value)
@@ -142,16 +140,16 @@ export const ControlledVsUncontrolled = story<SearchProps>(args => {
 
   return (
     <Box
-      component="form"
+      component='form'
       sx={{
         '& > :not(style)': { m: 1, width: '25ch' },
       }}
       noValidate
-      autoComplete="off"
+      autoComplete='off'
     >
       <Search
-        id="search-controlled"
-        label="Controlled"
+        id='search-controlled'
+        label='Controlled'
         value={name}
         onChange={handleChange}
         slotProps={{
@@ -161,17 +159,12 @@ export const ControlledVsUncontrolled = story<SearchProps>(args => {
         }}
         {...args}
       />
-      <Search
-        id="search-uncontrolled"
-        label="Uncontrolled"
-        defaultValue="foo"
-        {...args}
-      />
+      <Search id='search-uncontrolled' label='Uncontrolled' defaultValue='foo' {...args} />
     </Box>
   )
 })
 
-export const DebouncedSearch = story<SearchProps>(args => {
+export const DebouncedSearch = story<SearchProps>((args) => {
   const [searchTerm, setSearchTerm] = React.useState('')
   const [searchTermDebounced, setSearchTermDebounced] = React.useState('')
 
@@ -179,24 +172,15 @@ export const DebouncedSearch = story<SearchProps>(args => {
     setSearchTerm(value)
   }
 
-  const handleChangeDebounced: SearchProps['onChangeDebounced'] = (
-    _event,
-    value,
-    _reason,
-  ) => {
+  const handleChangeDebounced: SearchProps['onChangeDebounced'] = (_event, value, _reason) => {
     setSearchTermDebounced(value)
   }
 
   return (
-    <Stack
-      component="form"
-      sx={{ width: 400, gap: 4 }}
-      noValidate
-      autoComplete="off"
-    >
+    <Stack component='form' sx={{ width: 400, gap: 4 }} noValidate autoComplete='off'>
       <Search
-        id="search-controlled"
-        label="Filter movies"
+        id='search-controlled'
+        label='Filter movies'
         value={searchTerm}
         onChange={handleChange}
         onChangeDebounced={handleChangeDebounced}
@@ -213,7 +197,7 @@ export const DebouncedSearch = story<SearchProps>(args => {
       />
       <ScrollShadow bottom>
         <List sx={{ maxHeight: 400 }}>
-          {movies.map(movie => {
+          {movies.map((movie) => {
             const label = movie.label.toLowerCase()
             const search = searchTerm.toLowerCase()
             if (label.includes(search)) {

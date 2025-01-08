@@ -12,7 +12,7 @@ export default {
 }
 
 const Template = story<AccordionDetailsProps>(
-  args => <AccordionDetails {...args}>Accordion Details</AccordionDetails>,
+  (args) => <AccordionDetails {...args}>Accordion Details</AccordionDetails>,
   { args: {}, muiName: 'MuiAccordionDetails' },
 )
 

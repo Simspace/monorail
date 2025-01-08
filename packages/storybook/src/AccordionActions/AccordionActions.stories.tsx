@@ -12,10 +12,10 @@ export default {
 }
 
 const Template = story<AccordionActionsProps>(
-  args => (
+  (args) => (
     <AccordionActions {...args}>
-      <Button variant="text">Action 1</Button>
-      <Button variant="contained">Action 2</Button>
+      <Button variant='text'>Action 1</Button>
+      <Button variant='contained'>Action 2</Button>
     </AccordionActions>
   ),
   { args: {}, muiName: 'MuiAccordionActions' },

@@ -4,18 +4,13 @@ import { styled } from '@mui/material/styles'
 import usePagination from '@mui/material/usePagination'
 
 import type { PaginationProps } from '@monorail/components'
-import {
-  Pagination,
-  Stack,
-  TablePagination,
-  Typography,
-} from '@monorail/components'
+import { Pagination, Stack, TablePagination, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
 export default { title: 'Navigation/Pagination', component: Pagination }
 
-const Template = story<PaginationProps>(args => <Pagination {...args} />, {
+const Template = story<PaginationProps>((args) => <Pagination {...args} />, {
   args: { count: 9 },
   muiName: 'MuiPagination',
 })
@@ -24,16 +19,16 @@ export const Default = story(Template)
 
 export const BasicPagination = story<PaginationProps>(() => (
   <Stack spacing={2}>
-    <Pagination count={10} aria-label="default" />
-    <Pagination count={10} disabled aria-label="disabled" />
+    <Pagination count={10} aria-label='default' />
+    <Pagination count={10} disabled aria-label='disabled' />
   </Stack>
 ))
 
 export const PaginationSize = story<PaginationProps>(() => (
   <Stack spacing={2}>
-    <Pagination count={10} size="small" aria-label="small" />
-    <Pagination count={10} aria-label="medium" />
-    <Pagination count={10} size="large" aria-label="large" />
+    <Pagination count={10} size='small' aria-label='small' />
+    <Pagination count={10} aria-label='medium' />
+    <Pagination count={10} size='large' aria-label='large' />
   </Stack>
 ))
 
@@ -42,18 +37,8 @@ export const PaginationSize = story<PaginationProps>(() => (
  */
 export const PaginationButtons = story<PaginationProps>(() => (
   <Stack spacing={2}>
-    <Pagination
-      count={10}
-      showFirstButton
-      showLastButton
-      aria-label="show-first-last"
-    />
-    <Pagination
-      count={10}
-      hidePrevButton
-      hideNextButton
-      aria-label="hide buttons"
-    />
+    <Pagination count={10} showFirstButton showLastButton aria-label='show-first-last' />
+    <Pagination count={10} hidePrevButton hideNextButton aria-label='hide buttons' />
   </Stack>
 ))
 
@@ -62,27 +47,16 @@ export const PaginationButtons = story<PaginationProps>(() => (
  */
 export const PaginationRanges = story<PaginationProps>(() => (
   <Stack spacing={2}>
+    <Pagination count={11} defaultPage={6} siblingCount={0} aria-label='no siblings' />
+    <Pagination count={11} defaultPage={6} aria-label='default ranges' /> {/* Default ranges */}
     <Pagination
-      count={11}
-      defaultPage={6}
-      siblingCount={0}
-      aria-label="no siblings"
-    />
-    <Pagination count={11} defaultPage={6} aria-label="default ranges" />{' '}
-    {/* Default ranges */}
-    <Pagination
-      aria-label="no-sibling-boundary"
+      aria-label='no-sibling-boundary'
       count={11}
       defaultPage={6}
       siblingCount={0}
       boundaryCount={2}
     />
-    <Pagination
-      count={11}
-      defaultPage={6}
-      boundaryCount={2}
-      aria-label="boundary"
-    />
+    <Pagination count={11} defaultPage={6} boundaryCount={2} aria-label='boundary' />
   </Stack>
 ))
 
@@ -124,7 +98,7 @@ export const UsePagination = story<PaginationProps>(() => {
               '…'
             ) : type === 'page' ? (
               <button
-                type="button"
+                type='button'
                 style={{
                   fontWeight: selected ? 'bold' : undefined,
                 }}
@@ -133,7 +107,7 @@ export const UsePagination = story<PaginationProps>(() => {
                 {page}
               </button>
             ) : (
-              <button type="button" {...item}>
+              <button type='button' {...item}>
                 {type}
               </button>
             )
@@ -152,10 +126,7 @@ export const TablePaginationDemo = story<PaginationProps>(() => {
   const [page, setPage] = React.useState(2)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
 
-  const handleChangePage = (
-    _: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number,
-  ) => {
+  const handleChangePage = (_: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage)
   }
 
@@ -168,7 +139,7 @@ export const TablePaginationDemo = story<PaginationProps>(() => {
 
   return (
     <TablePagination
-      component="div"
+      component='div'
       count={100}
       page={page}
       onPageChange={handleChangePage}

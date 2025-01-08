@@ -14,8 +14,8 @@ export default {
 const Template = story<DialogActionsProps>(
   (args: DialogActionsProps) => (
     <DialogActions {...args}>
-      <Button variant="text">Action 1</Button>
-      <Button variant="contained">Action 2</Button>
+      <Button variant='text'>Action 1</Button>
+      <Button variant='contained'>Action 2</Button>
     </DialogActions>
   ),
   { args: {}, muiName: 'MuiDialogActions' },

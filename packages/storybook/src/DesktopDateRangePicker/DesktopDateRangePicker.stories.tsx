@@ -2,14 +2,8 @@
 import React from 'react'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
-import type {
-  DateRange,
-  DesktopDateRangePickerProps,
-} from '@monorail/components'
-import {
-  DesktopDateRangePicker,
-  LocalizationProvider,
-} from '@monorail/components'
+import type { DateRange, DesktopDateRangePickerProps } from '@monorail/components'
+import { DesktopDateRangePicker, LocalizationProvider } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -26,7 +20,7 @@ const Template = story<DesktopDateRangePickerProps<Date>>(
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DesktopDateRangePicker
           value={value}
-          onChange={newValue => {
+          onChange={(newValue) => {
             setValue(newValue)
           }}
           {...args}

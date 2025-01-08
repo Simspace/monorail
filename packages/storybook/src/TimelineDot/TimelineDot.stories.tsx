@@ -11,7 +11,7 @@ export default {
   component: TimelineDot,
 }
 
-const Template = story<TimelineDotProps>(args => <TimelineDot {...args} />, {
+const Template = story<TimelineDotProps>((args) => <TimelineDot {...args} />, {
   args: {},
   muiName: 'MuiTimelineDot',
 })

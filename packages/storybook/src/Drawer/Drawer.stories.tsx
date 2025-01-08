@@ -10,11 +10,7 @@ import type { CSSObject, Theme } from '@mui/material'
 import { styled, useTheme } from '@mui/material'
 import type { StoryObj } from '@storybook/react'
 
-import type {
-  AppBarProps,
-  DrawerProps,
-  FlexDrawerProps,
-} from '@monorail/components'
+import type { AppBarProps, DrawerProps, FlexDrawerProps } from '@monorail/components'
 import {
   AppBar,
   Box,
@@ -85,8 +81,7 @@ export const TemporaryDrawer = story<DrawerProps>(() => {
   })
 
   const toggleDrawer =
-    (anchor: Anchor, open: boolean) =>
-    (event: React.KeyboardEvent | React.MouseEvent) => {
+    (anchor: Anchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
         event.type === 'keydown' &&
         ((event as React.KeyboardEvent).key === 'Tab' ||
@@ -101,27 +96,23 @@ export const TemporaryDrawer = story<DrawerProps>(() => {
   const list = (anchor: Anchor) => (
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
-      role="presentation"
+      role='presentation'
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List component="nav" aria-label="section 1">
+      <List component='nav' aria-label='section 1'>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItemButton key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
+            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItemButton>
         ))}
       </List>
       <Divider />
-      <List component="nav" aria-label="section 2">
+      <List component='nav' aria-label='section 2'>
         {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <ListItemButton key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
+            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItemButton>
         ))}
@@ -131,14 +122,10 @@ export const TemporaryDrawer = story<DrawerProps>(() => {
 
   return (
     <div>
-      {(['left', 'right', 'top', 'bottom'] as const).map(anchor => (
+      {(['left', 'right', 'top', 'bottom'] as const).map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
+          <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>
         </React.Fragment>
@@ -163,23 +150,19 @@ export const ResponsiveDrawer = story<DrawerProps>(() => {
     <div>
       <Toolbar />
       <Divider />
-      <List component="nav" aria-label="section 1">
+      <List component='nav' aria-label='section 1'>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItemButton key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
+            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItemButton>
         ))}
       </List>
       <Divider />
-      <List component="nav" aria-label="section 2">
+      <List component='nav' aria-label='section 2'>
         {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <ListItemButton key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
+            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItemButton>
         ))}
@@ -193,7 +176,7 @@ export const ResponsiveDrawer = story<DrawerProps>(() => {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar
-        position="fixed"
+        position='fixed'
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
@@ -201,29 +184,29 @@ export const ResponsiveDrawer = story<DrawerProps>(() => {
       >
         <Toolbar>
           <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
+            color='inherit'
+            aria-label='open drawer'
+            edge='start'
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: 'none' } }}
-            size="large"
+            size='large'
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h3" noWrap component="div">
+          <Typography variant='h3' noWrap component='div'>
             Responsive drawer
           </Typography>
         </Toolbar>
       </AppBar>
       <Box
-        component="nav"
+        component='nav'
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-        aria-label="mailbox folders"
+        aria-label='mailbox folders'
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
           container={container}
-          variant="temporary"
+          variant='temporary'
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
@@ -240,7 +223,7 @@ export const ResponsiveDrawer = story<DrawerProps>(() => {
           {drawer}
         </Drawer>
         <Drawer
-          variant="permanent"
+          variant='permanent'
           sx={{
             display: { xs: 'none', sm: 'block' },
             '& .MuiDrawer-paper': {
@@ -253,36 +236,30 @@ export const ResponsiveDrawer = story<DrawerProps>(() => {
           {drawer}
         </Drawer>
       </Box>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component='main' sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
         <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
+          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
+          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
+          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
+          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
+          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
+          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
+          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
+          donec massa sapien faucibus et molestie ac.
         </Typography>
         <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-          ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-          elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse
-          sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat
-          mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-          risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas
-          purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-          tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-          morbi tristique senectus et. Adipiscing elit duis tristique
-          sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
+          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
+          facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
+          tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
+          consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
+          vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
+          hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
+          tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
+          nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
+          accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
       </Box>
     </Box>
@@ -292,7 +269,7 @@ export const ResponsiveDrawer = story<DrawerProps>(() => {
 const DRAWER_WIDTH = 240
 
 const PersistentDrawerMain = styled('main', {
-  shouldForwardProp: prop => prop !== 'open',
+  shouldForwardProp: (prop) => prop !== 'open',
 })<{
   open?: boolean
 }>(({ theme, open = false }) => ({
@@ -317,7 +294,7 @@ interface PersistentAppBarProps extends AppBarProps {
 }
 
 const PersistentDrawerAppBar = styled(AppBar, {
-  shouldForwardProp: prop => prop !== 'open',
+  shouldForwardProp: (prop) => prop !== 'open',
 })<PersistentAppBarProps>(({ theme, open = false }) => ({
   transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
@@ -364,19 +341,19 @@ export const PersistentDrawer = story<DrawerProps>(() => {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <PersistentDrawerAppBar position="fixed" open={open}>
+      <PersistentDrawerAppBar position='fixed' open={open}>
         <Toolbar>
           <IconButton
-            color="inherit"
-            aria-label="open drawer"
+            color='inherit'
+            aria-label='open drawer'
             onClick={handleDrawerOpen}
-            edge="start"
+            edge='start'
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
-            size="large"
+            size='large'
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h3" noWrap component="div">
+          <Typography variant='h3' noWrap component='div'>
             Persistent drawer
           </Typography>
         </Toolbar>
@@ -390,41 +367,29 @@ export const PersistentDrawer = story<DrawerProps>(() => {
             boxSizing: 'border-box',
           },
         }}
-        variant="persistent"
-        anchor="left"
+        variant='persistent'
+        anchor='left'
         open={open}
       >
         <PersistentDrawerHeader>
-          <IconButton
-            onClick={handleDrawerClose}
-            size="large"
-            aria-label="close"
-          >
-            {theme.direction === 'ltr' ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
+          <IconButton onClick={handleDrawerClose} size='large' aria-label='close'>
+            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </PersistentDrawerHeader>
         <Divider />
-        <List component="nav" aria-label="section 1">
+        <List component='nav' aria-label='section 1'>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItemButton key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
           ))}
         </List>
         <Divider />
-        <List component="nav" aria-label="section 2">
+        <List component='nav' aria-label='section 2'>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItemButton key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
           ))}
@@ -432,34 +397,28 @@ export const PersistentDrawer = story<DrawerProps>(() => {
       </Drawer>
       <PersistentDrawerMain open={open}>
         <PersistentDrawerHeader />
-        <Typography component="p">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
+        <Typography component='p'>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
+          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
+          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
+          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
+          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
+          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
+          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
+          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
+          donec massa sapien faucibus et molestie ac.
         </Typography>
-        <Typography component="p">
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-          ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-          elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse
-          sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat
-          mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-          risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas
-          purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-          tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-          morbi tristique senectus et. Adipiscing elit duis tristique
-          sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
+        <Typography component='p'>
+          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
+          facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
+          tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
+          consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
+          vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
+          hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
+          tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
+          nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
+          accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
       </PersistentDrawerMain>
     </Box>
@@ -478,22 +437,13 @@ export const ResizableDrawerLeft_ = story<FlexDrawerProps>(
     const [open, setOpen] = React.useState(false)
 
     return (
-      <Stack direction="column" width="100vw" height="100vh">
-        <Stack direction="row" height={1}>
-          <Stack
-            minWidth={64}
-            flexGrow={1}
-            alignItems="center"
-            bgcolor="common.black"
-            py={4}
-          >
-            <Home
-              fontSize="large"
-              sx={theme => ({ fill: theme.palette.common.white })}
-            />
+      <Stack direction='column' width='100vw' height='100vh'>
+        <Stack direction='row' height={1}>
+          <Stack minWidth={64} flexGrow={1} alignItems='center' bgcolor='common.black' py={4}>
+            <Home fontSize='large' sx={(theme) => ({ fill: theme.palette.common.white })} />
           </Stack>
 
-          <Box overflow="hidden" height="100%" sx={{ display: 'flex' }}>
+          <Box overflow='hidden' height='100%' sx={{ display: 'flex' }}>
             <CssBaseline />
             <GlobalStyles
               styles={{
@@ -504,7 +454,7 @@ export const ResizableDrawerLeft_ = story<FlexDrawerProps>(
             />
             <FlexDrawer
               resizable
-              variant="persistent"
+              variant='persistent'
               onClose={() => setOpen(false)}
               open={open}
               slotProps={{
@@ -516,36 +466,30 @@ export const ResizableDrawerLeft_ = story<FlexDrawerProps>(
               <Toolbar />
               <Divider />
               <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map(
-                  (text, index) => (
-                    <ListItem key={text} disablePadding>
-                      <ListItemButton sx={{ width: '100%' }}>
-                        <ListItemIcon>
-                          {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText
-                          primary={text}
-                          sx={{
-                            '& > span': {
-                              whiteSpace: 'nowrap',
-                              overflow: 'hidden',
-                              textOverflow: 'ellipsis',
-                            },
-                          }}
-                        />
-                      </ListItemButton>
-                    </ListItem>
-                  ),
-                )}
+                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                  <ListItem key={text} disablePadding>
+                    <ListItemButton sx={{ width: '100%' }}>
+                      <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                      <ListItemText
+                        primary={text}
+                        sx={{
+                          '& > span': {
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                          },
+                        }}
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                ))}
               </List>
               <Divider />
               <List>
                 {['All mail', 'Trash', 'Spam'].map((text, index) => (
                   <ListItem key={text} disablePadding>
                     <ListItemButton sx={{ width: '100%' }}>
-                      <ListItemIcon>
-                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                      </ListItemIcon>
+                      <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                       <ListItemText
                         primary={text}
                         sx={{
@@ -562,43 +506,33 @@ export const ResizableDrawerLeft_ = story<FlexDrawerProps>(
               </List>
             </FlexDrawer>
 
-            <Box
-              component="main"
-              sx={{ flexGrow: 1, bgcolor: 'background.default' }}
-            >
+            <Box component='main' sx={{ flexGrow: 1, bgcolor: 'background.default' }}>
               <Box sx={{ p: 3, overflowY: 'auto' }}>
                 <Button onClick={() => setOpen(!open)}>Open</Button>
                 <Typography paragraph>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Rhoncus dolor purus non enim praesent elementum facilisis leo
-                  vel. Risus at ultrices mi tempus imperdiet. Semper risus in
-                  hendrerit gravida rutrum quisque non tellus. Convallis
-                  convallis tellus id interdum velit laoreet id donec ultrices.
-                  Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl
-                  suscipit adipiscing bibendum est ultricies integer quis.
-                  Cursus euismod quis viverra nibh cras. Metus vulputate eu
-                  scelerisque felis imperdiet proin fermentum leo. Mauris
-                  commodo quis imperdiet massa tincidunt. Cras tincidunt
-                  lobortis feugiat vivamus at augue. At augue eget arcu dictum
-                  varius duis at consectetur lorem. Velit sed ullamcorper morbi
-                  tincidunt. Lorem donec massa sapien faucibus et molestie ac.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent
+                  elementum facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus
+                  in hendrerit gravida rutrum quisque non tellus. Convallis convallis tellus id
+                  interdum velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
+                  adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies integer quis.
+                  Cursus euismod quis viverra nibh cras. Metus vulputate eu scelerisque felis
+                  imperdiet proin fermentum leo. Mauris commodo quis imperdiet massa tincidunt. Cras
+                  tincidunt lobortis feugiat vivamus at augue. At augue eget arcu dictum varius duis
+                  at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
+                  sapien faucibus et molestie ac.
                 </Typography>
                 <Typography paragraph>
-                  Consequat mauris nunc congue nisi vitae suscipit. Fringilla
-                  est ullamcorper eget nulla facilisi etiam dignissim diam.
-                  Pulvinar elementum integer enim neque volutpat ac tincidunt.
-                  Ornare suspendisse sed nisi lacus sed viverra tellus. Purus
-                  sit amet volutpat consequat mauris. Elementum eu facilisis sed
-                  odio morbi. Euismod lacinia at quis risus sed vulputate odio.
-                  Morbi tincidunt ornare massa eget egestas purus viverra
-                  accumsan in. In hendrerit gravida rutrum quisque non tellus
-                  orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-                  morbi tristique senectus et. Adipiscing elit duis tristique
-                  sollicitudin nibh sit. Ornare aenean euismod elementum nisi
-                  quis eleifend. Commodo viverra maecenas accumsan lacus vel
-                  facilisis. Nulla posuere sollicitudin aliquam ultrices
-                  sagittis orci a.
+                  Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget
+                  nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim neque
+                  volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus
+                  sit amet volutpat consequat mauris. Elementum eu facilisis sed odio morbi. Euismod
+                  lacinia at quis risus sed vulputate odio. Morbi tincidunt ornare massa eget
+                  egestas purus viverra accumsan in. In hendrerit gravida rutrum quisque non tellus
+                  orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant morbi tristique
+                  senectus et. Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean
+                  euismod elementum nisi quis eleifend. Commodo viverra maecenas accumsan lacus vel
+                  facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
                 </Typography>
               </Box>
             </Box>
@@ -617,9 +551,9 @@ export const ResizableDrawerLeft_ = story<FlexDrawerProps>(
 export const ResizableDrawerRight_ = story<FlexDrawerProps>(
   () => {
     return (
-      <Stack direction="column" width="100vw" height="100vh">
-        <Stack direction="row" height={1}>
-          <Box overflow="hidden" height="100%" sx={{ display: 'flex' }}>
+      <Stack direction='column' width='100vw' height='100vh'>
+        <Stack direction='row' height={1}>
+          <Box overflow='hidden' height='100%' sx={{ display: 'flex' }}>
             <CssBaseline />
             <GlobalStyles
               styles={{
@@ -629,42 +563,32 @@ export const ResizableDrawerRight_ = story<FlexDrawerProps>(
               }}
             />
 
-            <Box
-              component="main"
-              sx={{ flexGrow: 1, bgcolor: 'background.default' }}
-            >
+            <Box component='main' sx={{ flexGrow: 1, bgcolor: 'background.default' }}>
               <Box sx={{ p: 3, overflowY: 'auto' }}>
                 <Typography paragraph>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Rhoncus dolor purus non enim praesent elementum facilisis leo
-                  vel. Risus at ultrices mi tempus imperdiet. Semper risus in
-                  hendrerit gravida rutrum quisque non tellus. Convallis
-                  convallis tellus id interdum velit laoreet id donec ultrices.
-                  Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl
-                  suscipit adipiscing bibendum est ultricies integer quis.
-                  Cursus euismod quis viverra nibh cras. Metus vulputate eu
-                  scelerisque felis imperdiet proin fermentum leo. Mauris
-                  commodo quis imperdiet massa tincidunt. Cras tincidunt
-                  lobortis feugiat vivamus at augue. At augue eget arcu dictum
-                  varius duis at consectetur lorem. Velit sed ullamcorper morbi
-                  tincidunt. Lorem donec massa sapien faucibus et molestie ac.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent
+                  elementum facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus
+                  in hendrerit gravida rutrum quisque non tellus. Convallis convallis tellus id
+                  interdum velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
+                  adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies integer quis.
+                  Cursus euismod quis viverra nibh cras. Metus vulputate eu scelerisque felis
+                  imperdiet proin fermentum leo. Mauris commodo quis imperdiet massa tincidunt. Cras
+                  tincidunt lobortis feugiat vivamus at augue. At augue eget arcu dictum varius duis
+                  at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
+                  sapien faucibus et molestie ac.
                 </Typography>
                 <Typography paragraph>
-                  Consequat mauris nunc congue nisi vitae suscipit. Fringilla
-                  est ullamcorper eget nulla facilisi etiam dignissim diam.
-                  Pulvinar elementum integer enim neque volutpat ac tincidunt.
-                  Ornare suspendisse sed nisi lacus sed viverra tellus. Purus
-                  sit amet volutpat consequat mauris. Elementum eu facilisis sed
-                  odio morbi. Euismod lacinia at quis risus sed vulputate odio.
-                  Morbi tincidunt ornare massa eget egestas purus viverra
-                  accumsan in. In hendrerit gravida rutrum quisque non tellus
-                  orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-                  morbi tristique senectus et. Adipiscing elit duis tristique
-                  sollicitudin nibh sit. Ornare aenean euismod elementum nisi
-                  quis eleifend. Commodo viverra maecenas accumsan lacus vel
-                  facilisis. Nulla posuere sollicitudin aliquam ultrices
-                  sagittis orci a.
+                  Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget
+                  nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim neque
+                  volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus
+                  sit amet volutpat consequat mauris. Elementum eu facilisis sed odio morbi. Euismod
+                  lacinia at quis risus sed vulputate odio. Morbi tincidunt ornare massa eget
+                  egestas purus viverra accumsan in. In hendrerit gravida rutrum quisque non tellus
+                  orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant morbi tristique
+                  senectus et. Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean
+                  euismod elementum nisi quis eleifend. Commodo viverra maecenas accumsan lacus vel
+                  facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
                 </Typography>
               </Box>
             </Box>
@@ -672,9 +596,9 @@ export const ResizableDrawerRight_ = story<FlexDrawerProps>(
 
           <FlexDrawer
             resizable
-            variant="persistent"
+            variant='persistent'
             open={true}
-            anchor="right"
+            anchor='right'
             slotProps={{
               paper: {
                 elevation: 16,
@@ -684,36 +608,30 @@ export const ResizableDrawerRight_ = story<FlexDrawerProps>(
             <Toolbar />
             <Divider />
             <List>
-              {['Inbox', 'Starred', 'Send email', 'Drafts'].map(
-                (text, index) => (
-                  <ListItem key={text} disablePadding>
-                    <ListItemButton sx={{ width: '100%' }}>
-                      <ListItemIcon>
-                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                      </ListItemIcon>
-                      <ListItemText
-                        primary={text}
-                        sx={{
-                          '& > span': {
-                            whiteSpace: 'nowrap',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                          },
-                        }}
-                      />
-                    </ListItemButton>
-                  </ListItem>
-                ),
-              )}
+              {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                <ListItem key={text} disablePadding>
+                  <ListItemButton sx={{ width: '100%' }}>
+                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                    <ListItemText
+                      primary={text}
+                      sx={{
+                        '& > span': {
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                        },
+                      }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              ))}
             </List>
             <Divider />
             <List>
               {['All mail', 'Trash', 'Spam'].map((text, index) => (
                 <ListItem key={text} disablePadding>
                   <ListItemButton sx={{ width: '100%' }}>
-                    <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
+                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                     <ListItemText
                       primary={text}
                       sx={{
@@ -730,17 +648,8 @@ export const ResizableDrawerRight_ = story<FlexDrawerProps>(
             </List>
           </FlexDrawer>
 
-          <Stack
-            minWidth={64}
-            flexGrow={1}
-            alignItems="center"
-            bgcolor="common.black"
-            py={4}
-          >
-            <Home
-              fontSize="large"
-              sx={theme => ({ fill: theme.palette.common.white })}
-            />
+          <Stack minWidth={64} flexGrow={1} alignItems='center' bgcolor='common.black' py={4}>
+            <Home fontSize='large' sx={(theme) => ({ fill: theme.palette.common.white })} />
           </Stack>
         </Stack>
       </Stack>
@@ -757,16 +666,16 @@ export const ResizableDrawerTop_ = story<FlexDrawerProps>(
   () => {
     return (
       <Box sx={{ height: '100vh', overflow: 'hidden' }}>
-        <AppBar position="static">
+        <AppBar position='static'>
           <Toolbar>
-            <Typography variant="h6">Resizable Drawer Example</Typography>
+            <Typography variant='h6'>Resizable Drawer Example</Typography>
           </Toolbar>
         </AppBar>
         <FlexDrawer
           resizable
-          variant="persistent"
+          variant='persistent'
           open={true}
-          anchor="top"
+          anchor='top'
           slotProps={{
             paper: {
               elevation: 16,
@@ -774,41 +683,33 @@ export const ResizableDrawerTop_ = story<FlexDrawerProps>(
           }}
         >
           <Box p={3}>
-            <Typography variant="h6">Drawer Content</Typography>
-            <Typography>
-              This is some random content inside the drawer.
-            </Typography>
+            <Typography variant='h6'>Drawer Content</Typography>
+            <Typography>This is some random content inside the drawer.</Typography>
           </Box>
         </FlexDrawer>
         <Box sx={{ p: 3, overflowY: 'auto' }}>
           <Typography paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-            dolor purus non enim praesent elementum facilisis leo vel. Risus at
-            ultrices mi tempus imperdiet. Semper risus in hendrerit gravida
-            rutrum quisque non tellus. Convallis convallis tellus id interdum
-            velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean
-            sed adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-            integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-            eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-            quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-            vivamus at augue. At augue eget arcu dictum varius duis at
-            consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-            donec massa sapien faucibus et molestie ac.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent
+            elementum facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in
+            hendrerit gravida rutrum quisque non tellus. Convallis convallis tellus id interdum
+            velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing.
+            Amet nisl suscipit adipiscing bibendum est ultricies integer quis. Cursus euismod quis
+            viverra nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum leo.
+            Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus
+            at augue. At augue eget arcu dictum varius duis at consectetur lorem. Velit sed
+            ullamcorper morbi tincidunt. Lorem donec massa sapien faucibus et molestie ac.
           </Typography>
           <Typography paragraph>
-            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-            ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-            elementum integer enim neque volutpat ac tincidunt. Ornare
-            suspendisse sed nisi lacus sed viverra tellus. Purus sit amet
-            volutpat consequat mauris. Elementum eu facilisis sed odio morbi.
-            Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt
-            ornare massa eget egestas purus viverra accumsan in. In hendrerit
-            gravida rutrum quisque non tellus orci ac. Pellentesque nec nam
-            aliquam sem et tortor. Habitant morbi tristique senectus et.
-            Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean
-            euismod elementum nisi quis eleifend. Commodo viverra maecenas
-            accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
+            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
+            facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
+            tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
+            consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus
+            sed vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in.
+            In hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
+            et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique
+            sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo
+            viverra maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
             ultrices sagittis orci a.
           </Typography>
         </Box>
@@ -833,48 +734,42 @@ export const ResizableDrawerBottom_ = story<FlexDrawerProps>(
           overflow: 'hidden',
         }}
       >
-        <AppBar position="static">
+        <AppBar position='static'>
           <Toolbar>
-            <Typography variant="h6">Resizable Drawer Example</Typography>
+            <Typography variant='h6'>Resizable Drawer Example</Typography>
           </Toolbar>
         </AppBar>
         <Box sx={{ p: 3, flexGrow: 1, overflowY: 'auto' }}>
           <Typography paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-            dolor purus non enim praesent elementum facilisis leo vel. Risus at
-            ultrices mi tempus imperdiet. Semper risus in hendrerit gravida
-            rutrum quisque non tellus. Convallis convallis tellus id interdum
-            velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean
-            sed adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-            integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-            eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-            quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-            vivamus at augue. At augue eget arcu dictum varius duis at
-            consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-            donec massa sapien faucibus et molestie ac.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent
+            elementum facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in
+            hendrerit gravida rutrum quisque non tellus. Convallis convallis tellus id interdum
+            velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing.
+            Amet nisl suscipit adipiscing bibendum est ultricies integer quis. Cursus euismod quis
+            viverra nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum leo.
+            Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus
+            at augue. At augue eget arcu dictum varius duis at consectetur lorem. Velit sed
+            ullamcorper morbi tincidunt. Lorem donec massa sapien faucibus et molestie ac.
           </Typography>
           <Typography paragraph>
-            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-            ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-            elementum integer enim neque volutpat ac tincidunt. Ornare
-            suspendisse sed nisi lacus sed viverra tellus. Purus sit amet
-            volutpat consequat mauris. Elementum eu facilisis sed odio morbi.
-            Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt
-            ornare massa eget egestas purus viverra accumsan in. In hendrerit
-            gravida rutrum quisque non tellus orci ac. Pellentesque nec nam
-            aliquam sem et tortor. Habitant morbi tristique senectus et.
-            Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean
-            euismod elementum nisi quis eleifend. Commodo viverra maecenas
-            accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
+            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
+            facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
+            tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
+            consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus
+            sed vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in.
+            In hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
+            et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique
+            sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo
+            viverra maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam
             ultrices sagittis orci a.
           </Typography>
         </Box>
         <FlexDrawer
           resizable
-          variant="persistent"
+          variant='persistent'
           open={true}
-          anchor="bottom"
+          anchor='bottom'
           slotProps={{
             paper: {
               elevation: 16,
@@ -882,16 +777,14 @@ export const ResizableDrawerBottom_ = story<FlexDrawerProps>(
           }}
         >
           <Box p={3}>
-            <Typography variant="h6">Drawer Content</Typography>
-            <Typography>
-              This is some random content inside the drawer.
-            </Typography>
+            <Typography variant='h6'>Drawer Content</Typography>
+            <Typography>This is some random content inside the drawer.</Typography>
           </Box>
         </FlexDrawer>
         <Box
           sx={{
             p: 3,
-            bgcolor: theme => theme.palette.background.paper,
+            bgcolor: (theme) => theme.palette.background.paper,
             boxShadow: 1,
             display: 'flex',
             justifyContent: 'center',
@@ -946,7 +839,7 @@ interface MiniVariantAppBarProps extends AppBarProps {
 }
 
 const MiniVariantAppBar = styled(AppBar, {
-  shouldForwardProp: prop => prop !== 'open',
+  shouldForwardProp: (prop) => prop !== 'open',
 })<MiniVariantAppBarProps>(({ theme, open = false }) => ({
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(['width', 'margin'], {
@@ -964,7 +857,7 @@ const MiniVariantAppBar = styled(AppBar, {
 }))
 
 const MiniVariantDrawer = styled(Drawer, {
-  shouldForwardProp: prop => prop !== 'open',
+  shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open = false }) => ({
   width: miniVariantDrawerWidth,
   flexShrink: 0,
@@ -1000,93 +893,75 @@ export const MiniDrawer = story<DrawerProps>(() => {
   return (
     <Box sx={{ display: 'flex', position: 'relative' }}>
       <CssBaseline />
-      <MiniVariantAppBar position="fixed" open={open}>
+      <MiniVariantAppBar position='fixed' open={open}>
         <Toolbar>
           <IconButton
-            color="inherit"
-            aria-label="open drawer"
+            color='inherit'
+            aria-label='open drawer'
             onClick={handleDrawerOpen}
-            edge="start"
+            edge='start'
             sx={{
               marginRight: '36px',
               ...(open && { display: 'none' }),
             }}
-            size="large"
+            size='large'
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h3" noWrap component="div">
+          <Typography variant='h3' noWrap component='div'>
             Mini variant drawer
           </Typography>
         </Toolbar>
       </MiniVariantAppBar>
-      <MiniVariantDrawer variant="permanent" open={open}>
+      <MiniVariantDrawer variant='permanent' open={open}>
         <DrawerHeader>
-          <IconButton
-            onClick={handleDrawerClose}
-            size="large"
-            aria-label="open"
-          >
-            {theme.direction === 'rtl' ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
+          <IconButton onClick={handleDrawerClose} size='large' aria-label='open'>
+            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List component="nav" aria-label="section 1">
+        <List component='nav' aria-label='section 1'>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItemButton key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
           ))}
         </List>
         <Divider />
-        <List component="nav" aria-label="section 2">
+        <List component='nav' aria-label='section 2'>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItemButton key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
           ))}
         </List>
       </MiniVariantDrawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component='main' sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
+          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
+          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
+          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
+          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
+          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
+          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
+          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
+          donec massa sapien faucibus et molestie ac.
         </Typography>
         <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-          ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-          elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse
-          sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat
-          mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-          risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas
-          purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-          tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-          morbi tristique senectus et. Adipiscing elit duis tristique
-          sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
+          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
+          facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
+          tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
+          consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
+          vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
+          hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
+          tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
+          nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
+          accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
       </Box>
     </Box>
@@ -1098,22 +973,13 @@ export const FlexDrawerLeft: StoryObj<typeof FlexDrawer> = {
     const [open, setOpen] = React.useState(false)
 
     return (
-      <Stack direction="column" width="100vw" height="100vh">
-        <Stack direction="row" height={1}>
-          <Stack
-            minWidth={64}
-            flexGrow={1}
-            alignItems="center"
-            bgcolor="common.black"
-            py={4}
-          >
-            <Home
-              fontSize="large"
-              sx={theme => ({ fill: theme.palette.common.white })}
-            />
+      <Stack direction='column' width='100vw' height='100vh'>
+        <Stack direction='row' height={1}>
+          <Stack minWidth={64} flexGrow={1} alignItems='center' bgcolor='common.black' py={4}>
+            <Home fontSize='large' sx={(theme) => ({ fill: theme.palette.common.white })} />
           </Stack>
 
-          <Box overflow="hidden" height="100%" sx={{ display: 'flex' }}>
+          <Box overflow='hidden' height='100%' sx={{ display: 'flex' }}>
             <CssBaseline />
             <GlobalStyles
               styles={{
@@ -1123,7 +989,7 @@ export const FlexDrawerLeft: StoryObj<typeof FlexDrawer> = {
               }}
             />
             <FlexDrawer
-              variant="persistent"
+              variant='persistent'
               onClose={() => setOpen(false)}
               open={open}
               slotProps={{
@@ -1135,36 +1001,30 @@ export const FlexDrawerLeft: StoryObj<typeof FlexDrawer> = {
               <Toolbar />
               <Divider />
               <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map(
-                  (text, index) => (
-                    <ListItem key={text} disablePadding>
-                      <ListItemButton sx={{ width: '100%' }}>
-                        <ListItemIcon>
-                          {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText
-                          primary={text}
-                          sx={{
-                            '& > span': {
-                              whiteSpace: 'nowrap',
-                              overflow: 'hidden',
-                              textOverflow: 'ellipsis',
-                            },
-                          }}
-                        />
-                      </ListItemButton>
-                    </ListItem>
-                  ),
-                )}
+                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                  <ListItem key={text} disablePadding>
+                    <ListItemButton sx={{ width: '100%' }}>
+                      <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                      <ListItemText
+                        primary={text}
+                        sx={{
+                          '& > span': {
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                          },
+                        }}
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                ))}
               </List>
               <Divider />
               <List>
                 {['All mail', 'Trash', 'Spam'].map((text, index) => (
                   <ListItem key={text} disablePadding>
                     <ListItemButton sx={{ width: '100%' }}>
-                      <ListItemIcon>
-                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                      </ListItemIcon>
+                      <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                       <ListItemText
                         primary={text}
                         sx={{
@@ -1181,43 +1041,33 @@ export const FlexDrawerLeft: StoryObj<typeof FlexDrawer> = {
               </List>
             </FlexDrawer>
 
-            <Box
-              component="main"
-              sx={{ flexGrow: 1, bgcolor: 'background.default' }}
-            >
+            <Box component='main' sx={{ flexGrow: 1, bgcolor: 'background.default' }}>
               <Box sx={{ p: 3, overflowY: 'auto' }}>
                 <Button onClick={() => setOpen(!open)}>Open</Button>
                 <Typography paragraph>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Rhoncus dolor purus non enim praesent elementum facilisis leo
-                  vel. Risus at ultrices mi tempus imperdiet. Semper risus in
-                  hendrerit gravida rutrum quisque non tellus. Convallis
-                  convallis tellus id interdum velit laoreet id donec ultrices.
-                  Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl
-                  suscipit adipiscing bibendum est ultricies integer quis.
-                  Cursus euismod quis viverra nibh cras. Metus vulputate eu
-                  scelerisque felis imperdiet proin fermentum leo. Mauris
-                  commodo quis imperdiet massa tincidunt. Cras tincidunt
-                  lobortis feugiat vivamus at augue. At augue eget arcu dictum
-                  varius duis at consectetur lorem. Velit sed ullamcorper morbi
-                  tincidunt. Lorem donec massa sapien faucibus et molestie ac.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent
+                  elementum facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus
+                  in hendrerit gravida rutrum quisque non tellus. Convallis convallis tellus id
+                  interdum velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
+                  adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies integer quis.
+                  Cursus euismod quis viverra nibh cras. Metus vulputate eu scelerisque felis
+                  imperdiet proin fermentum leo. Mauris commodo quis imperdiet massa tincidunt. Cras
+                  tincidunt lobortis feugiat vivamus at augue. At augue eget arcu dictum varius duis
+                  at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
+                  sapien faucibus et molestie ac.
                 </Typography>
                 <Typography paragraph>
-                  Consequat mauris nunc congue nisi vitae suscipit. Fringilla
-                  est ullamcorper eget nulla facilisi etiam dignissim diam.
-                  Pulvinar elementum integer enim neque volutpat ac tincidunt.
-                  Ornare suspendisse sed nisi lacus sed viverra tellus. Purus
-                  sit amet volutpat consequat mauris. Elementum eu facilisis sed
-                  odio morbi. Euismod lacinia at quis risus sed vulputate odio.
-                  Morbi tincidunt ornare massa eget egestas purus viverra
-                  accumsan in. In hendrerit gravida rutrum quisque non tellus
-                  orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-                  morbi tristique senectus et. Adipiscing elit duis tristique
-                  sollicitudin nibh sit. Ornare aenean euismod elementum nisi
-                  quis eleifend. Commodo viverra maecenas accumsan lacus vel
-                  facilisis. Nulla posuere sollicitudin aliquam ultrices
-                  sagittis orci a.
+                  Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget
+                  nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim neque
+                  volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus
+                  sit amet volutpat consequat mauris. Elementum eu facilisis sed odio morbi. Euismod
+                  lacinia at quis risus sed vulputate odio. Morbi tincidunt ornare massa eget
+                  egestas purus viverra accumsan in. In hendrerit gravida rutrum quisque non tellus
+                  orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant morbi tristique
+                  senectus et. Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean
+                  euismod elementum nisi quis eleifend. Commodo viverra maecenas accumsan lacus vel
+                  facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
                 </Typography>
               </Box>
             </Box>

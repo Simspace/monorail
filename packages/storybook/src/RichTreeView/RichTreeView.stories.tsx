@@ -41,17 +41,13 @@ const MUI_X_PRODUCTS: Array<MuiXProduct> = [
   {
     internalId: 'tree-view',
     label: 'Tree View',
-    children: [
-      { internalId: 'tree-view-community', label: '@mui/x-tree-view' },
-    ],
+    children: [{ internalId: 'tree-view-community', label: '@mui/x-tree-view' }],
   },
 ]
 
 const getItemId = (item: MuiXProduct) => item.internalId
 
-const Template: StoryFn<
-  Partial<RichTreeViewProps<MuiXProduct, true>>
-> = args => (
+const Template: StoryFn<Partial<RichTreeViewProps<MuiXProduct, true>>> = (args) => (
   <Box sx={{ minHeight: 352, minWidth: 250 }}>
     <RichTreeView {...args} items={MUI_X_PRODUCTS} getItemId={getItemId} />
   </Box>

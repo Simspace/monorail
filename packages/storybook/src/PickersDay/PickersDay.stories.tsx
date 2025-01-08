@@ -20,7 +20,7 @@ type CustomPickerDayProps = PickersDayProps<Date> & {
 }
 
 const CustomPickersDay = styled(PickersDay, {
-  shouldForwardProp: prop =>
+  shouldForwardProp: (prop) =>
     prop !== 'dayIsBetween' && prop !== 'isFirstDay' && prop !== 'isLastDay',
 })<CustomPickerDayProps>(({ theme, dayIsBetween, isFirstDay, isLastDay }) => ({
   ...(dayIsBetween && {
@@ -42,10 +42,8 @@ const CustomPickersDay = styled(PickersDay, {
 })) as React.ComponentType<CustomPickerDayProps>
 
 const Template = story<PickersDayProps<Date>>(
-  args => {
-    const [value, setValue] = React.useState<Date | null>(
-      new Date('2021-01-01T12:34:00.000Z'),
-    )
+  (args) => {
+    const [value, setValue] = React.useState<Date | null>(new Date('2021-01-01T12:34:00.000Z'))
 
     const renderWeekPickerDay = (props: PickersDayProps<Date>) => {
       if (!value) {
@@ -73,9 +71,9 @@ const Template = story<PickersDayProps<Date>>(
 
     return (
       <StaticDatePicker
-        displayStaticWrapperAs="desktop"
+        displayStaticWrapperAs='desktop'
         value={value}
-        onChange={newValue => {
+        onChange={(newValue) => {
           setValue(newValue)
         }}
         slots={{

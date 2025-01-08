@@ -5,13 +5,7 @@ import SelectAllOutlined from '@mui/icons-material/SelectAllOutlined'
 import { capitalize } from '@mui/material'
 
 import type { ButtonProps } from '@monorail/components'
-import {
-  Box,
-  Button,
-  LoadingButton,
-  Stack,
-  Typography,
-} from '@monorail/components'
+import { Box, Button, LoadingButton, Stack, Typography } from '@monorail/components'
 import { useTheme } from '@monorail/utils'
 
 import { isMeteorTheme } from '../helpers/helpers.js'
@@ -19,14 +13,7 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Inputs/Button', component: Button }
 
-const colors = [
-  'primary',
-  'secondary',
-  'success',
-  'error',
-  'warning',
-  'info',
-] as const
+const colors = ['primary', 'secondary', 'success', 'error', 'warning', 'info'] as const
 const variants = ['contained', 'outlined', 'text'] as const
 const sizes = ['small', 'medium', 'large'] as const
 
@@ -50,7 +37,7 @@ const argTypes = {
   },
 }
 
-const Template = story<ButtonProps>(args => <Button {...args} />, {
+const Template = story<ButtonProps>((args) => <Button {...args} />, {
   args: { children: 'It Worked!' },
   argTypes,
   muiName: 'MuiButton',
@@ -62,24 +49,24 @@ export const Default = story(Template, {
 
 const MeteorVariantsAndColors = () => (
   <Stack gap={2}>
-    <Typography variant="h1">Contained</Typography>
-    <Stack direction="row" gap={2}>
-      <Button variant="contained" color="primary">
+    <Typography variant='h1'>Contained</Typography>
+    <Stack direction='row' gap={2}>
+      <Button variant='contained' color='primary'>
         Primary
       </Button>
     </Stack>
-    <Typography variant="h1">Outlined</Typography>
-    <Stack direction="row" gap={2}>
-      <Button variant="outlined" color="secondary">
+    <Typography variant='h1'>Outlined</Typography>
+    <Stack direction='row' gap={2}>
+      <Button variant='outlined' color='secondary'>
         Secondary
       </Button>
-      <Button variant="outlined" color="error">
+      <Button variant='outlined' color='error'>
         Error
       </Button>
     </Stack>
-    <Typography variant="h1">Text</Typography>
-    <Stack direction="row" gap={2}>
-      <Button variant="text" color="secondary">
+    <Typography variant='h1'>Text</Typography>
+    <Stack direction='row' gap={2}>
+      <Button variant='text' color='secondary'>
         Secondary
       </Button>
     </Stack>
@@ -90,7 +77,7 @@ const MeteorVariantsAndColors = () => (
  * Use `variant` to set the display style and `color` to set the coloring
  */
 export const VariantsAndColors = story<ButtonProps>(
-  args => {
+  (args) => {
     const theme = useTheme()
 
     if (isMeteorTheme(theme.name)) {
@@ -99,11 +86,11 @@ export const VariantsAndColors = story<ButtonProps>(
 
     return (
       <>
-        {variants.map(variant => (
+        {variants.map((variant) => (
           <Box mb={10} key={variant}>
-            <Typography variant="h1">{capitalize(variant)}</Typography>
-            <Stack direction="row" spacing={2} my={2}>
-              {colors.map(color => (
+            <Typography variant='h1'>{capitalize(variant)}</Typography>
+            <Stack direction='row' spacing={2} my={2}>
+              {colors.map((color) => (
                 <Button
                   key={`${variant}-${color}`}
                   variant={variant}
@@ -115,17 +102,16 @@ export const VariantsAndColors = story<ButtonProps>(
                 </Button>
               ))}
             </Stack>
-            <Typography variant="subtitle1" mt={4} mb={2}>
+            <Typography variant='subtitle1' mt={4} mb={2}>
               Inverted
             </Typography>
             <Typography>
-              Used when placing buttons on top of colored containers to create
-              contrast. Inverted text and inverted outlined Buttons inherit the
-              text color of the containing element. See the Alert/Actions story
-              for examples.
+              Used when placing buttons on top of colored containers to create contrast. Inverted
+              text and inverted outlined Buttons inherit the text color of the containing element.
+              See the Alert/Actions story for examples.
             </Typography>
             <Stack
-              direction="row"
+              direction='row'
               spacing={2}
               my={2}
               sx={{
@@ -133,11 +119,11 @@ export const VariantsAndColors = story<ButtonProps>(
                 bgcolor: 'default.light',
               }}
             >
-              {colors.map(color => (
+              {colors.map((color) => (
                 <Button
                   variant={variant}
                   color={color}
-                  size="medium"
+                  size='medium'
                   key={`${variant}-${color}-inverted`}
                   inverted
                 >
@@ -180,15 +166,15 @@ export const VariantsAndColors = story<ButtonProps>(
  * For larger or smaller buttons, use the `size` prop.
  */
 export const Sizes = story<ButtonProps>(
-  args => (
-    <Stack direction="row" spacing={2} alignItems="center">
-      <Button variant="contained" size="small" color={args.color}>
+  (args) => (
+    <Stack direction='row' spacing={2} alignItems='center'>
+      <Button variant='contained' size='small' color={args.color}>
         Small
       </Button>
-      <Button variant="contained" size="medium" color={args.color}>
+      <Button variant='contained' size='medium' color={args.color}>
         Medium
       </Button>
-      <Button variant="contained" size="large" color={args.color}>
+      <Button variant='contained' size='large' color={args.color}>
         Large
       </Button>
     </Stack>
@@ -210,68 +196,45 @@ export const Sizes = story<ButtonProps>(
 
 const MeteorButtonsWithIconsAndLabel = () => (
   <Stack>
-    <Typography variant="h1">Contained</Typography>
+    <Typography variant='h1'>Contained</Typography>
     <Stack gap={4} margin={2}>
-      {sizes.map(size => (
-        <Stack direction="row" spacing={2} key={size}>
-          <Button
-            variant="contained"
-            size={size}
-            startIcon={<SelectAllOutlined />}
-          >
+      {sizes.map((size) => (
+        <Stack direction='row' spacing={2} key={size}>
+          <Button variant='contained' size={size} startIcon={<SelectAllOutlined />}>
             {size}
           </Button>
-          <Button
-            variant="contained"
-            size={size}
-            endIcon={<SelectAllOutlined />}
-          >
+          <Button variant='contained' size={size} endIcon={<SelectAllOutlined />}>
             {size}
           </Button>
         </Stack>
       ))}
     </Stack>
-    <Typography variant="h1">Outlined</Typography>
+    <Typography variant='h1'>Outlined</Typography>
     <Stack gap={4} margin={2}>
-      {sizes.map(size => (
-        <Stack direction="row" spacing={2} key={size}>
+      {sizes.map((size) => (
+        <Stack direction='row' spacing={2} key={size}>
           <Button
-            variant="outlined"
-            color="secondary"
+            variant='outlined'
+            color='secondary'
             size={size}
             startIcon={<SelectAllOutlined />}
           >
             {size}
           </Button>
-          <Button
-            variant="outlined"
-            color="secondary"
-            size={size}
-            endIcon={<SelectAllOutlined />}
-          >
+          <Button variant='outlined' color='secondary' size={size} endIcon={<SelectAllOutlined />}>
             {size}
           </Button>
         </Stack>
       ))}
     </Stack>
-    <Typography variant="h1">Text</Typography>
+    <Typography variant='h1'>Text</Typography>
     <Stack gap={4} margin={2}>
-      {sizes.map(size => (
-        <Stack direction="row" spacing={2} key={size}>
-          <Button
-            variant="text"
-            color="secondary"
-            size={size}
-            startIcon={<SelectAllOutlined />}
-          >
+      {sizes.map((size) => (
+        <Stack direction='row' spacing={2} key={size}>
+          <Button variant='text' color='secondary' size={size} startIcon={<SelectAllOutlined />}>
             {size}
           </Button>
-          <Button
-            variant="text"
-            color="secondary"
-            size={size}
-            endIcon={<SelectAllOutlined />}
-          >
+          <Button variant='text' color='secondary' size={size} endIcon={<SelectAllOutlined />}>
             {size}
           </Button>
         </Stack>
@@ -283,7 +246,7 @@ const MeteorButtonsWithIconsAndLabel = () => (
 /**
  * Sometimes you might want to have icons for certain buttons to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
  */
-export const ButtonsWithIconsAndLabel = story<ButtonProps>(args => {
+export const ButtonsWithIconsAndLabel = story<ButtonProps>((args) => {
   const theme = useTheme()
 
   if (isMeteorTheme(theme.name)) {
@@ -292,26 +255,16 @@ export const ButtonsWithIconsAndLabel = story<ButtonProps>(args => {
 
   return (
     <React.Fragment>
-      {variants.map(variant => (
+      {variants.map((variant) => (
         <Box mb={10} key={variant}>
-          <Typography variant="h1">{capitalize(variant)}</Typography>
-          <Stack direction="column" spacing={4} margin={2}>
-            {sizes.map(size => (
-              <Stack direction="row" spacing={2} key={size}>
-                <Button
-                  variant={variant}
-                  size={size}
-                  startIcon={<SelectAllOutlined />}
-                  {...args}
-                >
+          <Typography variant='h1'>{capitalize(variant)}</Typography>
+          <Stack direction='column' spacing={4} margin={2}>
+            {sizes.map((size) => (
+              <Stack direction='row' spacing={2} key={size}>
+                <Button variant={variant} size={size} startIcon={<SelectAllOutlined />} {...args}>
                   {size}
                 </Button>
-                <Button
-                  variant={variant}
-                  size={size}
-                  endIcon={<SelectAllOutlined />}
-                  {...args}
-                >
+                <Button variant={variant} size={size} endIcon={<SelectAllOutlined />} {...args}>
                   {size}
                 </Button>
               </Stack>
@@ -327,25 +280,20 @@ export const ButtonsWithIconsAndLabel = story<ButtonProps>(args => {
  * The loading buttons can show loading state and disable interactions.
  */
 export const LoadingButtons = story<ButtonProps>(() => (
-  <Stack direction="row" spacing={2}>
-    <LoadingButton variant="contained" loading>
+  <Stack direction='row' spacing={2}>
+    <LoadingButton variant='contained' loading>
       Submit
     </LoadingButton>
     <LoadingButton loading>Submit</LoadingButton>
-    <LoadingButton
-      loading
-      loadingIndicator="Loading..."
-      variant="outlined"
-      color="success"
-    >
+    <LoadingButton loading loadingIndicator='Loading...' variant='outlined' color='success'>
       Fetch data
     </LoadingButton>
     <LoadingButton
       loading
-      loadingPosition="start"
+      loadingPosition='start'
       startIcon={<SaveIcon />}
-      variant="text"
-      color="error"
+      variant='text'
+      color='error'
     >
       Save
     </LoadingButton>

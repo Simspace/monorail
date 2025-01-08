@@ -53,13 +53,7 @@ export const Default = story(Template, {
   args: { activeStep: 0 },
 })
 
-const steps = [
-  'Plan Details',
-  'Prerequisites',
-  'Content Modules',
-  'Assessments',
-  'Event Options',
-]
+const steps = ['Plan Details', 'Prerequisites', 'Content Modules', 'Assessments', 'Event Options']
 
 const steps3 = [
   {
@@ -70,8 +64,7 @@ const steps3 = [
   },
   {
     label: 'Create an ad group',
-    description:
-      'An ad group contains one or more ads which target a shared set of keywords.',
+    description: 'An ad group contains one or more ads which target a shared set of keywords.',
   },
   {
     label: 'Create an ad',
@@ -90,11 +83,11 @@ function HorizontalLinearStepperBase() {
   const isStepIncomplete = (step: number) => activeStep < step
 
   const handleNext = () => {
-    setActiveStep(prevActiveStep => prevActiveStep + 1)
+    setActiveStep((prevActiveStep) => prevActiveStep + 1)
   }
 
   const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1)
+    setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
 
   const handleReset = () => {
@@ -124,9 +117,7 @@ function HorizontalLinearStepperBase() {
       </Stepper>
       {activeStep === steps.length ? (
         <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
-          </Typography>
+          <Typography sx={{ mt: 2, mb: 1 }}>All steps completed - you&apos;re finished</Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button onClick={handleReset}>Reset</Button>
           </Box>
@@ -135,12 +126,7 @@ function HorizontalLinearStepperBase() {
         <React.Fragment>
           <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Button
-              variant="text"
-              disabled={activeStep === 0}
-              onClick={handleBack}
-              sx={{ mr: 2 }}
-            >
+            <Button variant='text' disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 2 }}>
               Back
             </Button>
             <Button onClick={handleNext}>
@@ -200,7 +186,7 @@ export const HorizontalNonLinearStepper = story(function () {
   }
 
   const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1)
+    setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
 
   const handleStep = (step: number) => () => {
@@ -224,7 +210,7 @@ export const HorizontalNonLinearStepper = story(function () {
       <Stepper nonLinear activeStep={activeStep}>
         {steps.map((label, index) => (
           <Step key={label} completed={completed[index]}>
-            <StepButton color="inherit" onClick={handleStep(index)}>
+            <StepButton color='inherit' onClick={handleStep(index)}>
               {label}
             </StepButton>
           </Step>
@@ -246,7 +232,7 @@ export const HorizontalNonLinearStepper = story(function () {
             <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
               <Button
-                variant="text"
+                variant='text'
                 disabled={activeStep === 0}
                 onClick={handleBack}
                 sx={{ mr: 2 }}
@@ -259,17 +245,12 @@ export const HorizontalNonLinearStepper = story(function () {
               <Box sx={{ flex: '1 1 auto' }} />
               {activeStep !== steps.length &&
                 (completed[activeStep] ? (
-                  <Typography
-                    variant="caption"
-                    sx={{ display: 'inline-block' }}
-                  >
+                  <Typography variant='caption' sx={{ display: 'inline-block' }}>
                     Step {activeStep + 1} already completed
                   </Typography>
                 ) : (
                   <Button onClick={handleComplete}>
-                    {completedSteps() === totalSteps() - 1
-                      ? 'Finish'
-                      : 'Complete Step'}
+                    {completedSteps() === totalSteps() - 1 ? 'Finish' : 'Complete Step'}
                   </Button>
                 ))}
             </Box>
@@ -289,10 +270,10 @@ export const HorizontalLabelPositionBelowStepper = story(
       <Box sx={{ width: '100%' }}>
         <Stepper activeStep={1} alternativeLabel>
           <Step>
-            <StepLabel optional="Optional">Step title</StepLabel>
+            <StepLabel optional='Optional'>Step title</StepLabel>
           </Step>
           <Step>
-            <StepLabel optional="Optional">Step title</StepLabel>
+            <StepLabel optional='Optional'>Step title</StepLabel>
           </Step>
           <Step>
             <StepLabel>Step title</StepLabel>
@@ -355,8 +336,7 @@ const QontoConnector = styled(StepConnector)(({ theme }) => ({
     },
   },
   [`& .${stepConnectorClasses.line}`]: {
-    borderColor:
-      theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
+    borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
     borderTopWidth: 3,
     borderRadius: 1,
   },
@@ -364,28 +344,26 @@ const QontoConnector = styled(StepConnector)(({ theme }) => ({
 
 const QontoStepIconRoot = styled('div', {
   shouldForwardProp: excludeProps('styleProps'),
-})<{ styleProps: { active?: boolean } }>(
-  ({ theme, styleProps: { active = false } }) => ({
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#eaeaf0',
-    display: 'flex',
-    height: 22,
-    alignItems: 'center',
-    ...(active && {
-      color: '#784af4',
-    }),
-    '& .QontoStepIcon-completedIcon': {
-      color: '#784af4',
-      zIndex: 1,
-      fontSize: 18,
-    },
-    '& .QontoStepIcon-circle': {
-      width: 8,
-      height: 8,
-      borderRadius: '50%',
-      backgroundColor: 'currentColor',
-    },
+})<{ styleProps: { active?: boolean } }>(({ theme, styleProps: { active = false } }) => ({
+  color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#eaeaf0',
+  display: 'flex',
+  height: 22,
+  alignItems: 'center',
+  ...(active && {
+    color: '#784af4',
   }),
-)
+  '& .QontoStepIcon-completedIcon': {
+    color: '#784af4',
+    zIndex: 1,
+    fontSize: 18,
+  },
+  '& .QontoStepIcon-circle': {
+    width: 8,
+    height: 8,
+    borderRadius: '50%',
+    backgroundColor: 'currentColor',
+  },
+}))
 
 function QontoStepIcon(props: StepIconProps) {
   const { active, completed = false, className } = props
@@ -393,9 +371,9 @@ function QontoStepIcon(props: StepIconProps) {
   return (
     <QontoStepIconRoot styleProps={{ active }} className={className}>
       {completed ? (
-        <Check className="QontoStepIcon-completedIcon" />
+        <Check className='QontoStepIcon-completedIcon' />
       ) : (
-        <div className="QontoStepIcon-circle" />
+        <div className='QontoStepIcon-circle' />
       )}
     </QontoStepIconRoot>
   )
@@ -420,8 +398,7 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   [`& .${stepConnectorClasses.line}`]: {
     height: 3,
     border: 0,
-    backgroundColor:
-      theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
+    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
     borderRadius: 1,
   },
 }))
@@ -431,8 +408,7 @@ const ColorlibStepIconRoot = styled('div', {
 })<{
   styleProps: { completed?: boolean; active?: boolean }
 }>(({ theme, styleProps: { completed = false, active = false } }) => ({
-  backgroundColor:
-    theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#ccc',
+  backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#ccc',
   zIndex: 1,
   color: '#fff',
   width: 50,
@@ -462,10 +438,7 @@ function ColorlibStepIcon(props: StepIconProps) {
   }
 
   return (
-    <ColorlibStepIconRoot
-      styleProps={{ completed, active }}
-      className={className}
-    >
+    <ColorlibStepIconRoot styleProps={{ completed, active }} className={className}>
       {icons[String(props.icon)]}
     </ColorlibStepIconRoot>
   )
@@ -485,18 +458,14 @@ export const CustomizedSteppers = story(
     }> = [
       {
         step: steps[0],
-        icon: ({ color }) => (
-          <CheckCircle color={color as SvgIconProps['color']} />
-        ),
+        icon: ({ color }) => <CheckCircle color={color as SvgIconProps['color']} />,
         iconProps: {
           color: 'success',
         },
       },
       {
         step: steps[1],
-        icon: ({ color }) => (
-          <WarningTwoColor color={color as SvgIconProps['color']} />
-        ),
+        icon: ({ color }) => <WarningTwoColor color={color as SvgIconProps['color']} />,
         iconProps: {
           color: 'warning',
         },
@@ -516,22 +485,16 @@ export const CustomizedSteppers = story(
     return (
       <Stack sx={{ width: '100%' }} spacing={10}>
         <Stepper alternativeLabel activeStep={1} connector={<QontoConnector />}>
-          {steps.map(label => (
+          {steps.map((label) => (
             <Step key={label}>
               <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
             </Step>
           ))}
         </Stepper>
-        <Stepper
-          alternativeLabel
-          activeStep={1}
-          connector={<ColorlibConnector />}
-        >
-          {steps.map(label => (
+        <Stepper alternativeLabel activeStep={1} connector={<ColorlibConnector />}>
+          {steps.map((label) => (
             <Step key={label}>
-              <StepLabel StepIconComponent={ColorlibStepIcon}>
-                {label}
-              </StepLabel>
+              <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
             </Step>
           ))}
         </Stepper>
@@ -542,7 +505,7 @@ export const CustomizedSteppers = story(
                 error={i === 2}
                 StepIconComponent={s.icon}
                 StepIconProps={s.iconProps}
-                optional="Optional text"
+                optional='Optional text'
               >
                 {s.step}
               </StepLabel>
@@ -565,11 +528,11 @@ export const VerticalLinearStepper = story(
     const [activeStep, setActiveStep] = React.useState(0)
 
     const handleNext = () => {
-      setActiveStep(prevActiveStep => prevActiveStep + 1)
+      setActiveStep((prevActiveStep) => prevActiveStep + 1)
     }
 
     const handleBack = () => {
-      setActiveStep(prevActiveStep => prevActiveStep - 1)
+      setActiveStep((prevActiveStep) => prevActiveStep - 1)
     }
 
     const handleReset = () => {
@@ -578,15 +541,11 @@ export const VerticalLinearStepper = story(
 
     return (
       <Box sx={{ maxWidth: 400 }}>
-        <Stepper activeStep={activeStep} orientation="vertical">
+        <Stepper activeStep={activeStep} orientation='vertical'>
           {steps3.map((step, index) => (
             <Step key={step.label}>
               <StepLabel
-                optional={
-                  index === 2 ? (
-                    <Typography variant="caption">Last step</Typography>
-                  ) : null
-                }
+                optional={index === 2 ? <Typography variant='caption'>Last step</Typography> : null}
               >
                 {step.label}
               </StepLabel>
@@ -594,18 +553,10 @@ export const VerticalLinearStepper = story(
                 <Typography>{step.description}</Typography>
                 <Box sx={{ mb: 2 }}>
                   <div>
-                    <Button
-                      variant="contained"
-                      onClick={handleNext}
-                      sx={{ mt: 1, mr: 1 }}
-                    >
+                    <Button variant='contained' onClick={handleNext} sx={{ mt: 1, mr: 1 }}>
                       {index === steps.length - 1 ? 'Finish' : 'Continue'}
                     </Button>
-                    <Button
-                      disabled={index === 0}
-                      onClick={handleBack}
-                      sx={{ mt: 1, mr: 1 }}
-                    >
+                    <Button disabled={index === 0} onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
                       Back
                     </Button>
                   </div>

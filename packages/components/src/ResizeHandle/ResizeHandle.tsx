@@ -216,7 +216,7 @@ export const ResizeHandle = React.forwardRef(function ResizeHandle(
   React.useImperativeHandle(ref, () => innerRef.current!)
 
   const parentRef = React.useRef<HTMLElement | null>(null)
-  React.useImperativeHandle(parentRef, () => innerRef.current?.parentElement!)
+  React.useImperativeHandle(parentRef, () => innerRef.current?.parentElement as HTMLElement)
 
   const props = useThemeProps({
     name: 'MonorailResizeHandle',

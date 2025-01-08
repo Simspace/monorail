@@ -11,9 +11,9 @@ export default {
   component: TimelineContent,
 }
 
-const Template = story<TimelineContentProps>(
-  args => <TimelineContent {...args} />,
-  { args: {}, muiName: 'MuiTimelineContent' },
-)
+const Template = story<TimelineContentProps>((args) => <TimelineContent {...args} />, {
+  args: {},
+  muiName: 'MuiTimelineContent',
+})
 
 export const Default = story(Template)

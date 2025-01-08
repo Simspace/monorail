@@ -6,31 +6,18 @@ import { InlineTextField, MenuItem } from '@monorail/components'
 export default { title: 'Inputs/InlineTextField', component: InlineTextField }
 
 export const Default: StoryObj<typeof InlineTextField> = {
-  render: args => {
-    return (
-      <InlineTextField
-        color="secondary"
-        label="Label"
-        placeholder="Placeholder"
-        {...args}
-      />
-    )
+  render: (args) => {
+    return <InlineTextField color='secondary' label='Label' placeholder='Placeholder' {...args} />
   },
 }
 
 export const Select: StoryObj<typeof InlineTextField> = {
-  render: args => {
+  render: (args) => {
     return (
-      <InlineTextField
-        color="secondary"
-        select
-        defaultValue="one"
-        label="Label"
-        {...args}
-      >
-        <MenuItem value="one">One</MenuItem>
-        <MenuItem value="two">Two</MenuItem>
-        <MenuItem value="three">Three</MenuItem>
+      <InlineTextField color='secondary' select defaultValue='one' label='Label' {...args}>
+        <MenuItem value='one'>One</MenuItem>
+        <MenuItem value='two'>Two</MenuItem>
+        <MenuItem value='three'>Three</MenuItem>
       </InlineTextField>
     )
   },

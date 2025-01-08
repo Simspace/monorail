@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+ 
 import React from 'react'
 import { isFragment } from 'react-is'
 import type { AvatarGroupProps, AvatarProps } from '@mui/material'
@@ -110,7 +110,7 @@ export const AvatarGroup = React.forwardRef(function AvatarGroup(
   const children = React.Children.toArray(childrenProp).filter(
     (child): child is React.ReactElement<AvatarProps> => {
       if (process.env.NODE_ENV !== 'production') {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+         
         if (isFragment(child)) {
           // eslint-disable-next-line no-console
           console.error(

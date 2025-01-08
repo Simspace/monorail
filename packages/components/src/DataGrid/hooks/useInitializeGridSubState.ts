@@ -8,7 +8,7 @@ export function useInitializeGridSubState<K extends keyof GridState>(
 ) {
   const isInitialized = React.useRef(false)
 
-  // eslint-disable-next-line eqeqeq
+   
   if (!isInitialized.current && apiRef.current.state[key] == null) {
     apiRef.current.state[key] = initializer()
     isInitialized.current = true

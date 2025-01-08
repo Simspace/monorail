@@ -3,14 +3,7 @@ import React from 'react'
 import { styled } from '@mui/material'
 
 import type { ModalProps } from '@monorail/components'
-import {
-  Backdrop,
-  Box,
-  Button,
-  Fade,
-  Modal,
-  Typography,
-} from '@monorail/components'
+import { Backdrop, Box, Button, Fade, Modal, Typography } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -28,8 +21,8 @@ const Template = story<ModalProps>(
         <Modal
           open={open}
           onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
+          aria-labelledby='modal-modal-title'
+          aria-describedby='modal-modal-description'
         >
           <Box
             sx={{
@@ -44,10 +37,10 @@ const Template = story<ModalProps>(
               p: 4,
             }}
           >
-            <Typography id="modal-modal-title" variant="h3" component="h2">
+            <Typography id='modal-modal-title' variant='h3' component='h2'>
               Text in a modal
             </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            <Typography id='modal-modal-description' sx={{ mt: 2 }}>
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </Typography>
           </Box>
@@ -90,12 +83,12 @@ export const StyledModalDemo = story<ModalProps>(() => {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <button type="button" onClick={handleOpen}>
+      <button type='button' onClick={handleOpen}>
         Open modal
       </button>
       <StyledModal
-        aria-labelledby="styled-modal-title"
-        aria-describedby="styled-modal-description"
+        aria-labelledby='styled-modal-title'
+        aria-describedby='styled-modal-description'
         open={open}
         onClose={handleClose}
         slots={{
@@ -112,8 +105,8 @@ export const StyledModalDemo = story<ModalProps>(() => {
             pb: 3,
           }}
         >
-          <h2 id="styled-modal-title">Text in a modal</h2>
-          <p id="styled-modal-description">Aliquid amet deserunt earum!</p>
+          <h2 id='styled-modal-title'>Text in a modal</h2>
+          <p id='styled-modal-description'>Aliquid amet deserunt earum!</p>
         </Box>
       </StyledModal>
     </div>
@@ -150,12 +143,12 @@ const ChildModal = () => {
         hideBackdrop
         open={open}
         onClose={handleClose}
-        aria-labelledby="child-modal-title"
-        aria-describedby="child-modal-description"
+        aria-labelledby='child-modal-title'
+        aria-describedby='child-modal-description'
       >
         <Box sx={{ ...nestedModalStyles, width: 200 }}>
-          <h2 id="child-modal-title">Text in a child modal</h2>
-          <p id="child-modal-description">
+          <h2 id='child-modal-title'>Text in a child modal</h2>
+          <p id='child-modal-description'>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
           </p>
           <Button onClick={handleClose}>Close Child Modal</Button>
@@ -183,12 +176,12 @@ export const NestedModal = story<ModalProps>(() => {
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="parent-modal-title"
-        aria-describedby="parent-modal-description"
+        aria-labelledby='parent-modal-title'
+        aria-describedby='parent-modal-description'
       >
         <Box sx={{ ...nestedModalStyles, width: 400 }}>
-          <h2 id="parent-modal-title">Text in a modal</h2>
-          <p id="parent-modal-description">
+          <h2 id='parent-modal-title'>Text in a modal</h2>
+          <p id='parent-modal-description'>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </p>
           <ChildModal />
@@ -217,8 +210,8 @@ export const TransitionsModal = story<ModalProps>(() => {
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Button onClick={handleOpen}>Open modal</Button>
       <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
+        aria-labelledby='transition-modal-title'
+        aria-describedby='transition-modal-description'
         open={open}
         onClose={handleClose}
         closeAfterTransition
@@ -241,10 +234,10 @@ export const TransitionsModal = story<ModalProps>(() => {
               p: 4,
             }}
           >
-            <Typography id="transition-modal-title" variant="h3" component="h2">
+            <Typography id='transition-modal-title' variant='h3' component='h2'>
               Text in a modal
             </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+            <Typography id='transition-modal-description' sx={{ mt: 2 }}>
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </Typography>
           </Box>
@@ -269,8 +262,8 @@ export const KeepMountedModal = story<ModalProps>(() => {
         keepMounted
         open={open}
         onClose={handleClose}
-        aria-labelledby="keep-mounted-modal-title"
-        aria-describedby="keep-mounted-modal-description"
+        aria-labelledby='keep-mounted-modal-title'
+        aria-describedby='keep-mounted-modal-description'
       >
         <Box
           sx={{
@@ -285,10 +278,10 @@ export const KeepMountedModal = story<ModalProps>(() => {
             p: 4,
           }}
         >
-          <Typography id="keep-mounted-modal-title" variant="h3" component="h2">
+          <Typography id='keep-mounted-modal-title' variant='h3' component='h2'>
             Text in a modal
           </Typography>
-          <Typography id="keep-mounted-modal-description" sx={{ mt: 2 }}>
+          <Typography id='keep-mounted-modal-description' sx={{ mt: 2 }}>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </Typography>
         </Box>
@@ -339,14 +332,14 @@ export const ServerModal = story<ModalProps>(() => {
             width: 400,
             bgcolor: 'background.paper',
             border: '2px solid #000',
-            boxShadow: theme => theme.shadows[5],
+            boxShadow: (theme) => theme.shadows[5],
             p: 4,
           }}
         >
-          <Typography id="server-modal-title" variant="h3" component="h2">
+          <Typography id='server-modal-title' variant='h3' component='h2'>
             Server-side modal
           </Typography>
-          <Typography id="server-modal-description" sx={{ pt: 2 }}>
+          <Typography id='server-modal-description' sx={{ pt: 2 }}>
             If you disable JavaScript, you will still see me.
           </Typography>
         </Box>

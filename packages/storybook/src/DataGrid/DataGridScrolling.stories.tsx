@@ -10,7 +10,7 @@ import { story } from '../helpers/storybook.js'
 
 export default { title: 'Data Grid/Scrolling', component: DataGrid }
 
-const Template = story<DataGridProps>(args => {
+const Template = story<DataGridProps>((args) => {
   // TODO(storybook): Uncomment once we have DataGridPro (paid)
   // const apiRef = useGridApiRef()
 
@@ -74,21 +74,21 @@ const Template = story<DataGridProps>(args => {
   return (
     <div style={{ width: '100%' }}>
       <Box sx={{ width: 300, margin: '0 auto 16px' }}>
-        <Grid container justifyContent="center">
+        <Grid container justifyContent='center'>
           <Grid item>
             {/* <Button onClick={handleClick('top')}>top</Button> */}
             <Button onClick={() => {}}>top</Button>
           </Grid>
         </Grid>
-        <Grid container textAlign="center">
+        <Grid container textAlign='center'>
           <Grid item xs={4}>
             {/* <Button onClick={handleClick('left')}>left</Button> */}
             <Button onClick={() => {}}>left</Button>
           </Grid>
           <Grid item xs={4}>
             <IconButton
-              color="primary"
-              aria-label="home"
+              color='primary'
+              aria-label='home'
               // onClick={handleClick('home')}
               onClick={() => {}}
             >
@@ -100,7 +100,7 @@ const Template = story<DataGridProps>(args => {
             <Button onClick={() => {}}>right</Button>
           </Grid>
         </Grid>
-        <Grid container justifyContent="center">
+        <Grid container justifyContent='center'>
           <Grid item>
             {/* <Button onClick={handleClick('bottom')}>bottom</Button> */}
             <Button onClick={() => {}}>bottom</Button>

@@ -2,13 +2,7 @@
 import React from 'react'
 
 import type { TableContainerProps } from '@monorail/components'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
-} from '@monorail/components'
+import { Table, TableBody, TableCell, TableContainer, TableRow } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -18,7 +12,7 @@ export default {
 }
 
 const Template = story<TableContainerProps>(
-  args => (
+  (args) => (
     <TableContainer {...args}>
       <Table>
         <TableBody>

@@ -18,10 +18,10 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Inputs/Radio', component: Radio }
 
 const Template = story<RadioProps>(
-  args => {
+  (args) => {
     return (
       <>
-        <FormControlLabel control={<Radio {...args} />} label="Radio Demo" />
+        <FormControlLabel control={<Radio {...args} />} label='Radio Demo' />
       </>
     )
   },
@@ -30,80 +30,44 @@ const Template = story<RadioProps>(
 
 export const Default = story(Template)
 
-const colors = [
-  'default',
-  'primary',
-  'error',
-  'info',
-  'success',
-  'warning',
-] as const
+const colors = ['default', 'primary', 'error', 'info', 'success', 'warning'] as const
 
-export const RadioButtonsGroup = story<RadioProps>(args => {
+export const RadioButtonsGroup = story<RadioProps>((args) => {
   return (
     <FormControl>
-      <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+      <FormLabel id='demo-radio-buttons-group-label'>Gender</FormLabel>
       <RadioGroup
-        aria-labelledby="demo-radio-buttons-group-label"
-        defaultValue="female"
-        name="radio-buttons-group"
+        aria-labelledby='demo-radio-buttons-group-label'
+        defaultValue='female'
+        name='radio-buttons-group'
       >
-        <FormControlLabel
-          value="female"
-          control={<Radio {...args} />}
-          label="Female"
-        />
-        <FormControlLabel
-          value="male"
-          control={<Radio {...args} />}
-          label="Male"
-        />
-        <FormControlLabel
-          value="other"
-          control={<Radio {...args} />}
-          label="Other"
-        />
+        <FormControlLabel value='female' control={<Radio {...args} />} label='Female' />
+        <FormControlLabel value='male' control={<Radio {...args} />} label='Male' />
+        <FormControlLabel value='other' control={<Radio {...args} />} label='Other' />
       </RadioGroup>
     </FormControl>
   )
 })
 
-export const RowRadioButtonsGroup = story<RadioProps>(args => {
+export const RowRadioButtonsGroup = story<RadioProps>((args) => {
   return (
     <FormControl>
-      <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+      <FormLabel id='demo-row-radio-buttons-group-label'>Gender</FormLabel>
       <RadioGroup
         row
-        aria-labelledby="demo-row-radio-buttons-group-label"
-        name="row-radio-buttons-group"
+        aria-labelledby='demo-row-radio-buttons-group-label'
+        name='row-radio-buttons-group'
       >
-        <FormControlLabel
-          value="female"
-          control={<Radio {...args} />}
-          label="Female"
-        />
-        <FormControlLabel
-          value="male"
-          control={<Radio {...args} />}
-          label="Male"
-        />
-        <FormControlLabel
-          value="other"
-          control={<Radio {...args} />}
-          label="Other"
-        />
-        <FormControlLabel
-          value="disabled"
-          disabled
-          control={<Radio {...args} />}
-          label="other"
-        />
+        <FormControlLabel value='female' control={<Radio {...args} />} label='Female' />
+        <FormControlLabel value='male' control={<Radio {...args} />} label='Male' />
+        <FormControlLabel value='other' control={<Radio {...args} />} label='Other' />
+        <FormControlLabel value='disabled' disabled control={<Radio {...args} />} label='other' />
       </RadioGroup>
     </FormControl>
   )
 })
 
-export const ControlledRadioButtonsGroup = story<RadioProps>(args => {
+export const ControlledRadioButtonsGroup = story<RadioProps>((args) => {
   const [value, setValue] = React.useState('female')
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -112,29 +76,21 @@ export const ControlledRadioButtonsGroup = story<RadioProps>(args => {
 
   return (
     <FormControl>
-      <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>
+      <FormLabel id='demo-controlled-radio-buttons-group'>Gender</FormLabel>
       <RadioGroup
-        aria-labelledby="demo-controlled-radio-buttons-group"
-        name="controlled-radio-buttons-group"
+        aria-labelledby='demo-controlled-radio-buttons-group'
+        name='controlled-radio-buttons-group'
         value={value}
         onChange={handleChange}
       >
-        <FormControlLabel
-          value="female"
-          control={<Radio {...args} />}
-          label="Female"
-        />
-        <FormControlLabel
-          value="male"
-          control={<Radio {...args} />}
-          label="Male"
-        />
+        <FormControlLabel value='female' control={<Radio {...args} />} label='Female' />
+        <FormControlLabel value='male' control={<Radio {...args} />} label='Male' />
       </RadioGroup>
     </FormControl>
   )
 })
 
-export const RadioButtons = story<RadioProps>(args => {
+export const RadioButtons = story<RadioProps>((args) => {
   const [selectedValue, setSelectedValue] = React.useState('a')
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -146,16 +102,16 @@ export const RadioButtons = story<RadioProps>(args => {
       <Radio
         checked={selectedValue === 'a'}
         onChange={handleChange}
-        value="a"
-        name="radio-buttons"
+        value='a'
+        name='radio-buttons'
         inputProps={{ 'aria-label': 'A' }}
         {...args}
       />
       <Radio
         checked={selectedValue === 'b'}
         onChange={handleChange}
-        value="b"
-        name="radio-buttons"
+        value='b'
+        name='radio-buttons'
         inputProps={{ 'aria-label': 'B' }}
         {...args}
       />
@@ -163,7 +119,7 @@ export const RadioButtons = story<RadioProps>(args => {
   )
 })
 
-export const SizeRadioButtons = story<RadioProps>(args => {
+export const SizeRadioButtons = story<RadioProps>((args) => {
   const [selectedValue, setSelectedValue] = React.useState('a')
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value)
@@ -179,7 +135,7 @@ export const SizeRadioButtons = story<RadioProps>(args => {
 
   return (
     <div>
-      <Radio {...controlProps('a')} size="small" {...args} />
+      <Radio {...controlProps('a')} size='small' {...args} />
       <Radio {...controlProps('b')} {...args} />
       <Radio
         {...controlProps('c')}
@@ -194,7 +150,7 @@ export const SizeRadioButtons = story<RadioProps>(args => {
   )
 })
 
-export const ColorRadioButtons = story<RadioProps>(args => {
+export const ColorRadioButtons = story<RadioProps>((args) => {
   const [selectedValue, setSelectedValue] = React.useState('a')
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -212,17 +168,12 @@ export const ColorRadioButtons = story<RadioProps>(args => {
   return (
     <>
       <div>
-        {colors.map(color => (
-          <Radio
-            key={`radio-${color}`}
-            color={color}
-            {...controlProps('a')}
-            {...args}
-          />
+        {colors.map((color) => (
+          <Radio key={`radio-${color}`} color={color} {...controlProps('a')} {...args} />
         ))}
       </div>
       <div>
-        {colors.map(color => (
+        {colors.map((color) => (
           <Radio
             key={`radio-${color}-disabled`}
             color={color}
@@ -236,36 +187,30 @@ export const ColorRadioButtons = story<RadioProps>(args => {
   )
 })
 
-export const FormControlLabelPlacement = story<RadioProps>(args => {
+export const FormControlLabelPlacement = story<RadioProps>((args) => {
   return (
     <FormControl>
-      <FormLabel id="demo-form-control-label-placement">
-        Label placement
-      </FormLabel>
+      <FormLabel id='demo-form-control-label-placement'>Label placement</FormLabel>
       <RadioGroup
         row
-        aria-labelledby="demo-form-control-label-placement"
-        name="position"
-        defaultValue="start"
+        aria-labelledby='demo-form-control-label-placement'
+        name='position'
+        defaultValue='start'
       >
         <FormControlLabel
-          value="start"
+          value='start'
           control={<Radio {...args} />}
-          label="Start"
-          labelPlacement="start"
+          label='Start'
+          labelPlacement='start'
           sx={{ mr: 4 }}
         />
-        <FormControlLabel
-          value="end"
-          control={<Radio {...args} />}
-          label="End"
-        />
+        <FormControlLabel value='end' control={<Radio {...args} />} label='End' />
       </RadioGroup>
     </FormControl>
   )
 })
 
-export const ErrorRadios = story<RadioProps>(args => {
+export const ErrorRadios = story<RadioProps>((args) => {
   const [value, setValue] = React.useState('')
   const [error, setError] = React.useState(false)
   const [helperText, setHelperText] = React.useState('Choose wisely')
@@ -293,27 +238,19 @@ export const ErrorRadios = story<RadioProps>(args => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <FormControl sx={{ m: 3 }} error={error} variant="standard">
-        <FormLabel id="demo-error-radios">Pop quiz: MUI is...</FormLabel>
+      <FormControl sx={{ m: 3 }} error={error} variant='standard'>
+        <FormLabel id='demo-error-radios'>Pop quiz: MUI is...</FormLabel>
         <RadioGroup
-          aria-labelledby="demo-error-radios"
-          name="quiz"
+          aria-labelledby='demo-error-radios'
+          name='quiz'
           value={value}
           onChange={handleRadioChange}
         >
-          <FormControlLabel
-            value="best"
-            control={<Radio {...args} />}
-            label="The best!"
-          />
-          <FormControlLabel
-            value="worst"
-            control={<Radio {...args} />}
-            label="The worst."
-          />
+          <FormControlLabel value='best' control={<Radio {...args} />} label='The best!' />
+          <FormControlLabel value='worst' control={<Radio {...args} />} label='The worst.' />
         </RadioGroup>
         <FormHelperText>{helperText}</FormHelperText>
-        <Button sx={{ mt: 2, mr: 2 }} type="submit" variant="outlined">
+        <Button sx={{ mt: 2, mr: 2 }} type='submit' variant='outlined'>
           Check Answer
         </Button>
       </FormControl>
@@ -333,19 +270,11 @@ function MyFormControlLabel(props: FormControlLabelProps) {
   return <FormControlLabel checked={checked} {...props} />
 }
 
-export const UseRadioGroup = story<RadioProps>(args => {
+export const UseRadioGroup = story<RadioProps>((args) => {
   return (
-    <RadioGroup name="use-radio-group" defaultValue="first">
-      <MyFormControlLabel
-        value="first"
-        label="First"
-        control={<Radio {...args} />}
-      />
-      <MyFormControlLabel
-        value="second"
-        label="Second"
-        control={<Radio {...args} />}
-      />
+    <RadioGroup name='use-radio-group' defaultValue='first'>
+      <MyFormControlLabel value='first' label='First' control={<Radio {...args} />} />
+      <MyFormControlLabel value='second' label='Second' control={<Radio {...args} />} />
     </RadioGroup>
   )
 })

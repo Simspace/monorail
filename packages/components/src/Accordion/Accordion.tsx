@@ -55,8 +55,7 @@ export const Accordion = React.forwardRef(
   ),
 ) as OverridableComponent<AccordionTypeMap<AccordionExtraProps, 'div'>>
 
-// @ts-expect-error
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+// @ts-expect-error -- assigning muiName
 Accordion.muiName = MuiAccordion.muiName
 
 export * from '@mui/material/Accordion'

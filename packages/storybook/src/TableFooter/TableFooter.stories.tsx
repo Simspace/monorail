@@ -12,7 +12,7 @@ export default {
 }
 
 const Template = story<TableFooterProps>(
-  args => (
+  (args) => (
     <Table>
       <TableFooter {...args}>
         <TableRow>

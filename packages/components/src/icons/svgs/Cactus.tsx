@@ -1,6 +1,6 @@
 import React from 'react'
 import type { SvgIconProps } from '@mui/material/SvgIcon'
-import SvgIcon from '@mui/material/SvgIcon' // eslint-disable-line no-restricted-imports
+import SvgIcon from '@mui/material/SvgIcon'  
 
 export const Cactus = (props: SvgIconProps) => (
   <SvgIcon {...props}>

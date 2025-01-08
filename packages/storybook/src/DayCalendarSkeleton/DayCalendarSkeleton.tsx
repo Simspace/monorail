@@ -11,10 +11,9 @@ export default {
   component: DayCalendarSkeleton,
 }
 
-const Template = story<DayCalendarSkeletonProps>(
-  args => <DayCalendarSkeleton {...args} />,
-  { muiName: 'MuiDayCalendarSkeleton' },
-)
+const Template = story<DayCalendarSkeletonProps>((args) => <DayCalendarSkeleton {...args} />, {
+  muiName: 'MuiDayCalendarSkeleton',
+})
 
 /**
  * `DayCalendarSkeleton` is a loading placeholder component for the `DateCalendar`

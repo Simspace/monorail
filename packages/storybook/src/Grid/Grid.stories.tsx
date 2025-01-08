@@ -80,8 +80,8 @@ export const MultipleBreakpoints = story<GridProps>(() => (
 export const Spacing = story<GridProps>(() => (
   <Grid sx={{ flexGrow: 1 }} container spacing={2}>
     <Grid item xs={12}>
-      <Grid container justifyContent="center" spacing={3}>
-        {[0, 1, 2].map(value => (
+      <Grid container justifyContent='center' spacing={3}>
+        {[0, 1, 2].map((value) => (
           <Grid key={value} item>
             <Item sx={{ height: 140, width: 100 }} />
           </Grid>
@@ -194,7 +194,7 @@ export const Limitations = story<GridProps>(() => {
   return (
     <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
       <Item sx={{ maxWidth: 400, my: 1, mx: 'auto', p: 2 }}>
-        <Grid container wrap="nowrap" spacing={2}>
+        <Grid container wrap='nowrap' spacing={2}>
           <Grid item>
             <Avatar>W</Avatar>
           </Grid>
@@ -204,7 +204,7 @@ export const Limitations = story<GridProps>(() => {
         </Grid>
       </Item>
       <Item sx={{ maxWidth: 400, my: 1, mx: 'auto', p: 2 }}>
-        <Grid container wrap="nowrap" spacing={2}>
+        <Grid container wrap='nowrap' spacing={2}>
           <Grid item>
             <Avatar>W</Avatar>
           </Grid>
@@ -214,7 +214,7 @@ export const Limitations = story<GridProps>(() => {
         </Grid>
       </Item>
       <Item sx={{ maxWidth: 400, my: 1, mx: 'auto', p: 2 }}>
-        <Grid container wrap="nowrap" spacing={2}>
+        <Grid container wrap='nowrap' spacing={2}>
           <Grid item>
             <Avatar>W</Avatar>
           </Grid>
@@ -231,17 +231,17 @@ export const Limitations = story<GridProps>(() => {
  * The Grid component is using CSS flexbox internally. But as seen below, you can easily use the system and CSS Grid to layout your pages.
  */
 export const CSSGridLayout = story<GridProps>(() => (
-  <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
-    <Box gridColumn="span 8">
+  <Box display='grid' gridTemplateColumns='repeat(12, 1fr)' gap={2}>
+    <Box gridColumn='span 8'>
       <Item>xs=8</Item>
     </Box>
-    <Box gridColumn="span 4">
+    <Box gridColumn='span 4'>
       <Item>xs=4</Item>
     </Box>
-    <Box gridColumn="span 4">
+    <Box gridColumn='span 4'>
       <Item>xs=4</Item>
     </Box>
-    <Box gridColumn="span 8">
+    <Box gridColumn='span 8'>
       <Item>xs=8</Item>
     </Box>
   </Box>

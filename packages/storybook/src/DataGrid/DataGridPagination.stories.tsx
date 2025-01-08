@@ -3,18 +3,14 @@ import React from 'react'
 import type { GridDemoData } from '@mui/x-data-grid-generator'
 import { useDemoData } from '@mui/x-data-grid-generator'
 
-import type {
-  DataGridProps,
-  GridRowModel,
-  GridRowsProp,
-} from '@monorail/components'
+import type { DataGridProps, GridRowModel, GridRowsProp } from '@monorail/components'
 import { DataGrid, useGridApiRef } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
 export default { title: 'Data Grid/Pagination', component: DataGrid }
 
-const Template = story<DataGridProps>(args => {
+const Template = story<DataGridProps>((args) => {
   const apiRef = useGridApiRef()
   const { data } = useDemoData({
     dataSet: 'Commodity',
@@ -57,7 +53,7 @@ On the other hand, the commercial  \`DataGridPro\`  component displays, by defau
 /**
  * Page size
  */
-export const SizePaginationGrid = story<DataGridProps>(args => {
+export const SizePaginationGrid = story<DataGridProps>((args) => {
   const [pageSize, setPageSize] = React.useState<number>(5)
   const [page, setPage] = React.useState(1)
 
@@ -100,7 +96,7 @@ SizePaginationGrid.parameters = {
 /**
  * Controlled pagination
  */
-export const ControlledPaginationGrid = story<DataGridProps>(args => {
+export const ControlledPaginationGrid = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 100,
@@ -137,7 +133,7 @@ ControlledPaginationGrid.parameters = {
 /**
  * Auto size
  */
-export const AutoPaginationGrid = story<DataGridProps>(args => {
+export const AutoPaginationGrid = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 100,
@@ -180,29 +176,27 @@ function loadServerRows(
     page: number
     rowCount: number
     data: Array<GridRowModel>
-  }>(resolve => {
-    setTimeout(() => {
-      const filteredData = data.rows.filter(row =>
-        (row.commodity as string)
-          .toLocaleLowerCase()
-          .includes(filter.toLocaleLowerCase()),
-      )
+  }>((resolve) => {
+    setTimeout(
+      () => {
+        const filteredData = data.rows.filter((row) =>
+          (row.commodity as string).toLocaleLowerCase().includes(filter.toLocaleLowerCase()),
+        )
 
-      const paginatedData = filteredData.slice(
-        page * pageSize,
-        (page + 1) * pageSize,
-      )
+        const paginatedData = filteredData.slice(page * pageSize, (page + 1) * pageSize)
 
-      resolve({
-        page,
-        rowCount: filteredData.length,
-        data: paginatedData,
-      })
-    }, Math.random() * 500 + 100) // simulate network latency
+        resolve({
+          page,
+          rowCount: filteredData.length,
+          data: paginatedData,
+        })
+      },
+      Math.random() * 500 + 100,
+    ) // simulate network latency
   })
 }
 
-export const ServerPaginationGrid = story<DataGridProps>(args => {
+export const ServerPaginationGrid = story<DataGridProps>((args) => {
   const { data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 100,
@@ -247,7 +241,7 @@ export const ServerPaginationGrid = story<DataGridProps>(args => {
         paginationModel={{ pageSize, page }}
         pageSizeOptions={[20, 50, 100]}
         rowCount={rowCount}
-        paginationMode="server"
+        paginationMode='server'
         onPaginationModelChange={({ page, pageSize }) => {
           setPageSize(pageSize)
           setPage(page)

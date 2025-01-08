@@ -19,5 +19,5 @@ const Template = story<StepLabelProps>(
 export const Default = story(Template)
 
 export const OptionalLabel = story(() => {
-  return <StepLabel optional="Optional">Step title</StepLabel>
+  return <StepLabel optional='Optional'>Step title</StepLabel>
 })

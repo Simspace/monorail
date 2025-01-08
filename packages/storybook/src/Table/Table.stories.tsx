@@ -41,7 +41,7 @@ import { story } from '../helpers/storybook.js'
 export default { title: 'Data Display/Table', component: Table }
 
 const Template = story<TableProps>(
-  args => {
+  (args) => {
     function createData(
       name: string,
       calories: number,
@@ -62,29 +62,26 @@ const Template = story<TableProps>(
 
     return (
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table" {...args}>
+        <Table sx={{ minWidth: 650 }} aria-label='simple table' {...args}>
           <TableHead>
             <TableRow>
               <TableCell>Dessert (100g serving)</TableCell>
-              <TableCell align="right">Calories</TableCell>
-              <TableCell align="right">Fat&nbsp;(g)</TableCell>
-              <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-              <TableCell align="right">Protein&nbsp;(g)</TableCell>
+              <TableCell align='right'>Calories</TableCell>
+              <TableCell align='right'>Fat&nbsp;(g)</TableCell>
+              <TableCell align='right'>Carbs&nbsp;(g)</TableCell>
+              <TableCell align='right'>Protein&nbsp;(g)</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => (
-              <TableRow
-                key={row.name}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
+            {rows.map((row) => (
+              <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                <TableCell component='th' scope='row'>
                   {row.name}
                 </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
+                <TableCell align='right'>{row.calories}</TableCell>
+                <TableCell align='right'>{row.fat}</TableCell>
+                <TableCell align='right'>{row.carbs}</TableCell>
+                <TableCell align='right'>{row.protein}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -106,7 +103,7 @@ export const Default = story(Template, {
 })
 
 export const Density = story<TableProps>(
-  args => {
+  (args) => {
     function createData(
       name: string,
       calories: number,
@@ -126,34 +123,26 @@ export const Density = story<TableProps>(
     ]
     return (
       <TableContainer component={Paper}>
-        <Table
-          sx={{ minWidth: 650 }}
-          size="small"
-          aria-label="a dense table"
-          {...args}
-        >
+        <Table sx={{ minWidth: 650 }} size='small' aria-label='a dense table' {...args}>
           <TableHead>
             <TableRow>
               <TableCell>Dessert (100g serving)</TableCell>
-              <TableCell align="right">Calories</TableCell>
-              <TableCell align="right">Fat&nbsp;(g)</TableCell>
-              <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-              <TableCell align="right">Protein&nbsp;(g)</TableCell>
+              <TableCell align='right'>Calories</TableCell>
+              <TableCell align='right'>Fat&nbsp;(g)</TableCell>
+              <TableCell align='right'>Carbs&nbsp;(g)</TableCell>
+              <TableCell align='right'>Protein&nbsp;(g)</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => (
-              <TableRow
-                key={row.name}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
+            {rows.map((row) => (
+              <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                <TableCell component='th' scope='row'>
                   {row.name}
                 </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
+                <TableCell align='right'>{row.calories}</TableCell>
+                <TableCell align='right'>{row.fat}</TableCell>
+                <TableCell align='right'>{row.carbs}</TableCell>
+                <TableCell align='right'>{row.protein}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -173,7 +162,7 @@ export const Density = story<TableProps>(
 )
 
 export const SortingAndSelecting = story<TableProps>(
-  args => {
+  (args) => {
     interface Data {
       calories: number
       carbs: number
@@ -229,10 +218,7 @@ export const SortingAndSelecting = story<TableProps>(
     function getComparator<Key extends keyof Data>(
       order: Order,
       orderBy: Key,
-    ): (
-      a: { [key in Key]: number | string },
-      b: { [key in Key]: number | string },
-    ) => number {
+    ): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
       return order === 'desc'
         ? (a, b) => descendingComparator(a, b, orderBy)
         : (a, b) => -descendingComparator(a, b, orderBy)
@@ -240,13 +226,8 @@ export const SortingAndSelecting = story<TableProps>(
 
     // This method is created for cross-browser compatibility, if you don't
     // need to support IE11, you can use Array.prototype.sort() directly
-    function stableSort<T>(
-      array: ReadonlyArray<T>,
-      comparator: (a: T, b: T) => number,
-    ) {
-      const stabilizedThis = array.map(
-        (el, index) => [el, index] as [T, number],
-      )
+    function stableSort<T>(array: ReadonlyArray<T>, comparator: (a: T, b: T) => number) {
+      const stabilizedThis = array.map((el, index) => [el, index] as [T, number])
       stabilizedThis.sort((a, b) => {
         const order = comparator(a[0], b[0])
         if (order !== 0) {
@@ -254,7 +235,7 @@ export const SortingAndSelecting = story<TableProps>(
         }
         return a[1] - b[1]
       })
-      return stabilizedThis.map(el => el[0])
+      return stabilizedThis.map((el) => el[0])
     }
 
     interface HeadCell {
@@ -299,10 +280,7 @@ export const SortingAndSelecting = story<TableProps>(
 
     interface EnhancedTableProps {
       numSelected: number
-      onRequestSort: (
-        event: React.MouseEvent<unknown>,
-        property: keyof Data,
-      ) => void
+      onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Data) => void
       onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void
       order: Order
       orderBy: string
@@ -310,25 +288,17 @@ export const SortingAndSelecting = story<TableProps>(
     }
 
     function EnhancedTableHead(props: EnhancedTableProps) {
-      const {
-        onSelectAllClick,
-        order,
-        orderBy,
-        numSelected,
-        rowCount,
-        onRequestSort,
-      } = props
-      const createSortHandler =
-        (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
-          onRequestSort(event, property)
-        }
+      const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props
+      const createSortHandler = (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
+        onRequestSort(event, property)
+      }
 
       return (
         <TableHead>
           <TableRow>
-            <TableCell padding="checkbox">
+            <TableCell padding='checkbox'>
               <Checkbox
-                color="primary"
+                color='primary'
                 indeterminate={numSelected > 0 && numSelected < rowCount}
                 checked={rowCount > 0 && numSelected === rowCount}
                 onChange={onSelectAllClick}
@@ -337,7 +307,7 @@ export const SortingAndSelecting = story<TableProps>(
                 }}
               />
             </TableCell>
-            {headCells.map(headCell => (
+            {headCells.map((headCell) => (
               <TableCell
                 key={headCell.id}
                 align={headCell.numeric ? 'right' : 'left'}
@@ -351,10 +321,8 @@ export const SortingAndSelecting = story<TableProps>(
                 >
                   {headCell.label}
                   {orderBy === headCell.id ? (
-                    <Box component="span" style={visuallyHidden}>
-                      {order === 'desc'
-                        ? 'sorted descending'
-                        : 'sorted ascending'}
+                    <Box component='span' style={visuallyHidden}>
+                      {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                     </Box>
                   ) : null}
                 </TableSortLabel>
@@ -378,42 +346,34 @@ export const SortingAndSelecting = story<TableProps>(
             pl: { sm: 2 },
             pr: { xs: 1, sm: 1 },
             ...(numSelected > 0 && {
-              bgcolor: theme =>
-                alpha(
-                  theme.palette.primary.main,
-                  theme.palette.action.activatedOpacity,
-                ),
+              bgcolor: (theme) =>
+                alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
             }),
           }}
         >
           {numSelected > 0 ? (
             <Typography
               sx={{ flex: '1 1 100%' }}
-              color="inherit"
-              variant="subtitle1"
-              component="div"
+              color='inherit'
+              variant='subtitle1'
+              component='div'
             >
               {numSelected} selected
             </Typography>
           ) : (
-            <Typography
-              sx={{ flex: '1 1 100%' }}
-              variant="h3"
-              id="tableTitle"
-              component="div"
-            >
+            <Typography sx={{ flex: '1 1 100%' }} variant='h3' id='tableTitle' component='div'>
               Nutrition
             </Typography>
           )}
           {numSelected > 0 ? (
-            <Tooltip title="Delete">
-              <IconButton aria-label="delete" size="large">
+            <Tooltip title='Delete'>
+              <IconButton aria-label='delete' size='large'>
                 <DeleteIcon />
               </IconButton>
             </Tooltip>
           ) : (
-            <Tooltip title="Filter list">
-              <IconButton aria-label="filter" size="large">
+            <Tooltip title='Filter list'>
+              <IconButton aria-label='filter' size='large'>
                 <FilterListIcon />
               </IconButton>
             </Tooltip>
@@ -430,20 +390,15 @@ export const SortingAndSelecting = story<TableProps>(
       const [dense, setDense] = React.useState(false)
       const [rowsPerPage, setRowsPerPage] = React.useState(5)
 
-      const handleRequestSort = (
-        _event: React.MouseEvent<unknown>,
-        property: keyof Data,
-      ) => {
+      const handleRequestSort = (_event: React.MouseEvent<unknown>, property: keyof Data) => {
         const isAsc = orderBy === property && order === 'asc'
         setOrder(isAsc ? 'desc' : 'asc')
         setOrderBy(property)
       }
 
-      const handleSelectAllClick = (
-        event: React.ChangeEvent<HTMLInputElement>,
-      ) => {
+      const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.checked) {
-          const newSelecteds = rows.map(n => n.name)
+          const newSelecteds = rows.map((n) => n.name)
           setSelected(newSelecteds)
           return
         }
@@ -474,24 +429,19 @@ export const SortingAndSelecting = story<TableProps>(
         setPage(newPage)
       }
 
-      const handleChangeRowsPerPage = (
-        event: React.ChangeEvent<HTMLInputElement>,
-      ) => {
+      const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRowsPerPage(parseInt(event.target.value, 10))
         setPage(0)
       }
 
-      const handleChangeDense = (
-        event: React.ChangeEvent<HTMLInputElement>,
-      ) => {
+      const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
         setDense(event.target.checked)
       }
 
       const isSelected = (name: string) => selected.indexOf(name) !== -1
 
       // Avoid a layout jump when reaching the last page with empty rows.
-      const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0
+      const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0
 
       return (
         <Box sx={{ width: '100%' }}>
@@ -500,7 +450,7 @@ export const SortingAndSelecting = story<TableProps>(
             <TableContainer>
               <Table
                 sx={{ minWidth: 750 }}
-                aria-labelledby="tableTitle"
+                aria-labelledby='tableTitle'
                 size={dense ? 'small' : 'medium'}
                 {...args}
               >
@@ -527,33 +477,28 @@ export const SortingAndSelecting = story<TableProps>(
                           onClick={(event: React.MouseEvent<unknown>) =>
                             handleClick(event, row.name)
                           }
-                          role="checkbox"
+                          role='checkbox'
                           aria-checked={isItemSelected}
                           tabIndex={-1}
                           key={row.name}
                           selected={isItemSelected}
                         >
-                          <TableCell padding="checkbox">
+                          <TableCell padding='checkbox'>
                             <Checkbox
-                              color="primary"
+                              color='primary'
                               checked={isItemSelected}
                               inputProps={{
                                 'aria-labelledby': labelId,
                               }}
                             />
                           </TableCell>
-                          <TableCell
-                            component="th"
-                            id={labelId}
-                            scope="row"
-                            padding="none"
-                          >
+                          <TableCell component='th' id={labelId} scope='row' padding='none'>
                             {row.name}
                           </TableCell>
-                          <TableCell align="right">{row.calories}</TableCell>
-                          <TableCell align="right">{row.fat}</TableCell>
-                          <TableCell align="right">{row.carbs}</TableCell>
-                          <TableCell align="right">{row.protein}</TableCell>
+                          <TableCell align='right'>{row.calories}</TableCell>
+                          <TableCell align='right'>{row.fat}</TableCell>
+                          <TableCell align='right'>{row.carbs}</TableCell>
+                          <TableCell align='right'>{row.protein}</TableCell>
                         </TableRow>
                       )
                     })}
@@ -571,7 +516,7 @@ export const SortingAndSelecting = story<TableProps>(
             </TableContainer>
             <TablePagination
               rowsPerPageOptions={[5, 10, 25]}
-              component="div"
+              component='div'
               count={rows.length}
               rowsPerPage={rowsPerPage}
               page={page}
@@ -581,7 +526,7 @@ export const SortingAndSelecting = story<TableProps>(
           </Paper>
           <FormControlLabel
             control={<Switch checked={dense} onChange={handleChangeDense} />}
-            label="Dense padding"
+            label='Dense padding'
           />
         </Box>
       )
@@ -623,7 +568,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }))
 
 export const Customization = story<TableProps>(
-  args => {
+  (args) => {
     function createData(
       name: string,
       calories: number,
@@ -643,26 +588,26 @@ export const Customization = story<TableProps>(
     ]
     return (
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table" {...args}>
+        <Table sx={{ minWidth: 700 }} aria-label='customized table' {...args}>
           <TableHead>
             <TableRow>
               <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-              <StyledTableCell align="right">Calories</StyledTableCell>
-              <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-              <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-              <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+              <StyledTableCell align='right'>Calories</StyledTableCell>
+              <StyledTableCell align='right'>Fat&nbsp;(g)</StyledTableCell>
+              <StyledTableCell align='right'>Carbs&nbsp;(g)</StyledTableCell>
+              <StyledTableCell align='right'>Protein&nbsp;(g)</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => (
+            {rows.map((row) => (
               <StyledTableRow key={row.name}>
-                <StyledTableCell component="th" scope="row">
+                <StyledTableCell component='th' scope='row'>
                   {row.name}
                 </StyledTableCell>
-                <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                <StyledTableCell align='right'>{row.calories}</StyledTableCell>
+                <StyledTableCell align='right'>{row.fat}</StyledTableCell>
+                <StyledTableCell align='right'>{row.carbs}</StyledTableCell>
+                <StyledTableCell align='right'>{row.protein}</StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
@@ -682,42 +627,31 @@ export const Customization = story<TableProps>(
 )
 
 export const CustomPaginationOptions = story<TableProps>(
-  args => {
+  (args) => {
     interface TablePaginationActionsProps {
       count: number
       page: number
       rowsPerPage: number
-      onPageChange: (
-        event: React.MouseEvent<HTMLButtonElement>,
-        newPage: number,
-      ) => void
+      onPageChange: (event: React.MouseEvent<HTMLButtonElement>, newPage: number) => void
     }
 
     function TablePaginationActions(props: TablePaginationActionsProps) {
       const theme = useTheme()
       const { count, page, rowsPerPage, onPageChange } = props
 
-      const handleFirstPageButtonClick = (
-        event: React.MouseEvent<HTMLButtonElement>,
-      ) => {
+      const handleFirstPageButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         onPageChange(event, 0)
       }
 
-      const handleBackButtonClick = (
-        event: React.MouseEvent<HTMLButtonElement>,
-      ) => {
+      const handleBackButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         onPageChange(event, page - 1)
       }
 
-      const handleNextButtonClick = (
-        event: React.MouseEvent<HTMLButtonElement>,
-      ) => {
+      const handleNextButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         onPageChange(event, page + 1)
       }
 
-      const handleLastPageButtonClick = (
-        event: React.MouseEvent<HTMLButtonElement>,
-      ) => {
+      const handleLastPageButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1))
       }
 
@@ -726,40 +660,32 @@ export const CustomPaginationOptions = story<TableProps>(
           <IconButton
             onClick={handleFirstPageButtonClick}
             disabled={page === 0}
-            aria-label="first page"
-            size="large"
+            aria-label='first page'
+            size='large'
           >
             {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
           </IconButton>
           <IconButton
             onClick={handleBackButtonClick}
             disabled={page === 0}
-            aria-label="previous page"
-            size="large"
+            aria-label='previous page'
+            size='large'
           >
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowRight />
-            ) : (
-              <KeyboardArrowLeft />
-            )}
+            {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
           </IconButton>
           <IconButton
             onClick={handleNextButtonClick}
             disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-            aria-label="next page"
-            size="large"
+            aria-label='next page'
+            size='large'
           >
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowLeft />
-            ) : (
-              <KeyboardArrowRight />
-            )}
+            {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
           </IconButton>
           <IconButton
             onClick={handleLastPageButtonClick}
             disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-            aria-label="last page"
-            size="large"
+            aria-label='last page'
+            size='large'
           >
             {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
           </IconButton>
@@ -792,8 +718,7 @@ export const CustomPaginationOptions = story<TableProps>(
       const [rowsPerPage, setRowsPerPage] = React.useState(5)
 
       // Avoid a layout jump when reaching the last page with empty rows.
-      const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0
+      const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0
 
       const handleChangePage = (
         _event: React.MouseEvent<HTMLButtonElement> | null,
@@ -811,27 +736,20 @@ export const CustomPaginationOptions = story<TableProps>(
 
       return (
         <TableContainer component={Paper}>
-          <Table
-            sx={{ minWidth: 500 }}
-            aria-label="custom pagination table"
-            {...args}
-          >
+          <Table sx={{ minWidth: 500 }} aria-label='custom pagination table' {...args}>
             <TableBody>
               {(rowsPerPage > 0
-                ? rows.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage,
-                  )
+                ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 : rows
-              ).map(row => (
+              ).map((row) => (
                 <TableRow key={row.name}>
-                  <TableCell component="th" scope="row">
+                  <TableCell component='th' scope='row'>
                     {row.name}
                   </TableCell>
-                  <TableCell style={{ width: 160 }} align="right">
+                  <TableCell style={{ width: 160 }} align='right'>
                     {row.calories}
                   </TableCell>
-                  <TableCell style={{ width: 160 }} align="right">
+                  <TableCell style={{ width: 160 }} align='right'>
                     {row.fat}
                   </TableCell>
                 </TableRow>
@@ -886,7 +804,7 @@ The ActionsComponent prop of the TablePagination component allows the implementa
 )
 
 export const StickyHeader = story<TableProps>(
-  args => {
+  (args) => {
     interface Column {
       id: 'name' | 'code' | 'population' | 'size' | 'density'
       label: string
@@ -929,12 +847,7 @@ export const StickyHeader = story<TableProps>(
       density: number
     }
 
-    function createData(
-      name: string,
-      code: string,
-      population: number,
-      size: number,
-    ): Data {
+    function createData(name: string, code: string, population: number, size: number): Data {
       const density = population / size
       return { name, code, population, size, density }
     }
@@ -964,9 +877,7 @@ export const StickyHeader = story<TableProps>(
       setPage(newPage)
     }
 
-    const handleChangeRowsPerPage = (
-      event: React.ChangeEvent<HTMLInputElement>,
-    ) => {
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
       setRowsPerPage(+event.target.value)
       setPage(0)
     }
@@ -974,10 +885,10 @@ export const StickyHeader = story<TableProps>(
     return (
       <Paper sx={{ width: '100%', overflow: 'hidden' }}>
         <TableContainer sx={{ maxHeight: 440 }}>
-          <Table stickyHeader aria-label="sticky table" {...args}>
+          <Table stickyHeader aria-label='sticky table' {...args}>
             <TableHead>
               <TableRow>
-                {columns.map(column => (
+                {columns.map((column) => (
                   <TableCell
                     key={column.id}
                     align={column.align}
@@ -989,35 +900,28 @@ export const StickyHeader = story<TableProps>(
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(row => {
-                  return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.code}
-                    >
-                      {columns.map(column => {
-                        const value = row[column.id]
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === 'number'
-                              ? column.format(value)
-                              : value}
-                          </TableCell>
-                        )
-                      })}
-                    </TableRow>
-                  )
-                })}
+              {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                return (
+                  <TableRow hover role='checkbox' tabIndex={-1} key={row.code}>
+                    {columns.map((column) => {
+                      const value = row[column.id]
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          {column.format && typeof value === 'number'
+                            ? column.format(value)
+                            : value}
+                        </TableCell>
+                      )
+                    })}
+                  </TableRow>
+                )
+              })}
             </TableBody>
           </Table>
         </TableContainer>
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
-          component="div"
+          component='div'
           count={rows.length}
           rowsPerPage={rowsPerPage}
           page={page}
@@ -1039,7 +943,7 @@ export const StickyHeader = story<TableProps>(
 )
 
 export const ColumnGrouping = story<TableProps>(
-  args => {
+  (args) => {
     interface Column {
       id: 'name' | 'code' | 'population' | 'size' | 'density'
       label: string
@@ -1082,12 +986,7 @@ export const ColumnGrouping = story<TableProps>(
       density: number
     }
 
-    function createData(
-      name: string,
-      code: string,
-      population: number,
-      size: number,
-    ): Data {
+    function createData(name: string, code: string, population: number, size: number): Data {
       const density = population / size
       return { name, code, population, size, density }
     }
@@ -1117,9 +1016,7 @@ export const ColumnGrouping = story<TableProps>(
       setPage(newPage)
     }
 
-    const handleChangeRowsPerPage = (
-      event: React.ChangeEvent<HTMLInputElement>,
-    ) => {
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
       setRowsPerPage(+event.target.value)
       setPage(0)
     }
@@ -1127,18 +1024,18 @@ export const ColumnGrouping = story<TableProps>(
     return (
       <Paper sx={{ width: '100%' }}>
         <TableContainer sx={{ maxHeight: 440 }}>
-          <Table stickyHeader aria-label="sticky table" {...args}>
+          <Table stickyHeader aria-label='sticky table' {...args}>
             <TableHead>
               <TableRow>
-                <TableCell align="center" colSpan={2}>
+                <TableCell align='center' colSpan={2}>
                   Country
                 </TableCell>
-                <TableCell align="center" colSpan={3}>
+                <TableCell align='center' colSpan={3}>
                   Details
                 </TableCell>
               </TableRow>
               <TableRow>
-                {columns.map(column => (
+                {columns.map((column) => (
                   <TableCell
                     key={column.id}
                     align={column.align}
@@ -1150,35 +1047,28 @@ export const ColumnGrouping = story<TableProps>(
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(row => {
-                  return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.code}
-                    >
-                      {columns.map(column => {
-                        const value = row[column.id]
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === 'number'
-                              ? column.format(value)
-                              : value}
-                          </TableCell>
-                        )
-                      })}
-                    </TableRow>
-                  )
-                })}
+              {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                return (
+                  <TableRow hover role='checkbox' tabIndex={-1} key={row.code}>
+                    {columns.map((column) => {
+                      const value = row[column.id]
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          {column.format && typeof value === 'number'
+                            ? column.format(value)
+                            : value}
+                        </TableCell>
+                      )
+                    })}
+                  </TableRow>
+                )
+              })}
             </TableBody>
           </Table>
         </TableContainer>
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
-          component="div"
+          component='div'
           count={rows.length}
           rowsPerPage={rowsPerPage}
           page={page}
@@ -1200,7 +1090,7 @@ export const ColumnGrouping = story<TableProps>(
 )
 
 export const CollapsibleTable = story<TableProps>(
-  args => {
+  (args) => {
     function createData(
       name: string,
       calories: number,
@@ -1239,51 +1129,44 @@ export const CollapsibleTable = story<TableProps>(
         <React.Fragment>
           <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
             <TableCell>
-              <IconButton
-                aria-label="expand row"
-                size="small"
-                onClick={() => setOpen(!open)}
-              >
+              <IconButton aria-label='expand row' size='small' onClick={() => setOpen(!open)}>
                 {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
               </IconButton>
             </TableCell>
-            <TableCell component="th" scope="row">
+            <TableCell component='th' scope='row'>
               {row.name}
             </TableCell>
-            <TableCell align="right">{row.calories}</TableCell>
-            <TableCell align="right">{row.fat}</TableCell>
-            <TableCell align="right">{row.carbs}</TableCell>
-            <TableCell align="right">{row.protein}</TableCell>
+            <TableCell align='right'>{row.calories}</TableCell>
+            <TableCell align='right'>{row.fat}</TableCell>
+            <TableCell align='right'>{row.carbs}</TableCell>
+            <TableCell align='right'>{row.protein}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-              <Collapse in={open} timeout="auto" unmountOnExit>
+              <Collapse in={open} timeout='auto' unmountOnExit>
                 <Box sx={{ margin: 1 }}>
-                  <Typography variant="h3" gutterBottom component="div">
+                  <Typography variant='h3' gutterBottom component='div'>
                     History
                   </Typography>
-                  <Table size="small" aria-label="purchases">
+                  <Table size='small' aria-label='purchases'>
                     <TableHead>
                       <TableRow>
                         <TableCell>Date</TableCell>
                         <TableCell>Customer</TableCell>
-                        <TableCell align="right">Amount</TableCell>
-                        <TableCell align="right">Total price ($)</TableCell>
+                        <TableCell align='right'>Amount</TableCell>
+                        <TableCell align='right'>Total price ($)</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {row.history.map(historyRow => (
+                      {row.history.map((historyRow) => (
                         <TableRow key={historyRow.date}>
-                          <TableCell component="th" scope="row">
+                          <TableCell component='th' scope='row'>
                             {historyRow.date}
                           </TableCell>
                           <TableCell>{historyRow.customerId}</TableCell>
-                          <TableCell align="right">
-                            {historyRow.amount}
-                          </TableCell>
-                          <TableCell align="right">
-                            {Math.round(historyRow.amount * row.price * 100) /
-                              100}
+                          <TableCell align='right'>{historyRow.amount}</TableCell>
+                          <TableCell align='right'>
+                            {Math.round(historyRow.amount * row.price * 100) / 100}
                           </TableCell>
                         </TableRow>
                       ))}
@@ -1307,19 +1190,19 @@ export const CollapsibleTable = story<TableProps>(
 
     return (
       <TableContainer component={Paper}>
-        <Table aria-label="collapsible table" {...args}>
+        <Table aria-label='collapsible table' {...args}>
           <TableHead>
             <TableRow>
               <TableCell />
               <TableCell>Dessert (100g serving)</TableCell>
-              <TableCell align="right">Calories</TableCell>
-              <TableCell align="right">Fat&nbsp;(g)</TableCell>
-              <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-              <TableCell align="right">Protein&nbsp;(g)</TableCell>
+              <TableCell align='right'>Calories</TableCell>
+              <TableCell align='right'>Fat&nbsp;(g)</TableCell>
+              <TableCell align='right'>Carbs&nbsp;(g)</TableCell>
+              <TableCell align='right'>Protein&nbsp;(g)</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => (
+            {rows.map((row) => (
               <Row key={row.name} row={row} />
             ))}
           </TableBody>
@@ -1339,7 +1222,7 @@ export const CollapsibleTable = story<TableProps>(
 )
 
 export const SpanningTable = story<TableProps>(
-  args => {
+  (args) => {
     const TAX_RATE = 0.07
 
     function ccyFormat(num: number) {
@@ -1378,45 +1261,43 @@ export const SpanningTable = story<TableProps>(
 
     return (
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="spanning table" {...args}>
+        <Table sx={{ minWidth: 700 }} aria-label='spanning table' {...args}>
           <TableHead>
             <TableRow>
-              <TableCell align="center" colSpan={3}>
+              <TableCell align='center' colSpan={3}>
                 Details
               </TableCell>
-              <TableCell align="right">Price</TableCell>
+              <TableCell align='right'>Price</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Desc</TableCell>
-              <TableCell align="right">Qty.</TableCell>
-              <TableCell align="right">Unit</TableCell>
-              <TableCell align="right">Sum</TableCell>
+              <TableCell align='right'>Qty.</TableCell>
+              <TableCell align='right'>Unit</TableCell>
+              <TableCell align='right'>Sum</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => (
+            {rows.map((row) => (
               <TableRow key={row.desc}>
                 <TableCell>{row.desc}</TableCell>
-                <TableCell align="right">{row.qty}</TableCell>
-                <TableCell align="right">{row.unit}</TableCell>
-                <TableCell align="right">{ccyFormat(row.price)}</TableCell>
+                <TableCell align='right'>{row.qty}</TableCell>
+                <TableCell align='right'>{row.unit}</TableCell>
+                <TableCell align='right'>{ccyFormat(row.price)}</TableCell>
               </TableRow>
             ))}
             <TableRow>
               <TableCell rowSpan={3} />
               <TableCell colSpan={2}>Subtotal</TableCell>
-              <TableCell align="right">{ccyFormat(invoiceSubtotal)}</TableCell>
+              <TableCell align='right'>{ccyFormat(invoiceSubtotal)}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Tax</TableCell>
-              <TableCell align="right">{`${(TAX_RATE * 100).toFixed(
-                0,
-              )} %`}</TableCell>
-              <TableCell align="right">{ccyFormat(invoiceTaxes)}</TableCell>
+              <TableCell align='right'>{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
+              <TableCell align='right'>{ccyFormat(invoiceTaxes)}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell colSpan={2}>Total</TableCell>
-              <TableCell align="right">{ccyFormat(invoiceTotal)}</TableCell>
+              <TableCell align='right'>{ccyFormat(invoiceTotal)}</TableCell>
             </TableRow>
           </TableBody>
         </Table>
@@ -1437,11 +1318,9 @@ export const SpanningTable = story<TableProps>(
 export const VirtualizedTable = story<TableProps>(
   () => {
     return (
-      <Alert severity="warning">
+      <Alert severity='warning'>
         This example uses react-virtualized, which is not installed. See{' '}
-        <a href="https://next.material-ui.com/components/tables/#virtualized-table">
-          MUI docs
-        </a>
+        <a href='https://next.material-ui.com/components/tables/#virtualized-table'>MUI docs</a>
       </Alert>
     )
   },
@@ -1457,7 +1336,7 @@ export const VirtualizedTable = story<TableProps>(
 )
 
 export const Accessibility = story<TableProps>(
-  args => {
+  (args) => {
     function createData(
       name: string,
       calories: number,
@@ -1476,27 +1355,27 @@ export const Accessibility = story<TableProps>(
 
     return (
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="caption table" {...args}>
+        <Table sx={{ minWidth: 650 }} aria-label='caption table' {...args}>
           <caption>A basic table example with a caption</caption>
           <TableHead>
             <TableRow>
               <TableCell>Dessert (100g serving)</TableCell>
-              <TableCell align="right">Calories</TableCell>
-              <TableCell align="right">Fat&nbsp;(g)</TableCell>
-              <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-              <TableCell align="right">Protein&nbsp;(g)</TableCell>
+              <TableCell align='right'>Calories</TableCell>
+              <TableCell align='right'>Fat&nbsp;(g)</TableCell>
+              <TableCell align='right'>Carbs&nbsp;(g)</TableCell>
+              <TableCell align='right'>Protein&nbsp;(g)</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => (
+            {rows.map((row) => (
               <TableRow key={row.name}>
-                <TableCell component="th" scope="row">
+                <TableCell component='th' scope='row'>
                   {row.name}
                 </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
+                <TableCell align='right'>{row.calories}</TableCell>
+                <TableCell align='right'>{row.fat}</TableCell>
+                <TableCell align='right'>{row.carbs}</TableCell>
+                <TableCell align='right'>{row.protein}</TableCell>
               </TableRow>
             ))}
           </TableBody>
