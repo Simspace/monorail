@@ -27,6 +27,6 @@ for f in ./packages/* ;
       echo "Version ${NPM_PACKAGE_VERSION} of ${NPM_PACKAGE_NAME} has already been published, so no new version has been published."
     fi
 
-    cd ../../../
+    cd ../../
   fi
 done
