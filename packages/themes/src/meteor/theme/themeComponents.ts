@@ -54,6 +54,7 @@ import { MonorailSnackbarOverrides } from '../components/Snackbar/themeOverrides
 import { MonorailSplitButtonOverrides } from '../components/SplitButton/themeOverrides.js'
 import { MonorailStepIconOverrides } from '../components/StepIcon/themeOverrides.js'
 import { MonorailStepLabelOverrides } from '../components/StepLabel/themeOverrides.js'
+import { MonorailSvgIconOverrides } from '../components/SvgIcon/themeOverrides.js'
 import { MonorailSwitchOverrides } from '../components/Switch/themeOverrides.js'
 import { MonorailTabOverrides } from '../components/Tab/themeOverrides.js'
 import { MonorailTablePaginationOverrides } from '../components/TablePagination/themeOverrides.js'
@@ -126,4 +127,5 @@ export const getThemeComponents = (
   MuiToggleButton: MonorailToggleButtonOverrides,
   MuiToggleButtonGroup: MonorailToggleButtonGroupOverrides,
   MuiTreeItem: MonorailTreeItemOverrides,
+  MuiSvgIcon: MonorailSvgIconOverrides,
 })
