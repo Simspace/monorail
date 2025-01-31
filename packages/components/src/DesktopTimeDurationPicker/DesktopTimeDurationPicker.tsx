@@ -1,5 +1,4 @@
 import React from 'react'
-import { Clear } from '@mui/icons-material'
 import type { DesktopTimePickerProps as MuiDesktopTimePickerProps } from '@mui/x-date-pickers'
 import { DesktopTimePicker as MuiDesktopTimePicker } from '@mui/x-date-pickers'
 
