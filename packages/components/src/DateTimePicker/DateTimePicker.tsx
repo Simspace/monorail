@@ -20,9 +20,9 @@ export const DateTimePicker: typeof MuiDateTimePicker = React.forwardRef(
     <MuiDateTimePicker
       ref={ref}
       /**
-       * The reason for this is here instead of in 
+       * The reason for this is here instead of in
        * packages/themes/src/classic/components/PickersLayout/themeOverrides.ts
-       * is because the layout padding depends on whether the component is wrapping a DateTimePicker or a 
+       * is because the layout padding depends on whether the component is wrapping a DateTimePicker or a
        * DesktopDateTimePicker. The padding is different for each.
        */
       slotProps={{ layout: { sx: { padding: 4 } } }}
