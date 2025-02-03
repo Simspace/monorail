@@ -12,7 +12,7 @@ export default {
 
 const Template = story<DesktopTimePickerProps<Date>>(
   (args: Partial<DesktopTimePickerProps<Date>>) => {
-    const [value, setValue] = React.useState()
+    const [value, setValue] = React.useState<Date | null>(null)
 
     return (
       <Box>
