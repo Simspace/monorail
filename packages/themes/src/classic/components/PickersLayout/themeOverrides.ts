@@ -33,6 +33,7 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
             borderRadius: 2,
 
             [`&.Mui-selected`]: {
+              ...theme.typography.subtitle2,
               backgroundColor: theme.palette.default.main,
             },
           },
@@ -84,6 +85,7 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
             ['&:focus']: {
               backgroundColor: theme.palette.primary.light,
             },
+            ...theme.typography.subtitle2,
           },
 
           /** Disabled days */
