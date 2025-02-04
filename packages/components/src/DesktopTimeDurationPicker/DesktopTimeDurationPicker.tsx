@@ -29,6 +29,7 @@ export const DesktopTimeDurationPicker: typeof MuiDesktopTimePicker =
         layout: { sx: { paddingX: 2, pt: 4, paddingBottom: 6 } },
         field: { clearable: true },
         clearIcon: { fontSize: 'medium' },
+        inputAdornment: { sx: { ml: 0 } },
       }}
       closeOnSelect={false}
       views={['minutes', 'seconds']}
