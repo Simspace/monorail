@@ -15,7 +15,7 @@ const Template = story<DesktopTimePickerProps<Date>>(
     const [value, setValue] = React.useState<Date | null>(null)
 
     return (
-      <Box>
+      <Box display={'flex'} width={'30%'}>
         <DesktopTimeDurationPicker
           label="For desktop"
           value={value}
