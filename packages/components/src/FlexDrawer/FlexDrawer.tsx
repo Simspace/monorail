@@ -110,7 +110,8 @@ const FlexDrawerTemporaryContainer = styled('div', {
   slot: 'TemporaryContainer',
   overridesResolver: (_, styles) => [styles.temporaryContainer],
 })({
-  width: 'min-content',
+  position: 'inherit',
+  width: '100%',
   height: '100%',
   [`& .${flexDrawerClasses.paper}`]: {
     boxSizing: 'border-box',
@@ -147,6 +148,7 @@ const FlexDrawerPaper = styled(Paper, {
   flex: '1 0 auto',
   zIndex: theme.zIndex.drawer,
   ...(ownerState.variant === 'temporary' && {
+    height: 'inherit',
     transition: theme.transitions.create(
       [
         `margin-${oppositeAnchorPosition[ownerState.anchor]}`,
@@ -349,6 +351,7 @@ export const FlexDrawer = React.forwardRef((props, ref) => {
         case 'bottom': {
           return {
             height: `${size}px`,
+            [anchorInvariant]: 0,
             ...(variant === 'persistent' &&
               !open && {
                 [anchorInvariant]: `-${size}px`,
@@ -437,7 +440,6 @@ export const FlexDrawer = React.forwardRef((props, ref) => {
       square
       {...paperProps}
       className={clsx(classes.paper, paperProps?.className)}
-      style={getDrawerStyle(drawerSize, isDragging)}
       ownerState={ownerState}
     >
       {children}
@@ -477,7 +479,10 @@ export const FlexDrawer = React.forwardRef((props, ref) => {
         in={open}
         timeout={transitionDuration}
       >
-        <FlexDrawerTemporaryContainer className={classes.temporaryContainer}>
+        <FlexDrawerTemporaryContainer
+          className={classes.temporaryContainer}
+          style={getDrawerStyle(drawerSize, isDragging)}
+        >
           {props.resizable === true && resizeHandle}
           {temporaryDrawerPaper}
         </FlexDrawerTemporaryContainer>

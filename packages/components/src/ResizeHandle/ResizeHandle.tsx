@@ -35,6 +35,7 @@ export const ResizeHandleRoot = styled('div', {
     backgroundColor: 'transparent',
     position: 'relative',
     zIndex: theme.zIndex.drawer + 1,
+    userSelect: 'none',
     '&:hover': {
       [`& > .${resizeHandleClasses.handle}`]: {
         // border.light isn't the most semantic, but it translates well between light and dark mode
