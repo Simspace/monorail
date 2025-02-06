@@ -1,4 +1,6 @@
 import React from 'react'
+import type { IconButtonProps } from '@mui/material'
+import { IconButton } from '@mui/material'
 import type { DesktopTimePickerProps as MuiDesktopTimePickerProps } from '@mui/x-date-pickers'
 import { DesktopTimePicker as MuiDesktopTimePicker } from '@mui/x-date-pickers'
 
@@ -18,6 +20,9 @@ export const DesktopTimeDurationPicker: typeof MuiDesktopTimePicker =
       ref={ref}
       slots={{
         actionBar: () => null,
+        clearButton: ({ children, onClick }: IconButtonProps) => (
+          <IconButton onClick={onClick}>{children}</IconButton>
+        ),
       }}
       /**
        * The reason for this is here instead of in
@@ -30,7 +35,6 @@ export const DesktopTimeDurationPicker: typeof MuiDesktopTimePicker =
         field: { clearable: true },
         textField: { fullWidth: true },
         clearIcon: { fontSize: 'medium' },
-        clearButton: { sx: { opacity: '1 !important' } }, // MUI overrides the opacity to 0 on blur
         inputAdornment: { sx: { ml: 0 } },
       }}
       closeOnSelect={false}
