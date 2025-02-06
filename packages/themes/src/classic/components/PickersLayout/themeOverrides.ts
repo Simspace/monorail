@@ -1,6 +1,7 @@
 import { type Components, dividerClasses, type Theme } from '@mui/material'
 import {
   dateCalendarClasses,
+  multiSectionDigitalClockClasses,
   multiSectionDigitalClockSectionClasses,
   pickersCalendarHeaderClasses,
   pickersDayClasses,
@@ -12,9 +13,6 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
     defaultProps: {},
     styleOverrides: {
       root: ({ theme }) => ({
-        '&': {
-          padding: theme.spacing(4),
-        },
         [`& .${pickersLayoutClasses.actionBar}`]: {
           padding: 0,
           height: 'auto',
@@ -23,7 +21,10 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
           display: 'none',
         },
 
-        /** Time buttons */
+        /** Time section */
+        [`& .${multiSectionDigitalClockClasses.root}`]: {
+          borderBottom: 'none',
+        },
         [`& .${multiSectionDigitalClockSectionClasses.root}`]: {
           width: 'auto',
           padding: theme.spacing(1),
@@ -32,6 +33,7 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
             borderRadius: 2,
 
             [`&.Mui-selected`]: {
+              ...theme.typography.subtitle2,
               backgroundColor: theme.palette.default.main,
             },
           },
@@ -83,6 +85,7 @@ export const MonorailPickersLayoutOverrides: Components<Theme>['MuiPickersLayout
             ['&:focus']: {
               backgroundColor: theme.palette.primary.light,
             },
+            ...theme.typography.subtitle2,
           },
 
           /** Disabled days */
