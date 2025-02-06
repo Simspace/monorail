@@ -20,6 +20,9 @@ export const DesktopTimeDurationPicker: typeof MuiDesktopTimePicker =
       ref={ref}
       slots={{
         actionBar: () => null,
+        /**
+         * NOTE: Overriding this to avoid the opacity: 0 added by MUI to the clear button.
+         */
         clearButton: ({ children, onClick }: IconButtonProps) => (
           <IconButton onClick={onClick}>{children}</IconButton>
         ),
