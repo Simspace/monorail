@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Box, type DesktopTimePickerProps } from '@monorail/components'
-import { DesktopTimeDurationPicker } from '@monorail/components/DesktopTimeDurationPicker/DesktopTimeDurationPicker'
+import { DesktopTimeDurationPicker } from '@monorail/components'
 
 import { story } from '../helpers/storybook.js'
 
@@ -19,6 +19,7 @@ const Template = story<DesktopTimePickerProps<Date>>(
         <DesktopTimeDurationPicker
           label="For desktop"
           value={value}
+          slotProps={{ textField: { placeholder: 'something here' } }}
           onChange={newValue => {
             setValue(newValue)
           }}
