@@ -8,7 +8,6 @@ import clsx from 'clsx'
 
 import { composeClasses, sx } from '@monorail/utils'
 
-import { Box } from '../Box.js'
 import { DialogEventContext } from '../Dialog/dialogEventContext.js'
 import { IconButton } from '../IconButton.js'
 import { Typography } from '../Typography.js'
@@ -41,12 +40,18 @@ const DialogHeaderRoot = styled('div', {
   overridesResolver,
 })<DialogHeaderRootProps>(
   sx(theme => ({
-    padding: theme.spacing(4, 6),
-    height: theme.spacing(14),
+    padding: theme.spacing(2, 6),
+    minHeight: theme.spacing(14),
     flex: '0 0 auto',
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+    gap: theme.spacing(4),
+
+    [` .${dialogHeaderClasses.title}`]: {
+      pt: 2,
+      flex: 1,
+    },
   })),
 )
 
@@ -56,7 +61,7 @@ const DialogIconContainer = styled('div', {
 })(
   sx(theme => ({
     display: 'flex',
-    marginRight: theme.spacing(4),
+    py: theme.spacing(2),
   })),
 )
 
@@ -90,7 +95,6 @@ export const DialogHeader = React.forwardRef(function DialogHeader(
         component="span"
         variant="h3"
         className={classes.title}
-        flex="1 0 auto"
         {...slotProps.typography}
       >
         {title}
@@ -126,7 +130,6 @@ export const DialogHeader = React.forwardRef(function DialogHeader(
         </DialogIconContainer>
       )}
       {title}
-      <Box sx={{ width: '100%' }} />
       {closeButton}
     </DialogHeaderRoot>
   )
