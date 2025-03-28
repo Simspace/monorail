@@ -17,7 +17,7 @@ export interface DialogHeaderProps
   /**
    * The title displayed in the header
    */
-  title: React.ReactChild
+  title: React.ReactNode
   /**
    * The icon to the left of the title
    * @default undefined
