@@ -24095,12 +24095,12 @@ __metadata:
   linkType: hard
 
 "react-devtools-core@npm:^4.19.1":
-  version: 4.25.0
-  resolution: "react-devtools-core@npm:4.25.0"
+  version: 4.28.5
+  resolution: "react-devtools-core@npm:4.28.5"
   dependencies:
     shell-quote: ^1.6.1
     ws: ^7
-  checksum: 68dae4507c46b875936904f2aba0fe1dda1d7b6fb616ac72e438aec29d7c49aeadaaff264cc148d40795075fdb9c736d1dcf5c50dbe40eaae64c7aa24f313e68
+  checksum: d8e4b32ffcfe1ada5c9f7decffd04afc4707a3d6261953a92b8aed1c8abe15cd57d6eb4ce711f842180a2f5c60d2947209e3c1202f7ea29303ee150c55da59e0
   languageName: node
   linkType: hard
 
