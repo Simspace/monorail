@@ -12,7 +12,9 @@ export default { title: 'Inputs/FileUpload', component: FileUpload }
 
 const Template = story<FileUploadProps>(
   args => {
-    const [file, setFile] = React.useState<File | null>(null)
+    const [file, setFile] = React.useState<File | ReadonlyArray<File> | null>(
+      null,
+    )
     const [progress, setProgress] = React.useState<number | null>(null)
 
     React.useEffect(() => {
@@ -150,3 +152,25 @@ export const OnlyVisibleWhileDragging = story<FileUploadProps>(args => (
     </Box>
   </DndProvider>
 ))
+
+export const Multiple = story<FileUploadProps>(
+  args => {
+    const [files, setFiles] = React.useState<ReadonlyArray<File> | File | null>(
+      null,
+    )
+
+    return (
+      <DndProvider backend={HTML5Backend}>
+        <FileUpload
+          file={files}
+          multiple
+          label="File upload"
+          onChange={value => setFiles(value)}
+          uploadProgress={null}
+          {...args}
+        />
+      </DndProvider>
+    )
+  },
+  { args: {} },
+)

@@ -208,6 +208,7 @@ export const FileUpload = React.forwardRef(function FileUpload(
   const props = useThemeProps({ props: inProps, name: 'MonorailFileUpload' })
   const {
     className,
+    multiple = false,
     disabled = false,
     error = false,
     file,
@@ -225,7 +226,9 @@ export const FileUpload = React.forwardRef(function FileUpload(
     ...other
   } = props
 
-  let helperTextPrimary = 'Drop a file here to upload'
+  let helperTextPrimary = multiple
+    ? 'Drop one or more files here to upload'
+    : 'Drop a file here to upload'
   let helperTextSecondary = 'or'
 
   let errorTextPrimary = 'Something went wrong.'
@@ -329,9 +332,19 @@ export const FileUpload = React.forwardRef(function FileUpload(
         }
       case DropTargetStatus.InProgress:
       case DropTargetStatus.Uploaded:
-        return {
-          primary: file !== null && file.name,
-          secondary: file !== null && formatSize(bytesToSize(file.size)),
+        if (multiple) {
+          return {
+            primary: null,
+            secondary: undefined,
+          }
+        } else {
+          const uploadedFile = file as File
+          return {
+            primary: uploadedFile !== null && uploadedFile.name,
+            secondary:
+              uploadedFile !== null &&
+              formatSize(bytesToSize(uploadedFile.size)),
+          }
         }
       case DropTargetStatus.Error:
         return {
@@ -351,27 +364,37 @@ export const FileUpload = React.forwardRef(function FileUpload(
     fileUploadStatus,
     helperTextPrimary,
     helperTextSecondary,
+    multiple,
   ])
 
   const buttonText = React.useMemo(() => {
     switch (fileUploadStatus) {
       case DropTargetStatus.Initial:
       case DropTargetStatus.Error:
-        return 'Select a File'
+        return multiple ? 'Select files' : 'Select a File'
       case DropTargetStatus.Dropping:
         return null
       case DropTargetStatus.InProgress:
         return 'Cancel'
       case DropTargetStatus.Uploaded:
-        return 'Remove File'
+        return `Remove File${multiple ? 's' : ''}`
       default:
         return null
     }
-  }, [fileUploadStatus])
+  }, [fileUploadStatus, multiple])
 
   if (fileUploadStatus !== undefined) {
     icon = iconMapping[fileUploadStatus] ?? defaultIconMapping[fileUploadStatus]
   }
+
+  const title = React.useMemo(() => {
+    if (multiple) {
+      return 'Multiple files selected'
+    }
+    if (file !== null) {
+      return (file as File).name
+    }
+  }, [file, multiple])
 
   return (
     <FileUploadRoot
@@ -405,7 +428,7 @@ export const FileUpload = React.forwardRef(function FileUpload(
           {dropTargetText.primary !== null && (
             <Typography
               lineClamp={file !== null ? 1 : undefined}
-              title={file !== null ? file.name : undefined}
+              title={title}
               className={classes.textPrimary}
               {...slotProps.textPrimary}
             >
@@ -464,6 +487,7 @@ export const FileUpload = React.forwardRef(function FileUpload(
           ref={inputRef}
           style={{ display: 'none' }}
           type="file"
+          multiple={props.multiple ?? false}
         />
       </DropTarget>
     </FileUploadRoot>
