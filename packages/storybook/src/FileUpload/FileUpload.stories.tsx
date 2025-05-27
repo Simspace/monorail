@@ -12,9 +12,7 @@ export default { title: 'Inputs/FileUpload', component: FileUpload }
 
 const Template = story<FileUploadProps>(
   args => {
-    const [file, setFile] = React.useState<File | ReadonlyArray<File> | null>(
-      null,
-    )
+    const [file, setFile] = React.useState<ReadonlyArray<File> | null>(null)
     const [progress, setProgress] = React.useState<number | null>(null)
 
     React.useEffect(() => {
@@ -46,7 +44,7 @@ const Template = story<FileUploadProps>(
     return (
       <DndProvider backend={HTML5Backend}>
         <FileUpload
-          file={file}
+          files={file}
           label="File upload"
           onChange={value => setFile(value)}
           uploadProgress={progress}
@@ -64,7 +62,7 @@ export const Status = story<FileUploadProps>(args => (
   <DndProvider backend={HTML5Backend}>
     <Stack gap={4}>
       <FileUpload
-        file={null}
+        files={null}
         helperTextPrimary="My custom text for drop target"
         label={'Default'}
         required
@@ -74,35 +72,35 @@ export const Status = story<FileUploadProps>(args => (
       />
       <FileUpload
         label="In Progress"
-        file={
+        files={[
           {
             lastModified: new Date().getTime(),
             name: 'this_is_a_really_really_long_file_name_that_should_trigger_an_ellipsis_when_its_container_reaches_the_defined_max_width.csv',
             size: 3000,
             type: '',
-          } as unknown as File
-        }
+          } as unknown as File,
+        ]}
         uploadProgress={67}
         onChange={() => void 0}
         {...args}
       />
       <FileUpload
         label="Uploaded"
-        file={
+        files={[
           {
             lastModified: new Date().getTime(),
             name: 'the_file_i_totally_dropped',
             size: 3000,
             type: '',
-          } as unknown as File
-        }
+          } as unknown as File,
+        ]}
         onChange={() => void 0}
         uploadProgress={null}
         {...args}
       />
       <FileUpload
         label={'Error'}
-        file={null}
+        files={null}
         uploadProgress={null}
         onChange={() => void 0}
         error
@@ -110,7 +108,7 @@ export const Status = story<FileUploadProps>(args => (
       />
       <FileUpload
         disabled
-        file={null}
+        files={null}
         label={'Disabled'}
         required
         onChange={() => void 0}
@@ -143,7 +141,7 @@ export const OnlyVisibleWhileDragging = story<FileUploadProps>(args => (
         </Typography>
       </Stack>
       <FileUpload
-        file={null}
+        files={null}
         onChange={() => void 0}
         uploadProgress={null}
         onlyVisibleWhileDragging
@@ -155,17 +153,17 @@ export const OnlyVisibleWhileDragging = story<FileUploadProps>(args => (
 
 export const Multiple = story<FileUploadProps>(
   args => {
-    const [files, setFiles] = React.useState<ReadonlyArray<File> | File | null>(
-      null,
-    )
+    const [files, setFiles] = React.useState<ReadonlyArray<File> | null>(null)
 
     return (
       <DndProvider backend={HTML5Backend}>
         <FileUpload
-          file={files}
+          files={files}
           multiple
           label="File upload"
-          onChange={value => setFiles(value)}
+          onChange={value => {
+            setFiles(value)
+          }}
           uploadProgress={null}
           {...args}
         />

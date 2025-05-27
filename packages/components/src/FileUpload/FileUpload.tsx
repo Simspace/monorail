@@ -46,11 +46,11 @@ const defaultIconMapping = {
 }
 
 type DropTargetMonitor = {
-  getItem: () => { files: Array<File> }
+  getItem: () => { files: ReadonlyArray<File> }
 }
 
 interface FileUploadRootProps
-  extends Omit<FileUploadProps, 'file' | 'uploadProgress' | 'onChange'> {
+  extends Omit<FileUploadProps, 'files' | 'uploadProgress' | 'onChange'> {
   ownerState: FileUploadProps
 }
 
@@ -78,7 +78,7 @@ const FileUploadRoot = styled(FormControl, {
 interface DropTargetProps
   extends Omit<
     FileUploadProps,
-    'ref' | 'file' | 'uploadProgress' | 'onChange'
+    'ref' | 'files' | 'uploadProgress' | 'onChange'
   > {
   ownerState: FileUploadProps
 }
@@ -211,7 +211,7 @@ export const FileUpload = React.forwardRef(function FileUpload(
     multiple = false,
     disabled = false,
     error = false,
-    file,
+    files,
     helperTextPrimary: helperTextPrimaryProp,
     helperTextSecondary: helperTextSecondaryProp,
     errorTextPrimary: errorTextPrimaryProp,
@@ -240,7 +240,7 @@ export const FileUpload = React.forwardRef(function FileUpload(
     accept: [NativeTypes.FILE],
     drop(_, monitor: DropTargetMonitor) {
       const files = monitor.getItem().files
-      onChangeProp(files[0] ?? null)
+      onChangeProp(Array.from(files))
     },
     collect: monitor => ({
       isOver: monitor.isOver(),
@@ -252,11 +252,11 @@ export const FileUpload = React.forwardRef(function FileUpload(
     const isDropping = canDrop && isOver
     return getDropTargetStatus({
       isDropping,
-      uploaded: file !== null,
+      uploaded: files !== null,
       inProgress: uploadProgress !== null,
       error: !isDropping && error,
     })
-  }, [canDrop, isOver, file, uploadProgress, error])
+  }, [canDrop, isOver, files, uploadProgress, error])
 
   const ownerState: FileUploadProps = {
     ...props,
@@ -288,7 +288,7 @@ export const FileUpload = React.forwardRef(function FileUpload(
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files
     if (files !== null) {
-      onChangeProp(files[0] ?? null)
+      onChangeProp(Array.from(files))
 
       if (inputRef.current !== null) {
         inputRef.current.value = ''
@@ -333,17 +333,23 @@ export const FileUpload = React.forwardRef(function FileUpload(
       case DropTargetStatus.InProgress:
       case DropTargetStatus.Uploaded:
         if (multiple) {
+          const totalSize =
+            files?.reduce((acc, file) => acc + (file.size ?? 0), 0) ?? 0
           return {
-            primary: null,
-            secondary: undefined,
+            primary: `Uploaded ${files?.length} files`,
+            secondary: `${formatSize(bytesToSize(totalSize))} in total`,
           }
         } else {
-          const uploadedFile = file as File
+          const { primary, secondary } = files?.[0]
+            ? {
+                primary: files[0].name,
+                secondary: formatSize(bytesToSize(files[0].size)),
+              }
+            : { primary: null, secondary: null }
+
           return {
-            primary: uploadedFile !== null && uploadedFile.name,
-            secondary:
-              uploadedFile !== null &&
-              formatSize(bytesToSize(uploadedFile.size)),
+            primary,
+            secondary,
           }
         }
       case DropTargetStatus.Error:
@@ -360,7 +366,7 @@ export const FileUpload = React.forwardRef(function FileUpload(
   }, [
     errorTextPrimary,
     errorTextSecondary,
-    file,
+    files,
     fileUploadStatus,
     helperTextPrimary,
     helperTextSecondary,
@@ -391,10 +397,10 @@ export const FileUpload = React.forwardRef(function FileUpload(
     if (multiple) {
       return 'Multiple files selected'
     }
-    if (file !== null) {
-      return (file as File).name
+    if (files !== null) {
+      return files?.[0]?.name
     }
-  }, [file, multiple])
+  }, [files, multiple])
 
   return (
     <FileUploadRoot
@@ -427,7 +433,7 @@ export const FileUpload = React.forwardRef(function FileUpload(
 
           {dropTargetText.primary !== null && (
             <Typography
-              lineClamp={file !== null ? 1 : undefined}
+              lineClamp={files !== null ? 1 : undefined}
               title={title}
               className={classes.textPrimary}
               {...slotProps.textPrimary}
@@ -500,7 +506,7 @@ function useUtilityClasses(ownerState: FileUploadProps) {
     disabled,
     status,
     error,
-    file,
+    files,
     onlyVisibleWhileDragging,
     isDragging,
   } = ownerState
@@ -519,13 +525,13 @@ function useUtilityClasses(ownerState: FileUploadProps) {
     textPrimary: [
       'textPrimary',
       error === true && 'error',
-      file !== null && 'fileName',
+      files !== null && 'fileName',
       isDragging === true && 'isDragging',
     ],
     textSecondary: [
       'textSecondary',
       error === true && 'error',
-      file !== null && 'fileSize',
+      files !== null && 'fileSize',
     ],
   }
 

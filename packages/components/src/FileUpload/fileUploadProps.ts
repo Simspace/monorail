@@ -26,7 +26,7 @@ export interface FileUploadProps
   /**
    * The file to upload.
    */
-  file: File | ReadonlyArray<File> | null
+  files: ReadonlyArray<File> | null
   /**
    * Progress of the upload.
    */
@@ -60,7 +60,7 @@ export interface FileUploadProps
   /**
    * Callback fired when the value is changed.
    */
-  onChange: (file: File | ReadonlyArray<File> | null) => void
+  onChange: (file: ReadonlyArray<File> | null) => void
   /**
    * If `true`, the `dropTarget` element will only be visible while a file is being dragged into the viewport.
    * @default false
