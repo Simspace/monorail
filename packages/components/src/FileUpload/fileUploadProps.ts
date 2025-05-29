@@ -26,7 +26,7 @@ export interface FileUploadProps
   /**
    * The file to upload.
    */
-  file: File | null
+  files: ReadonlyArray<File> | null
   /**
    * Progress of the upload.
    */
@@ -60,7 +60,7 @@ export interface FileUploadProps
   /**
    * Callback fired when the value is changed.
    */
-  onChange: (file: File | null) => void
+  onChange: (files: ReadonlyArray<File> | null) => void
   /**
    * If `true`, the `dropTarget` element will only be visible while a file is being dragged into the viewport.
    * @default false
@@ -105,4 +105,9 @@ export interface FileUploadProps
     label?: Partial<InputLabelProps & DataAttributes>
   }
   sx?: SxProps<Theme>
+  /**
+   * Allow multiple files to be uploaded.
+   * @default false
+   */
+  multiple?: boolean
 }
