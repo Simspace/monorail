@@ -12,11 +12,11 @@ export default { title: 'Inputs/FileUpload', component: FileUpload }
 
 const Template = story<FileUploadProps>(
   args => {
-    const [file, setFile] = React.useState<ReadonlyArray<File> | null>(null)
+    const [files, setFiles] = React.useState<ReadonlyArray<File> | null>(null)
     const [progress, setProgress] = React.useState<number | null>(null)
 
     React.useEffect(() => {
-      if (file === null) {
+      if (files === null) {
         setProgress(null)
         return
       }
@@ -25,7 +25,7 @@ const Template = story<FileUploadProps>(
 
       const timer = setInterval(() => {
         setProgress(prevProgress => {
-          if (prevProgress === null || file === null) {
+          if (prevProgress === null || files === null) {
             return null
           }
           if (prevProgress >= 90) {
@@ -39,14 +39,14 @@ const Template = story<FileUploadProps>(
       return () => {
         clearInterval(timer)
       }
-    }, [file])
+    }, [files])
 
     return (
       <DndProvider backend={HTML5Backend}>
         <FileUpload
-          files={file}
+          files={files}
           label="File upload"
-          onChange={value => setFile(value)}
+          onChange={value => setFiles(value)}
           uploadProgress={progress}
           {...args}
         />
