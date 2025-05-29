@@ -31,7 +31,7 @@ export const MonorailPaginationItemOverrides: Components<Theme>['MuiPaginationIt
             fontWeight: theme.typography.fontWeightBold,
             '&:hover': {
               backgroundColor: alpha(
-                theme.palette.primary.main,
+                theme.palette.default.main,
                 theme.palette.action.selectedOpacity +
                   theme.palette.action.hoverOpacity,
               ),
