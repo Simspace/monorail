@@ -494,6 +494,7 @@ export const FileUpload = React.forwardRef(function FileUpload(
           style={{ display: 'none' }}
           type="file"
           multiple={props.multiple ?? false}
+          accept={props.accept}
         />
       </DropTarget>
     </FileUploadRoot>

@@ -110,4 +110,5 @@ export interface FileUploadProps
    * @default false
    */
   multiple?: boolean
+  accept?: string
 }
